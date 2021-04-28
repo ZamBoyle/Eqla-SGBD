@@ -1,0 +1,8 @@
+Partie 1 - Créer une base de données
+========
+1. Ouvrir un terminal.
+2. tapez la commande mysql -u -p
+3. Entrez votre mot de passe
+4. Tapez la commande pour créer la base de données: ecole
+5. CREATE database ecole
+
