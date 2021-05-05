@@ -1,0 +1,79 @@
+Toute commande dans mysql doit se terminer par un point virgule ;
+Si vous le faites pas mysql ne sait pas que vous avez terminé la commande en cours.
+
+Partie 1 - Créer une base de données
+========
+1. Ouvrez un terminal.
+2. Connectez-vous au SGBD MySQL: mysql -u root -p
+3. Entrez votre mot de passe
+4. Changez l'encodage en utf8: charset utf8
+4. Tapez la commande pour créer la base de données BlindCode
+5. CREATE database blincode;
+6. exit;
+
+Partie 2 - Changer de base de données
+========
+1. Ouvrez un terminal.
+2. Allez dans le répertoire SQL: cd SQL
+3. Connectez-vous au SGBD MySQL: mysql -u root -p
+4. Entrez votre mot de passe
+5. Changez de base de données: use blindcode;
+6. Ne sortez pas de MySQL avec exit;
+
+Partie 2 - Créer une table Eleve
+========
+1. Dans votre éditeur préféré VS Code, notepad, ce que vous voulez créez le fichier tableEleve.sql
+2. Dans ce fichier tapez les lignes suivantes:
+charset utf8;
+use blindcode;
+CREATE TABLE Eleve (
+    IdEleve int NOT NULL,
+    Prenom varchar(20) NOT NULL,
+    RN varchar(20) UNIQUE NOT NULL,
+    Nom varchar(20) NOT NULL,
+    Naissance date NOT NULL,
+    Email varchar(40),
+    Tel varchar(20),
+    GSM varchar(20),
+    PRIMARY KEY (IdEleve),
+    FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
+);
+3. Sauvegardez votre fichier tableEleve.sql
+4. Ouvrez un terminal.
+5. Allez dans votre répertoire SQL: cd SQL
+6. Connectez-vous au SGBD MySQL: mysql -u root -p
+7. Entrez votre mot de passe
+8. Importez votre script eleve.sql: source tableEleve.sql
+9. Vous devriez avoir une erreur (mis à part les erreurs typographiques/syntaxiques du SQL)
+Quelle est-elle ? Si vous ne savez pas analyser la ligne contenant FOREIGN KEY.
+Que veut-elle dire ? Qu'auriez-vous dû faire auparavant ?
+
+Partie 3 - Créer une table Classe
+========
+1. Dans votre éditeur préféré VS Code, notepad, ce que vous voulez créez le fichier tableClasse.sql
+2. Dans ce fichier tapez les lignes suivantes:
+charset utf8;
+use blindcode;
+CREATE TABLE Classe (
+    IdClasse int NOT NULL,
+    Nom varchar(20) NOT NULL,
+    Lieu varchar(20) NOT NULL,
+    PRIMARY KEY (IdClasse)
+);
+3. Sauvegardez votre fichier tableClasse.sql
+4. Ouvrez un terminal.
+5. Allez dans votre répertoire SQL: cd SQL
+6. Connectez-vous au SGBD MySQL: mysql -u root -p
+7. Entrez votre mot de passe
+8. Importez votre script eleve.sql: source tableClasse.sql
+9. Vous devriez avoir une erreur.
+Quelle est-elle ? Si vous ne savez pas analyser la ligne contenant FOREIGN KEY.
+Que veut-elle dire ? Qu'auriez-vous dû faire auparavant ??
+
+
+
+
+
+
+
+
