@@ -57,7 +57,7 @@ Ensuite faite la relation reliant Classe à Elève.
 Partie 5 - Cardinalité d'une relation
 ========
 Si on reprend l'exemple des communes et des provinces.
-L'entité Commune fait partie d'une et une seule Province: Sa cardinalité s'écrit 1,1 (Le premier 1 est le nombre minimum de Province et le second est le nombre maximum de Provinces).
+Une Commune fait partie d'une et une seule Province: Sa cardinalité s'écrit 1,1 (Le premier 1 est le nombre minimum de Province et le second est le nombre maximum de Provinces).
 A l'inverse Une Province a 1 ou plusieurs Communes: Sa cardinalité s'écrit 1, N (Le 1 est le nombre minimum de Communes et N est un nombre >1 (Donc plusieurs))
 
 A vous d'essayer d'écrire les cardinalités suivantes:
