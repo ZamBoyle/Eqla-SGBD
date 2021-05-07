@@ -52,6 +52,8 @@ Maxime fait partie de BLINDCODE4DATA
 
 L'entité classe contient l'entité eleve
 
+
+
 BLINDCODE4DATA contient :
     Alain
     Bruno
