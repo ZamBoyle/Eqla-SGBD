@@ -20,13 +20,21 @@ PRIMARY KEY (IdClasse) défini la clé primaire sur le champ IdClasse
 La creation d'une table se fait par la commande CREATE TABLE
 Inspirez-vous de la creation de la table Eleve pour créer la table Classe.
 Il doit y avoir comme champs:
-IdClasse
+IdClasse: entier
 Nom
 Lieu
 Et évidemment définir l'IdClasse comme une clef primaire
+
+N'OUBLIEZ PAS QUE TOUTE INSTRUCTION DANS MYSQL SE TERMINER PAR UN POINT VIRGULE !!!
+
 A vous de jouer ! :)
 */
-
+CREATE TABLE Classe (
+    IdClasse int NOT NULL AUTO_INCREMENT,
+    Nom varchar(20),
+    Lieu varchar(20),
+    PRIMARY KEY(IdClasse)
+);
 
 
 
@@ -55,7 +63,7 @@ CREATE TABLE Eleve (
     GSM varchar(20),
     IdClasse int NOT NULL,
     PRIMARY KEY (IdEleve),
-    FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse) 
+    FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
 );
 
 /*
@@ -71,75 +79,51 @@ N'OUBLIEZ PAS QUE TOUTE INSTRUCTION DANS MYSQL SE TERMINER PAR UN POINT VIRGULE 
 
 A vous de jouer ! :)
 */
-
-
-/*
-INSERTION D'ENREGISTREMENTS DANS LA TABLE ELEVE
-On va ajouter 2 élèves qui sont dans la classe BlindCode (Bruno & Isaac)
-Pour le premier Eleve:
-Prenom: Bruno
-Nom: Defalque
-Naissance: 1980-08-15
-RN: 45455457
-Rue: Rue des Potes
-Nationalite: belge
-Numero: 1
-CP: 4000 
-Localite: Liège
-Sexe: M
-Email: defalquebruno@gmail.com
-GSM: 0472 46 22 11
-IdClasse: 1 (1 devrait correspondre à BlindCode si vous avez ajoutez en premier BlindCode avant BlindCode4Data
-
-Pour le deuxième Eleve:
-Prenom: Isaac
-Nom: Tcheuyassi
-Naissance: 1987-12-27
-RN: 887711
-Rue: Rue des codeurs fous
-Numero: 14
-CP: 5000
-Localite: Namur
-Sexe: M
-Email: tcheuyassiisaac@yahoo.com
-GSM: 0476 78 67 69
-IdClasse: 1
-*/
+INSERT INTO Classe (Nom, Lieu) VALUES ('BlindCode','BXL');
+INSERT INTO Classe (Nom, Lieu) VALUES ('BlindCode4Data','LLN');
 
 /*
 Ajouter les personnes de votre groupe dans la table Eleve
 */
 
+/* Eleve BlindCode4Data */
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('Sana','Eleonor','1997-07-1','521298798787','1','Belge','Rue des écoles','3', NULL,'1490', 'Cours-St-Etienne','F','eleonorsana97@gmail.com',NULL,'0472 03 09 46',2 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('Kizmaz','Mashum','1991-02-7','19798798787','1','Belge','Rue de l''Espoir','2', NULL,'4800', 'Verviers','M','mahsumkizmaz@gmail.com','04/338.67.69','0498 25 34 88',2 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('Tcheuyassi','Isaac','1987-06-08','8498798787','1','Camerounais','Place de l''Hirondelle','98', NULL,'5001', 'Belgrade','M','tcheuyassiisaac@yahoo.com',NULL,'0476 78 67 69',2 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('Dufrasne','Alain','1972-11-15','1298798787','1','Belge','Avenue du SQL','9', NULL,'7300', 'Boussu','M','alduf@live.be',NULL,'0472 07 85 65',2 );
 
-/*
-Dans mysql exécuter le script avec la commande source fichier.sql;
-*/
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('Borsen','Maxime','1993-12-23','8798798787','1','Belge','Rue de l''INSERTion','30', NULL,'1348', 'LLN','M','maxime.borsen@gmail.com',NULL,'0479 97 74 52',2 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('Bakashika','Jessie','1995-05-19','6598798787','1','Belge','Place des martyrs des SGBD','5', NULL,'1348', 'LLN','M','jessie.bakashika@gmail.com',NULL,'0496 67 89 11',2 );
 
+/* Eleve BlindCode */
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('DARFEUILLE','Matthieu','1985-11-10','126598798787','1','Belge','Rue des Push','5', NULL,'4140', 'Dolembreux','M','DARFEUILLE.Matthieu@gmail.com',NULL,'0496 22 89 22',1 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('DESSEILLE','Simon','1987-11-14','216598798787','1','Belge','Rue des Pull','5', NULL,'6890', 'Libin','M','DESSEILLE.Simon@gmail.com',NULL,'0486 89 89 33',1 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('DEFALQUE','Bruno','1995-05-19','346598798787','1','Belge','Place du corps qui GIT','5', NULL,'6890', 'Redu','M','DEFALQUE.Bruno@gmail.com',NULL,'0496 14 89 99',1 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('TAMDITI','Ibrahim','1995-05-19','456598798787','1','Belge','Place des SGBD','5', NULL,'4052', 'Beaufays','M','TAMDITI.Ibrahim@gmail.com',NULL,'0473 77 28 27',1 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('De BACKER','Sophie','1995-05-19','566598798787','1','Belge','Rue des Requêtes','5', NULL,'4161', 'Esneux','F','DeBACKER.Sophie@gmail.com',NULL,'0497 88 89 12',1 );
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('BEYA','Yves','1995-05-19','656598798787','1','Belge','Rue des Tables','5', NULL,'4800', 'Verviers','M','BEYA.Yves@gmail.com',NULL,'0474 67 89 78',1 );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES('BEN AHMED','Mounir','1995-05-19','786598798787','1','Belge','Rue de l''Etude','5', NULL,'4102', 'Ougrée','M','BENAHMED.Mounir@gmail.com',NULL,'0479 47 89 96',1 );
 
