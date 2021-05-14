@@ -43,7 +43,7 @@ CREATE TABLE Eleve (
     Nom varchar(20) NOT NULL,
     Naissance date NOT NULL,    
     RN varchar(20) UNIQUE NOT NULL,
-    Actif boolean NOT NULL DEFAULT '1',
+    Actif boolean NOT NULL DEFAULT 1,
     Nationalite varchar(20) NOT NULL,
     Rue varchar(50) NOT NULL,
     Numero varchar(5) NULL,
