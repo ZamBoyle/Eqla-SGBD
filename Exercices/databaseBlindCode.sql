@@ -36,8 +36,6 @@ CREATE TABLE Classe (
     PRIMARY KEY(IdClasse)
 );
 
-
-
 /*
 CREATION DE LA TABLE ELEVE
 On peut créer maintenant la table Eleve et faire référence à la clé étrangère IdClass de la table Classe
@@ -107,23 +105,23 @@ VALUES('Bakashika','Jessie','1995-05-19','6598798787','1','Belge','Place des mar
 
 /* Eleve BlindCode */
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
-VALUES('DARFEUILLE','Matthieu','1985-11-10','126598798787','1','Belge','Rue des Push','5', NULL,'4140', 'Dolembreux','M','DARFEUILLE.Matthieu@gmail.com',NULL,'0496 22 89 22',1 );
+VALUES('DARFEUILLE','Matthieu','1985-11-10','126598798787','1','Belge','Rue des Push','5', NULL,'4140', 'Dolembreux','M','DARFEUILLE.Matthieu@yahoo.fr',NULL,'0496 22 89 22',1 );
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES('DESSEILLE','Simon','1987-11-14','216598798787','1','Belge','Rue des Pull','5', NULL,'6890', 'Libin','M','DESSEILLE.Simon@gmail.com',NULL,'0486 89 89 33',1 );
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
-VALUES('DEFALQUE','Bruno','1995-05-19','346598798787','1','Belge','Place du corps qui GIT','5', NULL,'6890', 'Redu','M','DEFALQUE.Bruno@gmail.com',NULL,'0496 14 89 99',1 );
+VALUES('DEFALQUE','Bruno','1965-05-19','346598798787','1','Belge','Place du corps qui GIT','5', NULL,'6890', 'Redu','M','DEFALQUE.Bruno@gmail.com',NULL,'0496 14 89 99',1 );
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
-VALUES('TAMDITI','Ibrahim','1995-05-19','456598798787','1','Belge','Place des SGBD','5', NULL,'4052', 'Beaufays','M','TAMDITI.Ibrahim@gmail.com',NULL,'0473 77 28 27',1 );
+VALUES('TAMDITI','Ibrahim','1974-03-17','456598798787','1','Belge','Place des SGBD','5', NULL,'4052', 'Beaufays','M','TAMDITI.Ibrahim@gmail.com',NULL,'0473 77 28 27',1 );
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
-VALUES('De BACKER','Sophie','1995-05-19','566598798787','1','Belge','Rue des Requêtes','5', NULL,'4161', 'Esneux','F','DeBACKER.Sophie@gmail.com',NULL,'0497 88 89 12',1 );
+VALUES('De BACKER','Sophie','1978-09-9','566598798787','1','Belge','Rue des Requêtes','5', NULL,'4161', 'Esneux','F','DeBACKER.Sophie@gmail.com',NULL,'0497 88 89 12',1 );
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
-VALUES('BEYA','Yves','1995-05-19','656598798787','1','Belge','Rue des Tables','5', NULL,'4800', 'Verviers','M','BEYA.Yves@gmail.com',NULL,'0474 67 89 78',1 );
+VALUES('BEYA','Yves','1980-11-27','656598798787','1','Belge','Rue des Tables','5', '11','4800', 'Verviers','M','BEYA.Yves@gmail.com',NULL,'0474 67 89 78',1 );
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
-VALUES('BEN AHMED','Mounir','1995-05-19','786598798787','1','Belge','Rue de l''Etude','5', NULL,'4102', 'Ougrée','M','BENAHMED.Mounir@gmail.com',NULL,'0479 47 89 96',1 );
+VALUES('BEN AHMED','Mounir','1991-01-3','786598798787','1','Belge','Rue de l''Etude','5', NULL,'4102', 'Ougrée','M','BENAHMED.Mounir@gmail.com',NULL,'0479 47 89 96',1 );
 
