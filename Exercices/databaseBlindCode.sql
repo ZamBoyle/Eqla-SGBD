@@ -29,12 +29,7 @@ N'OUBLIEZ PAS QUE TOUTE INSTRUCTION DANS MYSQL SE TERMINER PAR UN POINT VIRGULE 
 
 A vous de jouer ! :)
 */
-CREATE TABLE Classe (
-    IdClasse int NOT NULL AUTO_INCREMENT,
-    Nom varchar(20),
-    Lieu varchar(20),
-    PRIMARY KEY(IdClasse)
-);
+
 
 /*
 CREATION DE LA TABLE ELEVE
@@ -48,7 +43,7 @@ CREATE TABLE Eleve (
     Nom varchar(20) NOT NULL,
     Naissance date NOT NULL,    
     RN varchar(20) UNIQUE NOT NULL,
-    Actif boolean NOT NULL DEFAULT '1',
+    Actif boolean NOT NULL DEFAULT 1,
     Nationalite varchar(20) NOT NULL,
     Rue varchar(50) NOT NULL,
     Numero varchar(5) NULL,
