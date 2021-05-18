@@ -87,7 +87,7 @@ Partie 10 - WHERE sur des DATES
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves nés entre 1970 ET 1980.
-6. Affichez les élèves qui ne sont pas nés entre 1970 ET 1980: Rappelez-moi de vous expliquer une autre manière de faire ;)
+6. Affichez les élèves qui ne sont pas nés entre 1970 ET 1980.
 
 Partie 11 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
 =========
@@ -113,7 +113,7 @@ Partie 13 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves dont le prénom commence par 'be'
 
-Partie 14 (Base de données Localites)    WHERE
+Partie 14 (Base de données Localites)    WHERE   AND     OR
 =========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -122,6 +122,7 @@ Partie 14 (Base de données Localites)    WHERE
 5. Affichez toutes les communes sur le code Postal 4280
 6. Affichez toutes les communes sur le code Postal 4280 et dont la commune commence par 'b' ou par 'a'
 7. Affichez les CP et les noms des communes de la Province de Liège: les CP sont compris entre 4000 et 4999
+
 
 
 
