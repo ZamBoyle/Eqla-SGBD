@@ -1,25 +1,19 @@
 Toute commande dans mysql doit se terminer par un point virgule ;
 Si vous le faites pas mysql ne sait pas que vous avez terminé la commande en cours.
 
-Partie 1 - Copie des fichiers databaseBlindCode.sql   Localite.sql    DatabaseVente.sql
-========
-1. Ouvrez un terminal.
-2. Allez dans le dépôt Eqla-SGBD
-3. Copiez les trois fichiers suivants: databaseBlindCode.sql, Localite.sql, DatabaseVente.sql dans un répertoire d'exercices SQL de votre choix.
-
-Partie 2 - Importation des fichiers de base de données
+Partie 1 - Importation des fichiers de base de données
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
-4. Importez le script qui va générer la base de données BlindCode: source databaseBlindCode.sql
+4. Importez le script qui va générer la base de données BlindCode: source databaseBlindCode.sql (Normalement c'est déjà fait.)
 5. Importez le script qui va générer la base de données Localites (Ca va prendre plus temps: attendez): source databaseLocalites.sql
 6. Importez le script qui va générer la base de données Ventes: source databaseVentes.sql
 7. Faites un SHOW DATABASES;
 8: Vous devriez voir dans la liste des bases de données: BlindCode, Localites, Ventes
 9. Si vous avez des erreurs appelez-moi.
 
-Partie 3 - Notre premier SELECT *
+Partie 2 - Notre premier SELECT *
 ========
 1. Connectez-vous au SGBD MySQL: mysql -u root -p
 2. Entrez votre mot de passe.
@@ -27,7 +21,7 @@ Partie 3 - Notre premier SELECT *
 4. Ecrivez l'instruction qui affichez tous les enregistrements de la table Eleve: tous les champs à l'aide du caractère *
 5. Ecrivez l'instruction qui affichez tous les enregistrements de la table Classe: tous les champs à l'aide du caractère *
 
-Partie 4 - SELECT ch1, ch2, etc.
+Partie 3 - SELECT ch1, ch2, etc.
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -36,7 +30,7 @@ Partie 4 - SELECT ch1, ch2, etc.
 5. Affichez tous les enregistrements de la table Eleve avec les champs suivants: Nom, Prenom, Email
 6. Affichez tous les enregistrements de la table Classe avec les champs: Nom, Lieux
 
-Partie 5 - Notre premier WHERE
+Partie 4 - Notre premier WHERE
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -46,7 +40,7 @@ Partie 5 - Notre premier WHERE
 6. Affichez tous les élèves de sexe Masculin.
 7. Affichez Le nom, le prénom, la localite des élèves qui habitent sur le CP 6890.
 
-Partie 6 - WHERE   AND
+Partie 5 - WHERE   AND
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -54,7 +48,7 @@ Partie 6 - WHERE   AND
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez tous les élèves de Sexe Masculin ET ayant comme CP 1348
 
-Partie 7 - WHERE   IS NULL IS NOT NULL
+Partie 6 - WHERE   IS NULL IS NOT NULL
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -63,7 +57,7 @@ Partie 7 - WHERE   IS NULL IS NOT NULL
 5. Affichez tous les élèves qui n'ont pas de numéro de téléphone: On utilisera IS NULL
 6. A l'inverse, affciez les élèves qui ont un numéro de téléphone: On utilisera IS NOT NULL
 
-Partie 8 - WHERE     AND
+Partie 7 - WHERE     AND
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -71,7 +65,7 @@ Partie 8 - WHERE     AND
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves dont le code postal est dans les 4000
 
-Partie 9 - WHERE  sur une DATE
+Partie 8 - WHERE  sur une DATE
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -80,7 +74,7 @@ Partie 9 - WHERE  sur une DATE
 5. Affichez les élèves nés après 1980: Le format de la date est année/Mois/Jour
 6. Affichez les élèves nés avant 1980: Le format de la date est année/Mois/Jour
 
-Partie 10 - WHERE sur des DATES
+Partie 9 - WHERE sur des DATES
 ========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -89,7 +83,7 @@ Partie 10 - WHERE sur des DATES
 5. Affichez les élèves nés entre 1970 ET 1980.
 6. Affichez les élèves qui ne sont pas nés entre 1970 ET 1980.
 
-Partie 11 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
+Partie 10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
 =========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -97,7 +91,7 @@ Partie 11 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves qui ont une adresse de type gmail.com
 
-Partie 12 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
+Partie 11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 =========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -105,7 +99,7 @@ Partie 12 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves qui ont une adresse de type gmail.com
 
-Partie 13 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
+Partie 12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 =========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
@@ -113,7 +107,7 @@ Partie 13 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves dont le prénom commence par 'be'
 
-Partie 14 (Base de données Localites)    WHERE   AND     OR
+Partie 13 (Base de données Localites)    WHERE   AND     OR
 =========
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
