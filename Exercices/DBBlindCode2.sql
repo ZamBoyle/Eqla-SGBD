@@ -64,7 +64,7 @@ CREATE TABLE Eleve (
      IdClasse int NOT NULL,
      AnneeScolaire int NOT NULL,
      DateInscription date NOT NULL,
-     PRIMARY KEY(IdEleve,IdClasse),
+     PRIMARY KEY(IdEleve,IdClasse,AnneeScolaire),
      FOREIGN KEY(IdEleve) REFERENCES Eleve(IdEleve),
      FOREIGN KEY(IdClasse) REFERENCES Classe(IdClasse)
  );
