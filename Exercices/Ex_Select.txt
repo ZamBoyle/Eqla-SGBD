@@ -11,12 +11,13 @@ Partie 1 - Importation des fichiers de base de données
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
-4. Importez le script qui va générer la base de données BlindCode: source databaseBlindCode.sql (Normalement c'est déjà fait.)
-5. Importez le script qui va générer la base de données Localites (Ca va prendre plus temps: attendez): source databaseLocalites.sql
-6. Importez le script qui va générer la base de données Ventes: source databaseVentes.sql
-7. Faites un SHOW DATABASES;
-8: Vous devriez voir dans la liste des bases de données: BlindCode, Localites, Ventes
-9. Si vous avez des erreurs appelez-moi.
+4. Importez le script qui va générer la base de données BlindCode: source BlindCode.sql (Normalement c'est déjà fait.)
+5. Importez le script qui va générer la base de données Localites (Ca va prendre plus temps: attendez): source Localites.sql
+6. Importez le script qui va générer la base de données Ventes: source Ventes.sql
+7. Importez le script qui va générer la base de données Ventes: source Pays.sql
+8. Faites un SHOW DATABASES;
+9: Vous devriez voir dans la liste des bases de données: BlindCode, Localites, Ventes, Pays
+10. Si vous avez des erreurs appelez-moi.
 
 Partie 2 - Notre premier SELECT *
 ========
@@ -138,7 +139,7 @@ Partie 15 (Base de données BlindCode) ORDER BY
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
 5. 
 On va ici créer une colonne dynamiquement dans le résultat qu'on nommera Age. On utilisera le AS comme vu au cours dans la partie "champs calculés"
 Je vous demande d'afficher le prenom, nom et l'age des eleves.
@@ -147,10 +148,48 @@ Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'ann
 7. Ensuite, du plus vieux au plus jeune.
 8. Réécrivez vos deux requêtes pour ne traîter que des élèves de BlindCode4Data.
 
+Partie 16 (Base de données BlindCode) AVG
+=========
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: mysql -u root -p
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+5. Reprenez la requête de la partie 16.
+6. Modifiez-la pour que l'on ait l'age moyen des élèves.
 
+Partie 17 (Base de données Ventes) MIN, MAX, SUM
+=========
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: mysql -u root -p
+3. Entrez votre mot de passe
+4. Si vous n'êtes pas dans la DB Ventes, tapez: use ventes;
+5. Affichez le prix maximum des produits
 
+Partie 18 (Base de données Ventes) GROUP BY
+=========
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: mysql -u root -p
+3. Entrez votre mot de passe
+4. Si vous n'êtes pas dans la DB Ventes, tapez: use ventes;
+5. Affichez pour chaque catégorie, son stock. (Indice utilisez aussi SUM)
 
+Partie 19 (Base de données BlindCode) GROUP BY
+=========
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: mysql -u root -p
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+5. Affichez pour chaque sexe, le nombre total. (Indice COUNT)
+6. Affichez pour chaque nationalite, le nombre total.
 
+Partie 20 (Base de données Pays) GROUP BY
+=========
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: mysql -u root -p
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Pays, tapez: use Pays;
+5. Faites un DESC Pays, pour voir sa structure.
+6. Affichez pour chaque continent, combien il a de pays;
 
 
 

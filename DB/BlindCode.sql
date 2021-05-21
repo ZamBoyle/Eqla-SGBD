@@ -46,7 +46,7 @@ CREATE TABLE Eleve (
     IdEleve int NOT NULL AUTO_INCREMENT,
     Prenom varchar(20) NOT NULL,
     Nom varchar(20) NOT NULL,
-    Naissance date NOT NULL,    
+    Naissance date NOT NULL,
     RN varchar(20) UNIQUE NOT NULL,
     Actif boolean NOT NULL DEFAULT 1,
     Nationalite varchar(20) NOT NULL,
@@ -80,10 +80,6 @@ A vous de jouer ! :)
 INSERT INTO Classe (Nom, Lieu) VALUES ('BlindCode','BXL');
 INSERT INTO Classe (Nom, Lieu) VALUES ('BlindCode4Data','LLN');
 
-/*
-Ajouter les personnes de votre groupe dans la table Eleve
-*/
-
 /* Eleve BlindCode4Data */
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES('Sana','Eleonor','1997-07-1','521298798787','1','Belge','Rue des écoles','3', NULL,'1490', 'Cours-St-Etienne','F','eleonorsana97@gmail.com',NULL,'0472 03 09 46',2 );
@@ -102,7 +98,6 @@ VALUES('Borsen','Maxime','1993-12-23','8798798787','1','Belge','Rue de l''INSERT
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES('Bakashika','Jessie','1995-05-19','6598798787','1','Belge','Place des martyrs des SGBD','5', NULL,'1348', 'LLN','M','jessie.bakashika@gmail.com',NULL,'0496 67 89 11',2 );
-
 /* Eleve BlindCode */
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES('DARFEUILLE','Matthieu','1985-11-10','126598798787','1','Belge','Rue des Push','5', NULL,'4140', 'Dolembreux','M','DARFEUILLE.Matthieu@yahoo.fr',NULL,'0496 22 89 22',1 );
@@ -125,3 +120,6 @@ VALUES('BEYA','Yves','1980-11-27','656598798787','1','Belge','Rue des Tables','5
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES('BEN AHMED','Mounir','1991-01-3','786598798787','1','Belge','Rue de l''Etude','5', NULL,'4102', 'Ougrée','M','BENAHMED.Mounir@gmail.com',NULL,'0479 47 89 96',1 );
 
+DROP FUNCTION IF EXISTS GetAge;
+CREATE FUNCTION GetAge(birthdate Date) returns int DETERMINISTIC
+return YEAR(CURDATE())-YEAR(birthdate);
