@@ -103,7 +103,7 @@ Partie 11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
-5. Affichez les élèves qui ont une adresse de type gmail.com
+5. Affichez les élèves qui n'ont pas une adresse de type gmail.com
 
 Partie 12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 =========
@@ -111,7 +111,7 @@ Partie 12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
-5. Affichez les élèves dont le prénom commence par 'be'
+5. Affichez les élèves dont le nom commence par 'be'
 
 Partie 13 (Base de données Localites)    WHERE   AND     OR
 =========
@@ -129,8 +129,8 @@ Partie 14 (Base de données BlindCode) ORDER BY
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
-5. Affichez les champs: Prenom, Nom, Sexe, Naissance et triez dans l'ordre alphabétique sur le prenom et puis le nom.
-6. Ensuite, triez dans l'ordre inverse.
+5. Affichez les champs: Prenom, Nom, Sexe, Naissance et triez dans l'ordre alphabétique sur le nom et puis le prenom.
+6. Ensuite, triez dans l'ordre inverse le nom.
 7. Triez les élèves du plus agé au plus jeune.
 8. Ensuite, triez dans l'ordre inverse.
 
@@ -190,10 +190,6 @@ Partie 20 (Base de données Pays) GROUP BY
 4. Si vous n'êtes pas dans la DB Pays, tapez: use Pays;
 5. Faites un DESC Pays, pour voir sa structure.
 6. Affichez pour chaque continent, combien il a de pays;
-
-
-
-
 
 
 
