@@ -39,7 +39,7 @@ CREATE TABLE Classe (
 /*
 CREATION DE LA TABLE ELEVE
 On peut créer maintenant la table Eleve et faire référence à la clé étrangère IdClass de la table Classe
-CHECK(Sexe IN ('M','F'))   Astuce permettant de vérifier que la valeur qui sera insérée dans la DB sera soit
+CHECK(Sexe IN ('M','F'))   Astuce permettant de vérifier que la valeur qui sera insérée dans la DB sera soit 'M' ou 'F'
 DEFAULT donne une valeur par défaut. Ici le champ Actif est par défaut à 1 (true) car comme on vient de le créer, il est actif.
 */
 CREATE TABLE Eleve (
@@ -70,10 +70,10 @@ On doit en premier avoir des classes sans ça, on ne pourrait pas créer des él
 En effet, 1 élève fait partie d'1 et une seule classe. Donc la classe doit exister avant.
 On va donc ajouter deux classes: la classe BlindCode et la classe BlindCode4Data
 On utilise la commande INSERT
-Voici la syntaxe:  INSERT INTO LaTable (nomChamp1,nomChamp2,nomChamp3,nomChamp4) VALUES ('valeurNomChamp1','valeurNomChamp2''valeurNomChamp3''valeurNomChamp4');
+Voici la syntaxe:  INSERT INTO LaTable (nomChamp1,nomChamp2,nomChamp3,nomChamp4) VALUES ('valeurNomChamp1','valeurNomChamp2','valeurNomChamp3','valeurNomChamp4');
 Vu que vous avez deux classes à ajouter (deux enregistrements), vous devrez écrire deux instructions INSERT INTO. L'une pour la classe BlindCode, l'autre pour BlindCode4Data
 
-N'OUBLIEZ PAS QUE TOUTE INSTRUCTION DANS MYSQL SE TERMINER PAR UN POINT VIRGULE !!!
+N'OUBLIEZ PAS QUE TOUTE INSTRUCTION DANS MYSQL DOIT SE TERMINER PAR UN POINT VIRGULE !!!
 
 A vous de jouer ! :)
 */
