@@ -164,6 +164,8 @@ Partie 17 (Base de données Ventes) MIN, MAX, SUM
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB Ventes, tapez: use ventes;
 5. Affichez le prix maximum des produits
+6. Affichez le prix minimum des produits
+7. Affichez le prix total de tous les produits
 
 Partie 18 (Base de données Ventes) GROUP BY
 =========
@@ -189,7 +191,4 @@ Partie 20 (Base de données Pays) GROUP BY
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Pays, tapez: use Pays;
 5. Faites un DESC Pays, pour voir sa structure.
-6. Affichez pour chaque continent, combien il a de pays;
-
-
-
+6. Affichez pour chaque continent, combien il a de pays.
