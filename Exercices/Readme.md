@@ -21,14 +21,14 @@
 - [Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'](#exercice-n10---where----avec-like-quelquechose--se-termine-par-quelquechose)
 - [Exercice n°11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'](#exercice-n11---where----avec-like-quelquechose--commence-par-quelquechose)
 - [Exercice n°12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'](#exercice-n12---where----avec-like-quelquechose--contient-quelquechose)
-- [Exercice n°13 (Base de données Localites)    WHERE   AND     OR](#exercice-n13-base-de-données-localites----where---and-----or)
-- [Exercice n°14 (Base de données BlindCode) ORDER BY](#exercice-n14-base-de-données-blindcode-order-by)
-- [Exercice n°15 (Base de données BlindCode) ORDER BY](#exercice-n15-base-de-données-blindcode-order-by)
-- [Exercice n°16 (Base de données BlindCode) AVG](#exercice-n16-base-de-données-blindcode-avg)
-- [Exercice n°17 (Base de données Ventes) MIN, MAX, SUM](#exercice-n17-base-de-données-ventes-min-max-sum)
-- [Exercice n°18 (Base de données Ventes) GROUP BY](#exercice-n18-base-de-données-ventes-group-by)
-- [Exercice n°19 (Base de données BlindCode) GROUP BY](#exercice-n19-base-de-données-blindcode-group-by)
-- [Exercice n°20 (Base de données Pays) GROUP BY](#exercice-n20-base-de-données-pays-group-by)
+- [Exercice n°13 - WHERE   AND     OR](#exercice-n13---where---and-----or)
+- [Exercice n°14 - ORDER BY](#exercice-n14---order-by)
+- [Exercice n°15 - ORDER BY](#exercice-n15---order-by)
+- [Exercice n°16 - AVG](#exercice-n16---avg)
+- [Exercice n°17 - MIN, MAX, SUM](#exercice-n17---min-max-sum)
+- [Exercice n°18 - GROUP BY](#exercice-n18---group-by)
+- [Exercice n°19 - GROUP BY](#exercice-n19---group-by)
+- [Exercice n°20 - GROUP BY](#exercice-n20---group-by)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -136,7 +136,7 @@ prompt <\d>
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves dont le nom commence par 'be'
 
-## Exercice n°13 (Base de données Localites)    WHERE   AND     OR
+## Exercice n°13 - WHERE   AND     OR
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -145,7 +145,7 @@ prompt <\d>
 6. Affichez toutes les communes sur le code Postal 4280 et dont la commune commence par 'b' ou par 'a'
 7. Affichez les CP et les noms des communes de la Province de Liège: les CP sont compris entre 4000 et 4999
 
-## Exercice n°14 (Base de données BlindCode) ORDER BY    
+## Exercice n°14 - ORDER BY    
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -155,7 +155,7 @@ prompt <\d>
 7. Triez les élèves du plus agé au plus jeune.
 8. Ensuite, triez dans l'ordre inverse.
 
-## Exercice n°15 (Base de données BlindCode) ORDER BY 
+## Exercice n°15 - ORDER BY 
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -168,7 +168,7 @@ Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'ann
 7. Ensuite, du plus vieux au plus jeune.
 8. Réécrivez vos deux requêtes pour ne traîter que des élèves de BlindCode4Data.
 
-## Exercice n°16 (Base de données BlindCode) AVG
+## Exercice n°16 - AVG
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe.
@@ -176,7 +176,7 @@ Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'ann
 5. Reprenez la requête de la Exercice n°16.
 6. Modifiez-la pour que l'on ait l'age moyen des élèves.
 
-## Exercice n°17 (Base de données Ventes) MIN, MAX, SUM
+## Exercice n°17 - MIN, MAX, SUM
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -185,14 +185,14 @@ Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'ann
 6. Affichez le prix minimum des produits
 7. Affichez le prix total de tous les produits
 
-## Exercice n°18 (Base de données Ventes) GROUP BY
+## Exercice n°18 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB Ventes, tapez: use ventes;
 5. Affichez pour chaque catégorie, son stock. (Indice utilisez aussi SUM)
 
-## Exercice n°19 (Base de données BlindCode) GROUP BY
+## Exercice n°19 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe.
@@ -200,7 +200,7 @@ Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'ann
 5. Affichez pour chaque sexe, le nombre total. (Indice COUNT)
 6. Affichez pour chaque nationalite, le nombre total.
 
-## Exercice n°20 (Base de données Pays) GROUP BY
+## Exercice n°20 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe.
