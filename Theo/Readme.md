@@ -34,7 +34,7 @@
 - [IV. Le langage SQL](#iv-le-langage-sql)
   - [1. SELECT: Chercher des informations](#1-select-chercher-des-informations)
     - [1.1 DISTINCT](#11-distinct)
-  - [2.2 WHERE : Filtrage](#22-where-filtrage)
+  - [2. WHERE : Filtrage](#2-where-filtrage)
     - [a. WHERE : Opérateurs Booléens](#a-where-opérateurs-booléens)
     - [b. WHERE : AND et OR](#b-where-and-et-or)
     - [c. Opérateur AND](#c-opérateur-and)
@@ -53,6 +53,7 @@
       - [5.4 La Somme – SUM](#54-la-somme--sum)
       - [5.5 COUNT(champ) et COUNT(*)](#55-countchamp-et-count)
   - [6. GROUP BY](#6-group-by)
+  - [7. INNER JOIN: Jointure entre tables.](#7-inner-join-jointure-entre-tables)
 
 # I. Introduction
 ## 1. Mise en situation
@@ -309,7 +310,7 @@ FROM Eleve ;
 Et ici, nous n'aurons plus que 2 résultats : 'Belge' et 'Camerounais'. Dans ce cas, DISTINCT va supprimer les doublons.
 
 
-## 2.2 WHERE : Filtrage
+## 2. WHERE : Filtrage
 WHERE signifie Où en français. Le où indique qu'on attend une condition pour filtrer notre sélection. Seuls les enregistrements répondants à la condition seront affichés.
 <u>Exemple</u> :
 
@@ -669,3 +670,56 @@ SELECT Categorie, AVG(Prix)
 FROM Produit
 GROUP BY Categorie ;
 ```
+## 7. INNER JOIN: Jointure entre tables.
+Maintenant que nous savons lire/sélectionner des données depuis une table.
+Il est parfois nécessaire de lire les données depuis plusieurs tables en même temps. Et de n'afficher que certaines données de ces tables.
+
+Il faut essayer de trouver un point d'anchrage dans chaque table. Essayer de lier nos tables entre elles. Pour cela, on lie une table à une autre grâce aux clefs primaires/étrangères.
+
+Tiens qu'est-ce encore qu'une clef primaire/étrangère ? :) 
+
+Reprenons les tables Eleve et Classe.
+
+<u>Table Classe</u>:
+|            |              |        |
+|------------|--------------|--------|
+|**IdClasse** (Clef primaire)|**Nom**       |**Lieu**|
+|1           |BlindCode     |BXL     |
+|2           |BlindCode4Data|LLN     |
+
+<u>Table Eleve</u>:
+|           |          |          |            |
+|-----------|----------|----------|------------|
+|**IdEleve** (Clef primaire)|**Prénom**|**Nom**   |**IdClasse** (clef étrangère)|
+|1          |Alain     |Dufrasne  |2           |
+|2          |Bruno     |Defalque  |2           |
+|3          |Eleonor   |Sana      |2           |
+|4          |Jessie    |Bakashika |2           |
+|5          |Mahsum    |Kizmaz    |2           |
+|6          |Maxime    |Borsen    |2           |
+|7          |Isaac     |Tcheuyassi|2           |
+|8          |Matthieu  |DARFEUILLE|1           |
+|9          |Simon     |DESSEILLE |1           |
+|10         |Ibrahim   |TAMDITI   |1           |
+|11         |Sophie    |De BACKER |1           |
+|12         |Yves      |BEYA      |1           |
+|13         |Mounir    |BEN AHMED |1           |
+
+Si nous voulons afficher tous les élèves et leur classe, nous faisions ceci en SQL:
+```sql
+SELECT *
+FROM Eleve
+```
+Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un champ numéro. Ce champ numéro est la clef étrangère qui pointe vers la table Classe.
+
+Si on veut lier nos tables pour afficher le nom de la classe au lieu d'un identifiant, nous allons utiliser la commande sql suivante: **INNER JOIN**
+
+```sql
+SELECT Eleve.Nom, Prenom, Classe.Nom
+FROM Eleve
+INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
+```
+Analysons cette requête au niveau:
+- Le SELECT est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou de la Classe si on ne spécifie pas la table.
+- INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse
+- 1.  
