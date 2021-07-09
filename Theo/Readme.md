@@ -629,7 +629,7 @@ SELECT COUNT(*) NB_Eleves
 FROM Eleve ;
 ```
 
-Maintenant si nous voulions connaître le nombre de garçons parmi nos élèves nous devons coupler la commande COUNT avec la DISTINCT :
+Si nous voulions connaître le nombre de garçons parmi nos élèves :
 
 ```sql
 SELECT COUNT(Sexe) AS NB_Garcons
