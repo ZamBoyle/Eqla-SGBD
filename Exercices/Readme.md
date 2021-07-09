@@ -1,13 +1,47 @@
-                                Exercices sur les SELECT & WHERE
-                                ================================
+<h1>Exercices sur les bases de données</h1>
 
+![](../Theo/media/image1.png)
+<div style="text-align: right">
+<i>Johnny Piette</i>
+</div>
+
+****
+<h1>Table des matières</h1>
+
+- [Introduction](#introduction)
+- [Exercice n°1 - Importation des fichiers de base de données](#exercice-n1---importation-des-fichiers-de-base-de-données)
+- [Exercice n°2 - Notre premier SELECT *](#exercice-n2---notre-premier-select-)
+- [Exercice n°3 - SELECT ch1, ch2, etc.](#exercice-n3---select-ch1-ch2-etc)
+- [Exercice n°4 - Notre premier WHERE](#exercice-n4---notre-premier-where)
+- [Exercice n°5 - WHERE   AND](#exercice-n5---where---and)
+- [Exercice n°6 - WHERE   IS NULL IS NOT NULL](#exercice-n6---where---is-null-is-not-null)
+- [Exercice n°7 - WHERE     AND](#exercice-n7---where-----and)
+- [Exercice n°8 - WHERE  sur une DATE](#exercice-n8---where--sur-une-date)
+- [Exercice n°9 - WHERE sur des DATES](#exercice-n9---where-sur-des-dates)
+- [Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'](#exercice-n10---where----avec-like-quelquechose--se-termine-par-quelquechose)
+- [Exercice n°11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'](#exercice-n11---where----avec-like-quelquechose--commence-par-quelquechose)
+- [Exercice n°12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'](#exercice-n12---where----avec-like-quelquechose--contient-quelquechose)
+- [Exercice n°13 (Base de données Localites)    WHERE   AND     OR](#exercice-n13-base-de-données-localites----where---and-----or)
+- [Exercice n°14 (Base de données BlindCode) ORDER BY](#exercice-n14-base-de-données-blindcode-order-by)
+- [Exercice n°15 (Base de données BlindCode) ORDER BY](#exercice-n15-base-de-données-blindcode-order-by)
+- [Exercice n°16 (Base de données BlindCode) AVG](#exercice-n16-base-de-données-blindcode-avg)
+- [Exercice n°17 (Base de données Ventes) MIN, MAX, SUM](#exercice-n17-base-de-données-ventes-min-max-sum)
+- [Exercice n°18 (Base de données Ventes) GROUP BY](#exercice-n18-base-de-données-ventes-group-by)
+- [Exercice n°19 (Base de données BlindCode) GROUP BY](#exercice-n19-base-de-données-blindcode-group-by)
+- [Exercice n°20 (Base de données Pays) GROUP BY](#exercice-n20-base-de-données-pays-group-by)
+
+## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
-Si vous le faites pas mysql ne sait pas que vous avez terminé la commande en cours.
-Pour savoir dans quelle base de données vous êtes actuellement, on va customiser notre prompt.
-Dans mysql tapez: prompt <\d>
 
-Partie 1 - Importation des fichiers de base de données
-========
+Si vous le faites pas mysql ne sait pas que vous avez terminé la commande en cours.
+
+Pour savoir dans quelle base de données vous êtes actuellement, on va customiser notre prompt.
+Dans la console mysql, tapez:
+```bash
+prompt <\d>
+```
+
+## Exercice n°1 - Importation des fichiers de base de données
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -19,16 +53,14 @@ Partie 1 - Importation des fichiers de base de données
 9: Vous devriez voir dans la liste des bases de données: BlindCode, Localites, Ventes, Pays
 10. Si vous avez des erreurs appelez-moi.
 
-Partie 2 - Notre premier SELECT *
-========
+## Exercice n°2 - Notre premier SELECT *
 1. Connectez-vous au SGBD MySQL: mysql -u root -p
 2. Entrez votre mot de passe.
 3. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
 4. Ecrivez l'instruction qui affichez tous les enregistrements de la table Eleve: tous les champs à l'aide du caractère *
 5. Ecrivez l'instruction qui affichez tous les enregistrements de la table Classe: tous les champs à l'aide du caractère *
 
-Partie 3 - SELECT ch1, ch2, etc.
-========
+## Exercice n°3 - SELECT ch1, ch2, etc.
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -36,8 +68,7 @@ Partie 3 - SELECT ch1, ch2, etc.
 5. Affichez tous les enregistrements de la table Eleve avec les champs suivants: Nom, Prenom, Email
 6. Affichez tous les enregistrements de la table Classe avec les champs: Nom, Lieux
 
-Partie 4 - Notre premier WHERE
-========
+## Exercice n°4 - Notre premier WHERE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -46,16 +77,14 @@ Partie 4 - Notre premier WHERE
 6. Affichez tous les élèves de sexe Masculin.
 7. Affichez Le nom, le prénom, la localite des élèves qui habitent sur le CP 6890.
 
-Partie 5 - WHERE   AND
-========
+## Exercice n°5 - WHERE   AND
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez tous les élèves de Sexe Masculin ET ayant comme CP 1348
 
-Partie 6 - WHERE   IS NULL IS NOT NULL
-========
+## Exercice n°6 - WHERE   IS NULL IS NOT NULL
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -63,16 +92,14 @@ Partie 6 - WHERE   IS NULL IS NOT NULL
 5. Affichez tous les élèves qui n'ont pas de numéro de téléphone: On utilisera IS NULL
 6. A l'inverse, affciez les élèves qui ont un numéro de téléphone: On utilisera IS NOT NULL: On peut faire autrement, rappelez-le moi :)
 
-Partie 7 - WHERE     AND
-========
+## Exercice n°7 - WHERE     AND
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves dont le code postal est dans les 4000
 
-Partie 8 - WHERE  sur une DATE
-========
+## Exercice n°8 - WHERE  sur une DATE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -80,8 +107,7 @@ Partie 8 - WHERE  sur une DATE
 5. Affichez les élèves nés après 1980: Le format de la date est année/Mois/Jour
 6. Affichez les élèves nés avant 1980: Le format de la date est année/Mois/Jour
 
-Partie 9 - WHERE sur des DATES
-========
+## Exercice n°9 - WHERE sur des DATES
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -89,32 +115,28 @@ Partie 9 - WHERE sur des DATES
 5. Affichez les élèves nés entre 1970 ET 1980.
 6. Affichez les élèves qui ne sont pas nés entre 1970 ET 1980.
 
-Partie 10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
-=========
+## Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves qui ont une adresse de type gmail.com
 
-Partie 11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
-=========
+## Exercice n°11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves qui n'ont pas une adresse de type gmail.com
 
-Partie 12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
-=========
+## Exercice n°12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
 5. Affichez les élèves dont le nom commence par 'be'
 
-Partie 13 (Base de données Localites)    WHERE   AND     OR
-=========
+## Exercice n°13 (Base de données Localites)    WHERE   AND     OR
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -123,8 +145,7 @@ Partie 13 (Base de données Localites)    WHERE   AND     OR
 6. Affichez toutes les communes sur le code Postal 4280 et dont la commune commence par 'b' ou par 'a'
 7. Affichez les CP et les noms des communes de la Province de Liège: les CP sont compris entre 4000 et 4999
 
-Partie 14 (Base de données BlindCode) ORDER BY    
-=========
+## Exercice n°14 (Base de données BlindCode) ORDER BY    
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -134,31 +155,28 @@ Partie 14 (Base de données BlindCode) ORDER BY
 7. Triez les élèves du plus agé au plus jeune.
 8. Ensuite, triez dans l'ordre inverse.
 
-Partie 15 (Base de données BlindCode) ORDER BY 
-=========
+## Exercice n°15 (Base de données BlindCode) ORDER BY 
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
 5. 
-On va ici créer une colonne dynamiquement dans le résultat qu'on nommera Age. On utilisera le AS comme vu au cours dans la partie "champs calculés"
+On va ici créer une colonne dynamiquement dans le résultat qu'on nommera Age. On utilisera le AS comme vu au cours dans la Exercice n°"champs calculés"
 Je vous demande d'afficher le prenom, nom et l'age des eleves.
 Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'année d'une date et que CURDATE() donne la date du jour. Pour avoir l'age approximatif de l'élève on pourrait donc faire Année en cours(2021)-Année de naissance(ex:1974) AS Age
 6. Reprenez la requête précédente et affichez les élèves du plus jeune au plus vieux.
 7. Ensuite, du plus vieux au plus jeune.
 8. Réécrivez vos deux requêtes pour ne traîter que des élèves de BlindCode4Data.
 
-Partie 16 (Base de données BlindCode) AVG
-=========
+## Exercice n°16 (Base de données BlindCode) AVG
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
-5. Reprenez la requête de la partie 16.
+5. Reprenez la requête de la Exercice n°16.
 6. Modifiez-la pour que l'on ait l'age moyen des élèves.
 
-Partie 17 (Base de données Ventes) MIN, MAX, SUM
-=========
+## Exercice n°17 (Base de données Ventes) MIN, MAX, SUM
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
@@ -167,16 +185,14 @@ Partie 17 (Base de données Ventes) MIN, MAX, SUM
 6. Affichez le prix minimum des produits
 7. Affichez le prix total de tous les produits
 
-Partie 18 (Base de données Ventes) GROUP BY
-=========
+## Exercice n°18 (Base de données Ventes) GROUP BY
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB Ventes, tapez: use ventes;
 5. Affichez pour chaque catégorie, son stock. (Indice utilisez aussi SUM)
 
-Partie 19 (Base de données BlindCode) GROUP BY
-=========
+## Exercice n°19 (Base de données BlindCode) GROUP BY
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe.
@@ -184,8 +200,7 @@ Partie 19 (Base de données BlindCode) GROUP BY
 5. Affichez pour chaque sexe, le nombre total. (Indice COUNT)
 6. Affichez pour chaque nationalite, le nombre total.
 
-Partie 20 (Base de données Pays) GROUP BY
-=========
+## Exercice n°20 (Base de données Pays) GROUP BY
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: mysql -u root -p
 3. Entrez votre mot de passe.
