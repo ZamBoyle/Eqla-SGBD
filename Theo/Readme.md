@@ -573,7 +573,7 @@ La fonction AVG() permet de calculer une valeur moyenne sur un ensemble d'enregi
 <u>Exemple</u> : Trouver l'âge moyen de la table Eleve ;
 
 ```sql
-SELECT AVG(YEAR(CURDATE())-YEAR(Naissance)) as AgeMoyen 
+SELECT AVG(YEAR(CURDATE())-YEAR(Naissance)) AS AgeMoyen 
 FROM Eleve;
 ```
 
@@ -600,7 +600,7 @@ La fonction SUM() retourne la somme de toutes les valeurs non nuls pour un champ
 <u>Exemple</u> : Calculer le nombre total d'articles disponibles de la catégorie informatique.
 
 ```sql
-SELECT SUM(Stock) as Total
+SELECT SUM(Stock) AS Total
 FROM Produit
 WHERE Categorie = 'Informatique' ;
 ```
@@ -666,5 +666,5 @@ Ou bien si l'on veut avoir la moyenne des prix par catégorie :
 ```sql
 SELECT Categorie, AVG(Prix)
 FROM Produit
-GROUP BY Categorie
+GROUP BY Categorie ;
 ```
