@@ -687,7 +687,7 @@ Reprenons les tables Eleve et Classe.
 |1           |BlindCode     |BXL     |
 |2           |BlindCode4Data|LLN     |
 
-<u>Table Eleve</u>:
+<u>Table Élève</u>: Elle a été épurée pour l'exemple. Dans les exercices, elle contient plus de champs.
 |           |          |          |            |
 |-----------|----------|----------|------------|
 |**IdEleve** (Clef primaire)|**Prénom**|**Nom**   |**IdClasse** (clef étrangère)|
