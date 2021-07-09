@@ -721,5 +721,6 @@ INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ;
 ```
 Analysons cette requête au niveau:
 - Le SELECT est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou de la Classe si on ne spécifie pas la table.
+- FROM 
 - INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse
-- 1.  
+  1.  INNER JOIN Classe: on veut joindre la tabEleve avec 
