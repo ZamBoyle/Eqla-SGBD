@@ -658,7 +658,7 @@ La clause GROUP BY en SQL permet d'organiser des données identiques en groupes 
 Prenons un exemple qui a été demandé par un étudiant l'autre jour quand on a vu le DISTINCT pour le sexe. Il a demandé comment savoir combien on a d'hommes et de femmes ? Je peux enfin lui répondre 
 
 ```sql
-SELECT Sexe, Count(*)
+SELECT Sexe, Count(*) AS Nombre
 FROM Eleve
 GROUP BY Sexe ;
 ```
