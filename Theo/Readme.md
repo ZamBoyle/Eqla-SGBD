@@ -199,6 +199,7 @@ C'est à dire qui a les cardinalités maximales positionnées à « 1 » d'un c�
 <u>Exemple 1</u>:_
 Elève Fait partie d'une classe : cardinalité 1:1 (Cardinalité maximale = 1)
 Et une classe a un ou plusieurs élèves : 1:N (Cardinalité maximale = N)
+
 => Association de type 1:N
 
 On ajoutera dans la table Elève la clef primaire de la table Classe. En effet, cette clé permettra d'identifier la classe dont fait partie un élève. Quand on ajoute comme champ la clef primaire d'une autre table, cette clef porte le nom de clef étrangère (Foreign Key en anglais). Contrairement à la clef primaire qui doit être unique dans une table, une même valeur de clef primaire peut y figurer plusieurs fois. Ce qui est logique : plusieurs élèves font partie d'une même classe. Elle ne peut être NULL dans ce cas-ci.
