@@ -61,13 +61,12 @@
     - [8.1 La commande](#81-la-commande)
     - [8.2 La syntaxe](#82-la-syntaxe)
     - [8.3 Types des champs](#83-types-des-champs)
-    - [8.1 Options](#81-options)
-      - [8.1.1 NULL / NOT NULL](#811-null--not-null)
-      - [8.1.2 DEFAULT](#812-default)
-      - [8.1.3 PRIMARY KEY](#813-primary-key)
-      - [8.1.4 FOREIGN KEY](#814-foreign-key)
-      - [8.1.5 UNIQUE](#815-unique)
-      - [8.1.6 Exemple](#816-exemple)
+    - [8.4 NULL / NOT NULL](#84-null--not-null)
+    - [8.5 DEFAULT](#85-default)
+    - [8.6 PRIMARY KEY](#86-primary-key)
+    - [8.7 FOREIGN KEY](#87-foreign-key)
+    - [8.8 UNIQUE](#88-unique)
+    - [8.9 Exemple](#89-exemple)
   - [9. INSERT INTO](#9-insert-into)
   - [10. UPDATE](#10-update)
   - [11. DELETE](#11-delete)
@@ -788,13 +787,12 @@ Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la sit
 ### 8.1 La commande
 ### 8.2 La syntaxe
 ### 8.3 Types des champs
-### 8.1 Options
-#### 8.1.1 NULL / NOT NULL
-#### 8.1.2 DEFAULT
-#### 8.1.3 PRIMARY KEY
-#### 8.1.4 FOREIGN KEY
-#### 8.1.5 UNIQUE
-#### 8.1.6 Exemple
+### 8.4 NULL / NOT NULL
+### 8.5 DEFAULT
+### 8.6 PRIMARY KEY
+### 8.7 FOREIGN KEY
+### 8.8 UNIQUE
+### 8.9 Exemple
 
 ## 9. INSERT INTO
 
