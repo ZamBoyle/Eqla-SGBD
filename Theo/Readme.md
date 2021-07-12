@@ -708,7 +708,7 @@ Reprenons les tables Eleve et Classe.
 Si nous voulons afficher tous les élèves et leur classe, nous faisions ceci en SQL:
 ```sql
 SELECT *
-FROM Eleve
+FROM Eleve ;
 ```
 Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un champ numéro. Ce champ numéro est la clef étrangère qui pointe vers la table Classe.
 
