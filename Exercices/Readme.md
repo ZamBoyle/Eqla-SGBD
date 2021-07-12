@@ -207,3 +207,12 @@ Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'ann
 4. Si vous n'êtes pas dans la DB Pays, tapez: use Pays;
 5. Faites un DESC Pays, pour voir sa structure.
 6. Affichez pour chaque continent, combien il a de pays.
+
+## Exercice n°21 - INNER JOIN
+1. 1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: mysql -u root -p
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Pays, tapez: use Pays;
+5. Affichez tous les champs de table pays et en plus le nom du continent dont il fait partie.
+
+SELECT Pays.*, 
