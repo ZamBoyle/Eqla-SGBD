@@ -713,18 +713,40 @@ FROM Eleve
 ```
 Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un champ numéro. Ce champ numéro est la clef étrangère qui pointe vers la table Classe.
 
-Si on veut lier nos tables pour afficher le nom de la classe au lieu d'un identifiant, nous allons utiliser la commande sql suivante: **INNER JOIN**
+Si on veut lier/joindre nos tables pour afficher le nom de la classe au lieu d'un identifiant, nous allons utiliser la commande sql suivante: **INNER JOIN**
 
 ```sql
 SELECT Eleve.Nom, Prenom, Classe.Nom
 FROM Eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
 ```
-Analysons cette requête au niveau:
-- Le SELECT est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou de la Classe si on ne spécifie pas la table.
-- FROM 
+Décortiquons cette requête:
+- Le SELECT est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou le nom de la Classe si on ne spécifie pas la table.
+- FROM Eleve: On veut prendre des informations de la table Eleve.
 - INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse
-  1.  INNER JOIN Classe: on veut joindre la tabEleve avec 
+  1.  INNER JOIN Classe: on veut joindre la table Classe
+  2.  ON Eleve.IdClass = Classe.IdClasse: On dit comment on va lier nos tables. Ici on va lier l'IdClasse de la table élève sur (ON) l'IdClasse de la tablve élève. On vérifiera l'égalité  (=) entre ces deux champs de tables différentes. On fait donc une égalité sur la clef étrangère de la table Eleve: Eleve.IdClasse et sur la clef primaire de la table Classe: Classe.IdClasse.
+
+Avant (les vieux), on ne faisait pas d'INNER JOIN mais on faisait la jointure de table dans un WHERE. Notre précédente requête peut s'écrire de cette manière:
+```sql
+SELECT Eleve.Nom, Prenom, Classe.Nom
+FROM Eleve, Classe
+WHERE Eleve.IdClasse = Classe.IdClasse ;
+```
+Mais c'est à déconseiller car c'est plus logique de faire la jointure via un INNER JOIN. Le WHERE est plus là pour des recherches spécifiques et non pour les jointures.
+
+Si par exemple on veut afficher le nom, prénom, nom de la casse des élèves masculin dont le nom de famille commence par un 'b':
+```sql
+SELECT Eleve.Nom, Prenom, Classe.Nom
+FROM Eleve
+INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse 
+WHERE Sexe='M' AND Eleve.nom LIKE 'b%';
+```
+
+
+
+
+
 
 
 
