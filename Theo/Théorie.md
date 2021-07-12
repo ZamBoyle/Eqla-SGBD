@@ -722,18 +722,18 @@ INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ;
 ```
 Décortiquons cette requête:
 - Le **SELECT** est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou le nom de la Classe si on ne spécifie pas la table.
-- **FROM** _Eleve_: On veut prendre des informations de la table Eleve.
+- **FROM** _Eleve_: On veut prendre des informations de la table _Eleve_.
 - **INNER JOIN** _Classe_ **ON** _Eleve.IdClasse_ **=** _Classe.IdClasse_
-  1.  **INNER JOIN** _Classe_: on veut joindre la table Classe
-  2.  **ON** _Eleve.IdClasse_ **=** _Classe.IdClasse_: On dit comment on va lier nos tables. Ici on va lier l'IdClasse de la table élève sur (ON) l'IdClasse de la tablve élève. On cherchera les enregistrements dans les deux tables où l'IdClasse de table Eleve = à l'IdClasse de la table Classe. On fait donc une égalité sur la clef étrangère de la table Eleve: Eleve.IdClasse et sur la clef primaire de la table Classe: Classe.IdClasse.
+  1.  **INNER JOIN** _Classe_: on veut joindre la table _Classe_ à la table _Eleve_ (du **FROM**).
+  2.  **ON** _Eleve.IdClasse_ **=** _Classe.IdClasse_: On dit comment on va lier nos tables. Ici on va lier l'_IdClasse_ de la table _Eleve_ sur (**ON**) l'_IdClasse_ de la table _Classe_. Le SGBD cherchera les enregistrements dans les deux tables où l'IdClasse de table Eleve = à l'IdClasse de la table Classe. On fait donc une égalité sur la clef étrangère de la table Eleve (Eleve.IdClasse) et sur la clef primaire de la table Classe (Classe.IdClasse).
 
-Si on a besoin de tous les champs de la table Eleve, on peut changer la requête de cette manière pour éviter de taper tous les champs:
+Si on a besoin de tous les champs de la table _Eleve_, on peut changer la requête de cette manière pour éviter de taper tous les champs:
 ```sql
 SELECT Eleve.*, Classe.Nom
 FROM Eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
 ```
-Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole \*: SELECT nomtable.\*
+Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole **\***: SELECT nomtable.**\***
 
 Avant (les vieux comme moi), on ne faisait pas d'**INNER JOIN** mais on faisait la jointure de table dans un **WHERE**. Notre précédente requête peut s'écrire de cette manière:
 ```sql
@@ -748,7 +748,7 @@ Si par exemple on veut afficher le nom de l'élève, le prénom de l'élève et 
 SELECT Eleve.Nom, Prenom, Classe.Nom
 FROM Eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse 
-WHERE Sexe='M' AND Eleve.nom LIKE 'b%';
+WHERE Sexe='M' AND Eleve.nom LIKE 'b%' ;
 ```
 
 
