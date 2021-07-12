@@ -1,3 +1,5 @@
+[:arrow_left:Revenir au menu.](../Theo/README.md)
+
 # Résumé : Cardinalité, association
 ## 1. Association de type 1 : N
 - 1 élève fait partie d’une et une seule classe : cardinalité 1,1 (Cardinalité maximale 1)
@@ -132,3 +134,8 @@ La classe Formateur devient
 
 
 Mais dans la réalité, une classe aura plusieurs formateurs et un formateur aura plusieurs classes : Association de type N : N.
+
+[:arrow_left:Revenir au menu.](../Theo/README.md)
+
+---
+_[Eqla](http://www.eqla.be) 2021 - Cours d'introduction aux SGBD_
