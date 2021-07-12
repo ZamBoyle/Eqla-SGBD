@@ -725,15 +725,23 @@ Décortiquons cette requête:
 - FROM Eleve: On veut prendre des informations de la table Eleve.
 - INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse
   1.  INNER JOIN Classe: on veut joindre la table Classe
-  2.  ON Eleve.IdClass = Classe.IdClasse: On dit comment on va lier nos tables. Ici on va lier l'IdClasse de la table élève sur (ON) l'IdClasse de la tablve élève. On vérifiera l'égalité  (=) entre ces deux champs de tables différentes. On fait donc une égalité sur la clef étrangère de la table Eleve: Eleve.IdClasse et sur la clef primaire de la table Classe: Classe.IdClasse.
+  2.  ON Eleve.IdClasse = Classe.IdClasse: On dit comment on va lier nos tables. Ici on va lier l'IdClasse de la table élève sur (ON) l'IdClasse de la tablve élève. On cherchera les enregistrements dans les deux tables où l'IdClasse de table Eleve = à l'IdClasse de la table Classe. On fait donc une égalité sur la clef étrangère de la table Eleve: Eleve.IdClasse et sur la clef primaire de la table Classe: Classe.IdClasse.
 
-Avant (les vieux), on ne faisait pas d'INNER JOIN mais on faisait la jointure de table dans un WHERE. Notre précédente requête peut s'écrire de cette manière:
+Si on a besoin de tous les champs de la table Eleve, on peut changer la requête de cette manière pour éviter de taper tous les champs:
+```sql
+SELECT Eleve.*, Classe.Nom
+FROM Eleve
+INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
+```
+Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole \*: SELECT nomtable.\*
+
+Avant (les vieux comme moi), on ne faisait pas d'INNER JOIN mais on faisait la jointure de table dans un WHERE. Notre précédente requête peut s'écrire de cette manière:
 ```sql
 SELECT Eleve.Nom, Prenom, Classe.Nom
 FROM Eleve, Classe
 WHERE Eleve.IdClasse = Classe.IdClasse ;
 ```
-Mais c'est à déconseiller car c'est plus logique de faire la jointure via un INNER JOIN. Le WHERE est plus là pour des recherches spécifiques et non pour les jointures.
+Mais c'est à déconseiller car c'est plus logique de faire la jointure via un INNER JOIN. Le WHERE est plus là pour des recherches spécifiques et non pour les jointures. Je vous le montre car vous verrez donc parfois des personnes faire des jointures de tables non pas via un **INNER JOIN** mais via un **WHERE**. Au final, on optient le même résultat... ;) 
 
 Si par exemple on veut afficher le nom, prénom, nom de la casse des élèves masculin dont le nom de famille commence par un 'b':
 ```sql
