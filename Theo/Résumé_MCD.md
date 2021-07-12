@@ -1,7 +1,8 @@
 # Résumé : Cardinalité, association
 ## 1. Association de type 1 : N
-1 élève fait partie d’une et une seule classe : cardinalité 1,1 (Cardinalité maximale 1)
-1 classe a 1 ou plusieurs élèves : cardinalité 1,N (Cardinalité maximale N)
+- 1 élève fait partie d’une et une seule classe : cardinalité 1,1 (Cardinalité maximale 1)
+- 1 classe a 1 ou plusieurs élèves : cardinalité 1,N (Cardinalité maximale N)
+
 Pour connaître le type d’association on prend les cardinalités maximales de chaque entité. Donc 1 d’élève vers classe. Et N de classe vers élève.
  Donc c’est bien une Association de type 1 :N
 Comme 1 élève fait partie d’une et une seule classe on met l’Identifiant de la classe dont il fait partie dans la table élève comme clef étrangère. Et on mettra la valeur de l’identifiant de la classe.
@@ -36,8 +37,8 @@ Chaque ligne/enregistrement de la table/du tableau Eleve correspond à un élèv
 
 ## 2. Association de type N :N
 Reprenons notre exemple. Imaginons maintenant qu’un élève fait partie de plusieurs classes.
-1 élève fait partie d’une ou plusieurs classe : cardinalité 1,N (Cardinalité maximale N)
-1 classe a 1 ou plusieurs élèves cardinalité : 1, N (Cardinalité maximale N)
+- 1 élève fait partie d’une ou plusieurs classe : cardinalité 1,N (Cardinalité maximale N)
+- 1 classe a 1 ou plusieurs élèves cardinalité : 1, N (Cardinalité maximale N)
 
 Comme c’est une association de type N :N
 La table Classe ne change pas
@@ -90,7 +91,9 @@ Cette table intermédiaire EleveCours représente dans quelles classes se trouve
 
 
 Ici nous avons tous les élèves de BXL et Louvain-La-Neuve. Et aussi Bruno (IdEleve=2) et Isaac (IdEleve=7) qui sont dans les deux classes : BlindCode (1) &amp; BlindCode4Data (2).
+
 On définira IdEleve &amp; IdClasse comme clés primaires. De cette manière, le SGBD veillera à ce qu’aucun élève ne soit inscrit deux fois dans la même classe. En effet, pour chaque enregistrement/ligne de la table/du tableau EleveCours le couple IdEleve, IdClasse sera unique. Si on essaie d’ajouter une seconde fois un même élève dans une classe où il y fait déjà partie, la base de données va générer une erreur indiquant que l’élève en question est déjà présente dans ladite classe.
+
 ## 3. Association de type 1 :1
 Depuis notre exemple. Imaginons que notre classe a un et un seul formateur. Et un formateur donne cours dans une et une seule classe.
 Ici, il faut voir la pertinence d’une association de type 1 :1 et si un jour notre association ne risque pas d’évoluer vers un modèle 1 :N.  Si ce n’est pas le cas, il faudra voir s’il est judicieux d’avoir une table formateur. Et si fonctionnellement il y a une raison de ne pas fusionner les champs de la table formateur dans la table Classe. Tout va dépendre si l’entité Formateur est fonctionnellement forte et mérite de rester séparée de la table classe : date de contrat, année de naissance, adresse, APE, Sexe, etc. 
