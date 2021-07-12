@@ -29,6 +29,10 @@
 - [Exercice n°18 - GROUP BY](#exercice-n18---group-by)
 - [Exercice n°19 - GROUP BY](#exercice-n19---group-by)
 - [Exercice n°20 - GROUP BY](#exercice-n20---group-by)
+- [Exercice n°21 - GROUP BY](#exercice-n21---group-by)
+- [Exercice n°22 - INNER JOIN](#exercice-n22---inner-join)
+- [Exercice n°23 - INNER JOIN](#exercice-n23---inner-join)
+- [Exercice n°24 - INNER JOIN](#exercice-n24---inner-join)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -43,113 +47,135 @@ prompt <\d>
 
 ## Exercice n°1 - Importation des fichiers de base de données
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL:
+   ```bash
+   **mysql -u root -p**
+   ```
 3. Entrez votre mot de passe
-4. Importez le script qui va générer la base de données BlindCode: source BlindCode.sql (Normalement c'est déjà fait.)
-5. Importez le script qui va générer la base de données Localites (Ca va prendre plus temps: attendez): source Localites.sql
-6. Importez le script qui va générer la base de données Ventes: source Ventes.sql
-7. Importez le script qui va générer la base de données Ventes: source Pays.sql
-8. Faites un SHOW DATABASES;
-9: Vous devriez voir dans la liste des bases de données: BlindCode, Localites, Ventes, Pays
-10. Si vous avez des erreurs appelez-moi.
+4. Importez le script qui va générer la base de données BlindCode:
+   ```sql
+   source BlindCode.sql 
+   ```
+5. Importez le script qui va générer la base de données Localites (Ca va prendre plus temps: attendez): 
+   ```sql
+   source Localites.sql
+   ```
+6. Importez le script qui va générer la base de données Ventes: 
+   ```sql
+   source Ventes.sql
+   ```
+7. Importez le script qui va générer la base de données Ventes: 
+   ```sql
+   source Pays.sql
+   ```
+8. Importez le script qui va générer la base de données BlindCode2:
+   ```sql
+   source BlindCode2.sql 
+   ```   
+9.  Pour avoir la liste des bases de données présentes:
+    ```sql
+    SHOW DATABASES ;
+    ```
+10. Vous devriez voir dans la liste des bases de données: BlindCode, Localites, Ventes, Pays
+11. Si vous avez des erreurs appelez-moi.
 
 ## Exercice n°2 - Notre premier SELECT *
-1. Connectez-vous au SGBD MySQL: mysql -u root -p
+1. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 2. Entrez votre mot de passe.
-3. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+3. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 4. Ecrivez l'instruction qui affichez tous les enregistrements de la table Eleve: tous les champs à l'aide du caractère *
 5. Ecrivez l'instruction qui affichez tous les enregistrements de la table Classe: tous les champs à l'aide du caractère *
 
 ## Exercice n°3 - SELECT ch1, ch2, etc.
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez tous les enregistrements de la table Eleve avec les champs suivants: Nom, Prenom, Email
 6. Affichez tous les enregistrements de la table Classe avec les champs: Nom, Lieux
 
 ## Exercice n°4 - Notre premier WHERE
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez tous les élèves de sexe Féminin.
 6. Affichez tous les élèves de sexe Masculin.
 7. Affichez Le nom, le prénom, la localite des élèves qui habitent sur le CP 6890.
 
 ## Exercice n°5 - WHERE   AND
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez tous les élèves de Sexe Masculin ET ayant comme CP 1348
 
 ## Exercice n°6 - WHERE   IS NULL IS NOT NULL
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez tous les élèves qui n'ont pas de numéro de téléphone: On utilisera IS NULL
 6. A l'inverse, affciez les élèves qui ont un numéro de téléphone: On utilisera IS NOT NULL: On peut faire autrement, rappelez-le moi :)
 
 ## Exercice n°7 - WHERE     AND
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves dont le code postal est dans les 4000
 
 ## Exercice n°8 - WHERE  sur une DATE
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves nés après 1980: Le format de la date est année/Mois/Jour
 6. Affichez les élèves nés avant 1980: Le format de la date est année/Mois/Jour
 
 ## Exercice n°9 - WHERE sur des DATES
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves nés entre 1970 ET 1980.
 6. Affichez les élèves qui ne sont pas nés entre 1970 ET 1980.
 
 ## Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves qui ont une adresse de type gmail.com
 
 ## Exercice n°11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves qui n'ont pas une adresse de type gmail.com
 
 ## Exercice n°12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves dont le nom commence par 'be'
 
 ## Exercice n°13 - WHERE   AND     OR
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB Localite, tapez: use Localite
+4. Si vous n'êtes pas dans la DB Localite, tapez: **use Localite;**
 5. Affichez toutes les communes sur le code Postal 4280
 6. Affichez toutes les communes sur le code Postal 4280 et dont la commune commence par 'b' ou par 'a'
 7. Affichez les CP et les noms des communes de la Province de Liège: les CP sont compris entre 4000 et 4999
 
 ## Exercice n°14 - ORDER BY    
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les champs: Prenom, Nom, Sexe, Naissance et triez dans l'ordre alphabétique sur le nom et puis le prenom.
 6. Ensuite, triez dans l'ordre inverse le nom.
 7. Triez les élèves du plus agé au plus jeune.
@@ -157,9 +183,9 @@ prompt <\d>
 
 ## Exercice n°15 - ORDER BY 
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. 
 On va ici créer une colonne dynamiquement dans le résultat qu'on nommera Age. On utilisera le AS comme vu au cours dans la Exercice n°"champs calculés"
 Je vous demande d'afficher le prenom, nom et l'age des eleves.
@@ -170,49 +196,92 @@ Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'ann
 
 ## Exercice n°16 - AVG
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Reprenez la requête de la Exercice n°16.
 6. Modifiez-la pour que l'on ait l'age moyen des élèves.
 
 ## Exercice n°17 - MIN, MAX, SUM
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB Ventes, tapez: use ventes;
+4. Si vous n'êtes pas dans la DB Ventes, tapez: **use ventes;**
 5. Affichez le prix maximum des produits
 6. Affichez le prix minimum des produits
 7. Affichez le prix total de tous les produits
 
 ## Exercice n°18 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB Ventes, tapez: use ventes;
+4. Si vous n'êtes pas dans la DB Ventes, tapez: **use ventes;**
 5. Affichez pour chaque catégorie, son stock. (Indice utilisez aussi SUM)
 
 ## Exercice n°19 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB BlindCode, tapez: use BlindCode;
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez pour chaque sexe, le nombre total. (Indice COUNT)
 6. Affichez pour chaque nationalite, le nombre total.
 
 ## Exercice n°20 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Pays, tapez: use Pays;
+4. Si vous n'êtes pas dans la DB Pays, tapez: **use Pays;**
 5. Faites un DESC Pays, pour voir sa structure.
-6. Affichez pour chaque continent, combien il a de pays.
+6. Affichez pour chaque continent, combien il a de pays. On n'utilisera qu'une seule table: Pays. Donc pour le continent à afficher on prendra le champ continent. (On fera mieux plus tard.)
 
-## Exercice n°21 - INNER JOIN
-1. 1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: mysql -u root -p
+## Exercice n°21 - GROUP BY
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Pays, tapez: use Pays;
-5. Affichez tous les champs de table pays et en plus le nom du continent dont il fait partie.
+4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
+5. Expliquez ce que fait cette commande SQL:
+```sql
+SELECT YEAR(DateInscription) As 'Annee Inscription', COUNT(DateInscription)
+FROM EleveClasse
+group by YEAR(DateInscription);
+```
+6. Pourquoi avoir utilisé la Fonction **YEAR** ? Pour vous aider, comparez sans le **YEAR**:
+```sql
+SELECT DateInscription As 'Annee Inscription', COUNT(DateInscription)
+FROM EleveClasse
+group by DateInscription;
+```
 
-SELECT Pays.*, 
+## Exercice n°22 - INNER JOIN
+1. 1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Pays, tapez: **use Pays;**
+5. Affichez chaque pays et le nom du continenttous dont il fait partie.
+6. Faites un tri ascendant sur le nom du pays.
+7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
+
+## Exercice n°23 - INNER JOIN
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Pays, tapez: **use Pays;**
+5. Affichez le nom du pays et le nom COMPLET du continent dont il fait partie.
+
+## Exercice n°24 - INNER JOIN
+Ici, on va travailler sur trois tables. La table _Eleve_, la table _Classe_ et la table _EleveClasse_.
+Analyser la description des tables pour comprendre comment les lier entre elles.
+Pour connaître la description d'une table, on utilise la commande: **DESC nomdelatable;**
+No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
+
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
+5. On va afficher le nom et prénom de l'élève, le nom de la classe et la date d'inscription.
+
+
+
+
+
+

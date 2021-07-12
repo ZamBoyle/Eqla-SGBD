@@ -55,6 +55,11 @@
       - [5.5 COUNT(champ) et COUNT(*)](#55-countchamp-et-count)
   - [6. GROUP BY](#6-group-by)
   - [7. INNER JOIN: Jointure entre tables.](#7-inner-join-jointure-entre-tables)
+    - [7.1 Jointure sur deux tables](#71-jointure-sur-deux-tables)
+    - [7.2 Jointure sur plus de 2 tables](#72-jointure-sur-plus-de-2-tables)
+  - [8. INSERT INTO](#8-insert-into)
+  - [9. UPDATE](#9-update)
+  - [10. DELETE](#10-delete)
 
 # I. Introduction
 ## 1. Mise en situation
@@ -679,6 +684,7 @@ Il faut essayer de trouver un point d'anchrage dans chaque table. Essayer de lie
 
 Tiens qu'est-ce encore qu'une clef primaire/étrangère ? :) 
 
+### 7.1 Jointure sur deux tables
 Reprenons les tables Eleve et Classe.
 
 <u>Table Classe</u>:
@@ -750,8 +756,23 @@ FROM Eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse 
 WHERE Sexe='M' AND Eleve.nom LIKE 'b%' ;
 ```
+### 7.2 Jointure sur plus de 2 tables
+C'est le même principe que pour deux tables.
+Imaginons que nous devons lier 3 tables:
+```sql
+SELECT champ1, champ2, champ3, champX
+FROM table1
+INNER JOIN table2 ON table1.FK_Key = table2.PK_Key
+INNER JOIN table3 ON table2.FK_Key = table3.PK_Key;
+```
+Où les FK_Key seraient les clefs étrangères (Foreign Key) et les PK_Key seraient les clefs primaires.
+Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple à l'exercice n°24.
 
+## 8. INSERT INTO
 
+## 9. UPDATE
+
+## 10. DELETE
 
 
 
