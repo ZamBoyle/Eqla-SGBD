@@ -60,6 +60,10 @@
   - [8. INSERT INTO](#8-insert-into)
   - [9. UPDATE](#9-update)
   - [10. DELETE](#10-delete)
+    - [10.1 La commande](#101-la-commande)
+    - [10.2 La syntaxe](#102-la-syntaxe)
+    - [10.2 Suppression ou champ Deleted ?](#102-suppression-ou-champ-deleted-)
+    - [10.3 Pourquoi mon DELETE provoque une erreur ?](#103-pourquoi-mon-delete-provoque-une-erreur-)
 
 # I. Introduction
 ## 1. Mise en situation
@@ -766,17 +770,48 @@ INNER JOIN table2 ON table1.FK_Key = table2.PK_Key
 INNER JOIN table3 ON table2.FK_Key = table3.PK_Key;
 ```
 Où les FK_Key seraient les clefs étrangères (Foreign Key) et les PK_Key seraient les clefs primaires.
-Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple à l'exercice n°24.
+
+Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple concret à l'exercice n°24.
 
 ## 8. INSERT INTO
 
 ## 9. UPDATE
 
 ## 10. DELETE
+### 10.1 La commande
+La commande **DELETE** dans le langage SQL permet de supprimer des enregistrements dans une table. Cela signfie qu'il faut la manipuler avec prudence !
+### 10.2 La syntaxe
+```sql
+DELETE FROM NomTable
+WHERE Condition;
+```
+Exemple:
+```sql
+DELETE FROM Produit
+WHERE Produit.IdProduit = '123';
+```
 
-
-
-
+### 10.2 Suppression ou champ Deleted ?
+Parfois, il vaut mieux créer un champ ayant pour nom Deleted et mettre sa valeur à 1 pour l'enregistrement que l'on veut supprimer. En effet, parfois il faut toujours garder une trace de cet enregistrement. Il ne sera pas effacé de notre base de données mais nous ne l'utiliserons plus.
+Affichons tous les produits à vendre:
+```sql
+SELECT *
+FROM Produit
+WHERE Produit.Deleted = 0;
+```
+Affichons les produits qui ne sont plus à vendre:
+```sql
+SELECT *
+FROM Produit
+WHERE Produit.Deleted = 1;
+```
+### 10.3 Pourquoi mon DELETE provoque une erreur ?
+Il peut arriver que l'id de l'enregistrement que vous voulez supprimer soit utilisé ailleurs. Par exemple vous voulez supprimer l'article 'Oculus Quest 2 - 256 GB' ayant pour IdProduit '123':
+```sql
+DELETE FROM Produit
+WHERE Produit.IdProduit = '123';
+```
+Si vous avez déjà eu des commandes pour ce Produit, MySQL devrait provoquer une erreur car certains enregistrements de nos commandes concernent ce produit. Et donc MySQL ne sait pas le supprimer. Heureusement aussi que MySQL ne l'a pas fait car alors il aurait dû supprimer toutes nos commandes comportant ce produit. Ce qui pourrait être catastrophique... On pourrait y arriver en utilisant le **ON DELETE CASCADE** mais je n'en parlerai pas car c'est trop risqué. ;) Et je ne veux pas vous embrouiller.
 
 
 
