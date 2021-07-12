@@ -1,0 +1,79 @@
+Eleves:
+    Alain
+    Bruno
+    Eleonor
+    Isaac
+    Jessie
+    Mashum
+    Maxime
+
+Proprietes:
+    Prenom: string, not null
+    nom: string, not null
+    naissance: date,not null
+    NR: string, null
+    Rue: string, not null
+    Numero-d-habitation: int , not null
+    CP: int, not null
+    Localité: string, not null
+    Boite: int, null
+    Mail: string, null
+    telephone: int, null
+    Handicap: string, not null
+    CB: int, null
+    Cursus: string, not null
+    Genre: string, not null
+    inscription: int, not null
+Clef d'identité eleve (clef primaire):
+    inscription: int, not null
+
+classes:
+    BLINDCODE4DATA LLN
+    BLINDCODE BXL
+
+Proprietes:
+    Lieu: string, not null
+    Niveau: int, not null
+    Nom: string, not null
+Clef classe:
+    Nom: string, not null
+
+L'Entité eleve fait partie de l'Entité classe
+
+Alain fait partie de BLINDCODE4DATA
+Bruno fait partie de BLINDCODE 
+Bruno fait partie de BLINDCODE4DATA
+Eleonor fait partie de BLINDCODE4DATA
+Isaac fait partie de BLINDCODE
+Isaac fait partie de BLINDCODE4DATA
+Jessie fait partie de BLINDCODE4DATA
+Mashum fait partie de BLINDCODE4DATA
+Maxime fait partie de BLINDCODE4DATA
+
+L'entité classe contient l'entité eleve
+
+
+
+BLINDCODE4DATA contient :
+    Alain
+    Bruno
+    Eleonor
+    Isaac
+    Jessie
+    Mashum
+    Maxime
+BLINDCODE contient :
+    Bruno
+    Isaac
+
+
+Eleve-Classe:
+    
+
+Cardinalité :
+    BLINDCODE4DATA: 1, 1
+    Eleve: 1, 7
+
+    
+
+

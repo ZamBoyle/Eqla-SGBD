@@ -1,0 +1,137 @@
+Eleves:
+    Alain
+    Bruno
+    Eleonor
+    Isaac
+    Jessie
+    Mashum
+    Maxime
+
+Proprietes:
+    Prenom: string, not null
+    nom: string, not null
+    naissance: date,not null
+    NR: string, null
+    Rue: string, not null
+    Numero-d-habitation: int , not null
+    CP: int, not null
+    Localité: string, not null
+    Boite: int, null
+    Mail: string, null
+    telephone: int, null
+    Handicap: string, not null
+    CB: int, null
+    Cursus: string, not null
+    Genre: string, not null
+    inscription: int, not null
+Clef d'identité eleve (clef primaire):
+    inscription: int, not null
+
+classes:
+    BLINDCODE4DATA LLN
+    BLINDCODE BXL
+
+Proprietes:
+    Lieu: string, not null
+    Niveau: int, not null
+    Nom: string, not null
+Clef classe:
+    Nom: string, not null
+
+L'Entité eleve fait partie de l'Entité classe
+
+Alain fait partie de BLINDCODE4DATA
+Bruno fait partie de BLINDCODE 
+Bruno fait partie de BLINDCODE4DATA
+Eleonor fait partie de BLINDCODE4DATA
+Isaac fait partie de BLINDCODE
+Isaac fait partie de BLINDCODE4DATA
+Jessie fait partie de BLINDCODE4DATA
+Mashum fait partie de BLINDCODE4DATA
+Maxime fait partie de BLINDCODE4DATA
+
+L'entité classe contient l'entité eleve
+
+BLINDCODE4DATA contient :
+    Alain
+    Bruno
+    Eleonor
+    Isaac
+    Jessie
+    Mashum
+    Maxime
+BLINDCODE contient :
+    Bruno
+    Isaac
+
+
+Eleve-Classe:
+    
+
+Cardinalité :
+    BLINDCODE4DATA: 1, 1
+    Eleve: 1, 7
+
+Cours:
+    HTML
+    Accessibilité
+    Python
+    Git
+    SQL
+    Intro informatique
+    Bases
+
+Formateur:
+    Philip
+    Serges
+    Johnny
+    Harielle
+
+Proprietes
+entité cours:
+idCours: int, not null (clef primaire)
+    Matière: string, not null
+    Horaire: datetime, not null
+    Local: string, not null
+    Periode: int, not null
+Entité formateur:
+idFormateur: int, not null (clef primaire)
+    Nom: string,not null
+    Prenom: string, null
+    qualification: string, not null
+    Contrat: string, not null
+    Naissance: date, not null
+    Classes: string, not null
+
+Relation:
+Cours donné(s) par Formateur(s).
+Formateur(s) donne(nt) cours.
+
+Johnny donne des cours de:
+    Git
+    SQL
+    Intro-informatique
+    Python
+Philip donne des cours de:
+    Python
+    Intro-informatique
+Serge donne des cours de :
+    HTML
+    Accessibilité
+Haryelle donne des cours de:
+    Bases
+
+les cours de HTML et Accessibilité sont donnés par Serge.
+les cours de Python et Intro-informatique sont donné par Philip.
+Les cours de Git, SQL, Intro-informatique, Python sont donnés par Johnny.
+Les cours de Bases sont donnés par Harielle
+
+
+Cardinalité:
+-Cours ==> Formateur: 1, n
+-Formateur ==> cours: 1, n
+
+Entité intermédiaire:
+FormateurCours( nom de l'entité ):
+    idCours (clef primaire)
+    idFormateur (clef primaire)
