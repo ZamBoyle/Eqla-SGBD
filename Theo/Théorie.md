@@ -721,11 +721,11 @@ FROM Eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
 ```
 Décortiquons cette requête:
-- Le SELECT est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou le nom de la Classe si on ne spécifie pas la table.
-- FROM Eleve: On veut prendre des informations de la table Eleve.
-- INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse
-  1.  INNER JOIN Classe: on veut joindre la table Classe
-  2.  ON Eleve.IdClasse = Classe.IdClasse: On dit comment on va lier nos tables. Ici on va lier l'IdClasse de la table élève sur (ON) l'IdClasse de la tablve élève. On cherchera les enregistrements dans les deux tables où l'IdClasse de table Eleve = à l'IdClasse de la table Classe. On fait donc une égalité sur la clef étrangère de la table Eleve: Eleve.IdClasse et sur la clef primaire de la table Classe: Classe.IdClasse.
+- Le **SELECT** est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou le nom de la Classe si on ne spécifie pas la table.
+- **FROM** _Eleve_: On veut prendre des informations de la table Eleve.
+- **INNER JOIN** _Classe_ **ON** _Eleve.IdClasse_ **=** _Classe.IdClasse_
+  1.  **INNER JOIN** _Classe_: on veut joindre la table Classe
+  2.  **ON** _Eleve.IdClasse_ **=** _Classe.IdClasse_: On dit comment on va lier nos tables. Ici on va lier l'IdClasse de la table élève sur (ON) l'IdClasse de la tablve élève. On cherchera les enregistrements dans les deux tables où l'IdClasse de table Eleve = à l'IdClasse de la table Classe. On fait donc une égalité sur la clef étrangère de la table Eleve: Eleve.IdClasse et sur la clef primaire de la table Classe: Classe.IdClasse.
 
 Si on a besoin de tous les champs de la table Eleve, on peut changer la requête de cette manière pour éviter de taper tous les champs:
 ```sql
@@ -735,15 +735,15 @@ INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ;
 ```
 Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole \*: SELECT nomtable.\*
 
-Avant (les vieux comme moi), on ne faisait pas d'INNER JOIN mais on faisait la jointure de table dans un WHERE. Notre précédente requête peut s'écrire de cette manière:
+Avant (les vieux comme moi), on ne faisait pas d'**INNER JOIN** mais on faisait la jointure de table dans un **WHERE**. Notre précédente requête peut s'écrire de cette manière:
 ```sql
 SELECT Eleve.Nom, Prenom, Classe.Nom
 FROM Eleve, Classe
 WHERE Eleve.IdClasse = Classe.IdClasse ;
 ```
-Mais c'est à déconseiller car c'est plus logique de faire la jointure via un INNER JOIN. Le WHERE est plus là pour des recherches spécifiques et non pour les jointures. Je vous le montre car vous verrez donc parfois des personnes faire des jointures de tables non pas via un **INNER JOIN** mais via un **WHERE**. Au final, on optient le même résultat... ;) 
+Mais c'est à déconseiller car c'est plus logique de faire la jointure via un **INNER JOIN**. Le **WHERE** est plutôt là pour faire des recherches spécifiques et non pour les jointures. Je vous le montre car vous verrez parfois des personnes faire des jointures de tables non pas via un **INNER JOIN** mais via un **WHERE**. Au final, on optient le même résultat... Et c'est ce qui compte. ;) 
 
-Si par exemple on veut afficher le nom, prénom, nom de la casse des élèves masculin dont le nom de famille commence par un 'b':
+Si par exemple on veut afficher le nom de l'élève, le prénom de l'élève et le nom de la classe des élèves masculins dont le nom de famille commence par un 'b':
 ```sql
 SELECT Eleve.Nom, Prenom, Classe.Nom
 FROM Eleve
