@@ -711,7 +711,7 @@ Si nous voulons afficher tous les élèves et leur classe, nous faisions ceci en
 SELECT *
 FROM Eleve
 ```
-Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un champ numéro. Ce champ numéro est la clef étrangère qui pointe vers la table Classe.
+Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un nombre. Ce nombre est la clef étrangère qui fait référence à la clef primaire de la table Classe.
 
 Si on veut lier/joindre nos tables pour afficher le nom de la classe au lieu d'un identifiant, nous allons utiliser la commande sql suivante: **INNER JOIN**
 
