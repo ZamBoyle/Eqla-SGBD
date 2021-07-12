@@ -125,13 +125,27 @@ La table Classe devient :
 |1           |BlindCode     |BXL     |1              |
 |2           |BlindCode4Data|LLN     |2              |
 
-La classe Formateur devient
+Et la classe Formateur devient
+|               |       |          |
+|---------------|-------|----------|
+|**IdFormateur**|**Nom**|**Prenom**|
+|1              |Piette |Johnny    |
+|2              |Dupont |Philip    |
+
+OU BIEN
+La table Classe devient :
+|            |              |        |
+|------------|--------------|--------|
+|**IdClasse**|**Nom**       |**Lieu**|
+|1           |BlindCode     |BXL     |
+|2           |BlindCode4Data|LLN     |
+
+La classe Formateur devient:
 |               |       |          |            |
 |---------------|-------|----------|------------|
 |**IdFormateur**|**Nom**|**Prenom**|**IdClasse**|
 |1              |Piette |Johnny    |1           |
 |2              |Dupont |Philip    |2           |
-
 
 Mais dans la réalité, une classe aura plusieurs formateurs et un formateur aura plusieurs classes : Association de type N : N.
 
