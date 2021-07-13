@@ -31,8 +31,8 @@ A vous de jouer ! :)
 */
 CREATE TABLE Classe (
     IdClasse int NOT NULL AUTO_INCREMENT,
-    Nom varchar(20),
-    Lieu varchar(20),
+    Nom varchar(20) NOT NULL,
+    Lieu varchar(20) NOT NULL,
     PRIMARY KEY(IdClasse)
 );
 

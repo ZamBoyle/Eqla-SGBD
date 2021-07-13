@@ -64,6 +64,7 @@
       - [8.3.1 VARCHAR - Chaîne de caractères à longueur variable](#831-varchar---chaîne-de-caractères-à-longueur-variable)
       - [8.3.2 CHAR - Chaîne de caractère à longueur fixe](#832-char---chaîne-de-caractère-à-longueur-fixe)
       - [8.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT](#833-int--tinyint---smallint--mediumint--bigint)
+      - [8.3.4 FLOAT / DOUBLE / DECIMAL](#834-float--double--decimal)
     - [8.4 NULL / NOT NULL](#84-null--not-null)
     - [8.5 DEFAULT](#85-default)
     - [8.6 PRIMARY KEY](#86-primary-key)
@@ -72,6 +73,8 @@
     - [8.9 AUTO_INCREMENT](#89-auto_increment)
     - [8.10 Exemples](#810-exemples)
   - [9. INSERT INTO](#9-insert-into)
+    - [9.1 La commande](#91-la-commande)
+    - [9.2 La Syntaxe](#92-la-syntaxe)
   - [10. UPDATE](#10-update)
   - [11. DELETE](#11-delete)
     - [11.1 La commande](#111-la-commande)
@@ -830,7 +833,7 @@ Cependant il faut bien réfléchir avant de faire son choix sur le type entier �
 En effet, la limite négative et positive varie en fonction du type. Et choisir un type à un impacte sur la taille de stockage du champ.
 
 Il faut savoir qu'il existe des types signés et non signés. Signé c'est qu'on tient compte des valeurs négatives.
-Non signé, on ne tient pas compte de valeur négative. Par défaut c'est **UNSIGNED** mais on peut qualifier le type de **SIGNED**.
+Non signé, on ne tient pas compte de valeur négative. Par défaut c'est **SIGNED** mais on peut qualifier le type de **UNSIGNED**.
 
 - **TINYINT**: 1 octet, valeurs [-128, 127] ou bien 255 valeurs positives.
 - **SMALLINT**: 2 octets, valeurs [-32768, 32767] ou bien 65535 valeurs positives.
@@ -845,20 +848,45 @@ Ca peut paraître fort peu mais il faut parfois imaginer des bases de données �
 - un **SMALLINT**: 4 fois moins de place en stockage.
 
 ```sql
-IdUser INT,
+IdUser INT UNSIGNED,
 Annee SMALLINT,
-NBEnfants TINYINT //Normalement TINYINT devrait suffire... 😁
+NBEnfants TINYINT UNSIGNED //Normalement TINYINT devrait suffire... 😁
 ```
 Dans le cas IdUser, j'ai pris **INT**. Pourquoi ? Imaginons que votre application dépasse les 50 millions d'utilisateurs, vous ne pouvez donc pas prendre le type **MEDIUMINT**. Mais plutôt le type **INT** qui pourra en gérer 4 milliards... Mais si vous être Facebook (2,85 milliards d'utilisateurs), Microsoft, Google, Apple, ce type de donnée ne sera pas suffisant et il faudra sans doute passer par un type **BIGINT**...
 
 Maintenant, je n'ai aucune idée du design des DB des GAFAM (Google Amazon Facebook Microsoft) mais c'est juste pour vous montrer que le nombre d'utilisateurs est fonction de vos besoins: Le nombre d'utilisateurs Facebook vs nombre de membres d'un club de foot...
 
-Le choix du type est donc TRES important.
+Le choix du type est donc TRES important. Mais tout va dépendre de la taille de la base de données. Pour les types entiers, vous verrez quasi toujours des **INT** même quand ça n'est pas justifié...
+
+#### 8.3.4 FLOAT / DOUBLE / DECIMAL
+Pour les nombres à virgule flottante vous devrez choisir où vous aurez besoin de la plus grande précision.
+- FLOAT: simple précision (4 octets)
+- DOUBLE: double précision (8 octets)
+Vu que FLOAT et DOUBLE, on évite d'utiliser des comparateurs tels que = <> car ces nombres flottans ne sont pas précis.
+```sql
+pourcentage FLOAT(5,2)
+```
+5 représente le nombre total de chiffres et 2, le nombre de décimales. 'pourcentage' stockera les valeurs entre -999.99 et 999.99.
+
+Le problème réside dans leurs appromimations:
+- Une valeur telle que 1 / 3.0 = 0.3333333... sera stockée sous la forme 0.33 (2 décimales)
+- Une valeur telle que 33.009 sera stockée sous la forme 33.01 (arrondie à 2 décimales)
+
+Le type DECIMAL, utilisez-le lorsque vous vous souciez de la précision exacte, comme de l'argent. 
+```sql
+salaire DECIMAL(8,2)
+```
+8 est le nombre total de chiffres, 2 le nombre de décimales. 'salaire' sera dans la plage de -999999.99 à 999999.99
 
 ### 8.4 NULL / NOT NULL
 A droite du type de donnée on peut ajouter **NULL** ou **NOT NULL**.
-- **NULL** signifie que la donnée peut être nulle.
-- **NOT NULL** signifie que la donnée ne peut être nulle/
+- **NULL** signifie que la donnée peut être nulle. C'est par défaut. Donc si vous ne mettez pas **NULL**, c'est comme si vous le mettiez.
+- **NOT NULL** signifie que la donnée ne peut être nulle.
+```sql
+Nom VARCHAR(20) NOT NULL,
+Lieu VARCHAR(20) NOT NULL,
+Nickname VARCHAR(20) NULL
+```
 ### 8.5 DEFAULT
 ### 8.6 PRIMARY KEY
 ### 8.7 FOREIGN KEY
@@ -868,37 +896,59 @@ A droite du type de donnée on peut ajouter **NULL** ou **NOT NULL**.
 Création de la table Classe
 ```sql
 CREATE TABLE Classe (
-    IdClasse int NOT NULL AUTO_INCREMENT,
-    Nom varchar(20),
-    Lieu varchar(20),
+    IdClasse INT NOT NULL AUTO_INCREMENT,
+    Nom VARCHAR(20) NOT NULL,
+    Lieu VARCHAR(20) NOT NULL,
+    Nickname VARCHAR(20) NULL,
     PRIMARY KEY(IdClasse)
 );
 ```
 Création de la table Eleve DOIT être créée après la table Classe car nous avons une clef étrangère qui référence la clef primaire de la table Classe.
 ```sql
 CREATE TABLE Eleve (
-    IdEleve int NOT NULL AUTO_INCREMENT,
-    Prenom varchar(20) NOT NULL,
-    Nom varchar(20) NOT NULL,
-    Naissance date NOT NULL,
-    RN varchar(20) UNIQUE NOT NULL,
+    IdEleve INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Prenom VARCHAR(20) NOT NULL,
+    Nom VARCHAR(20) NOT NULL,
+    Naissance DATE NOT NULL,
+    RN VARCHAR(20) UNIQUE NOT NULL,
     Actif boolean NOT NULL DEFAULT 1,
-    Nationalite varchar(20) NOT NULL,
-    Rue varchar(50) NOT NULL,
-    Numero varchar(5) NULL,
-    Boite varchar(3) NULL,
-    CP int NOT NULL,
-    Localite varchar(30) NOT NULL,
+    Nationalite VARCHAR(20) NOT NULL,
+    Rue VARCHAR(50) NOT NULL,
+    Numero VARCHAR(5) NULL,
+    Boite VARCHAR(3) NULL,
+    CP SMALLINT UNSIGNED NOT NULL,
+    Localite VARCHAR(30) NOT NULL,
     Sexe char(1) NOT NULL CHECK(Sexe IN ('M','F')),
-    Email varchar(40),
-    Tel varchar(20),
-    GSM varchar(20),
-    IdClasse int NOT NULL,
+    Email VARCHAR(40),
+    Tel VARCHAR(20),
+    GSM VARCHAR(20),
+    IdClasse INT NOT NULL,
     PRIMARY KEY (IdEleve),
     FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
 );
 ```
 ## 9. INSERT INTO
+### 9.1 La commande
+La commande **INSERT INTO** est utilisée pour ajouter des enregistrements dans une table.
+Il faut donc bien évidemment que notre table ait été créée avec un **CREATE TABLE**.
+### 9.2 La Syntaxe
+Elle est assez simple.
+```sql
+INSERT INTO nomTable (champ1,champ2, champ3)
+VALUES (valeur1, valeur2, valeur3);
+```
+- nomTable: nom de la table où l'on veut insérer
+- champ1, champ2, champ3: c'est l'énumération des champs où l'on veut ajouter une valeur.
+- valeur1, valeur2, valeur3: ce sont les valeurs que nous affecterons. valeur1 mettre sa valeur dans le champ1, valeur2 mettra sa valeur dans le champ2, etc.
+
+ Partons d'un exemple:
+```sql
+INSERT INTO Classe(Nom, Lieu, Nickname)
+VALUES ('BlindCode','BXL','BlindBXL');
+
+INSERT INTO Classe(Nom, Lieu, Nickname)
+VALUES ('BlindCode4Data','LLN','BlindLLN');
+```
 
 ## 10. UPDATE
 
@@ -966,7 +1016,9 @@ WHERE IdUtilisateur='45';
 DELETE Utilisateur
 WHERE IdUtilisateur='45';
 ```
-Idéalement il faudrait effectuer ses trois opérations dans une transaction...
+Idéalement il faudrait effectuer ses trois opérations consécutives dans une [transaction](https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1970063-transactions)...
+
+
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
