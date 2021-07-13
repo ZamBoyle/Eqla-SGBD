@@ -153,9 +153,9 @@ Pour répondre à cette question. Que demandent les services auxquels vous êtes
 Ici dans le cas de notre élève, on pourrait ajouter une propriété pour l'identifier de manière unique : un numéro d'inscription, un matricule, etc. Ce numéro unique peut être un simple numéro incrémenté (incrémenté = augmenté) : 47. Ou bien suivre des règles bien précisent : 1/2021 (Premier étudiant inscrit de l'année 2021).
  
 Chaque propriété de notre élève comporte un type. Reprenons notre entité élève et pour chaque propriété on va typer celle-ci :
-|                   |                    |                               |          |                                          |
-|-------------------|--------------------|-------------------------------|----------|------------------------------------------|
+
 |**Nom du champ**   |**Type**            |**Obligatoire****(= PAS NULL)**|**Unique**|**Remarque**                              |
+|-------------------|--------------------|-------------------------------|----------|------------------------------------------|
 |Matricule          |Entier              |Oui                            |Oui       |C'est le seul champ obligatoire et unique.|
 |Nom                |Chaîne de caractères|Oui                            |Non       |                                          |
 |Prénom             |Chaîne de caractères|Oui                            |Non       |                                          |
@@ -381,9 +381,9 @@ WHERE condition1 AND (condition2 OR condition3) ;
 Attention : il faut penser à utiliser des parenthèses lorsque c'est nécessaire. Cela permet d'éviter les erreurs car ça améliore la lecture d'une requête pour un humain.
 Exemple de données. Ici vous devrez importer la petite base de données : Ventes avec la commande source databaseVentes.sql dans le répertoire exercices du cours.
 Pour illustrer les prochaines commandes, nous allons considérer la table “produit” suivante :
-|                 |          |             |         |        |
-|-----------------|----------|-------------|---------|--------|
+
 |**IdProduit**|**Nom**   |**Categorie**|**Stock**|**Prix**|
+|-----------------|----------|-------------|---------|--------|
 |1                |Ordinateur|Informatique |5        |950     |
 |2                |Clavier   |Informatique |32       |35      |
 |3                |Souris    |Informatique |16       |30      |
@@ -397,9 +397,9 @@ FROM produit
 WHERE categorie = 'informatique' AND stock < 20;
 ```
 Cette requête retourne les résultats suivants :
-|                 |          |             |         |        |
-|-----------------|----------|-------------|---------|--------|
+
 |**IdProduit**|**Nom**   |**Categorie**|**Stock**|**Prix**|
+|-----------------|----------|-------------|---------|--------|
 |1                |Ordinateur|Informatique |5        |950     |
 |3                |Souris    |Informatique |16       |30      |
 
@@ -411,12 +411,11 @@ FROM produit
 WHERE nom = 'ordinateur' OR nom = 'clavier';
 ```
 Cette simple requête retourne les résultats suivants :
-|                 |          |             |         |        |
-|-----------------|----------|-------------|---------|--------|
+
 |**IdProduit**|**Nom**   |**Categorie**|**Stock**|**Prix**|
+|-----------------|----------|-------------|---------|--------|
 |1                |Ordinateur|Informatique |5        |950     |
 |2                |Clavier   |Informatique |32       |35      |
-
 
 ### e. Combiner AND et OR
 Il ne faut pas oublier que les opérateurs peuvent être combinés pour effectuer de puissantes recherches. Il est possible de filtrer les produits “informatique” avec un stock inférieur à 20 OU les produits “fourniture” avec un stock inférieur à 200 avec la recherche suivante :
@@ -428,9 +427,9 @@ OR ( categorie = 'fourniture' AND stock > 200 ) ;
 ```
 
 Cela permet de retourner les 3 résultats suivants :
-|                 |          |             |         |        |
-|-----------------|----------|-------------|---------|--------|
+
 |**IdProduit**|**Nom**   |**Categorie**|**Stock**|**Prix**|
+|-----------------|----------|-------------|---------|--------|
 |1                |Ordinateur|Informatique |5        |950     |
 |2                |Clavier   |Informatique |16       |35      |
 |4                |Crayon    |Fourniture   |147      |2       |
@@ -702,16 +701,16 @@ Tiens qu'est-ce encore qu'une clef primaire/étrangère ? :)
 Reprenons les tables Eleve et Classe.
 
 <u>Table Classe</u>:
-|            |              |        |
-|------------|--------------|--------|
+
 |**IdClasse** (Clef primaire)|**Nom**       |**Lieu**|
+|------------|--------------|--------|
 |1           |BlindCode     |BXL     |
 |2           |BlindCode4Data|LLN     |
 
 <u>Table Élève</u>: Elle a été épurée pour l'exemple. Dans les exercices, elle contient plus de champs.
-|           |          |          |            |
-|-----------|----------|----------|------------|
+
 |**IdEleve** (Clef primaire)|**Prénom**|**Nom**   |**IdClasse** (clef étrangère)|
+|-----------|----------|----------|------------|
 |1          |Alain     |Dufrasne  |2           |
 |2          |Bruno     |Defalque  |2           |
 |3          |Eleonor   |Sana      |2           |
@@ -811,29 +810,34 @@ WHERE Condition;
 Exemple:
 ```sql
 DELETE FROM Produit
-WHERE Produit.IdProduit = '123';
+WHERE IdProduit = '123';
 ```
 
 ### 11.2 Suppression ou champ Deleted ?
 Parfois, il vaut mieux créer un champ ayant pour nom Deleted et mettre sa valeur à 1 pour l'enregistrement que l'on veut supprimer. En effet, parfois il faut toujours garder une trace de cet enregistrement. Il ne sera pas effacé de notre base de données mais nous ne l'utiliserons plus.
+```sql
+UPDATE Produit
+SET Deleted = '1'
+WHERE IdProduit='123';
+```
 Affichons tous les produits à vendre:
 ```sql
 SELECT *
 FROM Produit
-WHERE Produit.Deleted = 0;
+WHERE Deleted = 0;
 ```
 Affichons les produits qui ne sont plus à vendre:
 ```sql
 SELECT *
 FROM Produit
-WHERE Produit.Deleted = 1;
+WHERE Deleted = 1;
 ```
 
 ### 11.3 Pourquoi mon DELETE provoque une erreur ?
 Il peut arriver que l'id de l'enregistrement que vous voulez supprimer soit utilisé ailleurs. Par exemple vous voulez supprimer l'article 'Oculus Quest 2 - 256 GB' ayant pour IdProduit '123':
 ```sql
 DELETE FROM Produit
-WHERE Produit.IdProduit = '123';
+WHERE IdProduit = '123';
 ```
 Si vous avez déjà eu des commandes pour ce Produit, MySQL devrait provoquer une erreur car certains enregistrements de nos commandes concernent ce produit. Et donc MySQL ne sait pas le supprimer. Heureusement aussi que MySQL ne l'ait pas fait car alors il aurait dû supprimer toutes nos commandes comportants ce produit. Ce qui pourrait être catastrophique... On pourrait y arriver en utilisant le **ON DELETE CASCADE** mais je n'en parlerai pas car c'est trop risqué. ;) Et je ne veux pas vous embrouiller.
 

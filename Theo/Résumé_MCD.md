@@ -1,6 +1,21 @@
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
-# Résumé : Cardinalité, association
+<h1> Résumé : Cardinalité, association</h1>
+
+![](media/image1.png)
+<div style="text-align: right">
+<i>Johnny Piette</i>
+</div>
+
+****
+- [1. Association de type 1 : N](#1-association-de-type-1-n)
+- [2. Association de type N :N](#2-association-de-type-nn)
+- [3. Association de type 1 :1](#3-association-de-type-11)
+  - [3.1 Fusion des champs de la table formateur dans la table Eleve](#31-fusion-des-champs-de-la-table-formateur-dans-la-table-eleve)
+  - [3.2 Fusion des champs de la table Classe dans la table Formateur](#32-fusion-des-champs-de-la-table-classe-dans-la-table-formateur)
+  - [3.3 Deux tables distinctes](#33-deux-tables-distinctes)
+  - [3.4 Pour résumer](#34-pour-résumer)
+
 ## 1. Association de type 1 : N
 - 1 élève fait partie d’une et une seule classe : cardinalité 1,1 (Cardinalité maximale 1)
 - 1 classe a 1 ou plusieurs élèves : cardinalité 1,N (Cardinalité maximale N)
@@ -11,16 +26,16 @@ Comme 1 élève fait partie d’une et une seule classe on met l’Identifiant d
 
 Regardez les deux tables suivantes qui illustrent bien cette association de type 1 :N
 **Table Classe**
-|            |              |        |
-|------------|--------------|--------|
+
 |**IdClasse** (Clef primaire)|**Nom**       |**Lieu**|
+|------------|--------------|--------|
 |1           |BlindCode     |BXL     |
 |2           |BlindCode4Data|LLN     |
 
 **Table Eleve**
-|           |          |          |            |
-|-----------|----------|----------|------------|
+
 |**IdEleve** (Clef primaire)|**Prénom**|**Nom**   |**IdClasse** (clef étrangère)|
+|-----------|----------|----------|------------|
 |1          |Alain     |Dufrasne  |2           |
 |2          |Bruno     |Defalque  |2           |
 |3          |Eleonor   |Sana      |2           |
@@ -43,18 +58,15 @@ Reprenons notre exemple. Imaginons maintenant qu’un élève fait partie de plu
 - 1 classe a 1 ou plusieurs élèves cardinalité : 1, N (Cardinalité maximale N)
 
 Comme c’est une association de type N :N
-La table Classe ne change pas
-|            |              |        |
-|------------|--------------|--------|
+La table Classe ne change pas:
 |**IdClasse**|**Nom**       |**Lieu**|
+|------------|--------------|--------|
 |1           |BlindCode     |BXL     |
 |2           |BlindCode4Data|LLN     |
 
-
-La table Eleve devient
-|           |          |          |
-|-----------|----------|----------|
+La table Eleve devient:
 |**IdEleve**|**Prénom**|**Nom**   |
+|-----------|----------|----------|
 |1          |Alain     |Dufrasne  |
 |2          |Bruno     |Defalque  |
 |3          |Eleonor   |Sana      |
@@ -72,9 +84,9 @@ La table Eleve devient
 Ici la complexité réside dans le fait que si un élève fait partie de 5 classes on devrait alors 5 champs dans la table élèves, IdClass1, IdClasse2, IdClasse3, IdClasse4, IdClasse5. Ça pourrait se faire mais conceptuellement parlant c’est incorrect car ce n’est pas une solution générique qui marche dans tous les cas, c’est-à-dire qui tient en compte qu’un élève pourrait faire partie d’un nombre très très important de classes. La solution générique est la table intermédiaire. 
 
 Cette table intermédiaire EleveCours représente dans quelles classes se trouve un élève. Cette solution est générique car elle permet à un élève de suivre autant de cours qu’il veut et une classe peut avoir autant d’élèves qu’on veut.
-|           |            |
-|-----------|------------|
+
 |**IdEleve**|**IdClasse**|
+|-----------|------------|
 |1          |2           |
 |2          |2           |
 |3          |2           |
@@ -91,63 +103,77 @@ Cette table intermédiaire EleveCours représente dans quelles classes se trouve
 |12         |2           |
 |13         |2           |
 
-
 Ici nous avons tous les élèves de BXL et Louvain-La-Neuve. Et aussi Bruno (IdEleve=2) et Isaac (IdEleve=7) qui sont dans les deux classes : BlindCode (1) &amp; BlindCode4Data (2).
 
 On définira IdEleve &amp; IdClasse comme clés primaires. De cette manière, le SGBD veillera à ce qu’aucun élève ne soit inscrit deux fois dans la même classe. En effet, pour chaque enregistrement/ligne de la table/du tableau EleveCours le couple IdEleve, IdClasse sera unique. Si on essaie d’ajouter une seconde fois un même élève dans une classe où il y fait déjà partie, la base de données va générer une erreur indiquant que l’élève en question est déjà présente dans ladite classe.
 
 ## 3. Association de type 1 :1
 Depuis notre exemple. Imaginons que notre classe a un et un seul formateur. Et un formateur donne cours dans une et une seule classe.
-Ici, il faut voir la pertinence d’une association de type 1 :1 et si un jour notre association ne risque pas d’évoluer vers un modèle 1 :N.  Si ce n’est pas le cas, il faudra voir s’il est judicieux d’avoir une table formateur. Et si fonctionnellement il y a une raison de ne pas fusionner les champs de la table formateur dans la table Classe. Tout va dépendre si l’entité Formateur est fonctionnellement forte et mérite de rester séparée de la table classe : date de contrat, année de naissance, adresse, APE, Sexe, etc. 
 
-Si on fusionne les champs de la table Formateur dans la table Classe :
+Ici, il faut voir la pertinence d’une association de type 1 :1 et si un jour notre association ne risque pas d’évoluer vers un modèle 1 :N.  Si ce n’est pas le cas, il faudra voir s’il est judicieux d’avoir une table formateur. Et si fonctionnellement il y a une raison de ne pas fusionner les champs de la table formateur dans la table Classe. Tout va dépendre si l’entité Formateur est fonctionnellement forte et mérite de rester séparée de la table classe : date de contrat, année de naissance, adresse, APE, Sexe, etc.
+
+Mais dans la réalité, une classe aura plusieurs formateurs et un formateur aura plusieurs classes : Association de type N : N.
+
+### 3.1 Fusion des champs de la table formateur dans la table Eleve
+Si on fusionne les champs de la table Formateur dans la table Classe, dans la classe Eleve on mettra comme clef étrangère l'IdClasse.
+
 La table Classe pourrait devenir :
-|            |              |        |                   |                |
-|------------|--------------|--------|-------------------|----------------|
 |**IdClasse**|**Nom**       |**Lieu**|**PrenomFormateur**|**NomFormateur**|
+|------------|--------------|--------|-------------------|----------------|
 |1           |BlindCode     |BXL     |Johnny             |Piette          |
 |2           |BlindCode4Data|LLN     |Philip             |Dupont          |
 
+La table Eleve reste comme avant:
+|**IdEleve** (Clef primaire)|**Prénom**|**Nom**   |**IdClasse** (clef étrangère)|
+|-----------|----------|----------|------------|
+|1          |Alain     |Dufrasne  |2           |
+|2          |Bruno     |Defalque  |2           |
 
-Si on fusionne les champs de la table Classe dans la table Formateur :
-La table Formateur pourrait devenir
-|               |       |          |             |              |
-|---------------|-------|----------|-------------|--------------|
+### 3.2 Fusion des champs de la table Classe dans la table Formateur
+Si on fusionne les champs de la table Classe dans la table Formateur: Le problème c'est que l'on va mettre comme clef étrangère pour chaque élève de la table Eleve l'IdFormateur. Ce qui fonctionnellement n'a pas beaucoup de sens. En effet, un élève fait partie d'une classe. Ici, on insiste sur l'entité Formateur car dans ce cas un élève a un formateur.
+La table Formateur pourrait devenir (mais non recommandé)
+
 |**IdFormateur**|**Nom**|**Prenom**|**NomClasse**|**LieuClasse**|
+|---------------|-------|----------|-------------|--------------|
 |1              |Piette |Johnny    |Blindcode    |BXL           |
 |2              |Dupont |Philip    |Blind4Data   |LLN           |
 
+La table Eleve reste comme avant:
+|**IdEleve** (Clef primaire)|**Prénom**|**Nom**   |**IdFormateur** (clef étrangère)|
+|-----------|----------|----------|------------|
+|1          |Alain     |Dufrasne  |2           |
+|2          |Bruno     |Defalque  |2           |
+
+### 3.3 Deux tables distinctes
 Si on garde des tables bien distinctes
 La table Classe devient :
-|            |              |        |               |
-|------------|--------------|--------|---------------|
 |**IdClasse**|**Nom**       |**Lieu**|**IdFormateur**|
+|------------|--------------|--------|---------------|
 |1           |BlindCode     |BXL     |1              |
 |2           |BlindCode4Data|LLN     |2              |
 
 Et la classe Formateur devient
-|               |       |          |
-|---------------|-------|----------|
+
 |**IdFormateur**|**Nom**|**Prenom**|
+|---------------|-------|----------|
 |1              |Piette |Johnny    |
 |2              |Dupont |Philip    |
 
 OU BIEN
 La table Classe devient :
-|            |              |        |
-|------------|--------------|--------|
 |**IdClasse**|**Nom**       |**Lieu**|
+|------------|--------------|--------|
 |1           |BlindCode     |BXL     |
 |2           |BlindCode4Data|LLN     |
 
 La classe Formateur devient:
-|               |       |          |            |
-|---------------|-------|----------|------------|
 |**IdFormateur**|**Nom**|**Prenom**|**IdClasse**|
+|---------------|-------|----------|------------|
 |1              |Piette |Johnny    |1           |
 |2              |Dupont |Philip    |2           |
 
-Mais dans la réalité, une classe aura plusieurs formateurs et un formateur aura plusieurs classes : Association de type N : N.
+### 3.4 Pour résumer
+Pour résumer ce point, si vous sentez que les entités sont fortes, faites-en alors deux tables. Sinon effectuez une fusion d'une entité dans une autre pour au final n'avoir qu'une seule table.
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
