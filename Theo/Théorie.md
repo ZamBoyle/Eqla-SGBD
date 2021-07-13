@@ -925,8 +925,9 @@ Nickname VARCHAR(20) NULL
 ### 8.5 DEFAULT
 DEFAULT permet de définir une valeur par défaut.
 ```sql
-Active bool
+Actif BOOLEAN DEFAULT TRUE
 ```
+On définit un champ booléen nommé Actif ayant vrai (true) comme valeur par défaut.
 ### 8.6 PRIMARY KEY
 Dans MySQL, une clef primaire se définit soit
 - sur le champ en le qualifiant de **PRIMARY KEY**
