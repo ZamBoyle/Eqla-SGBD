@@ -892,6 +892,14 @@ Pour les Dates on peut choisir entre: DATE et DATETIME.
 - Le type DATE ne prend qu'une DATE.
 - Le type DATETIME prend une date et aussi une heure. Si on n'a pas besoin de l'heure autant utiliser le type DATE.
 
+Un champ nommé DateNaissance peut avoir besoin d'un simple DATE pour la table USER.
+```sql
+DateNaissance DATE NOT NULL
+```
+Tandis que dans un hopital, ce champ DateNaissance sera du type DATETIME car il est important de connaître la date exacte de la naissance d'un nouveau né par exemple.
+```sql
+DateNaissance DATETIME NOT NULL
+```
 #### 8.3.6 BOOLEAN
 Ce type permet de définir une valeur booléenne.
 ```sql
