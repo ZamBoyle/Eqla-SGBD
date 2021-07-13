@@ -60,13 +60,17 @@
   - [8. CREATE TABLE](#8-create-table)
     - [8.1 La commande](#81-la-commande)
     - [8.2 La syntaxe](#82-la-syntaxe)
-    - [8.3 Types des champs](#83-types-des-champs)
+    - [8.3 Types de données / types des champs](#83-types-de-données--types-des-champs)
+      - [8.3.1 VARCHAR - Chaîne de caractères à longueur variable](#831-varchar---chaîne-de-caractères-à-longueur-variable)
+      - [8.3.2 CHAR - Chaîne de caractère à longueur fixe](#832-char---chaîne-de-caractère-à-longueur-fixe)
+      - [8.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT](#833-int--tinyint---smallint--mediumint--bigint)
     - [8.4 NULL / NOT NULL](#84-null--not-null)
     - [8.5 DEFAULT](#85-default)
     - [8.6 PRIMARY KEY](#86-primary-key)
     - [8.7 FOREIGN KEY](#87-foreign-key)
     - [8.8 UNIQUE](#88-unique)
-    - [8.9 Exemple](#89-exemple)
+    - [8.9 AUTO_INCREMENT](#89-auto_increment)
+    - [8.10 Exemples](#810-exemples)
   - [9. INSERT INTO](#9-insert-into)
   - [10. UPDATE](#10-update)
   - [11. DELETE](#11-delete)
@@ -74,6 +78,7 @@
     - [11.2 La syntaxe](#112-la-syntaxe)
     - [11.2 Suppression ou champ Deleted ?](#112-suppression-ou-champ-deleted-)
     - [11.3 Pourquoi mon DELETE provoque une erreur ?](#113-pourquoi-mon-delete-provoque-une-erreur-)
+    - [11.4 Droit à l'oubli ?](#114-droit-à-loubli-)
 
 # I. Introduction
 ## 1. Mise en situation
@@ -784,15 +789,93 @@ Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la sit
 
 ## 8. CREATE TABLE
 ### 8.1 La commande
+Lors de vos échanges en groupe, vous avez réussi à déterminer les champs primordiaux des entités Eleve et Classe.
+
+Ensuite, dans le script de création de la base de données, nous avons vu que la creation d'une table avait des points communs avec notre entité: champs, clefs, type de donnée, NULL, NOT NULL, etc.
+
+La commande CREATE TABLE permet donc de créer une table dans une base de données.
 ### 8.2 La syntaxe
-### 8.3 Types des champs
+De manière très résumée, elle se traduit ainsi:
+```sql
+CREATE TABLE nomtable
+(
+    champ1 type_donnees,
+    champ2 type_donnees,
+    champ3 type_donnees,
+    champ4 type_donnees
+)
+```
+Ici nous avons créé une table avec pour nom: nomtable.
+Nous avons 4 champs. Chaque champ a une nom (champ1 à champ2) et chaque champ a un type de données (INT, DATE, VARCHAR, CHAR, etc.). Entre chaque champ, il y a une virgule.
+### 8.3 Types de données / types des champs
+Un champ a un type de données. Voici les principaux:
+#### 8.3.1 VARCHAR - Chaîne de caractères à longueur variable
+Ce type de donnée est utilisé pour les chaînes de caractères. On lui donne une longueur maximum. Lors de l'affectation de notre enregistrement pour ce champ si la longueur, n'est pas atteinte, il ne complètera pas par des espaces.
+```sql
+nom VARCHAR(50)
+```
+#### 8.3.2 CHAR - Chaîne de caractère à longueur fixe
+Ici aussi c'est une chaîne de caractères. A la différence que si lors de l'affectation, la chaîne est plus petite que la longueur définie, MySQL remplira d'espaces le reste des caractères non affectés. Donc notre chaîne aura toujours une taille fixe même si on affecte une chaîne avec moins de caractères que la taille fixe.
+```sql
+prenom CHAR(50)
+```
+Personnellement, je n'utilise que des VARCHAR sauf par exemple pour un champ Sexe.
+```sql
+Sexe CHAR(1)
+```
+#### 8.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT
+Alors très très souvent vous allez mettre des INT pour des champs entiers.
+Cependant il faut bien réfléchir avant de faire son champ sur son type entier.
+En effet, la limite négative et positive varie en fonction du type. Et choisir un type à un impacte sur la taille de stockage du champ.
+- **TINYINT**: 1 octet, valeurs [-65000, 65000]
+- **SMALLINT**: 2 octets, valeurs [-32768, 32767]
+- **MEDIUMINT**: 3 octets, valeurs [-8388608, 8388607]
+- **INT**: 4 octets, valeurs [-2147483648, 2147483647]
+- **BIGINT**: 8 octets, valeurs [-2^63, 263-1]
+
+
+
+
 ### 8.4 NULL / NOT NULL
 ### 8.5 DEFAULT
 ### 8.6 PRIMARY KEY
 ### 8.7 FOREIGN KEY
 ### 8.8 UNIQUE
-### 8.9 Exemple
-
+### 8.9 AUTO_INCREMENT
+### 8.10 Exemples
+Création de la table Classe
+```sql
+CREATE TABLE Classe (
+    IdClasse int NOT NULL AUTO_INCREMENT,
+    Nom varchar(20),
+    Lieu varchar(20),
+    PRIMARY KEY(IdClasse)
+);
+```
+Création de la table Eleve DOIT être créée après la table Classe car nous avons une clef étrangère qui référence la clef primaire de la table Classe.
+```sql
+CREATE TABLE Eleve (
+    IdEleve int NOT NULL AUTO_INCREMENT,
+    Prenom varchar(20) NOT NULL,
+    Nom varchar(20) NOT NULL,
+    Naissance date NOT NULL,
+    RN varchar(20) UNIQUE NOT NULL,
+    Actif boolean NOT NULL DEFAULT 1,
+    Nationalite varchar(20) NOT NULL,
+    Rue varchar(50) NOT NULL,
+    Numero varchar(5) NULL,
+    Boite varchar(3) NULL,
+    CP int NOT NULL,
+    Localite varchar(30) NOT NULL,
+    Sexe char(1) NOT NULL CHECK(Sexe IN ('M','F')),
+    Email varchar(40),
+    Tel varchar(20),
+    GSM varchar(20),
+    IdClasse int NOT NULL,
+    PRIMARY KEY (IdEleve),
+    FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
+);
+```
 ## 9. INSERT INTO
 
 ## 10. UPDATE
@@ -840,10 +923,28 @@ DELETE FROM Produit
 WHERE IdProduit = '123';
 ```
 Si vous avez déjà eu des commandes pour ce Produit, MySQL devrait provoquer une erreur car certains enregistrements de nos commandes concernent ce produit. Et donc MySQL ne sait pas le supprimer. Heureusement aussi que MySQL ne l'ait pas fait car alors il aurait dû supprimer toutes nos commandes comportants ce produit. Ce qui pourrait être catastrophique... On pourrait y arriver en utilisant le **ON DELETE CASCADE** mais je n'en parlerai pas car c'est trop risqué. ;) Et je ne veux pas vous embrouiller.
+### 11.4 Droit à l'oubli ?
+Depuis le [GDPR/RGPD](https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es), Il est possible qu'un utilisateur faisant partie d'une de vos bases de données viennent vous dire qu'il ne veut plus en faire partie. Il faudra en tenir compte. Cependant, il faut bien se dire que ça ne sera pas toujours possible dans certains cas comptables: commandes, achats, livraisons, etc.
 
+Mais ça sera par exemple possible sur un forum: on supprimera l'utilisateur ainsi que ses commentaires, ses posts.
+Dans l'ordre on devra procéder de la sorte:
+- Les commentaires
+- Les posts
+- L'utilisateur
 
+En effet, Un commentaire est lié à un post et a utilisateur. Et un post est lié à un utilisateur.
+Car ces tables contiennent des références à l'id de l'utilisateur.
+```sql
+DELETE commentaire
+WHERE IdUtilisateur='45';
 
+DELETE post
+WHERE IdUtilisateur='45';
 
+DELETE Utilisateur
+WHERE IdUtilisateur='45';
+```
+Idéalement il faudrait effectuer ses trois opérations dans une transaction...
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
