@@ -896,7 +896,7 @@ Un champ nommé DateNaissance peut avoir besoin d'un simple DATE pour la table U
 ```sql
 DateNaissance DATE NOT NULL
 ```
-Tandis que dans un hopital, ce champ DateNaissance sera du type DATETIME car il est important de connaître la date exacte de la naissance d'un nouveau né par exemple.
+Tandis que dans un hopital, ce champ DateNaissance sera du type DATETIME car il est important de connaître la date et l'heure exacte de la naissance d'un nouveau né par exemple.
 ```sql
 DateNaissance DATETIME NOT NULL
 ```
