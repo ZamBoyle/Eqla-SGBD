@@ -1,6 +1,6 @@
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
-<h1> Résumé : Cardinalité, association</h1>
+<h1> Résumé MCD: Associations</h1>
 
 ![](media/image1.png)
 <div style="text-align: right">
