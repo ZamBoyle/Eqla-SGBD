@@ -1,4 +1,4 @@
-[:arrow_left:Revenir au menu.](../Theo/README.md)
+[:arrow_left:Revenir au menu.](../README.md)
 
 <h1> Résumé MCD: Associations</h1>
 
@@ -175,7 +175,7 @@ La classe Formateur devient:
 ### 3.4 Pour résumer
 Pour résumer ce point, si vous sentez que les entités sont fortes, faites-en alors deux tables. Sinon effectuez une fusion d'une entité dans une autre pour au final n'avoir qu'une seule table.
 
-[:arrow_left:Revenir au menu.](../Theo/README.md)
+[:arrow_left:Revenir au menu.](../README.md)
 
 ---
 _[Eqla](http://www.eqla.be) 2021 - Cours d'introduction aux SGBD_
