@@ -806,7 +806,7 @@ CREATE TABLE nomtable
 )
 ```
 Ici nous avons créé une table avec pour nom: nomtable.
-Nous avons 4 champs. Chaque champ a une nom (champ1 à champ2) et chaque champ a un type de données (INT, DATE, VARCHAR, CHAR, etc.). Entre chaque champ, il y a une virgule.
+Nous avons 4 champs. Chaque champ a une nom (champ1 à champ2) et chaque champ a un type de données (**INT**, **DATE**, **VARCHAR**, **CHAR**, etc.). Entre chaque champ, il y a une virgule.
 ### 8.3 Types de données / types des champs
 Un champ a un type de données. Voici les principaux:
 #### 8.3.1 VARCHAR - Chaîne de caractères à longueur variable
@@ -819,24 +819,46 @@ Ici aussi c'est une chaîne de caractères. A la différence que si lors de l'af
 ```sql
 prenom CHAR(50)
 ```
-Personnellement, je n'utilise que des VARCHAR sauf par exemple pour un champ Sexe.
+Personnellement, je n'utilise que des **VARCHAR** sauf par exemple pour un champ Sexe.
 ```sql
 Sexe CHAR(1)
 ```
 #### 8.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT
 Alors très très souvent vous allez mettre des INT pour des champs entiers.
-Cependant il faut bien réfléchir avant de faire son champ sur son type entier.
+Cependant il faut bien réfléchir avant de faire son choix sur le type entier à utiliser.
+
 En effet, la limite négative et positive varie en fonction du type. Et choisir un type à un impacte sur la taille de stockage du champ.
-- **TINYINT**: 1 octet, valeurs [-65000, 65000]
-- **SMALLINT**: 2 octets, valeurs [-32768, 32767]
-- **MEDIUMINT**: 3 octets, valeurs [-8388608, 8388607]
-- **INT**: 4 octets, valeurs [-2147483648, 2147483647]
-- **BIGINT**: 8 octets, valeurs [-2^63, 263-1]
 
+Il faut savoir qu'il existe des types signés et non signés. Signé c'est qu'on tient compte des valeurs négatives.
+Non signé, on ne tient pas compte de valeur négative. Par défaut c'est **UNSIGNED** mais on peut qualifier le type de **SIGNED**.
 
+- **TINYINT**: 1 octet, valeurs [-128, 127] ou bien 255 valeurs positives.
+- **SMALLINT**: 2 octets, valeurs [-32768, 32767] ou bien 65535 valeurs positives.
+- **MEDIUMINT**: 3 octets, valeurs [-8388608, 8388607] ou bien 16777215 valeurs positives.
+- **INT**: 4 octets, valeurs [-2147483648, 2147483647] ou bien 4294967295 valeurs positives.
+- **BIGINT**: 8 octets, valeurs [-2^63, 2^63-1]  ou bien 264-1 valeurs positives. (^ signifie ici exposant)
 
+Par exemple avec le type **BIGINT**, si dans une table un champ a le type **BIGINT** et que vous avez 128 enregistrements, ça prendra 1 Ko de stockage uniquement pour ces champs **BIGINT**.
+
+Ca peut paraître fort peu mais il faut parfois imaginer des bases de données énormes pour se rendre compte que notre base de données aurait pu prendre nettement moins de place en utilisant par exemples:
+- un **INT**: 2 fois moins de place en stockage.
+- un **SMALLINT**: 4 fois moins de place en stockage.
+
+```sql
+IdUser INT,
+Annee SMALLINT,
+NBEnfants TINYINT //Normalement TINYINT devrait suffire... 😁
+```
+Dans le cas IdUser, j'ai pris **INT**. Pourquoi ? Imaginons que votre application dépasse les 50 millions d'utilisateurs, vous ne pouvez donc pas prendre le type **MEDIUMINT**. Mais plutôt le type **INT** qui pourra en gérer 4 milliards... Mais si vous être Facebook (2,85 milliards d'utilisateurs), Microsoft, Google, Apple, ce type de donnée ne sera pas suffisant et il faudra sans doute passer par un type **BIGINT**...
+
+Maintenant, je n'ai aucune idée du design des DB des GAFAM (Google Amazon Facebook Microsoft) mais c'est juste pour vous montrer que le nombre d'utilisateurs est fonction de vos besoins: Le nombre d'utilisateurs Facebook vs nombre de membres d'un club de foot...
+
+Le choix du type est donc TRES important.
 
 ### 8.4 NULL / NOT NULL
+A droite du type de donnée on peut ajouter **NULL** ou **NOT NULL**.
+- **NULL** signifie que la donnée peut être nulle.
+- **NOT NULL** signifie que la donnée ne peut être nulle/
 ### 8.5 DEFAULT
 ### 8.6 PRIMARY KEY
 ### 8.7 FOREIGN KEY
