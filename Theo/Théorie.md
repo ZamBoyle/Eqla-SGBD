@@ -77,14 +77,16 @@
   - [9. INSERT INTO](#9-insert-into)
     - [9.1 La commande](#91-la-commande)
     - [9.2 La Syntaxe](#92-la-syntaxe)
-  - [10. ALTER TABLE](#10-alter-table)
+  - [10. UPDATE](#10-update)
     - [10.1 La commande](#101-la-commande)
+    - [10.2 La syntaxe](#102-la-syntaxe)
   - [11. DELETE](#11-delete)
     - [11.1 La commande](#111-la-commande)
     - [11.2 La syntaxe](#112-la-syntaxe)
     - [11.2 Suppression ou champ Deleted ?](#112-suppression-ou-champ-deleted-)
     - [11.3 Pourquoi mon DELETE provoque une erreur ?](#113-pourquoi-mon-delete-provoque-une-erreur-)
     - [11.4 Droit à l'oubli ?](#114-droit-à-loubli-)
+  - [12. ALTER TABLE](#12-alter-table)
 
 # I. Introduction
 ## 1. Mise en situation
@@ -961,19 +963,27 @@ FOREIGN KEY(PersonID) REFERENCES Personne(PersonID)
 Cela signifie que l'on définit la clef étrangère sur le champ PersonID de la table Commande qui référence la clef primaire de la table Personne.
 
 ### 8.8 UNIQUE
+Comme son nom l'indique, le champ doit être unique. Par exemple un numéro national.
+
+Si votre clef primaire est composée d'un seul champ, il n'est pas nécessaire d'indiquer UNIQUE. Car par définition, une clef primaire est unique.
+
+Pour les clefs primaires composites, ce n'est pas le cas car c'est la compostion des champs qui forment la clef primaire qui est unique.
 ### 8.9 AUTO_INCREMENT
+L'auto-incrémentation d'un champ est très très très utilisé dans les bases de données. Surtout pour générer un identifiant unique.
+Un champ qualifié d'AUTO_INCREMENT se verra incrémenté de 1 pour le prochain enregistrement.
+
 ### 8.10 Exemples
 Création de la table Classe
 ```sql
 CREATE TABLE Classe (
-    IdClasse INT NOT NULL AUTO_INCREMENT,
+    IdClasse INT UNSIGNED NOT NULL AUTO_INCREMENT,
     Nom VARCHAR(20) NOT NULL,
     Lieu VARCHAR(20) NOT NULL,
     Nickname VARCHAR(20) NULL,
     PRIMARY KEY(IdClasse)
 );
 ```
-Création de la table Eleve DOIT être créée après la table Classe car nous avons une clef étrangère qui référence la clef primaire de la table Classe.
+La table Eleve DOIT être créée après la table Classe car nous avons une clef étrangère dans la table Eleve qui référence la clef primaire de la table Classe.
 ```sql
 CREATE TABLE Eleve (
     IdEleve INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -992,7 +1002,7 @@ CREATE TABLE Eleve (
     Email VARCHAR(40),
     Tel VARCHAR(20),
     GSM VARCHAR(20),
-    IdClasse INT NOT NULL,
+    IdClasse INT UNSIGNED NOT NULL,
     PRIMARY KEY (IdEleve),
     FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
 );
@@ -1019,10 +1029,23 @@ VALUES ('BlindCode','BXL','BlindBXL');
 INSERT INTO Classe(Nom, Lieu, Nickname)
 VALUES ('BlindCode4Data','LLN','BlindLLN');
 ```
-## 10. ALTER TABLE
+## 10. UPDATE
 ### 10.1 La commande
+La commande **UPDATE** permet de mettre à jour un ou plusieurs enregistrements. Ces enregistrements peuvent correspondre à un motif de recherche.
+### 10.2 La syntaxe
+Par exemple, on veut changer le prénom 'jooooohnny' en 'johnny' et le nom 'Piettttuuuus' en 'Piette' pour l'utilisateur ayant l'iduser = 47
+```sql
+UPDATE User
+SET Prenom='Johnny', nom='Piette'
+WHERE IdUser=47;
+```
+Faites SUPER attention quand vous mettez à jour des données. Si vous oubliez par exemple un WHERE. Boummmm ça met à jours tous les enregistrements de la table. Donc par une mauvaise manipulation on pourrait avoir tous nos utilisateurs s'appeller 'Johnny Piette'...
 
-
+Si on veut désactiver l'envoie des emails pour tout le monde:
+```sql
+UPDATE User
+SET AcceptEmail=false;
+```
 ## 11. DELETE
 ### 11.1 La commande
 La commande **DELETE** dans le langage SQL permet de supprimer des enregistrements dans une table. Cela signfie qu'il faut la manipuler avec prudence !
@@ -1065,7 +1088,9 @@ WHERE IdProduit = 123;
 ```
 Si vous avez déjà eu des commandes pour ce Produit, MySQL devrait provoquer une erreur car certains enregistrements de nos commandes concernent ce produit. Et donc MySQL ne sait pas le supprimer. Heureusement aussi que MySQL ne l'ait pas fait car alors il aurait dû supprimer toutes nos commandes comportants ce produit. Ce qui pourrait être catastrophique... On pourrait y arriver en utilisant le **ON DELETE CASCADE** mais je n'en parlerai pas car c'est trop risqué. ;) Et je ne veux pas vous embrouiller.
 ### 11.4 Droit à l'oubli ?
-Depuis le [GDPR/RGPD](https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es), Il est possible qu'un utilisateur faisant partie d'une de vos bases de données viennent vous dire qu'il ne veut plus en faire partie. Il faudra en tenir compte. Cependant, il faut bien se dire que ça ne sera pas toujours possible dans certains cas comptables: commandes, achats, livraisons, etc. Ou dans certaines institutions publiques qui doivent garder des informations importantes sur les personnes.
+Depuis le [GDPR/RGPD](https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es), Il est possible qu'un utilisateur faisant partie d'une de vos bases de données viennent vous dire qu'il ne veut plus en faire partie. Il faudra en tenir compte.
+
+Cependant, il faut bien se dire que ça ne sera pas toujours possible dans certains cas comptables: commandes, achats, livraisons, etc. Ou dans certaines institutions publiques qui doivent garder des informations importantes sur les personnes.
 
 Mais ça sera par exemple possible sur un forum: on supprimera l'utilisateur ainsi que ses commentaires, ses posts.
 Dans l'ordre on devra procéder de la sorte:
@@ -1087,7 +1112,7 @@ WHERE IdUtilisateur=45;
 ```
 Idéalement il faudrait effectuer ses trois opérations consécutives dans une [transaction](https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1970063-transactions)...
 
-
+## 12. ALTER TABLE
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
