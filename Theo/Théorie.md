@@ -65,6 +65,8 @@
       - [8.3.2 CHAR - Chaîne de caractère à longueur fixe](#832-char---chaîne-de-caractère-à-longueur-fixe)
       - [8.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT](#833-int--tinyint---smallint--mediumint--bigint)
       - [8.3.4 FLOAT / DOUBLE / DECIMAL](#834-float--double--decimal)
+      - [8.3.5 DATE / DATETIME](#835-date--datetime)
+      - [8.3.6 BOOLEAN](#836-boolean)
     - [8.4 NULL / NOT NULL](#84-null--not-null)
     - [8.5 DEFAULT](#85-default)
     - [8.6 PRIMARY KEY](#86-primary-key)
@@ -75,7 +77,8 @@
   - [9. INSERT INTO](#9-insert-into)
     - [9.1 La commande](#91-la-commande)
     - [9.2 La Syntaxe](#92-la-syntaxe)
-  - [10. UPDATE](#10-update)
+  - [10. ALTER TABLE](#10-alter-table)
+    - [10.1 La commande](#101-la-commande)
   - [11. DELETE](#11-delete)
     - [11.1 La commande](#111-la-commande)
     - [11.2 La syntaxe](#112-la-syntaxe)
@@ -872,12 +875,34 @@ Le problème réside dans leurs appromimations:
 - Une valeur telle que 1 / 3.0 = 0.3333333... sera stockée sous la forme 0.33 (2 décimales)
 - Une valeur telle que 33.009 sera stockée sous la forme 33.01 (arrondie à 2 décimales)
 
-Le type DECIMAL, utilisez-le lorsque vous vous souciez de la précision exacte, comme de l'argent. 
+Le type DECIMAL(M,D), utilisez-le lorsque vous vous souciez de la précision exacte, comme de l'argent. 
 ```sql
 salaire DECIMAL(8,2)
 ```
 8 est le nombre total de chiffres, 2 le nombre de décimales. 'salaire' sera dans la plage de -999999.99 à 999999.99
 
+La précision se définit par DECIMAL(M,D) où M représente le nombre total de chiffres allant de 1 à 65 et où D représente le nombre de chiffres après la virgule allant de 1 à 30. D doit être inférieur à M.
+
+Donc si on écrit DECIMAL(65,30), on aura à gauche de la virgule un nombre a 35 (65-30) chiffres et on aura 30 chiffres après la virgule. Cela définit ici un champ qui accepte un nombre entre: -99999999999999999999999999999999999.999999999999999999999999999999 et 99999999999999999999999999999999999.999999999999999999999999999999
+
+#### 8.3.5 DATE / DATETIME 
+Pour les Dates on peut choisir entre: DATE et DATETIME.
+- Le type DATE ne prend qu'une DATE.
+- Le type DATETIME prend une date et aussi une heure. Si on n'a pas besoin de l'heure autant utiliser le type DATE.
+
+#### 8.3.6 BOOLEAN
+Ce type permet de définir une valeur booléenne.
+```sql
+EstActif boolean NOT NULL
+```
+Cependant, il faut faire attention car en fait c'est le type TINYINT(1) qui est utilisé par MySQL. Donc on pourrait avoir une valeur comprise entre 0 et 9.
+
+Lors de l'insert on utilisera soit 0 ou 1 pour rester cohérent. On peut aussi utiliser true ou false qui seront remplacé par MySQL par 0 ou 1.
+```sql
+INSERT INTO User(Nom, Prenom, EstActif) VALUES('Piette','Johnny', true);
+INSERT INTO User(Nom, Prenom, EstActif) VALUES('Dupont','Philip', 0);
+```
+Lors d'un SELECT il sera affiché pour le champ EstActif soit 0 ou 1.
 ### 8.4 NULL / NOT NULL
 A droite du type de donnée on peut ajouter **NULL** ou **NOT NULL**.
 - **NULL** signifie que la donnée peut être nulle. C'est par défaut. Donc si vous ne mettez pas **NULL**, c'est comme si vous le mettiez.
@@ -888,8 +913,53 @@ Lieu VARCHAR(20) NOT NULL,
 Nickname VARCHAR(20) NULL
 ```
 ### 8.5 DEFAULT
+DEFAULT permet de définir une valeur par défaut.
+```sql
+Active bool
+```
 ### 8.6 PRIMARY KEY
+Dans MySQL, une clef primaire se définit soit
+- sur le champ en le qualifiant de **PRIMARY KEY**
+- après la définition de tous les champs de la table avec PRIMARY KEY (identifiant_de_la_clef_primaire)
+```sql
+CREATE TABLE Toto(
+  ID int NOT NULL PRIMARY KEY,
+  Nom VARCHAR(30) NOT NULL
+)
+```
+ou bien
+```sql
+CREATE TABLE Toto(
+  ID int NOT NULL,
+  Nom VARCHAR(30) NOT NULL,
+  PRIMARY KEY (ID)
+)
+```
+
 ### 8.7 FOREIGN KEY
+Dans MySQL, une clef étrangère se définit après la définition de tous les champs de la table.
+```sql
+CREATE TABLE Personne (
+    PersonID int UNSIGNED NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (PersonID)
+);
+
+CREATE TABLE Commande (
+    OrderID int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    OrderNumber int NOT NULL,
+    PersonID int UNSIGNED NOT NULL,
+    FOREIGN KEY (PersonID) REFERENCES Personne(PersonID)
+);
+```
+Dans le précédent exemple on a ajouté une clef étrangère à la table Commande après la définition des champs:
+```sql
+FOREIGN KEY(PersonID) REFERENCES Personne(PersonID)
+```
+Cela signifie que l'on définit la clef étrangère sur le champ PersonID de la table Commande qui référence la clef primaire de la table Personne.
+
 ### 8.8 UNIQUE
 ### 8.9 AUTO_INCREMENT
 ### 8.10 Exemples
@@ -949,11 +1019,11 @@ VALUES ('BlindCode','BXL','BlindBXL');
 INSERT INTO Classe(Nom, Lieu, Nickname)
 VALUES ('BlindCode4Data','LLN','BlindLLN');
 ```
+## 10. ALTER TABLE
+### 10.1 La commande
 
-## 10. UPDATE
 
 ## 11. DELETE
-
 ### 11.1 La commande
 La commande **DELETE** dans le langage SQL permet de supprimer des enregistrements dans une table. Cela signfie qu'il faut la manipuler avec prudence !
 
@@ -965,15 +1035,15 @@ WHERE Condition;
 Exemple:
 ```sql
 DELETE FROM Produit
-WHERE IdProduit = '123';
+WHERE IdProduit = 123;
 ```
 
 ### 11.2 Suppression ou champ Deleted ?
 Parfois, il vaut mieux créer un champ ayant pour nom Deleted et mettre sa valeur à 1 pour l'enregistrement que l'on veut supprimer. En effet, parfois il faut toujours garder une trace de cet enregistrement. Il ne sera pas effacé de notre base de données mais nous ne l'utiliserons plus.
 ```sql
 UPDATE Produit
-SET Deleted = '1'
-WHERE IdProduit='123';
+SET Deleted = 1
+WHERE IdProduit = 123;
 ```
 Affichons tous les produits à vendre:
 ```sql
@@ -987,16 +1057,15 @@ SELECT *
 FROM Produit
 WHERE Deleted = 1;
 ```
-
 ### 11.3 Pourquoi mon DELETE provoque une erreur ?
 Il peut arriver que l'id de l'enregistrement que vous voulez supprimer soit utilisé ailleurs. Par exemple vous voulez supprimer l'article 'Oculus Quest 2 - 256 GB' ayant pour IdProduit '123':
 ```sql
 DELETE FROM Produit
-WHERE IdProduit = '123';
+WHERE IdProduit = 123;
 ```
 Si vous avez déjà eu des commandes pour ce Produit, MySQL devrait provoquer une erreur car certains enregistrements de nos commandes concernent ce produit. Et donc MySQL ne sait pas le supprimer. Heureusement aussi que MySQL ne l'ait pas fait car alors il aurait dû supprimer toutes nos commandes comportants ce produit. Ce qui pourrait être catastrophique... On pourrait y arriver en utilisant le **ON DELETE CASCADE** mais je n'en parlerai pas car c'est trop risqué. ;) Et je ne veux pas vous embrouiller.
 ### 11.4 Droit à l'oubli ?
-Depuis le [GDPR/RGPD](https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es), Il est possible qu'un utilisateur faisant partie d'une de vos bases de données viennent vous dire qu'il ne veut plus en faire partie. Il faudra en tenir compte. Cependant, il faut bien se dire que ça ne sera pas toujours possible dans certains cas comptables: commandes, achats, livraisons, etc.
+Depuis le [GDPR/RGPD](https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es), Il est possible qu'un utilisateur faisant partie d'une de vos bases de données viennent vous dire qu'il ne veut plus en faire partie. Il faudra en tenir compte. Cependant, il faut bien se dire que ça ne sera pas toujours possible dans certains cas comptables: commandes, achats, livraisons, etc. Ou dans certaines institutions publiques qui doivent garder des informations importantes sur les personnes.
 
 Mais ça sera par exemple possible sur un forum: on supprimera l'utilisateur ainsi que ses commentaires, ses posts.
 Dans l'ordre on devra procéder de la sorte:
@@ -1005,16 +1074,16 @@ Dans l'ordre on devra procéder de la sorte:
 - L'utilisateur
 
 En effet, Un commentaire est lié à un post et a utilisateur. Et un post est lié à un utilisateur.
-Car ces tables contiennent des références à l'id de l'utilisateur.
+Car ces tables contiennent des références de l'id de l'utilisateur.
 ```sql
 DELETE commentaire
-WHERE IdUtilisateur='45';
+WHERE IdUtilisateur=45;
 
 DELETE post
-WHERE IdUtilisateur='45';
+WHERE IdUtilisateur=45;
 
 DELETE Utilisateur
-WHERE IdUtilisateur='45';
+WHERE IdUtilisateur=45;
 ```
 Idéalement il faudrait effectuer ses trois opérations consécutives dans une [transaction](https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1970063-transactions)...
 

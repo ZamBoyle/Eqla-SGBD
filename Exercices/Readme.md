@@ -33,6 +33,10 @@
 - [Exercice n°22 - INNER JOIN](#exercice-n22---inner-join)
 - [Exercice n°23 - INNER JOIN](#exercice-n23---inner-join)
 - [Exercice n°24 - INNER JOIN](#exercice-n24---inner-join)
+- [Exercice n°25 - CREATE TABLE](#exercice-n25---create-table)
+- [Exercice n°26 - CREATE TABLE](#exercice-n26---create-table)
+- [Exercice n°27 - INSERT INTO](#exercice-n27---insert-into)
+- [Exercice n°28 - INSERT INTO](#exercice-n28---insert-into)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -71,13 +75,17 @@ prompt <\d>
 8. Importez le script qui va générer la base de données BlindCode2:
    ```sql
    source BlindCode2.sql 
-   ```   
-9.  Pour avoir la liste des bases de données présentes:
+   ```
+9. Importez le script qui va générer la base de données Exercices:
+   ```sql
+   source Exercices.sql 
+   ```      
+10.  Pour avoir la liste des bases de données présentes:
     ```sql
     SHOW DATABASES ;
     ```
-10. Vous devriez voir dans la liste des bases de données: BlindCode, Localites, Ventes, Pays
-11. Si vous avez des erreurs appelez-moi.
+11. Vous devriez voir dans la liste des bases de données: BlindCode, BlindCode2, Exercices, Localites, Ventes, Pays
+12. Si vous avez des erreurs appelez-moi.
 
 ## Exercice n°2 - Notre premier SELECT *
 1. Connectez-vous au SGBD MySQL: **mysql -u root -p**
@@ -280,8 +288,80 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
 5. On va afficher le nom et prénom de l'élève, le nom de la classe et la date d'inscription.
 
+## Exercice n°25 - CREATE TABLE
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+5. Créer une Table Equipe. Cette table aura les champs suivants:
+   - IdEquipe (clef primaire): Entier, non null, non signé, auto-incrémenté.
+   - NomClub: chaîne de max 30 caractères, non null.
+   - Localité: chaîne de max 30 caractères, non null.
+   - Division: TINYINT non signé, non null.
+
+## Exercice n°26 - CREATE TABLE
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+5. Créer la Table Joueur. Cette table aura les champs suivants:
+   -  IdJoueur (clef primaire): Entier, non null, non signé, auto-incrémenté.
+   -  Nom: chaîne de max 30 caractères, non null.
+   -  Prenom: Chaîne de max 30 caractères, non null.
+   -  DateNaissance: Date, non null.
+   -  IdEquipe (clef étrangère): entier non null, non signé, Référence IdEquipe de la table Equipe.
+
+## Exercice n°27 - INSERT INTO
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+5. Ajouter l'équipe suivante:
+   - NomClub: Royal Club d'Andenne
+   - Localité: Andenne
+   - Division: 2
+6. Ajouter l'équipe suivante:
+   - NomClub: Standard
+   - Localité: Liège
+   - Division: 3
+7. Afficher toutes les équipes encodées à l'aide d'un **SELECT**.
+
+## Exercice n°28 - INSERT INTO
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+5. Ajouter le joueur suivant:
+   - Nom: votre nom
+   - Prenom: votre prenom
+   - DateNaissance: votre date de naissance. (attention au format de la date dans Mysql ;) )
+   - IdEquipe: l'IdEquipe correspondant à Standard.
+6. Ajouter le joueur suivant:
+   - Nom: Colin
+   - Prenom: Pierre
+   - DateNaissance: 22/07/1984 
+   - IdEquipe: l'IdEquipe correspondant à Andenne.
+7. Ajouter le joueur suivant:
+   - Nom: Jacques
+   - Prenom: Gabriel
+   - DateNaissance: 22/08/2014
+   - IdEquipe: l'IdEquipe correspondant à Standard.
+8. Ajouter le joueur suivant:
+   - Nom: Dupont
+   - Prenom: Philip
+   - DateNaissance: 13/12/1991
+   - IdEquipe: l'IdEquipe correspondant à Standard.
+9. Affichez tous les champs des enregistrements de la table joueur.
+10. Idem mais en plus affichez le nom du club (cfr **INNER JOIN**)
 
 
+
+
+
+
+
+
+  
 
 
 
