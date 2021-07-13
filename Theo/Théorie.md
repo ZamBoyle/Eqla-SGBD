@@ -969,8 +969,12 @@ Si votre clef primaire est composée d'un seul champ, il n'est pas nécessaire d
 
 Pour les clefs primaires composites, ce n'est pas le cas car c'est la compostion des champs qui forment la clef primaire qui est unique.
 ### 8.9 AUTO_INCREMENT
-L'auto-incrémentation d'un champ est très très très utilisé dans les bases de données. Surtout pour générer un identifiant unique.
+L'auto-incrémentation d'un champ est très très très utilisée dans les bases de données. Surtout pour générer un identifiant unique pour une clef primaire.
+
 Un champ qualifié d'AUTO_INCREMENT se verra incrémenté de 1 pour le prochain enregistrement.
+```sql
+IdClasse INT UNSIGNED NOT NULL AUTO_INCREMENT
+```
 
 ### 8.10 Exemples
 Création de la table Classe
@@ -1039,7 +1043,9 @@ UPDATE User
 SET Prenom='Johnny', nom='Piette'
 WHERE IdUser=47;
 ```
-Faites SUPER attention quand vous mettez à jour des données. Si vous oubliez par exemple un WHERE. Boummmm ça met à jours tous les enregistrements de la table. Donc par une mauvaise manipulation on pourrait avoir tous nos utilisateurs s'appeller 'Johnny Piette'...
+Il faut faire SUPER attention quand on met à jour des données. Si vous oubliez par exemple un WHERE. Boummmm ça met à jours tous les enregistrements de la table. Donc par une mauvaise manipulation on pourrait avoir tous nos utilisateurs s'appeller 'Johnny Piette'...
+
+==> D'où l'intérêt des backups et/ou d'une base de données de tests.
 
 Si on veut désactiver l'envoie des emails pour tout le monde:
 ```sql
