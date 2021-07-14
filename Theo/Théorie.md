@@ -867,7 +867,6 @@ Le choix du type est donc TRES important. Mais tout va dépendre de la taille de
 Pour les nombres à virgule flottante vous devrez choisir où vous aurez besoin de la plus grande précision.
 - FLOAT: simple précision (4 octets)
 - DOUBLE: double précision (8 octets)
-Vu que FLOAT et DOUBLE, on évite d'utiliser des comparateurs tels que = <> car ces nombres flottans ne sont pas précis.
 ```sql
 pourcentage FLOAT(5,2)
 ```
