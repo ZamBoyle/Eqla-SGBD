@@ -41,7 +41,7 @@
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
 
-Si vous le faites pas mysql ne sait pas que vous avez terminé la commande en cours.
+Si vous ne le faites pas mysql ne sait pas que vous avez terminé la commande en cours.
 
 Pour savoir dans quelle base de données vous êtes actuellement, on va customiser notre prompt.
 Dans la console mysql, tapez:
