@@ -7,4 +7,4 @@ Vous trouverez l'ensemble du cours découpé en plusieurs parties:
 2. [Exercices](Exercices/Readme.md)
 
 ---
-_[Eqla](http://www.eqla.be) 2021 - Formation Laravel_
+_[Eqla](http://www.eqla.be) 2021 - Introduction aux SGBD_
