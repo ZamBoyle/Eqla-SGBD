@@ -558,7 +558,7 @@ WHERE Tel IS NULL ;
 
 
 ## 3 Champs calculés
-Comme je vous ai dit en classe, on ne met pas de champ dans une table qui serait le résultat d'un calcul. <u>Exemple</u> : On a le prix du produit. Il serait inutile de faire un champ PrixTVAC. En effet, cette colonne va prendre de la place dans notre base de données. Si vous avez un million de produits, vous avez 1 million de valeurs inutiles. En effet, on pourrait précéder par exemple de la manière suivante :
+Comme je vous ai dit en classe, on ne met pas de champ dans une table qui serait le résultat d'un calcul. <u>Exemple</u> : On a le prix du produit. Il serait inutile de faire un champ PrixTVAC. En effet, cette colonne va prendre de la place dans notre base de données. Si vous avez un million de produits, vous avez 1 million de valeurs inutiles. En effet, on pourrait procéder par exemple de la manière suivante :
 
 ```sql
 SELECT Nom, Categorie, Stock, Prix, Prix + Prix * 0.21 AS PrixTVAC
