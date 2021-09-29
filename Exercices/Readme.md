@@ -37,6 +37,8 @@
 - [Exercice n°26 - CREATE TABLE](#exercice-n26---create-table)
 - [Exercice n°27 - INSERT INTO](#exercice-n27---insert-into)
 - [Exercice n°28 - INSERT INTO](#exercice-n28---insert-into)
+- [Exercice n°29 - UPDATE](#exercice-n29---update)
+- [Exercice n°30 - UPDATE](#exercice-n30---update)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -365,7 +367,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 6. Mettez la date de naissance à 25/12/1991 (attention au format de la date dans Mysql ;) )
 7. Idéalement il serait plus propre de faire un WHERE sur l'id du joueur et non sur le nom et prénom.
 
-## Exercice n°29 - UPDATE
+## Exercice n°30 - UPDATE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
