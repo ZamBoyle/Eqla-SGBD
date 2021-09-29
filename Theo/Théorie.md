@@ -945,7 +945,9 @@ CREATE TABLE Toto(
   PRIMARY KEY (ID)
 )
 ```
+Dans une clef primaire, il n'est pas nécessaire de mettre NOT NULL. En effet, il est implicite que le champ soit NOT NULL vu que c'est une clef primaire. Lors de l'ajout d'un enregistremet si on omet la valeur de la clef primaire la base de données va générer une erreur.
 
+Mais ce n'est une erreur de mettre NOT NULL. C'est juste inutile. Pour les exemples, j'ai mis NOT NULL pour que los votre apprentissage vous compreniez bien qu'un champ de clef primaire doit avoir une valeur.
 ### 8.7 FOREIGN KEY
 Dans MySQL, une clef étrangère se définit après la définition de tous les champs de la table.
 ```sql
@@ -969,6 +971,10 @@ Dans le précédent exemple on a ajouté une clef étrangère à la table Comman
 FOREIGN KEY(PersonID) REFERENCES Personne(PersonID)
 ```
 Cela signifie que l'on définit la clef étrangère sur le champ PersonID de la table Commande qui référence la clef primaire de la table Personne.
+
+A la différence de la clef primaire, une clef étrangère peut avoir la valeur NULL. Donc, si vous mettez NOT NULL sur le champ de la clef étrangère ça veut dire que l'on veut absolument qu'il y ait un lien vers une autre table.
+
+Si on met NULL, ça signifie qu'il peut y avoir des enregistrements qui n'ont pas de lien vers une autre table.
 
 ### 8.8 UNIQUE
 Comme son nom l'indique, le champ doit être unique. Par exemple un numéro national.
