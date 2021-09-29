@@ -364,7 +364,15 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
    - Prenom: Philip
 6. Mettez la date de naissance à 25/12/1991 (attention au format de la date dans Mysql ;) )
 7. Idéalement il serait plus propre de faire un WHERE sur l'id du joueur et non sur le nom et prénom.
-   - IdEquipe: l'IdEquipe correspondant à Standard.
+
+## Exercice n°29 - UPDATE
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+5. Mettre à le jour dont l'idjoueur est = 1.
+6. Chanez-lui sa date de naissance.
+
 
 
 
