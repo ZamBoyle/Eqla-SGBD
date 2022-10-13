@@ -151,6 +151,7 @@ Une entité a un nom unique afin de la manipuler facilement. Plus tard dans l'an
 Cet ensemble d'informations, l'entité, partage les mêmes caractéristiques et peut être manipulé au sein du système d'information mais aussi en discutant entre informaticiens et personnes du métier.
 Reprenons notre exemple sur les résultats de nos élèves et les notes des élèves pour le cours de python.
 Si on devait essayer de rassembler les informations de base d'un élève : de l'entité élève. Quelles sont les propriétés qui le caractérisent et permettent de l'identifier au mieux ?
+<!--
 * Un nom
 * Un prénom
 * Une date de naissance
@@ -189,7 +190,7 @@ Chaque propriété de notre élève comporte un type. Reprenons notre entité é
 |Ville              |Chaîne de caractères|Oui                            |Non       |                                          |
 
 La propriété Matricule va s'appeler « clé d'identité ». 
-
+-->
 ## 2. Clef d'identité
 La clef d'identité permet d'identifier de manière sûre et fiable notre élève. Cette clé doit être pensée pour qu'il ne puisse JAMAIS y avoir de doublons. La clef peut être composée d'une ou plusieurs propriétés. Les valeurs de clefs d'identités sont uniques et non nulles.
 
