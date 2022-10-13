@@ -1,3 +1,4 @@
+
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 <h1>Introduction aux bases de données</h1>
 
@@ -7,6 +8,7 @@
 </div>
 
 ****
+<!--
 <h1>Table des matières</h1>
 
 - [I. Introduction](#i-introduction)
@@ -87,6 +89,7 @@
     - [11.3 Pourquoi mon DELETE provoque une erreur ?](#113-pourquoi-mon-delete-provoque-une-erreur-)
     - [11.4 Droit à l'oubli ?](#114-droit-à-loubli-)
   - [12. ALTER TABLE](#12-alter-table)
+-->
 
 # I. Introduction
 ## 1. Mise en situation
