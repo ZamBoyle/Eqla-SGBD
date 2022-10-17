@@ -124,16 +124,17 @@ Tapez simplement sur <ins>_ENTER_</ins>.
 
 
 ## 2.3 Windows
+**Attention**, ne sélectionnez pas une version **ALPHA** mais une **RC**.
+Téléchargez la version qui correspond à votre ordinateur à cette [adresse](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.11.0&os=windows&cpu=x86_64&pkg=msi&m=serverion).
 
 
+Lors de l'exéctuion du Setup, faites tout le temps NEXT jusqu'au moment où vous devrez définir un mot de passe pour l'utilisateur root (lire rout :)).
 
+Cochez la case:"**Use UTF8 as default server's character set**". Ca mettra comme jeu de caractère l'UTF8 qui est maintenant, je trouve, à utiliser partout. Nous en reparlerons plus tard...
 
+Faites tout le temps **NEXT** jusqu'au moment où vous pourrez cliquer sur **Install**. 
 
+**N'OUBLIEZ PAS VOTRE MOT DE PASSE !!!**
+Chaque année, un stagiaire oublie évidemment son mot de passe... ;-)
 
-
-
-206 000 000 000
-
-SAV
-
-061/531.299
+A faire en classe: ajouter l'exécutable de MariaDB dans la variable d'environnement PATH.
