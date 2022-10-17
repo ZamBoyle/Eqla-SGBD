@@ -60,10 +60,10 @@ sudo mysql_secure_installation
 Tapez simplement sur <ins>_ENTER_</ins>.
 
 - A la question: **Switch to unix_socket authentication [Y/n]**
-  Tapez sur <ins>N</ins> suivit d'<ins>_ENTER_</ins>.
+  Tapez sur <ins>_N_</ins> suivit d'<ins>_ENTER_</ins>.
 
 - A la question: **Change the root password? [Y/n]**
-  Tapez Y suivit d'**ENTER**.
+  Tapez <ins>_Y_</ins> suivit d'**ENTER**.
 
 - A la question: **Remove anonymous users? [Y/n]**
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
@@ -95,6 +95,33 @@ Pour démarrer automatiquement MariaDB Server, utilisez la fonctionnalité de se
 ```console
 brew services start mariadb
 ```
+
+Une fois que c'est bien installé, nous allons sécuriser MariaDB. Nous allons taper la commande suivante mais lisez par après ce qu'il faudra répondre:
+
+```console
+MariaDB-secure-installation
+```
+- A la question: **Enter current password for root (enter for none):** 
+Tapez simplement sur <ins>_ENTER_</ins>.
+
+- A la question: **Switch to unix_socket authentication [Y/n]**
+  Tapez sur <ins>_N_</ins> suivit d'<ins>_ENTER_</ins>.
+
+- A la question: **Change the root password? [Y/n]**
+  Tapez <ins>_Y_</ins> suivit d'**ENTER**.
+
+- A la question: **Remove anonymous users? [Y/n]**
+  Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
+
+- A la question: **Disallow root login remotely? [Y/n]**
+  Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
+
+- A la question: **Remove test database and access to it? [Y/n]**
+  Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
+
+- A la question: **Reload privilege tables now? [Y/n]**
+  Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
+
 
 ## 2.3 Windows
 
