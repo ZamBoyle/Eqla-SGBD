@@ -85,7 +85,10 @@ INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite
 VALUES ('SOW','Abdourahim','2000-10-10','001010-49976',1,'Belge','Avenue Docteur Dejase','8',NULL,'1030','Schaerbeek','M','rahimsow1030@gmail.com',NULL,'0465876372',1);
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
-VALUES ('Diallo','Alpha Oumar','1997-10-04','97100450085',1,'Belge','Sterrenveld','26','126','1970','Wezembeek-Oppem','M','alphaoumard1997@gmail.com','NULL','0466229776',1);
+VALUES ('Diallo','Alpha Oumar','1997-10-04','97100450085',1,'Belge','Sterrenveld','26','126','1970','Wezembeek-Oppem','M','alphaoumard1997@gmail.com',NULL,'0466229776',1);
+
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES ('Bouchaïb','Karim','30/03/2000','292928272792',1,'Belge','Rue Léopold Courouble','12','1030','Schaerbeek','M','Karim.bouchaib2000@gmail.com',NULL, '0487596198',1);
 
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES ('Baloge','Sébastien','1982-08-23','1890098890',1,'Belge','Scailmont','16',NULL,'7110','Houdeng-Goegnies','M','s.baloge@yahoo.fr','064543789','0498098234',2);
@@ -96,6 +99,8 @@ VALUES ('Dehoust','David','1988-05-02','444719',1,'Belge','Rue du Bichon Maltais
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES ('Desseille','Simon','1999-08-22','0101018272',1,'Belge','Basse-chaussée','22',NULL,'5000','Cognelée','M','simon.desseille@gmail.com','+32b1287421','0473287225',2);
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES ('El Gharbi','Amir','01/07/1998','589012345678',1,'Rue de la Perche','9','1140','Evere','M','Amiregbpro@hotmail.com',NULL,'+32484414373',1);
 
 
 DROP FUNCTION IF EXISTS GetAge;
