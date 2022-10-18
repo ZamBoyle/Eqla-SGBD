@@ -123,7 +123,22 @@ Tapez simplement sur <ins>_ENTER_</ins>.
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
 
-## 2.3 Windows - Installation
+## 2.3 ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+Pour régler ce problème sur mac ou Linux
+
+Tapez la commande suivante:
+```console
+sudo mysql -u root
+```
+Ensuite dans mariadb tapez les commandes suivantes:
+```sql
+use mysql;
+set password for 'root'@'localhost' = password('VOTRE_NOUVEAU_MOT_DE_PASSE_ICI');
+flush privileges;
+quit
+```
+
+## 2.4 Windows - Installation
 **Attention**, ne sélectionnez pas une version **ALPHA** mais une version stable ou une **RC** ou une version stable. Même si version ALPHA devrait fonctionner, je préfère utiliser une Release Candidate (RC) ou une stable qui devrait elle fonctionner sans problème. Une RC est la dernière étape avant la version finale/stable d'un logiciel. Une RC est quasi une version stable. On dit qu'elle est candidate à la version "finale" ou "stable".
 
 Téléchargez la version qui correspond à votre ordinateur à cette [adresse](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.11.0&os=windows&cpu=x86_64&pkg=msi&m=serverion).
@@ -138,6 +153,5 @@ Cochez la case: "**Use UTF8 as default server's character set**". Ca mettra comm
 
 Faites tout le temps **NEXT** jusqu'au moment où vous pourrez cliquer sur **Install**. 
 
-
-## 2.4 Windows - Modifier le PATH
+## 2.5 Windows - Modifier le PATH
 <ins>A faire en classe</ins>: ajouter l'exécutable de MariaDB dans la variable d'environnement **PATH**. Nous en avons parlé lors de l'étude de l'utilisation d'un terminal. Dans cette variable d'environnement sont listés les répertoires où le terminal doit chercher l'exécutable que vous souhaiter exécuter. Cela permet depuis n'importe quel répertoire de lancer un programme figurant dans l'un des répertoires référencés dans la variable **PATH**.
