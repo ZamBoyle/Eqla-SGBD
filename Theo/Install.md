@@ -123,18 +123,21 @@ Tapez simplement sur <ins>_ENTER_</ins>.
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
 
-## 2.3 Windows
-**Attention**, ne sélectionnez pas une version **ALPHA** mais une **RC** ou une version stable: sans la mention d'ALPHA ou RC. Même si version ALPHA devrait fonctionner, je préfère utiliser une Release Candidate (RC) qui devrait elle fonctionner sans problème. Une RC est la dernière étape avant la version finale d'un logiciel. Une RC est quasi une version stable. On dit qu'elle est candidate à la version "finale" ou "stable".
+## 2.3 Windows - Installation
+**Attention**, ne sélectionnez pas une version **ALPHA** mais une version stable ou une **RC** ou une version stable. Même si version ALPHA devrait fonctionner, je préfère utiliser une Release Candidate (RC) ou une stable qui devrait elle fonctionner sans problème. Une RC est la dernière étape avant la version finale/stable d'un logiciel. Une RC est quasi une version stable. On dit qu'elle est candidate à la version "finale" ou "stable".
+
 Téléchargez la version qui correspond à votre ordinateur à cette [adresse](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.11.0&os=windows&cpu=x86_64&pkg=msi&m=serverion).
 
 
 Lors de l'exéctuion du Setup, faites tout le temps NEXT jusqu'au moment où vous devrez définir un mot de passe pour l'utilisateur root (lire rout :)).
 
-Cochez la case: "**Use UTF8 as default server's character set**". Ca mettra comme jeu de caractère l'UTF8 qui est maintenant, je trouve, à utiliser partout. Nous en reparlerons plus tard...
+**!!! N'OUBLIEZ PAS VOTRE MOT DE PASSE !!!**
+Chaque année, un stagiaire oublie évidemment son mot de passe... ;-)
+
+Cochez la case: "**Use UTF8 as default server's character set**". Ca mettra comme jeu de caractères l'UTF8 qui est maintenant, je trouve, à utiliser partout. Nous en reparlerons plus tard...
 
 Faites tout le temps **NEXT** jusqu'au moment où vous pourrez cliquer sur **Install**. 
 
-**N'OUBLIEZ PAS VOTRE MOT DE PASSE !!!**
-Chaque année, un stagiaire oublie évidemment son mot de passe... ;-)
 
-A faire en classe: ajouter l'exécutable de MariaDB dans la variable d'environnement PATH.
+## 2.4 Windows - Modifier le PATH
+<ins>A faire en classe</ins>: ajouter l'exécutable de MariaDB dans la variable d'environnement **PATH**. Nous en avons parlé lors de l'étude de l'utilisation d'un terminal. Dans cette variable d'environnement sont listés les répertoires où le terminal doit chercher l'exécutable que vous souhaiter exécuter. Cela permet depuis n'importe quel répertoire de lancer un programme figurant dans l'un des répertoires référencés dans la variable **PATH**.
