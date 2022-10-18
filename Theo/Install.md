@@ -56,25 +56,25 @@ Une fois que c'est bien installé, nous allons sécuriser MariaDB. Nous allons t
 ```console
 sudo mysql_secure_installation
 ```
-- A la question: **Enter current password for root (enter for none):** 
+- A la question: **Enter current password for root (enter for none):**   
 Tapez simplement sur <ins>_ENTER_</ins>.
 
-- A la question: **Switch to unix_socket authentication [Y/n]**
+- A la question: **Switch to unix_socket authentication [Y/n]**  
   Tapez sur <ins>_N_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Change the root password? [Y/n]**
+- A la question: **Change the root password? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'**ENTER**.
 
-- A la question: **Remove anonymous users? [Y/n]**
+- A la question: **Remove anonymous users? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Disallow root login remotely? [Y/n]**
+- A la question: **Disallow root login remotely? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Remove test database and access to it? [Y/n]**
+- A la question: **Remove test database and access to it? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Reload privilege tables now? [Y/n]**
+- A la question: **Reload privilege tables now? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
 ## 2.2 Mac OS via brew
@@ -101,36 +101,36 @@ Une fois que c'est bien installé, nous allons sécuriser MariaDB. Nous allons t
 ```console
 MariaDB-secure-installation
 ```
-- A la question: **Enter current password for root (enter for none):** 
+- A la question: **Enter current password for root (enter for none):**   
 Tapez simplement sur <ins>_ENTER_</ins>.
 
-- A la question: **Switch to unix_socket authentication [Y/n]**
+- A la question: **Switch to unix_socket authentication [Y/n]**  
   Tapez sur <ins>_N_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Change the root password? [Y/n]**
+- A la question: **Change the root password? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'**ENTER**.
 
-- A la question: **Remove anonymous users? [Y/n]**
+- A la question: **Remove anonymous users? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Disallow root login remotely? [Y/n]**
+- A la question: **Disallow root login remotely? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Remove test database and access to it? [Y/n]**
+- A la question: **Remove test database and access to it? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
-- A la question: **Reload privilege tables now? [Y/n]**
+- A la question: **Reload privilege tables now? [Y/n]**  
   Tapez <ins>_Y_</ins> suivit d'<ins>_ENTER_</ins>.
 
 
 ## 2.3 Windows
-**Attention**, ne sélectionnez pas une version **ALPHA** mais une **RC**.
+**Attention**, ne sélectionnez pas une version **ALPHA** mais une **RC** ou une version stable: sans la mention d'ALPHA ou RC. Même si version ALPHA devrait fonctionner, je préfère utiliser une Release Candidate (RC) qui devrait elle fonctionner sans problème. Une RC est la dernière étape avant la version finale d'un logiciel. Une RC est quasi une version stable. On dit qu'elle est candidate à la version "finale" ou "stable".
 Téléchargez la version qui correspond à votre ordinateur à cette [adresse](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.11.0&os=windows&cpu=x86_64&pkg=msi&m=serverion).
 
 
 Lors de l'exéctuion du Setup, faites tout le temps NEXT jusqu'au moment où vous devrez définir un mot de passe pour l'utilisateur root (lire rout :)).
 
-Cochez la case:"**Use UTF8 as default server's character set**". Ca mettra comme jeu de caractère l'UTF8 qui est maintenant, je trouve, à utiliser partout. Nous en reparlerons plus tard...
+Cochez la case: "**Use UTF8 as default server's character set**". Ca mettra comme jeu de caractère l'UTF8 qui est maintenant, je trouve, à utiliser partout. Nous en reparlerons plus tard...
 
 Faites tout le temps **NEXT** jusqu'au moment où vous pourrez cliquer sur **Install**. 
 
