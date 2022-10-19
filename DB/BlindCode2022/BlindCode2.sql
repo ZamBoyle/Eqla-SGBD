@@ -102,11 +102,7 @@ INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUE
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (4,1,2020,'2020/01/01');
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (5,2,2020,'2020/01/01');
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (6,2,2020,'2020/01/01');
-/*  Simon fait partie des classes BlindCode BXL et BlindCode Mons 
-    Notre table EleveClasse le permet 
-    Mais elle ne permettra pas d'inscrire deux fois Simon dans la classe BlindCode BXL car la SGBDR veille aux doublons
-    et à l'intégrité de la Base de données.
-*/
+/*  Simon fait partie des classes BlindCode BXL et BlindCode Mons */
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,2,2020,'2020/01/01');
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,1,2020,'2020/01/01');
 
