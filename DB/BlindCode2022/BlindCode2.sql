@@ -102,36 +102,11 @@ INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUE
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (4,1,2020,'2020/01/01');
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (5,2,2020,'2020/01/01');
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (6,2,2020,'2020/01/01');
+/*  Simon fait partie des classes BlindCode BXL et BlindCode Mons 
+    Notre table EleveClasse le permet 
+    Mais elle ne permettra pas d'inscrire deux fois Simon dans la classe BlindCode BXL car la SGBDR veille aux doublons
+    et à l'intégrité de la Base de données.
+*/
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,2,2020,'2020/01/01');
-
-
-/* Eleve BlindCode4Data */
-INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
-VALUES('Sana','Eleonor','1997-07-1','521298798787','1','Belge','Rue des écoles','3', NULL,'1490', 'Cours-St-Etienne','F','eleonorsana97@gmail.com',NULL,'0472 03 09 46');
-
-INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
-VALUES('Kizmaz','Mashum','1991-02-7','19798798787','1','Belge','Rue de l''Espoir','2', NULL,'4800', 'Verviers','M','mahsumkizmaz@gmail.com','04/338.67.69','0498 25 34 88');
-
-INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
-VALUES('Tcheuyassi','Isaac','1987-06-08','8498798787','1','Camerounais','Place de l''Hirondelle','98', NULL,'5001', 'Belgrade','M','tcheuyassiisaac@yahoo.com',NULL,'0476 78 67 69');
-
-INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
-VALUES('Dufrasne','Alain','1972-11-15','1298798787','1','Belge','Avenue du SQL','9', NULL,'7300', 'Boussu','M','alduf@live.be',NULL,'0472 07 85 65');
-
-INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
-VALUES('Borsen','Maxime','1993-12-23','8798798787','1','Belge','Rue de l''INSERTion','30', NULL,'1348', 'LLN','M','maxime.borsen@gmail.com',NULL,'0479 97 74 52');
-
-INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
-VALUES('Bakashika','Jessie','1995-05-19','6598798787','1','Belge','Place des martyrs des SGBD','5', NULL,'1348', 'LLN','M','jessie.bakashika@gmail.com',NULL,'0496 67 89 11');
-
-/*On ajoute ces élès dans EleveClasse*/
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (8,2,2021,'2021/03/04');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (9,2,2021,'2021/03/04');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (10,2,2021,'2021/03/04');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (11,2,2021,'2021/03/04');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (12,2,2021,'2021/03/04');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (13,2,2021,'2021/03/04');
-
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (10,1,2020,'2020/01/01');
-
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,1,2020,'2020/01/01');
 
