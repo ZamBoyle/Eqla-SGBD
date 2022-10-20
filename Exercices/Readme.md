@@ -88,6 +88,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
    source Exercices.sql 
    ```      
 10.  Pour avoir la liste des bases de données présentes:
+
     ```sql 
     SHOW DATABASES ;
     ```
