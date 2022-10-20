@@ -103,6 +103,9 @@ VALUES ('Dehoust','David','1988-05-02','444719',1,'Belge','Rue du Bichon Maltais
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
 VALUES ('Desseille','Simon','1999-08-22','0101018272',1,'Belge','Basse-chaussée','22',NULL,'5000','Cognelée','M','simon.desseille@gmail.com','+32b1287421','0473287225',2);
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM,IdClasse)
+VALUES ('Vanneste','Christian','1989-04-25','1989-04-25-89731',1,'Belge','rue du Val','46',NULL,'7700','Mouscron','M','darkrolly@gmail.com','+3256912173','+32493712815',2);
+
 DROP FUNCTION IF EXISTS GetAge;
 CREATE FUNCTION GetAge(birthdate Date) returns int DETERMINISTIC
 return YEAR(CURDATE())-YEAR(birthdate);

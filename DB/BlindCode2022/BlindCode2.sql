@@ -95,14 +95,20 @@ VALUES ('Dehoust','David','1988-05-02','444719',1,'Belge','Rue du Bichon Maltais
 INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
 VALUES ('Desseille','Simon','1999-08-22','0101018272',1,'Belge','Basse-chaussée','22',NULL,'5000','Cognelée','M','simon.desseille@gmail.com','+32b1287421','0473287225');
 
+INSERT INTO Eleve (Nom, Prenom, Naissance, RN,Actif,Nationalite,Rue,Numero,Boite,CP,Localite,Sexe,Email,Tel,GSM)
+VALUES ('Vanneste','Christian','1989-04-25','1989-04-25-89731',1,'Belge','rue du Val','46',NULL,'7700','Mouscron','M','darkrolly@gmail.com','+3256912173','+32493712815');
+
+
 /*On ajoute ces élès dans EleveClasse*/
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (1,1,2020,'2021/03/01');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (2,1,2020,'2020/01/01');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (3,1,2020,'2020/01/01');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (4,1,2020,'2020/01/01');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (5,2,2020,'2020/01/01');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (6,2,2020,'2020/01/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (1,1,2022,'2022/03/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (2,1,2022,'2022/01/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (3,1,2022,'2022/01/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (4,1,2022,'2022/01/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (5,2,2022,'2022/01/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (6,2,2022,'2022/01/01');
 /*  Simon fait partie des classes BlindCode BXL et BlindCode Mons */
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,2,2020,'2020/01/01');
-INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,1,2020,'2020/01/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,2,2022,'2022/01/01');
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (7,1,2022,'2022/01/01');
+
+INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (8,2,2022,'2022/01/01');
 
