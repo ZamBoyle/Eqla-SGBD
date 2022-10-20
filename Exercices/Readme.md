@@ -87,11 +87,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
    ```sql
    source Exercices.sql 
    ```      
-10.  Pour avoir la liste des bases de données présentes:
-
-    ```sql 
-    SHOW DATABASES ;
-    ```
+10.  Pour avoir la liste des bases de données présentes: SHOW DATABASES;
 11. Vous devriez voir dans la liste des bases de données: BlindCode, BlindCode2, Exercices, Localites, Ventes, Pays
 12. Si vous avez des erreurs appelez-moi.
 
