@@ -9,7 +9,7 @@
 <h1>Table des matières</h1>
 
 - [Introduction](#introduction)
-- [Clôner le dépôt du cours](#clôner-le-dépôt-du-cours)
+- [Copier les DB exercices](#copier-les-db-exercices)
 - [Exercice n°1 - Importation des fichiers de base de données](#exercice-n1---importation-des-fichiers-de-base-de-données)
 - [Exercice n°2 - Notre premier SELECT *](#exercice-n2---notre-premier-select-)
 - [Exercice n°3 - SELECT ch1, ch2, etc.](#exercice-n3---select-ch1-ch2-etc)
@@ -52,11 +52,9 @@ Dans la console mysql, tapez:
 prompt <\d>
 ```
 
-## Clôner le dépôt du cours
-Pour pouvoir importer les bases de données des exercices, le plus simple c'est de clôner notre cours:
-```console
-git clone https://github.com/ZamBoyle/Eqla-SGBD
-```
+## Copier les DB exercices
+Copier les fichiers SQL se trouvant via cette adresse: [https://github.com/ZamBoyle/Eqla-SGBD/tree/master/DB ](https://downgit.github.io/#/home?url=https://github.com/ZamBoyle/Eqla-SGBD/tree/master/DB)
+Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt Eqla-Exercices dans le répertoire DB.
 
 ## Exercice n°1 - Importation des fichiers de base de données
 1. Allez dans le répertoire d'exercices SQL
