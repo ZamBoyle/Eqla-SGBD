@@ -54,7 +54,7 @@ prompt <\d>
 
 ## Copier les DB exercices
 Copier les fichiers SQL se trouvant via cette adresse: [https://github.com/ZamBoyle/Eqla-SGBD/tree/master/DB ](https://downgit.github.io/#/home?url=https://github.com/ZamBoyle/Eqla-SGBD/tree/master/DB)
-Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt Eqla-Exercices dans le répertoire DB.
+Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt Eqla-Exercices.
 
 ## Exercice n°1 - Importation des fichiers de base de données
 1. Allez dans le répertoire d'exercices SQL
@@ -88,7 +88,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
    source Exercices.sql 
    ```      
 10.  Pour avoir la liste des bases de données présentes:
-    ```sql
+    ```sql 
     SHOW DATABASES ;
     ```
 11. Vous devriez voir dans la liste des bases de données: BlindCode, BlindCode2, Exercices, Localites, Ventes, Pays
