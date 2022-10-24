@@ -3,13 +3,17 @@ Approche de la notion du MCD par tâtonnement/Discussion
 
 Vous allez vous répartir en deux groupes
 ========================================
-Groupe 1 - Mons
+Groupe 1
 ========
-Sébastien & Christian
+- MONS: Sébastien & Christian
+- BXL: Abdu & Karim
 
-Groupe 2
+
+Groupe 2 - Mons
 ========
-David & Simon
+- MONS: David & Simon
+- BXL: Amir & Alpha
+
 
 Ce que nous allons faire ici comme exercice peut être sujet à de grands débats. Et en fait, c'est toute la complexité de ce qu'on appelle le design d'un modèle entité/relation et intrinsèquement d'une base de données.
 
