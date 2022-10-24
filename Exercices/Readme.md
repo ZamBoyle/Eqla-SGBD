@@ -159,6 +159,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves qui ont une adresse de type gmail.com
+6. Affichez les élèves qui n'ont pas une adresse de type gmail.com
 
 ## Exercice n°11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
