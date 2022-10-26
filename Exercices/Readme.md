@@ -211,7 +211,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
-5. Reprenez la requête de la Exercice n°16.
+5. Reprenez la requête de la Exercice n°15.
 6. Modifiez-la pour que l'on ait l'age moyen des élèves.
 
 ## Exercice n°17 - MIN, MAX, SUM
