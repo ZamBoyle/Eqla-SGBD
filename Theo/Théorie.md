@@ -542,7 +542,7 @@ WHERE NAISSANCE LIKE '199%'; #On ferait normalement YEAR(Naissance) BETWEEN 1990
 ```
 
 ### i. NULL
-Lorsque l'on veut voit si un champ n'a pas de valeur, c'est-à-dire la valeur NULL. On n'utilise pas les opérateurs d'égalité/d'inégalité. On utilise IS NULL (pour égale à NULL) et IS NOT (pour n'est pas égale à NULL)
+Lorsque l'on veut voir si un champ n'a pas de valeur, c'est-à-dire la valeur NULL. On n'utilise pas les opérateurs d'égalité/d'inégalité. On utilise IS NULL (pour égale à NULL) et IS NOT (pour n'est pas égale à NULL)
 
 La valeur NULL ne pas s'écrire entre guillemets car elle pourrait être confondue par une chaîne de caractère. C'est vraiment l'absence de valeur et s'écrit NULL.
 
