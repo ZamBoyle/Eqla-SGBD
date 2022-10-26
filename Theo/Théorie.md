@@ -242,7 +242,7 @@ Et une classe a un ou plusieurs élèves : 1:N (Cardinalité maximale = N)
 
 => Association de type 1:N
 
-On ajoutera dans la table Elève la clef primaire de la table Classe. En effet, cette clé permettra d'identifier la classe dont fait partie un élève. Quand on ajoute comme champ la clef primaire d'une autre table, cette clef porte le nom de clef étrangère (Foreign Key en anglais). Contrairement à la clef primaire qui doit être unique dans une table, une même valeur de clef primaire peut y figurer plusieurs fois. Ce qui est logique : plusieurs élèves font partie d'une même classe. Elle ne peut être NULL dans ce cas-ci.
+On ajoutera dans la table Elève la clef primaire de la table Classe. En effet, cette clé permettra d'identifier la classe dont fait partie un élève. Quand on ajoute comme champ la clef primaire d'une autre table, cette clef porte le nom de clef étrangère (Foreign Key en anglais). Contrairement à la clef primaire qui doit être unique dans une table, une même valeur de clef étrangère peut y figurer plusieurs fois. Ce qui est logique : plusieurs élèves font partie d'une même classe. Elle ne peut être NULL dans ce cas-ci.
 
 <u>Exemple 2</u>:
 On pourrait imaginer que notre système d'inscription autorise l'inscription d'étudiants indécis. Ils ne savent pas ce qu'ils veulent faire dans l'école mais savent qu'ils veulent étudier…
@@ -576,7 +576,7 @@ Sinon, généralement on effectue le calcul du prix TVAC dans un langage de prog
 ## 4 ORDER BY: Les tris
 Avoir des données de notre base de données, c'est déjà bien. Mais si en plus le SGBD peut nous les trier selon l'ordre que nous voulons, c'est encore mieux ! C'est là qu'entre en scène ORDER BY.
 
-Par défaut le tri est ascendant : ordre chronologique **ASC** c'est pourquoi on ne le met pas mais on peut le mettre : n'oubliez pas l'informaticien est fainéant.
+Par défaut le tri est ascendant : ordre croissant **ASC** c'est pourquoi on ne le met pas mais on peut le mettre : n'oubliez pas l'informaticien est fainéant.
 
 Soit classer nos élèves par Nom de famille :
 ```sql
@@ -592,17 +592,15 @@ FROM Eleve
 ORDER BY Nom, Prenom ;
 ```
 
-Pour un tri antéchronologique, on utlise **DESC**. 
+Pour un tri décroissant, on utlise **DESC**. 
 
-Si l'on veut classer nos élèves dans l'ordre antéchronologique sur le nom puis le prénom :
+Si l'on veut classer nos élèves dans l'ordre décroissant sur le nom puis croissant sur le prénom :
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
 FROM Eleve
-ORDER BY Nom, Prenom DESC ;
+ORDER BY Nom DESC, Prenom ASC ;
 ```
-
-
 
 ## 5. Fonctions d'agrégation
 Les fonctions d'agrégation dans le langage SQL permettent d'effectuer des opérations statistiques sur un ensemble d'enregistrement. Étant donné que ces fonctions s'appliquent à plusieurs lignes en même temps, elles permettent des opérations qui servent à récupérer l'enregistrement le plus petit, le plus grand ou bien encore de déterminer la valeur moyenne sur plusieurs enregistrements.
