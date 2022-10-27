@@ -265,11 +265,11 @@ group by DateInscription;
 ```
 
 ## Exercice n°22 - INNER JOIN
-1. 1. Allez dans le répertoire d'exercices SQL
+1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Pays, tapez: **use Pays;**
-5. Affichez chaque pays et le nom du continenttous dont il fait partie.
+5. Affichez chaque pays et le nom du continent dont il fait partie.
 6. Faites un tri ascendant sur le nom du pays.
 7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
 
