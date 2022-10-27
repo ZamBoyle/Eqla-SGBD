@@ -278,7 +278,7 @@ group by DateInscription;
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Pays, tapez: **use Pays;**
-5. Affichez le nom du pays et le nom COMPLET du continent dont il fait partie.
+5. Affichez le nom COMPLET du pays et le nom COMPLET du continent (pas l'acronyme) dont il fait partie.
 
 ## Exercice n°24 - INNER JOIN
 Ici, on va travailler sur trois tables. La table _Eleve_, la table _Classe_ et la table _EleveClasse_.
