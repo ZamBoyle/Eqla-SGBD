@@ -853,7 +853,6 @@ Où les FK_Key seraient les clefs étrangères (Foreign Key) et les PK_Key serai
 
 Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple concret à l'exercice n°24.
 
-Soit 
 
 ## 8. CREATE TABLE
 ### 8.1 La commande
