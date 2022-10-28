@@ -1,0 +1,18 @@
+SELECT continent.name, count(*) AS NB FROM continent INNER JOIN
+Pays ON Pays.continent = continent.code GROUP BY name HAVING NB>=50;
+
+
+
+
+USE BlindCode;
+SELECT Classe.Nom, Count(*) AS NB
+FROM Eleve
+INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse
+GROUP BY Classe.Nom;
+
+
+USE Ventes;
+SELECT p.IdProduit, p.Stock, p.Prix, p.Nom AS NomProduit, c.Nom AS NomCategorie
+FROM ProduitV2 AS p
+INNER JOIN Categorie AS c ON p.IdCategorie = c.IdCategorie
+ORDER BY NomProduit;

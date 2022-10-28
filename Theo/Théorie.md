@@ -47,8 +47,8 @@
     - [g. Appartenance (IN)](#g-appartenance-in)
     - [h. Ressemblance LIKE](#h-ressemblance-like)
     - [i. NULL](#i-null)
-  - [3 Champs calculés](#3-champs-calculés)
-  - [4 ORDER BY: Les tris](#4-order-by-les-tris)
+  - [3. Champs calculés](#3-champs-calculés)
+  - [4. ORDER BY: Les tris](#4-order-by-les-tris)
   - [5. Fonctions d'agrégation](#5-fonctions-dagrégation)
       - [5.1 La moyenne - AVG](#51-la-moyenne---avg)
       - [5.2 Le Minimum - MIN](#52-le-minimum---min)
@@ -56,9 +56,11 @@
       - [5.4 La Somme – SUM](#54-la-somme--sum)
       - [5.5 COUNT(champ) et COUNT(*)](#55-countchamp-et-count)
   - [6. GROUP BY](#6-group-by)
+  - [6Bis.1 HAVING](#6bis1-having)
   - [7. INNER JOIN: Jointure entre tables.](#7-inner-join-jointure-entre-tables)
     - [7.1 Jointure sur deux tables](#71-jointure-sur-deux-tables)
-    - [7.2 Jointure sur plus de 2 tables](#72-jointure-sur-plus-de-2-tables)
+    - [7.2 Utilisation du AS dans un FROM et INNER JOIN](#72-utilisation-du-as-dans-un-from-et-inner-join)
+    - [7.3 Jointure sur plus de 2 tables](#73-jointure-sur-plus-de-2-tables)
   - [8. CREATE TABLE](#8-create-table)
     - [8.1 La commande](#81-la-commande)
     - [8.2 La syntaxe](#82-la-syntaxe)
@@ -563,7 +565,7 @@ WHERE Tel IS NULL ;
 ```
 
 
-## 3 Champs calculés
+## 3. Champs calculés
 Comme je vous ai dit en classe, on ne met pas de champ dans une table qui serait le résultat d'un calcul. <u>Exemple</u> : On a le prix du produit. Il serait inutile de faire un champ PrixTVAC. En effet, cette colonne va prendre de la place dans notre base de données. Si vous avez un million de produits, vous avez 1 million de valeurs inutiles. En effet, on pourrait procéder par exemple de la manière suivante :
 
 ```sql
@@ -573,7 +575,7 @@ FROM Produit ;
 
 Sinon, généralement on effectue le calcul du prix TVAC dans un langage de programmation en récupérant le prix HTVA.
     
-## 4 ORDER BY: Les tris
+## 4. ORDER BY: Les tris
 Avoir des données de notre base de données, c'est déjà bien. Mais si en plus le SGBD peut nous les trier selon l'ordre que nous voulons, c'est encore mieux ! C'est là qu'entre en scène ORDER BY.
 
 Par défaut le tri est ascendant : ordre croissant **ASC** c'est pourquoi on ne le met pas mais on peut le mettre : n'oubliez pas l'informaticien est fainéant.
@@ -706,6 +708,21 @@ SELECT Categorie, AVG(Prix)
 FROM Produit
 GROUP BY Categorie ;
 ```
+
+## 6Bis.1 HAVING
+Si l'on veut maintenant filtrer le résultat d'un regroupement (GROUP BY) on va utiliser le mot clé HAVING (qui peut se traduire par "ayant"). Donc pour rechercher sur un regroupement on utilise HAVING et non un WHERE. Si l'on utilise HAVING sans regroupement, celui-ci agira comme un WHERE classique.
+
+Soit afficher 
+
+
+
+
+
+
+
+
+
+
 ## 7. INNER JOIN: Jointure entre tables.
 Maintenant que nous savons lire/sélectionner des données depuis une table.
 Il est parfois nécessaire de lire les données depuis plusieurs tables en même temps. Et de n'afficher que certaines données de ces tables.
@@ -786,7 +803,44 @@ FROM Eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse 
 WHERE Sexe='M' AND Eleve.nom LIKE 'b%' ;
 ```
-### 7.2 Jointure sur plus de 2 tables
+
+### 7.2 Utilisation du AS dans un FROM et INNER JOIN
+Lors d'une requête avec un INNER JOIN, il peut être intéressant de raccourcir le nom des tables via l'utilisation de AS
+
+Reprenons l'exemple suivant:
+```SQL
+USE Ventes;
+SELECT ProduitV2.IdProduit, ProduitV2.Nom, Categorie.Nom
+FROM ProduitV2
+INNER JOIN Categorie ON ProduitV2.IdCategorie = Categorie.IdCategorie
+WHERE ProduitV2.IdProduit <> 4;
+```
+En utilisant AS on peut réduire la requête et lui donner une meilleure visibilité:
+```SQL
+USE Ventes;
+SELECT p.IdProduit, p.Nom, c.Nom
+FROM ProduitV2 AS p
+INNER JOIN Categorie AS c ON p.IdCategorie = c.IdCategorie
+WHERE p.IdProduit <> 4;
+```
+Autre exemple:
+
+```SQL
+USE Ventes;
+SELECT ProduitV2.IdProduit, ProduitV2.Stock, ProduitV2.Prix, ProduitV2.Nom AS NomProduit, Categorie.Nom AS NomCategorie
+FROM ProduitV2 
+INNER JOIN Categorie ON ProduitV2.IdCategorie = Categorie.IdCategorie
+ORDER BY NomProduit;
+```
+Devient:
+```SQL
+USE Ventes;
+SELECT p.IdProduit, p.Stock, p.Prix, p.Nom AS NomProduit, c.Nom AS NomCategorie
+FROM ProduitV2 AS p
+INNER JOIN Categorie AS c ON p.IdCategorie = c.IdCategorie
+ORDER BY NomProduit;
+```
+### 7.3 Jointure sur plus de 2 tables
 C'est le même principe que pour deux tables.
 Imaginons que nous devons lier 3 tables:
 ```sql
@@ -798,6 +852,8 @@ INNER JOIN table3 ON table2.FK_Key = table3.PK_Key;
 Où les FK_Key seraient les clefs étrangères (Foreign Key) et les PK_Key seraient les clefs primaires.
 
 Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple concret à l'exercice n°24.
+
+Soit 
 
 ## 8. CREATE TABLE
 ### 8.1 La commande

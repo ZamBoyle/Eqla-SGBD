@@ -34,12 +34,13 @@
 - [Exercice n°22 - INNER JOIN](#exercice-n22---inner-join)
 - [Exercice n°23 - INNER JOIN](#exercice-n23---inner-join)
 - [Exercice n°24 - INNER JOIN](#exercice-n24---inner-join)
-- [Exercice n°25 - CREATE TABLE](#exercice-n25---create-table)
+- [Exercice n°25 - INNER JOIN](#exercice-n25---inner-join)
 - [Exercice n°26 - CREATE TABLE](#exercice-n26---create-table)
-- [Exercice n°27 - INSERT INTO](#exercice-n27---insert-into)
+- [Exercice n°27 - CREATE TABLE](#exercice-n27---create-table)
 - [Exercice n°28 - INSERT INTO](#exercice-n28---insert-into)
-- [Exercice n°29 - UPDATE](#exercice-n29---update)
+- [Exercice n°29 - INSERT INTO](#exercice-n29---insert-into)
 - [Exercice n°30 - UPDATE](#exercice-n30---update)
+- [Exercice n°31 - UPDATE](#exercice-n31---update)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -292,7 +293,15 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
 5. On va afficher le nom et prénom de l'élève, le nom de la classe et la date d'inscription.
 
-## Exercice n°25 - CREATE TABLE
+## Exercice n°25 - INNER JOIN
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
+5. Affichez le nom des différentes classes/formations et le nombre d'élèves dans chacune d'elle. La colonne du nombre d'élèves s'appelera NBEleves.
+6. Faites un tri descendant sur le nombre d'élèves.
+
+## Exercice n°26 - CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -303,7 +312,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
    - Localité: chaîne de max 30 caractères, non null.
    - Division: TINYINT non signé, non null.
 
-## Exercice n°26 - CREATE TABLE
+## Exercice n°27 - CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -315,7 +324,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
    -  DateNaissance: Date, non null.
    -  IdEquipe (clef étrangère): entier non null, non signé, Référence IdEquipe de la table Equipe.
 
-## Exercice n°27 - INSERT INTO
+## Exercice n°28 - INSERT INTO
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -330,7 +339,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
    - Division: 3
 7. Afficher toutes les équipes encodées à l'aide d'un **SELECT**.
 
-## Exercice n°28 - INSERT INTO
+## Exercice n°29 - INSERT INTO
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -358,7 +367,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 9. Affichez tous les champs des enregistrements de la table joueur.
 10. Idem mais en plus affichez le nom du club (cfr **INNER JOIN**)
 
-## Exercice n°29 - UPDATE
+## Exercice n°30 - UPDATE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -369,7 +378,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 6. Mettez la date de naissance à 25/12/1991 (attention au format de la date dans Mysql ;) )
 7. Idéalement il serait plus propre de faire un WHERE sur l'id du joueur et non sur le nom et prénom.
 
-## Exercice n°30 - UPDATE
+## Exercice n°31 - UPDATE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
