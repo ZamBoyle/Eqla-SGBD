@@ -6,7 +6,7 @@ Pour les premières formes normales, avec l'habitude, vous le ferez machinalemen
 Mais la normalisation des attributs de vos tables est capitale pour avoir une base de données cohérente et efficace.
 
 ## La première forme normale (1FN)
-Dans ce cas, CHAQUE attribut doit être atomique.
+Dans ce cas, CHAQUE attribut doit être atomique: ne peut être subdivisé.
 
 C'est à dire que:
 - chaque attribut ne peut avoir plusieurs valeurs.
