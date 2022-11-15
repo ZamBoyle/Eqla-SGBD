@@ -61,7 +61,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL:
    ```bash
-   **mysql -u root -p**
+   mysql -u root -p
    ```
 3. Entrez votre mot de passe
 4. Importez le script qui va générer la base de données BlindCode:
