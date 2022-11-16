@@ -858,9 +858,9 @@ Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la sit
 ### 8.1 La commande
 Lors de vos échanges en groupe, vous avez réussi à déterminer les champs primordiaux des entités Eleve et Classe.
 
-Ensuite, dans le script de création de la base de données, nous avons vu que la creation d'une table avait des points communs avec notre entité: champs, clefs, type de donnée, NULL, NOT NULL, etc.
+Ensuite, dans le script de création de la base de données, nous avons vu que la creation d'une table avait des points communs avec notre entité: champs, clefs, type de donnée, **NULL**, **NOT NULL**, etc.
 
-La commande CREATE TABLE permet donc de créer une table dans une base de données.
+La commande **CREATE TABLE** permet donc de créer une table dans une base de données.
 ### 8.2 La syntaxe
 De manière très résumée, elle se traduit ainsi:
 ```sql
