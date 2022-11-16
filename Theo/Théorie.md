@@ -244,7 +244,7 @@ Et une classe a un ou plusieurs élèves : 1:N (Cardinalité maximale = N)
 
 => Association de type 1:N
 
-On ajoutera dans la table Elève la clef primaire de la table Classe. En effet, cette clé permettra d'identifier la classe dont fait partie un élève. Quand on ajoute comme champ la clef primaire d'une autre table, cette clef porte le nom de clef étrangère (Foreign Key en anglais). Contrairement à la clef primaire qui doit être unique dans une table, une même valeur de clef étrangère peut y figurer plusieurs fois. Ce qui est logique : plusieurs élèves font partie d'une même classe. Elle ne peut être NULL dans ce cas-ci.
+On ajoutera dans la table Elève la clef primaire de la table Classe. En effet, cette clé permettra d'identifier la classe dont fait partie un élève. Quand on ajoute comme champ la clef primaire d'une autre table, cette clef porte le nom de clef étrangère (Foreign Key en anglais). Contrairement à la clef primaire qui doit être unique dans une table, une même valeur de clef étrangère peut y figurer plusieurs fois. Ce qui est logique : plusieurs élèves font partie d'une même classe. Elle ne peut être **NULL** dans ce cas-ci.
 
 <u>Exemple 2</u>:
 On pourrait imaginer que notre système d'inscription autorise l'inscription d'étudiants indécis. Ils ne savent pas ce qu'ils veulent faire dans l'école mais savent qu'ils veulent étudier…
@@ -253,7 +253,7 @@ Une classe a un ou plusieurs élèves : 1:N (Cardinalité maximale = N)
 
 => Association de type 1 :N
 
-On fera comme précédemment on ajoutera comme clef étrangère, la clef primaire de la table Classe. Mais à la différence qu'ici on acceptera les valeurs NULL pour cette clef étrangère pour nos indécis d'étudiants qui ont par conséquent donnés une cardinalité minimum à 0… 
+On fera comme précédemment on ajoutera comme clef étrangère, la clef primaire de la table Classe. Mais à la différence qu'ici on acceptera les valeurs **NULL** pour cette clef étrangère pour nos indécis d'étudiants qui ont par conséquent donnés une cardinalité minimum à 0… 
 
 #### 5.2.2 Une association de type N :N
 C'est-à-dire que les cardinalités maximales des deux entités sont à N.
@@ -371,23 +371,23 @@ Les opérateurs booléens pour Mysql dans un WHERE sont
 - Plus grand ou égale : &gt;=
 - Plus petit que : &lt;
 - Plus petit ou égale : &lt;=
-- ET : AND  
-- Ou : OR
-- Est Null : IS NULL
-- N'est pas NULL : IS NOT NULL
-- Par/Comme : LIKE par exemple Nom LIKE 'Pi%' Cherchera les noms commençait par Pi
-- Entre : BETWEEN Valeur1 AND Valeur2
-- Dans : IN par <u>Exemple</u> : CP IN (6980 , 4000)|
+- ET : **AND**  
+- Ou : **OR**
+- Est Null : **IS NULL**
+- N'est pas NULL : **IS NOT NULL**
+- Par/Comme : **LIKE** par exemple Nom **LIKE** 'Pi%' Cherchera les noms commençait par Pi
+- Entre : **BETWEEN** Valeur1 **AND** Valeur2
+- Dans : **IN** par <u>Exemple</u> : CP **IN** (6980 , 4000)|
 
 ### b. WHERE : AND et OR
-Les opérateurs sont à ajoutés dans la condition WHERE. Ils peuvent être combinés à l'infini pour filtrer les données comme souhaités.
-L'opérateur AND permet de s'assurer que la condition1 ET la condition2 sont vrai :
+Les opérateurs sont à ajoutés dans la condition **WHERE**. Ils peuvent être combinés à l'infini pour filtrer les données comme souhaités.
+L'opérateur **AND** permet de s'assurer que la condition1 ET la condition2 sont vrai :
 ```sql
 SELECT nom_colonnes
 FROM nom_table
 WHERE condition1 AND condition2;
 ```
-L'opérateur OR vérifie quant à lui que la condition1 OU la condition2 est vrai :
+L'opérateur **OR** vérifie quant à lui que la condition1 OU la condition2 est vrai :
 ```sql
 SELECT nom_colonnes FROM nom_table
 WHERE condition1 OR condition2;
@@ -411,7 +411,7 @@ Pour illustrer les prochaines commandes, nous allons considérer la table “pro
 |4                |Crayon    |Fourniture   |147      |2       |
 
 ### c. Opérateur AND
-L'opérateur AND permet de joindre plusieurs conditions dans une requête. En gardant la même table que précédemment, pour filtrer uniquement les produits informatiques qui sont presque en rupture de stock (moins de 20 produits disponible) il faut exécuter la requête suivante :
+L'opérateur **AND** permet de joindre plusieurs conditions dans une requête. En gardant la même table que précédemment, pour filtrer uniquement les produits informatiques qui sont presque en rupture de stock (moins de 20 produits disponible) il faut exécuter la requête suivante :
 ```sql
 SELECT *
 FROM produit
@@ -544,11 +544,11 @@ WHERE NAISSANCE LIKE '199%'; #On ferait normalement YEAR(Naissance) BETWEEN 1990
 ```
 
 ### i. NULL
-Lorsque l'on veut voir si un champ n'a pas de valeur, c'est-à-dire la valeur NULL. On n'utilise pas les opérateurs d'égalité/d'inégalité. On utilise IS NULL (pour égale à NULL) et IS NOT (pour n'est pas égale à NULL)
+Lorsque l'on veut voir si un champ n'a pas de valeur, c'est-à-dire la valeur **NULL**. On n'utilise pas les opérateurs d'égalité/d'inégalité. On utilise **IS NULL** (pour égale à **NULL**) et **IS NOT** (pour n'est pas égale à **NULL**)
 
-La valeur NULL ne pas s'écrire entre guillemets car elle pourrait être confondue par une chaîne de caractère. C'est vraiment l'absence de valeur et s'écrit NULL.
+La valeur **NULL** ne pas s'écrire entre guillemets car elle pourrait être confondue par une chaîne de caractère. C'est vraiment l'absence de valeur et s'écrit **NULL**.
 
-Exemple IS NOT NULL: Les élèves qui ont un numéro de Téléphone.
+Exemple **IS NOT NULL**: Les élèves qui ont un numéro de Téléphone.
 
 ```sql
 SELECT *
@@ -556,7 +556,7 @@ FROM Eleve
 WHERE Tel IS NOT NULL ;
 ```
 
-Exemple IS NULL : Les élève qui n'ont pas de Téléphone
+Exemple **IS NULL** : Les élève qui n'ont pas de Téléphone
 
 ```sql
 SELECT *
@@ -931,7 +931,7 @@ pourcentage FLOAT(5,2)
 ```
 5 représente le nombre total de chiffres et 2, le nombre de décimales. 'pourcentage' stockera les valeurs entre -999.99 et 999.99.
 
-Le problème réside dans leurs appromimations:
+Le problème réside dans leurs approximations:
 - Une valeur telle que 1 / 3.0 = 0.3333333... sera stockée sous la forme 0.33 (2 décimales)
 - Une valeur telle que 33.009 sera stockée sous la forme 33.01 (arrondie à 2 décimales)
 
@@ -981,7 +981,7 @@ Lieu VARCHAR(20) NOT NULL,
 Nickname VARCHAR(20) NULL
 ```
 ### 8.5 DEFAULT
-DEFAULT permet de définir une valeur par défaut.
+**DEFAULT** permet de définir une valeur par défaut.
 ```sql
 Actif BOOLEAN DEFAULT TRUE
 ```
@@ -1004,23 +1004,33 @@ CREATE TABLE Toto(
   PRIMARY KEY (ID)
 )
 ```
-Dans une clef primaire, il n'est pas nécessaire de mettre NOT NULL. En effet, il est implicite que le champ soit NOT NULL vu que c'est une clef primaire. Lors de l'ajout d'un enregistremet si on omet la valeur de la clef primaire la base de données va générer une erreur.
+Dans une clef primaire, il n'est pas nécessaire de mettre **NOT NULL**. En effet, il est implicite que le champ soit **NOT NULL** vu que c'est une clef primaire. Lors de l'ajout d'un enregistremet si on omet la valeur de la clef primaire la base de données va générer une erreur.
 
-Mais ce n'est une erreur de mettre NOT NULL. C'est juste inutile. Pour les exemples, j'ai mis NOT NULL pour que los votre apprentissage vous compreniez bien qu'un champ de clef primaire doit avoir une valeur.
+Mais ce n'est pas une erreur de mettre **NOT NULL**. C'est juste inutile. Pour les exemples, j'ai mis **NOT NULL** pour que lors votre apprentissage vous compreniez bien qu'un champ de clef primaire doit avoir une valeur.
+
+Cependant, j'ai lu que beaucoup de personnes ajoutent **NOT NULL** à une clef primaire par style et une relecture plus aisée. C'est aussi pour éviter le cas où MySQL aurait un bug qui permettrait un **NULL** où ne mettrait pas **NOT NULL** par défaut (très rare).
+
+Update: Après une énième lecture, j'ai lu que dans la norme [SQL-92](http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt), on devait explicitement ajouter **NOT NULL** à tout champ primaire:
+> If **PRIMARY KEY** or **UNIQUE** is specified, then the **\<column defi-nition\>** for each column whose **\<column name\>** is in the **\<unique column list\>** shall specify **NOT NULL**.
+
+Mais la norme [SQL-99](http://web.cecs.pdx.edu/~len/sql1999.pdf), ne l'oblige pas car c'est implicite que le champ est **NOT NULL**:
+>  If the **\<unique specification\>** specifies **PRIMARY KEY**, then for each **\<column name\>** in the explicit or implicit **\<unique column list\>** for which **NOT NULL** is not specified, **NOT NULL** is implicit in the **\<column definition\>**.
+
+Voilà pourquoi aussi on peut trouver sur un champ clef primaire/unique la contrainte **NOT NULL** ou non.
 ### 8.7 FOREIGN KEY
 Dans MySQL, une clef étrangère se définit après la définition de tous les champs de la table.
 ```sql
 CREATE TABLE Personne (
-    PersonID int UNSIGNED NOT NULL AUTO_INCREMENT,
+    PersonID int UNSIGNED AUTO_INCREMENT,
     LastName varchar(255) NOT NULL,
-    FirstName varchar(255),
-    Age int,
+    FirstName varchar(255) NOT NULL,
+    Age int UNSIGNED,
     PRIMARY KEY (PersonID)
 );
 
 CREATE TABLE Commande (
-    OrderID int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    OrderNumber int NOT NULL,
+    OrderID int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    OrderNumber int UNSIGNED NOT NULL,
     PersonID int UNSIGNED NOT NULL,
     FOREIGN KEY (PersonID) REFERENCES Personne(PersonID)
 );
@@ -1031,9 +1041,9 @@ FOREIGN KEY(PersonID) REFERENCES Personne(PersonID)
 ```
 Cela signifie que l'on définit la clef étrangère sur le champ PersonID de la table Commande qui référence la clef primaire de la table Personne.
 
-A la différence de la clef primaire, une clef étrangère peut avoir la valeur NULL. Donc, si vous mettez NOT NULL sur le champ de la clef étrangère ça veut dire que l'on veut absolument qu'il y ait un lien vers une autre table.
+A la différence de la clef primaire, une clef étrangère peut avoir la valeur **NULL**. Donc, si vous mettez **NOT NULL** sur le champ de la clef étrangère ça veut dire que l'on veut absolument qu'il y ait un lien vers une autre table.
 
-Si on met NULL, ça signifie qu'il peut y avoir des enregistrements qui n'ont pas de lien vers une autre table.
+Si on met **NULL**, ça signifie qu'il peut y avoir des enregistrements qui n'ont pas de lien vers une autre table.
 
 ### 8.8 UNIQUE
 Comme son nom l'indique, le champ doit être unique. Par exemple un numéro national.

@@ -57,7 +57,7 @@ CREATE TABLE Eleve (
     Localite varchar(30) NOT NULL,
     Sexe char(1) NOT NULL CHECK(Sexe IN ('M','F')),
     Email varchar(40),
-    Tel varchar(20),
+    Tel varchar(20) NULL,
     GSM varchar(20),
     IdClasse int NOT NULL,
     PRIMARY KEY (IdEleve),
