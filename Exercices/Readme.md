@@ -35,8 +35,8 @@
 - [Exercice n°23 - INNER JOIN](#exercice-n23---inner-join)
 - [Exercice n°24 - INNER JOIN](#exercice-n24---inner-join)
 - [Exercice n°25 - INNER JOIN](#exercice-n25---inner-join)
-- [Exercice n°26 - CREATE TABLE](#exercice-n26---create-table)
-- [Exercice n°27 - CREATE TABLE](#exercice-n27---create-table)
+- [Exercice n°26 - CREATE DATABASE / CREATE TABLE](#exercice-n26---create-database--create-table)
+- [Exercice n°27 - CREATE DATABASE / CREATE TABLE](#exercice-n27---create-database--create-table)
 - [Exercice n°28 - INSERT INTO](#exercice-n28---insert-into)
 - [Exercice n°29 - INSERT INTO](#exercice-n29---insert-into)
 - [Exercice n°30 - UPDATE](#exercice-n30---update)
@@ -301,22 +301,24 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 5. Affichez le nom des différentes classes/formations et le nombre d'élèves dans chacune d'elle. La colonne du nombre d'élèves s'appelera NBEleves.
 6. Faites un tri descendant sur le nombre d'élèves.
 
-## Exercice n°26 - CREATE TABLE
+## Exercice n°26 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+4. Créez une base de données nommée: Exercice26
 5. Créer une Table Equipe. Cette table aura les champs suivants:
    - IdEquipe (clef primaire): Entier, non null, non signé, auto-incrémenté.
    - NomClub: chaîne de max 30 caractères, non null.
    - Localité: chaîne de max 30 caractères, non null.
    - Division: TINYINT non signé, non null.
 
-## Exercice n°27 - CREATE TABLE
+## Exercice n°27 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+4. Trouvez les commandes sql suivantes:
+   - Si la base de données Exercice27 existe la supprimer.
+   - Créez une base de données nommée: Exercice27 
 5. Créer la Table Joueur. Cette table aura les champs suivants:
    -  IdJoueur (clef primaire): Entier, non null, non signé, auto-incrémenté.
    -  Nom: chaîne de max 30 caractères, non null.

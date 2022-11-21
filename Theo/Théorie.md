@@ -61,36 +61,37 @@
     - [7.1 Jointure sur deux tables](#71-jointure-sur-deux-tables)
     - [7.2 Utilisation du AS dans un FROM et INNER JOIN](#72-utilisation-du-as-dans-un-from-et-inner-join)
     - [7.3 Jointure sur plus de 2 tables](#73-jointure-sur-plus-de-2-tables)
-  - [8. CREATE TABLE](#8-create-table)
-    - [8.1 La commande](#81-la-commande)
-    - [8.2 La syntaxe](#82-la-syntaxe)
-    - [8.3 Types de données / types des champs](#83-types-de-données--types-des-champs)
-      - [8.3.1 VARCHAR - Chaîne de caractères à longueur variable](#831-varchar---chaîne-de-caractères-à-longueur-variable)
-      - [8.3.2 CHAR - Chaîne de caractère à longueur fixe](#832-char---chaîne-de-caractère-à-longueur-fixe)
-      - [8.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT](#833-int--tinyint---smallint--mediumint--bigint)
-      - [8.3.4 FLOAT / DOUBLE / DECIMAL](#834-float--double--decimal)
-      - [8.3.5 DATE / DATETIME](#835-date--datetime)
-      - [8.3.6 BOOLEAN](#836-boolean)
-    - [8.4 NULL / NOT NULL](#84-null--not-null)
-    - [8.5 DEFAULT](#85-default)
-    - [8.6 PRIMARY KEY](#86-primary-key)
-    - [8.7 FOREIGN KEY](#87-foreign-key)
-    - [8.8 UNIQUE](#88-unique)
-    - [8.9 AUTO_INCREMENT](#89-auto_increment)
-    - [8.10 Exemples](#810-exemples)
-  - [9. INSERT INTO](#9-insert-into)
+  - [8. Création d'une base de données - CREATE DATABASE](#8-création-dune-base-de-données---create-database)
+  - [9. CREATE TABLE](#9-create-table)
     - [9.1 La commande](#91-la-commande)
-    - [9.2 La Syntaxe](#92-la-syntaxe)
-  - [10. UPDATE](#10-update)
+    - [9.2 La syntaxe](#92-la-syntaxe)
+    - [9.3 Types de données / types des champs](#93-types-de-données--types-des-champs)
+      - [9.3.1 VARCHAR - Chaîne de caractères à longueur variable](#931-varchar---chaîne-de-caractères-à-longueur-variable)
+      - [9.3.2 CHAR - Chaîne de caractère à longueur fixe](#932-char---chaîne-de-caractère-à-longueur-fixe)
+      - [9.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT](#933-int--tinyint---smallint--mediumint--bigint)
+      - [9.3.4 FLOAT / DOUBLE / DECIMAL](#934-float--double--decimal)
+      - [9.3.5 DATE / DATETIME](#935-date--datetime)
+      - [9.3.6 BOOLEAN](#936-boolean)
+    - [9.4 NULL / NOT NULL](#94-null--not-null)
+    - [9.5 DEFAULT](#95-default)
+    - [9.6 PRIMARY KEY](#96-primary-key)
+    - [9.7 FOREIGN KEY](#97-foreign-key)
+    - [9.8 UNIQUE](#98-unique)
+    - [9.9 AUTO_INCREMENT](#99-auto_increment)
+    - [9.10 Exemples](#910-exemples)
+  - [10. INSERT INTO](#10-insert-into)
     - [10.1 La commande](#101-la-commande)
-    - [10.2 La syntaxe](#102-la-syntaxe)
-  - [11. DELETE](#11-delete)
+    - [10.2 La Syntaxe](#102-la-syntaxe)
+  - [11. UPDATE](#11-update)
     - [11.1 La commande](#111-la-commande)
     - [11.2 La syntaxe](#112-la-syntaxe)
-    - [11.2 Suppression ou champ Deleted ?](#112-suppression-ou-champ-deleted-)
-    - [11.3 Pourquoi mon DELETE provoque une erreur ?](#113-pourquoi-mon-delete-provoque-une-erreur-)
-    - [11.4 Droit à l'oubli ?](#114-droit-à-loubli-)
-  - [12. ALTER TABLE](#12-alter-table)
+  - [12. DELETE](#12-delete)
+    - [12.1 La commande](#121-la-commande)
+    - [12.2 La syntaxe](#122-la-syntaxe)
+    - [12.2 Suppression ou champ Deleted ?](#122-suppression-ou-champ-deleted-)
+    - [12.3 Pourquoi mon DELETE provoque une erreur ?](#123-pourquoi-mon-delete-provoque-une-erreur-)
+    - [12.4 Droit à l'oubli ?](#124-droit-à-loubli-)
+  - [13. ALTER TABLE](#13-alter-table)
 -->
 
 # I. Introduction
@@ -853,17 +854,37 @@ Où les FK_Key seraient les clefs étrangères (Foreign Key) et les PK_Key serai
 
 Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple concret à l'exercice n°24.
 
+## 8. Création d'une base de données - CREATE DATABASE
+Avant de pouvoir créer nos tables, nos devrons avant tout créer une base de données.
+Pour cela on utilise la commande suivante **CREATE DATABASE**
 
-## 8. CREATE TABLE
-### 8.1 La commande
+Si je veux créer la base de données Jeux:
+```sql
+CREATE DATABASE Jeux;
+```
+Si j'exécute cette commande, le SGDB va créer notre base de données Jeux. C'est aussi simple que ça. :-)
+
+Cependant, si je réexécute cette instruction mysql me dira que la base de données existe déjà.
+
+C'est pour ça que pour les exercices, je supprime la base de données avant de la créer. De fait manière, vous pouvez modifier comme vous le souhaitez nos base de données. Après un appel du script de création tout sera supprimé et recréé:
+```sql
+DROP DATABASE IF EXISTS Jeux;
+CREATE DATABASE Jeux;
+```
+Attention donc qu'un **DROP DATABASE** supprime toute la base de données ! A utiliser avec les précautions qui s'imposent...
+
+
+## 9. CREATE TABLE
+### 9.1 La commande
 Lors de vos échanges en groupe, vous avez réussi à déterminer les champs primordiaux des entités Eleve et Classe.
 
 Ensuite, dans le script de création de la base de données, nous avons vu que la creation d'une table avait des points communs avec notre entité: champs, clefs, type de donnée, **NULL**, **NOT NULL**, etc.
 
 La commande **CREATE TABLE** permet donc de créer une table dans une base de données.
-### 8.2 La syntaxe
+### 9.2 La syntaxe
 De manière très résumée, elle se traduit ainsi:
 ```sql
+USE UneBaseDeDonnees;
 CREATE TABLE nomtable
 (
     champ1 type_donnees,
@@ -872,16 +893,20 @@ CREATE TABLE nomtable
     champ4 type_donnees
 )
 ```
-Ici nous avons créé une table avec pour nom: nomtable.
+Ici, on utilise la base de données ayant pour nom: UneBaseDeDonnees et nous avons créé une table avec pour nom: nomtable.
+
 Nous avons 4 champs. Chaque champ a une nom (champ1 à champ2) et chaque champ a un type de données (**INT**, **DATE**, **VARCHAR**, **CHAR**, etc.). Entre chaque champ, il y a une virgule.
-### 8.3 Types de données / types des champs
+
+Notez l'utilisation du mot clef **USE** qui permet de changer de base données. En effet, soyez bien sûrs d'être dans la base de données avant de faire des créations de tables ou toute autre manipulation.
+
+### 9.3 Types de données / types des champs
 Un champ a un type de données. Voici les principaux:
-#### 8.3.1 VARCHAR - Chaîne de caractères à longueur variable
+#### 9.3.1 VARCHAR - Chaîne de caractères à longueur variable
 Ce type de donnée est utilisé pour les chaînes de caractères. On lui donne une longueur maximum. Lors de l'affectation de notre enregistrement pour ce champ si la longueur, n'est pas atteinte, il ne complètera pas par des espaces.
 ```sql
 nom VARCHAR(50)
 ```
-#### 8.3.2 CHAR - Chaîne de caractère à longueur fixe
+#### 9.3.2 CHAR - Chaîne de caractère à longueur fixe
 Ici aussi c'est une chaîne de caractères. A la différence que si lors de l'affectation, la chaîne est plus petite que la longueur définie, MySQL remplira d'espaces le reste des caractères non affectés. Donc notre chaîne aura toujours une taille fixe même si on affecte une chaîne avec moins de caractères que la taille fixe.
 ```sql
 prenom CHAR(50)
@@ -890,7 +915,7 @@ Personnellement, je n'utilise que des **VARCHAR** sauf par exemple pour un champ
 ```sql
 Sexe CHAR(1)
 ```
-#### 8.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT
+#### 9.3.3 INT / TINYINT /  SMALLINT / MEDIUMINT / BIGINT
 Alors très très souvent vous allez mettre des INT pour des champs entiers.
 Cependant il faut bien réfléchir avant de faire son choix sur le type entier à utiliser.
 
@@ -922,7 +947,7 @@ Maintenant, je n'ai aucune idée du design des DB des GAFAM (Google Amazon Faceb
 
 Le choix du type est donc TRES important. Mais tout va dépendre de la taille de la base de données. Pour les types entiers, vous verrez quasi toujours des **INT** même quand ça n'est pas justifié...
 
-#### 8.3.4 FLOAT / DOUBLE / DECIMAL
+#### 9.3.4 FLOAT / DOUBLE / DECIMAL
 Pour les nombres à virgule flottante vous devrez choisir où vous aurez besoin de la plus grande précision.
 - FLOAT: simple précision (4 octets)
 - DOUBLE: double précision (8 octets)
@@ -945,7 +970,7 @@ La précision se définit par DECIMAL(M,D) où M représente le nombre total de 
 
 Donc si on écrit DECIMAL(65,30), on aura à gauche de la virgule un nombre a 35 (65-30) chiffres et on aura 30 chiffres après la virgule. Cela définit ici un champ qui accepte un nombre entre: -99999999999999999999999999999999999.999999999999999999999999999999 et 99999999999999999999999999999999999.999999999999999999999999999999
 
-#### 8.3.5 DATE / DATETIME 
+#### 9.3.5 DATE / DATETIME 
 Pour les Dates on peut choisir entre: DATE et DATETIME.
 - Le type DATE ne prend qu'une DATE.
 - Le type DATETIME prend une date et aussi une heure. Si on n'a pas besoin de l'heure autant utiliser le type DATE.
@@ -958,7 +983,7 @@ Tandis que dans un hopital, ce champ DateNaissance sera du type DATETIME car il 
 ```sql
 DateNaissance DATETIME NOT NULL
 ```
-#### 8.3.6 BOOLEAN
+#### 9.3.6 BOOLEAN
 Ce type permet de définir une valeur booléenne.
 ```sql
 EstActif boolean NOT NULL
@@ -971,7 +996,7 @@ INSERT INTO User(Nom, Prenom, EstActif) VALUES('Piette','Johnny', true);
 INSERT INTO User(Nom, Prenom, EstActif) VALUES('Dupont','Philip', 0);
 ```
 Lors d'un SELECT il sera affiché pour le champ EstActif soit 0 ou 1.
-### 8.4 NULL / NOT NULL
+### 9.4 NULL / NOT NULL
 A droite du type de donnée on peut ajouter **NULL** ou **NOT NULL**.
 - **NULL** signifie que la donnée peut être nulle. C'est par défaut. Donc si vous ne mettez pas **NULL**, c'est comme si vous le mettiez.
 - **NOT NULL** signifie que la donnée ne peut être nulle.
@@ -980,16 +1005,16 @@ Nom VARCHAR(20) NOT NULL,
 Lieu VARCHAR(20) NOT NULL,
 Nickname VARCHAR(20) NULL
 ```
-### 8.5 DEFAULT
+### 9.5 DEFAULT
 **DEFAULT** permet de définir une valeur par défaut.
 ```sql
 Actif BOOLEAN DEFAULT TRUE
 ```
 On définit un champ booléen nommé Actif ayant vrai (true) comme valeur par défaut.
-### 8.6 PRIMARY KEY
+### 9.6 PRIMARY KEY
 Dans MySQL, une clef primaire se définit soit
-- sur le champ en le qualifiant de **PRIMARY KEY**
-- après la définition de tous les champs de la table avec PRIMARY KEY (identifiant_de_la_clef_primaire)
+- sur le champ en le qualifiant de **PRIMARY KEY**.
+- après la définition de tous les champs de la table avec **PRIMARY KEY**. (identifiant_de_la_clef_primaire)
 ```sql
 CREATE TABLE Toto(
   ID int NOT NULL PRIMARY KEY,
@@ -1017,7 +1042,7 @@ Mais la norme [SQL-99](http://web.cecs.pdx.edu/~len/sql1999.pdf), ne l'oblige pa
 >  If the **\<unique specification\>** specifies **PRIMARY KEY**, then for each **\<column name\>** in the explicit or implicit **\<unique column list\>** for which **NOT NULL** is not specified, **NOT NULL** is implicit in the **\<column definition\>**.
 
 Voilà pourquoi aussi on peut trouver sur un champ clef primaire/unique la contrainte **NOT NULL** ou non.
-### 8.7 FOREIGN KEY
+### 9.7 FOREIGN KEY
 Dans MySQL, une clef étrangère se définit après la définition de tous les champs de la table.
 ```sql
 CREATE TABLE Personne (
@@ -1045,13 +1070,13 @@ A la différence de la clef primaire, une clef étrangère peut avoir la valeur 
 
 Si on met **NULL**, ça signifie qu'il peut y avoir des enregistrements qui n'ont pas de lien vers une autre table.
 
-### 8.8 UNIQUE
+### 9.8 UNIQUE
 Comme son nom l'indique, le champ doit être unique. Par exemple un numéro national.
 
 Si votre clef primaire est composée d'un seul champ, il n'est pas nécessaire d'indiquer UNIQUE. Car par définition, une clef primaire est unique.
 
 Pour les clefs primaires composites, ce n'est pas le cas car c'est la compostion des champs qui forment la clef primaire qui est unique.
-### 8.9 AUTO_INCREMENT
+### 9.9 AUTO_INCREMENT
 L'auto-incrémentation d'un champ est très très très utilisée dans les bases de données. Surtout pour générer un identifiant unique pour une clef primaire.
 
 Un champ qualifié d'AUTO_INCREMENT se verra incrémenté de 1 pour le prochain enregistrement.
@@ -1059,7 +1084,7 @@ Un champ qualifié d'AUTO_INCREMENT se verra incrémenté de 1 pour le prochain 
 IdClasse INT UNSIGNED NOT NULL AUTO_INCREMENT
 ```
 
-### 8.10 Exemples
+### 9.10 Exemples
 Création de la table Classe
 ```sql
 CREATE TABLE Classe (
@@ -1094,11 +1119,11 @@ CREATE TABLE Eleve (
     FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
 );
 ```
-## 9. INSERT INTO
-### 9.1 La commande
+## 10. INSERT INTO
+### 10.1 La commande
 La commande **INSERT INTO** est utilisée pour ajouter des enregistrements dans une table.
 Il faut donc bien évidemment que notre table ait été créée avec un **CREATE TABLE**.
-### 9.2 La Syntaxe
+### 10.2 La Syntaxe
 Elle est assez simple.
 ```sql
 INSERT INTO nomTable (champ1,champ2, champ3)
@@ -1116,10 +1141,10 @@ VALUES ('BlindCode','BXL','BlindBXL');
 INSERT INTO Classe(Nom, Lieu, Nickname)
 VALUES ('BlindCode4Data','LLN','BlindLLN');
 ```
-## 10. UPDATE
-### 10.1 La commande
+## 11. UPDATE
+### 11.1 La commande
 La commande **UPDATE** permet de mettre à jour un ou plusieurs enregistrements. Ces enregistrements peuvent correspondre à un motif de recherche.
-### 10.2 La syntaxe
+### 11.2 La syntaxe
 Par exemple, on veut changer le prénom 'jooooohnny' en 'johnny' et le nom 'Piettttuuuus' en 'Piette' pour l'utilisateur ayant l'iduser = 47
 ```sql
 UPDATE User
@@ -1135,11 +1160,11 @@ Si on veut désactiver l'envoie des emails pour tout le monde:
 UPDATE User
 SET AcceptEmail=false;
 ```
-## 11. DELETE
-### 11.1 La commande
+## 12. DELETE
+### 12.1 La commande
 La commande **DELETE** dans le langage SQL permet de supprimer des enregistrements dans une table. Cela signfie qu'il faut la manipuler avec prudence !
 
-### 11.2 La syntaxe
+### 12.2 La syntaxe
 ```sql
 DELETE FROM NomTable
 WHERE Condition;
@@ -1150,7 +1175,7 @@ DELETE FROM Produit
 WHERE IdProduit = 123;
 ```
 
-### 11.2 Suppression ou champ Deleted ?
+### 12.2 Suppression ou champ Deleted ?
 Parfois, il vaut mieux créer un champ ayant pour nom Deleted et mettre sa valeur à 1 pour l'enregistrement que l'on veut supprimer. En effet, parfois il faut toujours garder une trace de cet enregistrement. Il ne sera pas effacé de notre base de données mais nous ne l'utiliserons plus.
 ```sql
 UPDATE Produit
@@ -1169,14 +1194,14 @@ SELECT *
 FROM Produit
 WHERE Deleted = 1;
 ```
-### 11.3 Pourquoi mon DELETE provoque une erreur ?
+### 12.3 Pourquoi mon DELETE provoque une erreur ?
 Il peut arriver que l'id de l'enregistrement que vous voulez supprimer soit utilisé ailleurs. Par exemple vous voulez supprimer l'article 'Oculus Quest 2 - 256 GB' ayant pour IdProduit '123':
 ```sql
 DELETE FROM Produit
 WHERE IdProduit = 123;
 ```
 Si vous avez déjà eu des commandes pour ce Produit, MySQL devrait provoquer une erreur car certains enregistrements de nos commandes concernent ce produit. Et donc MySQL ne sait pas le supprimer. Heureusement aussi que MySQL ne l'ait pas fait car alors il aurait dû supprimer toutes nos commandes comportants ce produit. Ce qui pourrait être catastrophique... On pourrait y arriver en utilisant le **ON DELETE CASCADE** mais je n'en parlerai pas car c'est trop risqué. ;) Et je ne veux pas vous embrouiller.
-### 11.4 Droit à l'oubli ?
+### 12.4 Droit à l'oubli ?
 Depuis le [GDPR/RGPD](https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es), Il est possible qu'un utilisateur faisant partie d'une de vos bases de données viennent vous dire qu'il ne veut plus en faire partie. Il faudra en tenir compte.
 
 Cependant, il faut bien se dire que ça ne sera pas toujours possible dans certains cas comptables: commandes, achats, livraisons, etc. Ou dans certaines institutions publiques qui doivent garder des informations importantes sur les personnes.
@@ -1201,7 +1226,7 @@ WHERE IdUtilisateur=45;
 ```
 Idéalement il faudrait effectuer ses trois opérations consécutives dans une [transaction](https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1970063-transactions)...
 
-## 12. ALTER TABLE
+## 13. ALTER TABLE
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
