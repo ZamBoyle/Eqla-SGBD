@@ -1233,7 +1233,7 @@ Idéalement il faudrait effectuer ses trois opérations consécutives dans une [
 
 ## 14. Limiter le résultat - LIMIT
 
-## 15. Différents type de jointures: INNER, LEFT, RIGHT, INNER
+## 15. Différents type de jointures: INNER, LEFT, RIGHT, FULL
 ![](https://sql.sh/wp-content/uploads/2014/06/sql-join-infographie.png)
 
 
