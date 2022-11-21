@@ -1230,5 +1230,12 @@ Idéalement il faudrait effectuer ses trois opérations consécutives dans une [
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 
+
+## 14. Limiter le résultat - LIMIT
+
+## 15. Différents type de jointures: INNER, LEFT, RIGHT, INNER
+![](https://sql.sh/wp-content/uploads/2014/06/sql-join-infographie.png)
+
+
 ---
 _[Eqla](http://www.eqla.be) 2021 - Cours d'introduction aux SGBD_
