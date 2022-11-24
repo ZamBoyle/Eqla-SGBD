@@ -11,7 +11,7 @@
 - [Introduction](#introduction)
 - [Copier les DB exercices](#copier-les-db-exercices)
 - [Exercice n°1 - Importation des fichiers de base de données](#exercice-n1---importation-des-fichiers-de-base-de-données)
-- [Exercice n°2 - Notre premier SELECT *](#exercice-n2---notre-premier-select-)
+- [Exercice n°2 - Notre premier SELECT \*](#exercice-n2---notre-premier-select-)
 - [Exercice n°3 - SELECT ch1, ch2, etc.](#exercice-n3---select-ch1-ch2-etc)
 - [Exercice n°4 - Notre premier WHERE](#exercice-n4---notre-premier-where)
 - [Exercice n°5 - WHERE   AND](#exercice-n5---where---and)
@@ -222,7 +222,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
 4. Si vous n'êtes pas dans la DB Ventes, tapez: **use ventes;**
 5. Affichez le prix maximum des produits
 6. Affichez le prix minimum des produits
-7. Affichez le prix total de tous les produits
+7. Affichez le prix total de tous les produits en tenant du stock de chaque produit. :-)
 
 ## Exercice n°18 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
@@ -306,11 +306,12 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Créez une base de données nommée: Exercice26
-5. Créer une Table Equipe. Cette table aura les champs suivants:
-   - IdEquipe (clef primaire): Entier, non null, non signé, auto-incrémenté.
-   - NomClub: chaîne de max 30 caractères, non null.
-   - Localité: chaîne de max 30 caractères, non null.
-   - Division: TINYINT non signé, non null.
+5. Utilisez cette nouvelle de données avec la commande USE Exercice26;
+6. Créer une Table Equipe. Cette table aura les champs suivants:
+   - IdEquipe (clef primaire): Entier, NOT NULL, non signé, auto-incrémenté.
+   - NomClub: chaîne de max 30 caractères, NOT NULL.
+   - Localité: chaîne de max 30 caractères, NOT NULL.
+   - Division: TINYINT non signé, NOT NULL.
 
 ## Exercice n°27 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
@@ -318,19 +319,20 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 3. Entrez votre mot de passe.
 4. Trouvez les commandes sql suivantes:
    - Si la base de données Exercice27 existe la supprimer.
-   - Créez une base de données nommée: Exercice27 
+   - Créez une base de données nommée: Exercice27
+   - Utilisez cette nouvelle de données avec la commande USE Exercice27;
 5. Créer la Table Joueur. Cette table aura les champs suivants:
-   -  IdJoueur (clef primaire): Entier, non null, non signé, auto-incrémenté.
-   -  Nom: chaîne de max 30 caractères, non null.
-   -  Prenom: Chaîne de max 30 caractères, non null.
-   -  DateNaissance: Date, non null.
-   -  IdEquipe (clef étrangère): entier non null, non signé, Référence IdEquipe de la table Equipe.
+   -  IdJoueur (clef primaire): Entier, NOT NULL, non signé, auto-incrémenté.
+   -  Nom: chaîne de max 30 caractères, NOT NULL.
+   -  Prenom: Chaîne de max 30 caractères, NOT NULL.
+   -  DateNaissance: Date, NOT NULL.
+   -  IdEquipe (clef étrangère): entier NOT NULL, non signé, Référence IdEquipe de la table Equipe.
 
 ## Exercice n°28 - INSERT INTO
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
 5. Ajouter l'équipe suivante:
    - NomClub: Royal Club d'Andenne
    - Localité: Andenne
@@ -345,7 +347,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
 5. Ajouter le joueur suivant:
    - Nom: votre nom
    - Prenom: votre prenom
@@ -373,7 +375,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
 5. Mettre à jour le joueur où les champs sont les suivants:
    - Nom: Dupont
    - Prenom: Philip
@@ -384,7 +386,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercices.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
 5. Mettre à le jour dont l'idjoueur est = 1.
 6. Chanez-lui sa date de naissance.
 
