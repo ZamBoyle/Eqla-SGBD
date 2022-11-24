@@ -320,8 +320,9 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 4. Trouvez les commandes sql suivantes:
    - Si la base de données Exercice27 existe la supprimer.
    - Créez une base de données nommée: Exercice27
-   - Utilisez cette nouvelle de données avec la commande USE Exercice27;
-5. Créer la Table Joueur. Cette table aura les champs suivants:
+   - Utilisez cette nouvelle base de données avec la commande USE Exercice27;
+5. Recopiez tout le CREATE TABLE Equipe de l'exercice26.
+6. Créer la Table Joueur. Cette table aura les champs suivants:
    -  IdJoueur (clef primaire): Entier, NOT NULL, non signé, auto-incrémenté.
    -  Nom: chaîne de max 30 caractères, NOT NULL.
    -  Prenom: Chaîne de max 30 caractères, NOT NULL.
@@ -332,7 +333,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27;**
 5. Ajouter l'équipe suivante:
    - NomClub: Royal Club d'Andenne
    - Localité: Andenne
