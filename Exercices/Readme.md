@@ -388,8 +388,8 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
-5. Mettre à le jour dont l'idjoueur est = 1.
-6. Chanez-lui sa date de naissance.
+5. Mettre à jour le joueur dont l'idjoueur est = 1.
+6. Changez-lui sa date de naissance.
 
 
 
