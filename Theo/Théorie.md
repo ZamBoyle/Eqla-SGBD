@@ -1226,12 +1226,45 @@ WHERE IdUtilisateur=45;
 ```
 Idéalement il faudrait effectuer ses trois opérations consécutives dans une [transaction](https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1970063-transactions)...
 
-## 13. ALTER TABLE
+## 13. Limiter le résultat - LIMIT
+Sur un grand nombre de résultats, il est parfois utile de n'en prendre qu'un certain nombre.
+Par exemple:
+```sql
+Use Pays;
+SELECT *
+FROM Pays
+ORDER BY Name
+LIMIT 50;
+```
+Nous aurons les 50 premiers pays classés par ordre alphabétique.
+Cette requète pourrait s'écrire de la manière suivante en faisant: LIMIT 0,50:
+- Où 0 est la borne inférieure non comprise.
+- 50 est la borne supérieure comprise.
+
+Utiliser LIMIT avec un interval peut-être très utile quand on veut paginer les résultats d'une recherche.
+
+Soit on affiche les 10 premiers résultats puis on a une bouton qui permet au 10 suivants.
+Pour les 10 premiers:
+```sql
+Use Pays;
+SELECT *
+FROM Pays
+ORDER BY Name
+LIMIT 0, 10;
+```
+Et les 10 suivants:
+```sql
+Use Pays;
+SELECT *
+FROM Pays
+ORDER BY Name
+LIMIT 10, 20;
+```
+Etc...
+
+## 14. ALTER TABLE
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
-
-
-## 14. Limiter le résultat - LIMIT
 
 ## 15. Différents type de jointures: INNER, LEFT, RIGHT, FULL
 ![](https://sql.sh/wp-content/uploads/2014/06/sql-join-infographie.png)

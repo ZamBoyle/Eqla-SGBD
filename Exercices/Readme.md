@@ -41,6 +41,8 @@
 - [Exercice n°29 - INSERT INTO](#exercice-n29---insert-into)
 - [Exercice n°30 - UPDATE](#exercice-n30---update)
 - [Exercice n°31 - UPDATE](#exercice-n31---update)
+- [Exercice n°31 - UPDATE](#exercice-n31---update-1)
+- [Exercice n°32 - DELETE](#exercice-n32---delete)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -388,8 +390,25 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
-5. Mettre à jour le joueur dont l'idjoueur est = 1.
-6. Changez-lui sa date de naissance.
+5. Mettre à jour le joueur dont l'idjoueur est = 3.
+6. Changez-lui sa date de naissance en '1974/03/07'
+
+## Exercice n°31 - UPDATE
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+5. Suite à l'arrêt du club d'Andenne, les joueurs de ce club feront dérénavant partie du Standard.
+6. Mettez à jour la table joueur en tenant compte de ce changement de club.
+
+## Exercice n°32 - DELETE
+```sql
+USE Exercice27;
+INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Irène', 'Link', '1974-11-26', 1);
+INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Andréanne', 'Kempstone', '1999-12-23', 1);
+INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Mà', 'Keech', '1985-10-28', 1);
+INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Lèi', 'Blindmann', '2000-05-24', 2);
+```
 
 
 
