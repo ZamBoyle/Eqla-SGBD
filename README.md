@@ -5,6 +5,7 @@ Bienvenue sur le cours d'introduction aux SGBD ! Ce dépôt sera souvent mis à 
 Vous trouverez l'ensemble du cours découpé en plusieurs parties:
 1. [Théorie](Theo/Readme.md)
 2. [Exercices](Exercices/Readme.md)
+3. [Révisions](Exercices/Revisions.md)
 
 ---
 _[Eqla](http://www.eqla.be) 2021 - Cours Introduction aux SGBD_

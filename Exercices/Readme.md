@@ -402,13 +402,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 6. Mettez à jour la table joueur en tenant compte de ce changement de club.
 
 ## Exercice n°32 - DELETE
-```sql
-USE Exercice27;
-INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Irène', 'Link', '1974-11-26', 1);
-INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Andréanne', 'Kempstone', '1999-12-23', 1);
-INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Mà', 'Keech', '1985-10-28', 1);
-INSERT INTO Joueur (Prenom, Nom, DateNaissance, IdEquipe) VALUES ('Lèi', 'Blindmann', '2000-05-24', 2);
-```
+
 
 
 
