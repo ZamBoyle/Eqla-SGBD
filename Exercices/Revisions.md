@@ -22,7 +22,7 @@ SELECT '1.3' AS Exercice , Pays.name FROM Pays WHERE code='be'\p;
 C'est une proposition, pas une obligation. ;-)
 
 ## Exercice 1 - DB Pays
-1. Afficher la colonne name nommée Nom à l'affichage de la table Pays où les pays ont un nom commençant par 'u';
+1. Afficher la colonne name que l'on renommera Nom à l'affichage de la table Pays où les pays ont un nom commençant par 'u';
 2. Reprenez la requête précédente et classer par ordre décroissant les noms de pays.
 3. Maintenant par ordre croissant.
 4. Affichez les pays dont le nom se terminent par %ca';
