@@ -1226,6 +1226,8 @@ WHERE IdUtilisateur=45;
 ```
 Idéalement il faudrait effectuer ses trois opérations consécutives dans une [transaction](https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1970063-transactions)...
 
+Ceci ne rentre pas dans le cadre de ce cours d'introduction aux SGBDR.
+
 ## 13. Limiter le résultat - LIMIT
 Sur un grand nombre de résultats, il est parfois utile de n'en prendre qu'un certain nombre.
 Par exemple:
@@ -1241,9 +1243,9 @@ Cette requète pourrait s'écrire de la manière suivante en faisant: LIMIT 0,50
 - Où 0 est la borne inférieure non comprise.
 - 50 est la borne supérieure comprise.
 
-Utiliser LIMIT avec un interval peut-être très utile quand on veut paginer les résultats d'une recherche.
+Utiliser LIMIT avec un interval peut-être très utile quand on veut paginer les résultats d'une recherche. Il arrive souvent que l'on doive cliquer sur une flèche pour avoir les résultats suivant. Par exemple 10 résultats par page.
 
-Soit on affiche les 10 premiers résultats puis on a une bouton qui permet au 10 suivants.
+Soit on affiche les 10 premiers résultats puis on a une bouton qui permet d'afficher les 10 suivants.
 Pour les 10 premiers:
 ```sql
 Use Pays;
