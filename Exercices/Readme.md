@@ -391,7 +391,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
 5. Mettre à jour le joueur dont l'idjoueur est = 3.
-6. Changez-lui sa date de naissance en '1974/03/07'
+6. Changez-lui sa date de naissance en '1974/03/07' et son prénom deviendra 'Philipo';
 
 ## Exercice n°32 - UPDATE
 1. Allez dans le répertoire d'exercices SQL
