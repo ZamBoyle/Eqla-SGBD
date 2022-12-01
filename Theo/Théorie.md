@@ -1066,6 +1066,16 @@ FOREIGN KEY(PersonID) REFERENCES Personne(PersonID)
 ```
 Cela signifie que l'on définit la clef étrangère sur le champ PersonID de la table Commande qui référence la clef primaire de la table Personne.
 
+On peut aussi définir la clef étrangère sur le champ directement comme pour la clef primaire:
+
+```sql
+CREATE TABLE Commande (
+    OrderID int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    OrderNumber int UNSIGNED NOT NULL,
+    PersonID int UNSIGNED NOT NULL FOREIGN KEY REFERENCES Personne(PersonID)
+);
+```
+
 A la différence de la clef primaire, une clef étrangère peut avoir la valeur **NULL**. Donc, si vous mettez **NOT NULL** sur le champ de la clef étrangère ça veut dire que l'on veut absolument qu'il y ait un lien vers une autre table.
 
 Si on met **NULL**, ça signifie qu'il peut y avoir des enregistrements qui n'ont pas de lien vers une autre table.
@@ -1241,7 +1251,7 @@ LIMIT 50;
 Nous aurons les 50 premiers pays classés par ordre alphabétique.
 Cette requète pourrait s'écrire de la manière suivante en faisant: LIMIT 0,50:
 - Où 0 est la borne inférieure non comprise.
-- 50 est la borne supérieure comprise.
+- 50 est le nombre d'enregistrements à prendre.
 
 Utiliser LIMIT avec un interval peut-être très utile quand on veut paginer les résultats d'une recherche. Il arrive souvent que l'on doive cliquer sur une flèche pour avoir les résultats suivant. Par exemple 10 résultats par page.
 
@@ -1260,17 +1270,91 @@ Use Pays;
 SELECT *
 FROM Pays
 ORDER BY Name
-LIMIT 10, 20;
+LIMIT 10, 10;
 ```
 Etc...
 
-## 14. ALTER TABLE
+## 14. DROP TABLE
+**DROP TABLE** supprime complètement une table. 
+```sql
+DROP TABLE Joueur;
+```
+Le SGBD supprimera la table Joueur.
+Cependant, si nous essayons de supprimer la table Equipe
+```sql
+DROP TABLE Equipe;
+```
+Le SGBD nous donnera l'erreur suivante:
+> ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails
+
+Le SGBD nous indique qu'il ne peut pas supprimer la table Equipe car il y a une contrainte de clef étrangère de la table Joueur qui pointe sur la table Equipe.
+
+## 15. TRUNCATE 
+**TRUNCATE** supprime toutes les données d'une table. A la différence de **DROP TABLE** qui supprime toute la table.
+```sql
+TRUNCATE Joueur;
+```
+Comme pour **DROP TABLE**, s'il y a une clef étrangère qui référence la table sur laquelle on veut appliquer un **TRUNCATE**, le SGBD ne nous permettra pas de le faire. 
+
+## 16. ALTER TABLE
+### 16.1 Ajouter une colonne - ADD
+Soit la table suivante:
+```sql
+CREATE TABLE Eleve (
+    IdEleve int NOT NULL AUTO_INCREMENT,
+    Prenom varchar(20) NOT NULL,
+    Nom varchar(20) NOT NULL,
+    Sexe char(1) NOT NULL CHECK(Sexe IN ('M','F'))
+);
+```
+Si l'on veut ajouter la colonne Tel à la table Eleve, on fera de la sorte:
+```sql
+ALTER TABLE Eleve
+ADD Tel VARCHAR(30) NULL,
+ADD Tel2 VARCHAR(30) NULL;
+```
+
+### 16.2 Changer le type d'une colonne - MODIFY COLUMN
+Si l'on veut mettre 30 caractères pour le champ Prenom au lieu des 20 définis.
+```sql
+ALTER TABLE Eleve
+MODIFY COLUMN Prenom VARCHAR(30);
+```
+Dans d'autres bases de données que MySQL ça peut être ALTER COLUMN. 
+
+## 16.3 Supprimer le type d'une colonne - DROP COLUMN
+On supprime une colonne d'une table.
+```sql
+ALTER TABLE Eleve
+DROP COLUMN Tel2;
+```
+Attention que si vous avez des enregistrements, vous risquez bien entendu la perte de données.
+
+## 17. CHECK - Validation
+Lors de la définition d'un champ, il peut être utile de directement vérifier la validité d'un champ. Par exemple le sexe d'une personne doit être soit F ou M et le code postal doit être compris entre 1000 et 9992.
+
+```sql
+CREATE TABLE Eleve (
+    IdEleve int NOT NULL AUTO_INCREMENT,
+    Prenom varchar(20) NOT NULL,
+    Nom varchar(20) NOT NULL,
+    Sexe char(1) NOT NULL CHECK(Sexe IN ('M','F')),
+    Rue varchar(50) NOT NULL,
+    Numero varchar(5) NULL,
+    Boite varchar(3) NULL,
+    CP int NOT NULL CHECK(CP BETWEEN 1000 AND 9992),
+    Localite varchar(30) NOT NULL
+);
+```
+Evidemment cette validation devrait être faite en plus depuis le programme qui utilise la base de données mais si la validation n'est pas implémentée, MySQL veillera aux grains.
+
+Comme je vous l'ai déjà dit, certains développeurs vous diront que les règles de gestion n'ont pas sa place dans la définition d'une table... Pour ma part, le SGBD le permet, je l'utilise. ;-)
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
-
+<!--
 ## 15. Différents type de jointures: INNER, LEFT, RIGHT, FULL
 ![](https://sql.sh/wp-content/uploads/2014/06/sql-join-infographie.png)
-
+-->
 
 ---
 _[Eqla](http://www.eqla.be) 2021 - Cours d'introduction aux SGBD_

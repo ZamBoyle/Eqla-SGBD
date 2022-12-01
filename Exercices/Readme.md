@@ -43,6 +43,7 @@
 - [Exercice n°31 - UPDATE](#exercice-n31---update)
 - [Exercice n°32 - UPDATE](#exercice-n32---update)
 - [Exercice n°33 - DELETE](#exercice-n33---delete)
+- [Exercice n°34](#exercice-n34)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -402,7 +403,11 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 6. Mettez à jour la table joueur en tenant compte de ce changement de club.
 
 ## Exercice n°33 - DELETE
-4. Copiez les insertions suivantes:
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+5. Copiez les insertions suivantes:
 ```sql
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Irène', 'Link', '1974-11-26', 1);
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Andréanne', 'Kempstone', '1999-12-23', 1);
@@ -433,16 +438,8 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Céline', 'Cz
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Mélinda', 'Pedican', '1995-05-04', 2);
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'McGiffin', '1982-06-25', 1);
 ```
-5. Supprimer les enregistrements qui respectent la condition suivante: Les personnes nées avant le 1er janvier 1991 et nées après le 31 décembre 1979.
-6. Supprimer tous les enregistrements qui respectent la condition suivante: Dont le nom de famille commence par M ou le prénom se termine par e.
-7. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 3. 
+6. Supprimer les enregistrements qui respectent la condition suivante: Les personnes nées avant le 1er janvier 1991 et nées après le 31 décembre 1979.
+7. Supprimer tous les enregistrements qui respectent la condition suivante: Dont le nom de famille commence par M ou le prénom se termine par e.
+8. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 3.
 
-
-
-
-
-
-  
-
-
-
+## Exercice n°34

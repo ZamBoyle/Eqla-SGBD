@@ -36,4 +36,89 @@ C'est une proposition, pas une obligation. ;-)
 12. Affichez les noms de pays où le code pays est compris dans cette liste de valeurs: BE, FR, LU, NL.
 13. 
 
-## Exercice 2 - DB BlindCode
+## Exercice 2 - CREATION de la DB Biblio
+### 1. Intro
+Ici le but de l'exercice est de modéliser les tables pour la gestion des emprunts de livres dans une bibliothèques.
+
+Nous allons y aller lentement et petit à petit on va complexifier aux prochains exercices.
+
+### 2. Création de la base de données
+Premièrement, vous allez donc créer une base de données nommée Biblio.
+
+### 3. Créations des tables
+Je ne vais pas vous donner les clefs primaires et étrangères, vous devrez les trouver.
+
+Je ne vous donnerai pas l'ordre de création des tables non plus. Vous êtes grands maintenant. :-)
+#### 3.1 Table Livre
+Vous allez créez la table **Livre** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
+- Titre
+- Son ISBN
+- Langue du livre
+- Année de publication
+- Nombre de pages
+- Nombre d'exemplaires
+- Date achat
+
+Un livre est écrit par un seul auteur.
+Un livre porte sur un thème.
+Un livre peut être emprunté 0 ou plusieurs fois.
+
+#### 3.2 Table Auteur
+Vous allez créez la table **Auteur** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
+- Le nom 
+- Le prenom
+- La date de naissance
+- La nationalité
+
+Un auteur peut avoir écrit 0 ou plusieurs livres.
+
+#### 3.3 Table Theme
+Vous allez créez la table **Theme** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
+- Libellé
+
+Un thème porte sur 0 ou plusieurs livres.
+
+#### 3.4 Table Lecteur
+Vous allez créez la table **Lecteur** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
+- Nom
+- Prenom
+- Naissance
+
+Un lecteur a emprunté 0 ou plusieurs livres.
+
+### 3.5 Table Emprunt
+Vous allez créez la table **Emprunt** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
+- Date début.
+- Date fin.
+- Rendu (O/N).
+
+Un livre est emprunté par un et un seul lecteur.
+Un emprunt concerne 1 et seul livre.
+
+### 4. Insertion des données
+A nouveau, vous devez trouvez l'ordre d'insertion dans les bases de données.
+Rappelez-vous l'exercice sur les joueurs de foot. Pour pouvoir ajouter un joueur on devait avoir créé avant l'équipe dans laquelle il joue (IdEquipe).
+
+#### 4.1 Ajout de livres dans la table Livre
+Ajoutez 3 livres.
+
+#### 4.2 Ajout de lecteurs dans la table Lecteur
+Ajoutez 5 lecteurs.
+
+#### 4.3 Ajout d'emprunts dans la table Emprunt
+Ajoutez 3 Emprunts par des lecteurs différents et des livres différents.
+
+#### 4.4 Ajout de thèmes dans la table Theme
+Ajoutez 5 thèmes: Programmation, Roman, Science-Fiction, Thriller et Policier.
+
+#### 4.5 Ajout de lecteurs dans la table Lecteur
+Ajoutez 5 auteurs.
+
+## Exercice 2 - CREATION de la DB Biblio2
+- La différence entre cette base de données (Biblio2) et Biblio c'est qu'un livre peut avoir un ou plusieurs auteurs.
+- Une fois que vous aurez trouvé comment faire, pour deux des précédents livres faites en sorte qu'ils aient 2 auteurs.
+- Ne pas ajouter un champ IdAuteur2 ! Je vous connais hein ! :-)
+
+
+
+
