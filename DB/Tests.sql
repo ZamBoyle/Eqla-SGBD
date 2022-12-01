@@ -22,7 +22,7 @@ CREATE TABLE Joueur
     Nom varchar(30) NOT NULL,
     Prenom varchar(30) NOT NULL,
     DateNaissance DATE NOT NULL,
-    IdEquipe int NOT NULL references Equipe(IdEquipe)
+    IdEquipe int NOT NULL FOREIGN KEY REFERENCES Equipe(IdEquipe)
 );
 
 

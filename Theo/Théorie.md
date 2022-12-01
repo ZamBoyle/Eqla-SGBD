@@ -1225,13 +1225,13 @@ Dans l'ordre on devra procéder de la sorte:
 En effet, Un commentaire est lié à un post et a utilisateur. Et un post est lié à un utilisateur.
 Car ces tables contiennent des références de l'id de l'utilisateur.
 ```sql
-DELETE commentaire
+DELETE FROM commentaire
 WHERE IdUtilisateur=45;
 
-DELETE post
+DELETE FROM post
 WHERE IdUtilisateur=45;
 
-DELETE Utilisateur
+DELETE FROM Utilisateur
 WHERE IdUtilisateur=45;
 ```
 Idéalement il faudrait effectuer ses trois opérations consécutives dans une [transaction](https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1970063-transactions)...
