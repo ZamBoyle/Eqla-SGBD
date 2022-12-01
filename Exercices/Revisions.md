@@ -115,9 +115,8 @@ Ajoutez 5 thèmes: Programmation, Roman, Science-Fiction, Thriller et Policier.
 Ajoutez 5 auteurs.
 
 ## Exercice 2 - CREATION de la DB Biblio2
-- La différence entre cette base de données (Biblio2) et Biblio c'est qu'un livre peut avoir un ou plusieurs auteurs.
+- La différence entre cette base de données (Biblio2) et Biblio c'est que maintenant un livre peut avoir un ou plusieurs auteurs.
 - Une fois que vous aurez trouvé comment faire, pour deux des précédents livres faites en sorte qu'ils aient 2 auteurs.
-- Ne pas ajouter un champ IdAuteur2 ! Je vous connais hein ! :-)
 
 
 
