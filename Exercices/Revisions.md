@@ -1,4 +1,5 @@
 # Exercices de révisions.
+<!-->
 Vu que certains mettent leurs exercices dans des fichiers et que je demande parfois par exercice plusieurs choses, on peut utiliser la commande SELECT pour afficher quelque chose sans l'utilisation de FROM.
 Exemple:
 ```sql
@@ -20,7 +21,7 @@ SELECT '1.3' AS Exercice , Pays.name FROM Pays WHERE code='be'\p;
 ```
 
 C'est une proposition, pas une obligation. ;-)
-
+-->
 ## Exercice 1 - DB Pays
 1. Afficher la colonne name que l'on renommera Nom à l'affichage de la table Pays où les pays ont un nom commençant par 'u';
 2. Reprenez la requête précédente et classer par ordre décroissant les noms de pays.
