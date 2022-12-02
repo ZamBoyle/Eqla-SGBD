@@ -10,7 +10,7 @@ CREATE DATABASE Tests;
 use Tests;
 CREATE TABLE Equipe
 (
-		IdEquipe int NOT NULL primary key auto_increment,
+		Id int NOT NULL primary key auto_increment,
         NomClub varchar(30) NOT NULL,
         Localite varchar(30) NOT NULL,
         Division int not null
@@ -18,11 +18,12 @@ CREATE TABLE Equipe
 
 CREATE TABLE Joueur
 (
-	IdJoueur int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	Id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Nom varchar(30) NOT NULL,
     Prenom varchar(30) NOT NULL,
     DateNaissance DATE NOT NULL,
-    IdEquipe int NOT NULL FOREIGN KEY REFERENCES Equipe(IdEquipe)
+    IdEquipe int NOT NULL,
+    FOREIGN KEY (IdEquipe) REFERENCES Equipe(Id)
 );
 
 

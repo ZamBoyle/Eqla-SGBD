@@ -1350,6 +1350,24 @@ Evidemment cette validation devrait être faite en plus depuis le programme qui 
 
 Comme je vous l'ai déjà dit, certains développeurs vous diront que les règles de gestion n'ont pas sa place dans la définition d'une table... Pour ma part, le SGBD le permet, je l'utilise. ;-)
 
+## 18. Nom de la contrainte de Clef étrangère 
+Lorsque nous avons vu les clefs étrangères, je n'ai pas été expliqué qu'une clef étrangère est une contrainte (CONSTRAINT). Et que par dédaut quand on met une clef étrangère, MySQL sait que c'est une contrainte. Cette contrainte peut avoir un nom et MySQL en définiera une pour nous par défaut.
+
+Par exemple
+```sql
+CREATE TABLE livre(
+  id INT UNSIGNED PRIMARY KEY AUT_INCREMENT,
+  titre VARCHAR(30) NOT NULL,
+  auteur_id INT NOT NULL,
+  CONSTRAINT FOREIGN KEY (auteur_id) REFERENCES auteur(id)
+);
+
+
+```
+
+
+
+
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 <!--
 ## 15. Différents type de jointures: INNER, LEFT, RIGHT, FULL
