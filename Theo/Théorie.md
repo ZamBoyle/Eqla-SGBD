@@ -1350,8 +1350,93 @@ Evidemment cette validation devrait être faite en plus depuis le programme qui 
 
 Comme je vous l'ai déjà dit, certains développeurs vous diront que les règles de gestion n'ont pas sa place dans la définition d'une table... Pour ma part, le SGBD le permet, je l'utilise. ;-)
 
-## 18. Nom de la contrainte de Clef étrangère 
-Lorsque nous avons vu les clefs étrangères, je n'ai pas été expliqué qu'une clef étrangère est une contrainte (CONSTRAINT). Et que par dédaut quand on met une clef étrangère, MySQL sait que c'est une contrainte. Cette contrainte peut avoir un nom et MySQL en définiera une pour nous par défaut.
+## 18. Les indexes
+Comme vous le savez MySQL optimise les requêtes avec des PRIMARY KEY, FOREIGN KEY et des champs UNIQUE. Tout simplement car MySQL crée ce que l'on appelle un index. Un index permet de vite retrouver une donnée en fonction d'un index.
+
+Maintenant, il peut arriver que de nombreuses requêtes récurentes sur un même champ posent un problème de rapidité/performance. De là, vient alors la question de mettre ou non un index sur ce champ.
+
+Ces problèmes de performance n'ont lieu bien entendu que pour des bases de données +/- importantes.
+
+Par exemple dans une base de données récupérée sur GitHub, j'ai une table employees qui contient 300 mille employés. Si l'on fait une recherche sur last_name='Simmel' celle-ci va nous prendre 0,117ms
+
+Si je fais une analyse de la requête avec:
+```sql
+EXPLAIN SELECT * FROM employees WHERE last_name='Simmel';
++------+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+| id   | select_type | table     | type | possible_keys | key  | key_len | ref  | rows   | Extra       |
++------+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+|    1 | SIMPLE      | employees | ALL  | NULL          | NULL | NULL    | NULL | 299423 | Using where |
++------+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+```
+On voit qu'il va TOUT (ALL) analyser de la table employees, qu'il n'y a pas de clef, qu'il y a 299423 lignes et qu'il utilisera un WHERE;
+
+## 18.1 Création d'un INDEX - CREATE INDEX
+Je vais créer maintenant un index sur la colonne last_name
+```sql
+CREATE INDEX employees_last_name
+ON employees(last_name);
+```
+La création de l'index réclame un nom d'index, ici: ***employees_last_name*** on doit indiquer sur (ON) quelle table (employees) on crée l'index et on fournit entre parenthèses le nom du champ: last_name.
+
+Je relance la requête sur last_name='Simmel' et la requête ne met que 0,001 ms. Quelle différence !
+Voyons le plan d'éxécution:
+```sql
+EXPLAIN SELECT * FROM employees WHERE last_name='Simmel';
++------+-------------+-----------+------+---------------------+---------------------+---------+-------+------+-----------------------+
+| id   | select_type | table     | type | possible_keys       | key                 | key_len | ref   | rows | Extra                 |
++------+-------------+-----------+------+---------------------+---------------------+---------+-------+------+-----------------------+
+|    1 | SIMPLE      | employees | ref  | employees_last_name | employees_last_name | 66      | const | 167  | Using index condition |
++------+-------------+-----------+------+---------------------+---------------------+---------+-------+------+-----------------------+
+```
+On voit qu'il va analyser par référence (REF), qu'il y a une clef/index (employees_last_name) Que la référence est de type constante et qu'il va utiliser un index avec condition (WHERE). Il ne va analyser que 167 enregistrement ce qui correspond au nombre total où last_name='Simmel'. Ce qui est nettement mieux que sur 299423 enregistrements quand nous n'avions pas d'index sur le champ last_name.
+
+### 18.2 Suppression d'un INDEX - DROP INDEX
+La suppresion d'un index est assez simple. On supprimer l'index par son nom et sur quelle table il porte.
+```sql
+DROP INDEX employees_last_name ON employees;
+```
+
+## 19. Naming convention - Covention de nommage
+Au début de ce cours, je n'ai donné aucune discipline de nommage des tables, champs, des clefs, des contraintes, etc.  
+
+Avant d'appliquer telle ou telle convention de nommage. Le plus important est de rester cohérent partout. Si vous avez votre habitude et que vous restez fidèle à vous-même gardez cette manière de nommer qui vous correspond.
+
+Cependant, il est intéressant de se forcer d'utiliser une autre méthode de nommage car si vous travaillez un jour dans le monde du dev, il y aura des conventions de nommage.
+
+### 19.1 Règles communes
+Une règle qui va s'appliquer partout.
+- **Aucun accent !**
+- Ne pas utiliser de mot réservé. Par exemple ne pas nommer un champ date car il existe le type DATE.
+- Eviter les majuscules.
+- Si vous devez écrire plusieurs mots par exemple DateNaissance. Utilisez les underscores: date_naissance 
+
+### 19.1 Nom d'une base de données
+On peut utiliser le pluriel dans le nom de la base de données.
+<u>Exemples</u>:
+- inscriptions
+- voiries
+- jeux
+- cryptos
+
+Tout dépend du sujet:
+- bibliotheque
+- comptabilite
+
+### 19.2 Nom d'une table
+- Le nom d'une table doit être écrit au singulier mais ça peut être sujet à de lourds débats. Par exemple, WordPress et Joomla ont pris le parti de mettre au pluriel. Cependant, lorsque vous utiliserez un ORM il sera plus simple de manipuler vos données.
+Un ORM (Object Relational Mapping) peut faire correspondre une classe à une table. Dès lors, lorsque nous voudrons créer une nouvelle voiture: Car car = new Car("Peugeot 207",2017); Il sera aisé d'ajouté une voiture dans la base de données.
+- Dans certains cas, préfixer le nom des tables: Si vous avez d'autres tables dans votre base de données crées par un autre soft. joomla et WordPress préfixent leurs tables. Exemples: jos_users, wp_users. De cette manière si une application vient se greffer à leur base de données, l'application pourra aussi préfixer ses tables pour éviter une ambiquité par exemple avec la table users: app_users;
+
+### 19.3 Nom d'une clef primaire
+- id est très souvent utilisé pour une clef primaire. Si vous ajoutez par exemple id_eleve. On se doute que c'est l'id de la table eleve. Ca n'apporte rien à la clef. Autant faire au plus simple.
+
+### 19.4 Nom d'une clef étrangère
+Pour le nom de la clef étrangère, elle s'écrit **nomtable_clefprimaire**, par exemple **equipe_id** où equipe est le nom de la table et id la clef primaire.
+
+### 19.5 Nom des champs
+
+### 18.3 Nom de la contrainte de Clef étrangère 
+Lorsque nous avons vu les clefs étrangères, je n'ai pas été expliqué qu'une clef étrangère est une contrainte (CONSTRAINT). Et que par défaut quand on met une clef étrangère, MySQL sait que c'est une contrainte. Cette contrainte peut avoir un nom et MySQL en définira une pour nous par défaut.
 
 Par exemple
 ```sql
@@ -1365,7 +1450,12 @@ CREATE TABLE livre(
 De plus, il est conseillé pour le nom de la colonne de clef étrangère de la nommée: table_primarykey
 Soit auteur_id où auteur est le nom de la table et id la clef primaire.
 
-
+parcours innovant
+point p12/35. en discuter communite de pilotage. 
+appel à projet forem      dossier candidature 30 juin.
+LLN python 
+sandrine goos/ janvier / cb stagiaires
+attentes ? 
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 <!--
