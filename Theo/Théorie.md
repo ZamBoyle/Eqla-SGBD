@@ -1356,15 +1356,14 @@ Lorsque nous avons vu les clefs étrangères, je n'ai pas été expliqué qu'une
 Par exemple
 ```sql
 CREATE TABLE livre(
-  id INT UNSIGNED PRIMARY KEY AUT_INCREMENT,
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   titre VARCHAR(30) NOT NULL,
   auteur_id INT NOT NULL,
-  CONSTRAINT FOREIGN KEY (auteur_id) REFERENCES auteur(id)
+  CONSTRAINT fk_livre_auteur_id FOREIGN KEY (auteur_id) REFERENCES auteur(id)
 );
-
-
 ```
-
+De plus, il est conseillé pour le nom de la colonne de clef étrangère de la nommée: table_primarykey
+Soit auteur_id où auteur est le nom de la table et id la clef primaire.
 
 
 
