@@ -1406,8 +1406,9 @@ Cependant, il est intéressant de se forcer d'utiliser une autre méthode de nom
 ### 19.1 Règles communes
 Une règle qui va s'appliquer partout.
 - **Aucun accent !**
+- Pas de chiffres.
 - Ne pas utiliser de mot réservé. Par exemple ne pas nommer un champ date car il existe le type DATE.
-- Eviter les majuscules.
+- Eviter les majuscules. Utilisez les miniscules.
 - Si vous devez écrire plusieurs mots par exemple DateNaissance. Utilisez les underscores: date_naissance 
 
 ### 19.1 Nom d'une base de données
@@ -1418,7 +1419,7 @@ On peut utiliser le pluriel dans le nom de la base de données.
 - jeux
 - cryptos
 
-Tout dépend du sujet:
+<u>Tout dépend du sujet</u>:
 - bibliotheque
 - comptabilite
 
@@ -1428,14 +1429,17 @@ Un ORM (Object Relational Mapping) peut faire correspondre une classe à une tab
 - Dans certains cas, préfixer le nom des tables: Si vous avez d'autres tables dans votre base de données crées par un autre soft. joomla et WordPress préfixent leurs tables. Exemples: jos_users, wp_users. De cette manière si une application vient se greffer à leur base de données, l'application pourra aussi préfixer ses tables pour éviter une ambiquité par exemple avec la table users: app_users;
 
 ### 19.3 Nom d'une clef primaire
-- id est très souvent utilisé pour une clef primaire. Si vous ajoutez par exemple id_eleve. On se doute que c'est l'id de la table eleve. Ca n'apporte rien à la clef. Autant faire au plus simple.
+**id** est très souvent utilisé pour une clef primaire. Si vous ajoutez par exemple id_eleve. On se doute que c'est l'id de la table eleve. Ca n'apporte rien à la clef. Autant faire au plus simple.
 
 ### 19.4 Nom d'une clef étrangère
-Pour le nom de la clef étrangère, elle s'écrit **nomtable_clefprimaire**, par exemple **equipe_id** où equipe est le nom de la table et id la clef primaire.
+Pour le nom de la clef étrangère, elle s'écrit **nomtable_clefprimaire**, par exemple **equipe_id** où **equipe** est le nom de la table et **id** la clef primaire de la table equipe.
 
 ### 19.5 Nom des champs
+- Les noms doivent être faciles à comprendre. Et ne pas être trop vagues.
+Mettre par exemple un champ date sur une table livre est trop imprécis. On utilisera par exemple date_acquision, date_edition, etc.
+- Pour les champs booléens (TRUE ou FALSE) on indique l'état: au lieu d'actif on mettra is_actif, au lieu de deleted on mettra is_deleted.
 
-### 18.3 Nom de la contrainte de Clef étrangère 
+### 19.6 Nom de la contrainte de Clef étrangère 
 Lorsque nous avons vu les clefs étrangères, je n'ai pas été expliqué qu'une clef étrangère est une contrainte (CONSTRAINT). Et que par défaut quand on met une clef étrangère, MySQL sait que c'est une contrainte. Cette contrainte peut avoir un nom et MySQL en définira une pour nous par défaut.
 
 Par exemple
@@ -1447,15 +1451,9 @@ CREATE TABLE livre(
   CONSTRAINT fk_livre_auteur_id FOREIGN KEY (auteur_id) REFERENCES auteur(id)
 );
 ```
-De plus, il est conseillé pour le nom de la colonne de clef étrangère de la nommée: table_primarykey
-Soit auteur_id où auteur est le nom de la table et id la clef primaire.
+Donner un nom à une contrainte permet d'avoir des messages beaucoup plus compréhensibles si ceux-ci utilisent le nom de la contraite de clef étrangère.
 
-parcours innovant
-point p12/35. en discuter communite de pilotage. 
-appel à projet forem      dossier candidature 30 juin.
-LLN python 
-sandrine goos/ janvier / cb stagiaires
-attentes ? 
+
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 <!--
