@@ -1451,7 +1451,40 @@ CREATE TABLE livre(
   CONSTRAINT fk_livre_auteur_id FOREIGN KEY (auteur_id) REFERENCES auteur(id)
 );
 ```
-Donner un nom à une contrainte permet d'avoir des messages beaucoup plus compréhensibles si ceux-ci utilisent le nom de la contraite de clef étrangère.
+Donner un nom à une contrainte permet:
+- d'avoir des messages beaucoup plus compréhensibles si ceux-ci utilisent le nom de la contraite de clef étrangère.
+- de modifier une contrainte via un ALTER TABLE. Par exemple: ALTER TABLE eleve DROP CONSTRAINT fk_eleve_classe_id
+
+## 20. Les fonctions
+Comme pour les langages de programmation, nous pouvons utiliser et créer des fonctions.
+
+Vous avez déjà utilisé des fonctions: MIN, MAX, AVG, etc.
+
+MariaDB fournit nativement pas mal de fonctions intéressantes:
+- sur les chaînes de caractères: https://mariadb.com/kb/en/string-functions/
+- sur les dates: https://mariadb.com/kb/en/date-time-functions/
+- sur les fonctions d'agrégats: https://mariadb.com/kb/en/aggregate-functions/
+- sur les fonctions mathématiques: https://mariadb.com/kb/en/numeric-functions/
+- etc...  
+
+Pour avoir une liste complète: https://mariadb.com/kb/en/built-in-functions/
+
+### 20.1 Créer une fonction - CREATE FUNCTION
+On va prendre le cas où on souhaite souhaite afficher la date du jour.
+
+```sql
+CREATE FUNCTION SHOW_DATE()
+BEGIN
+END
+```
+
+### 20.2 Supprimer une fonction - DROP FUNCTION
+
+### 20.3 Modifier une fonction - ALTER FUNCTION
+## 21. Les Procédures stockées
+
+
+## 22. Les vues - VIEW
 
 
 

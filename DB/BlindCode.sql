@@ -60,8 +60,8 @@ CREATE TABLE Eleve (
     Tel varchar(20) NULL,
     GSM varchar(20),
     IdClasse int NOT NULL,
-    PRIMARY KEY (IdEleve),
-    FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
+    CONSTRAINT pk_Eleve_IdEleve PRIMARY KEY (IdEleve),
+    CONSTRAINT fk_Eleve_Classe_IdClasse FOREIGN KEY (IdClasse) REFERENCES Classe(IdClasse)
 );
 
 /*
