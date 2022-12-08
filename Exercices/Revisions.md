@@ -1,5 +1,5 @@
 # Exercices de révisions.
-<!-->
+<!--
 Vu que certains mettent leurs exercices dans des fichiers et que je demande parfois par exercice plusieurs choses, on peut utiliser la commande SELECT pour afficher quelque chose sans l'utilisation de FROM.
 Exemple:
 ```sql
@@ -129,11 +129,11 @@ Ajoutez 5 auteurs.
 - La différence entre cette base de données (biblio2) et biblio c'est que maintenant un livre peut avoir un ou plusieurs auteurs.
 - Une fois que vous aurez trouvé comment faire, pour deux des précédents livres faites en sorte qu'ils aient 2 auteurs.
 
-## Exercice 4 - Naming Convention
-- Utiliser la convention de nommage pour toute la création de la base de données biblio.
+## Exercice 4 - Naming Convention - CREATION de la DB Biblio3
+- Utiliser la convention de nommage pour toute la création de la base de données biblio3 en vous basant sur biblio2.
 
-## Exercice 5 - Table Exemplaire - CREATION de la DB Biblio3
-- La différence entre biblio2 et biblio3, c'est que maintenant il y a une table exemplaire.
+## Exercice 5 - Table Exemplaire - CREATION de la DB Biblio4
+- La différence entre biblio3 et biblio4, c'est que maintenant il y a une table exemplaire.
 
 ### 5.1 Table exemplaire
 Vous allez créez la table **exemplaire** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
