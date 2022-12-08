@@ -32,3 +32,11 @@ INSERT INTO Equipe(NomClub, Localite, Division) VALUES ('Standard','Liège',3);
 INSERT INTO Joueur(Nom, Prenom, DateNaissance, IdEquipe) VALUES('Colin','Pierre', '2018/07/22',1);
 INSERT INTO Joueur(Nom, Prenom, DateNaissance, IdEquipe) VALUES('Jacques','Gabriel', '2014/08/22',2);
 INSERT INTO Joueur(Nom, Prenom, DateNaissance, IdEquipe) VALUES('Dupont','Philip', '1991/12/13',2);
+
+
+-- Combien de joueurs ont moins de 20 ans ?
+SELECT COUNT(*) FROM Joueur WHERE DateNaissance > DATE_SUB(NOW(), INTERVAL 20 YEAR);
+
+
+
+

@@ -1356,7 +1356,7 @@ Evidemment cette validation devrait être faite en plus depuis le programme qui 
 Comme je vous l'ai déjà dit, certains développeurs vous diront que les règles de gestion n'ont pas sa place dans la définition d'une table... Pour ma part, le SGBD le permet, je l'utilise. ;-)
 
 ## 18. Les indexes
-Comme vous le savez MySQL optimise les requêtes avec des PRIMARY KEY, FOREIGN KEY et des champs UNIQUE. Tout simplement car MySQL crée ce que l'on appelle un index. Un index permet de vite retrouver une donnée en fonction d'un index.
+Comme vous le savez MySQL optimise les requêtes avec des PRIMARY KEY, FOREIGN KEY et des champs UNIQUE. Tout simplement car MySQL crée ce que l'on appelle un index. Un index permet de vite retrouver une donnée en fonction d'un critère de recherche.
 
 Maintenant, il peut arriver que de nombreuses requêtes récurentes sur un même champ posent un problème de rapidité/performance. De là, vient alors la question de mettre ou non un index sur ce champ.
 
@@ -1457,7 +1457,7 @@ CREATE TABLE livre(
 );
 ```
 Donner un nom à une contrainte permet:
-- d'avoir des messages beaucoup plus compréhensibles si ceux-ci utilisent le nom de la contraite de clef étrangère.
+- d'avoir des messages d'erreur beaucoup plus compréhensibles si ceux-ci utilisent le nom de la contraite de clef étrangère.
 - de modifier une contrainte via un ALTER TABLE. Par exemple: ALTER TABLE eleve DROP CONSTRAINT fk_eleve_classe_id
 
 ## 20. Les fonctions

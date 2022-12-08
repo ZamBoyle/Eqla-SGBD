@@ -123,3 +123,17 @@ VALUES('BEN AHMED','Mounir','1991-01-3','786598798787','1','Belge','Rue de l''Et
 DROP FUNCTION IF EXISTS GetAge;
 CREATE FUNCTION GetAge(birthdate Date) returns int DETERMINISTIC
 return YEAR(CURDATE())-YEAR(birthdate);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -134,3 +134,11 @@ INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUE
 INSERT INTO EleveClasse (IdEleve,IdClasse, AnneeScolaire, DateInscription) VALUES (10,1,2020,'2020/01/01');
 
 
+-- nombre d'élèves ayant la nationalité belge
+SELECT COUNT(*) FROM Eleve WHERE Nationalite = 'Belge';
+
+
+
+
+
+

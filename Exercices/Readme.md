@@ -379,7 +379,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Mettre à jour le joueur où les champs sont les suivants:
    - Nom: Dupont
    - Prenom: Philip
@@ -390,7 +390,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Mettre à jour le joueur dont l'idjoueur est = 3.
 6. Changez-lui sa date de naissance en '1974/03/07' et son prénom deviendra 'Philipo';
 
@@ -398,7 +398,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Suite à l'arrêt du club d'Andenne, les joueurs de ce club feront dérénavant partie du Standard.
 6. Mettez à jour la table joueur en tenant compte de ce changement de club.
 
@@ -406,7 +406,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Copiez les insertions suivantes:
 ```sql
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Irène', 'Link', '1974-11-26', 1);
@@ -446,7 +446,7 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Créez une fonction qui s'appellera hello_world.
 6. Elle retournera la phrase 'Hello Word from SQL !'
 
@@ -454,7 +454,7 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Créez une fonction qui s'appellera hello.
 6. Elle recevra deux paramètres de type VARCHAR(20).
 7. Le premier se nommera first_name, le second last_name.
@@ -464,15 +464,16 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Créez une fonction qui s'appellera remove_tvac.
 6. Elle aura un paramètre nommé prix_tvac.
 7. Elle aura un second paramètre nommé taux_tva.
 8. La fonction retournera le prix sans tva.
-
+9. Soit le prix_tvac = 80
 > prix_htva = prix_tvac/(taux_tva+1)
 > prix_htva = 80/1.21
 > prix_htva = 66,1157
+10. Votre fonction retournera donc 66,1157.
 
 
 
