@@ -1,3 +1,6 @@
+SELECT * FROM Localite WHERE Longitude IN (SELECT Longitude FROM Localite GROUP BY Longitude HAVING COUNT(*) > 1) ORDER BY Longitude, Commune
+
+
 SELECT continent.name, count(*) AS NB FROM continent INNER JOIN
 Pays ON Pays.continent = continent.code GROUP BY name HAVING NB>=50;
 

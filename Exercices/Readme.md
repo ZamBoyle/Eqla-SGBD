@@ -442,4 +442,38 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 7. Supprimer tous les enregistrements qui respectent la condition suivante: Dont le nom de famille commence par M ou le prénom se termine par e.
 8. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 3.
 
-## Exercice n°34
+## Exercice n°34 - FUNCTIONS
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+5. Créez une fonction qui s'appellera hello_world.
+6. Elle retournera la phrase 'Hello Word from SQL !'
+
+## Exercice n°35 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+5. Créez une fonction qui s'appellera hello.
+6. Elle recevra deux paramètres de type VARCHAR(20).
+7. Le premier se nommera first_name, le second last_name.
+8. La fonction retournera par exemple 'Hello Johnny Piette !'
+
+## Exercice n°35 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use Exercice27.sql;**
+5. Créez une fonction qui s'appellera remove_tvac.
+6. Elle aura un paramètre nommé prix_tvac.
+7. Elle aura un second paramètre nommé taux_tva.
+8. La fonction retournera le prix sans tva.
+
+> prix_htva = prix_tvac/(taux_tva+1)
+> prix_htva = 80/1.21
+> prix_htva = 66,1157
+
+
+
+

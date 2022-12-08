@@ -713,17 +713,22 @@ GROUP BY Categorie ;
 ## 6Bis.1 HAVING
 Si l'on veut maintenant filtrer le résultat d'un regroupement (GROUP BY) on va utiliser le mot clé HAVING (qui peut se traduire par "ayant"). Donc pour rechercher sur un regroupement on utilise HAVING et non un WHERE. Si l'on utilise HAVING sans regroupement, celui-ci agira comme un WHERE classique.
 
-Soit afficher 
-
-
-
-
-
-
-
-
-
-
+Soit afficher les CP ayant plusieurs communes:
+```sql
+USE Localites;
+SELECT CP, COUNT(*) AS nb
+FROM Localite
+GROUP BY CP
+HAVING nb >1;
+```
+Ou bienn elle pourrait s'écrire ainsi
+```sql
+USE Localites;
+SELECT CP
+FROM Localite
+GROUP BY CP
+HAVING COUNT(*) >1;
+```
 ## 7. INNER JOIN: Jointure entre tables.
 Maintenant que nous savons lire/sélectionner des données depuis une table.
 Il est parfois nécessaire de lire les données depuis plusieurs tables en même temps. Et de n'afficher que certaines données de ces tables.
@@ -1468,14 +1473,40 @@ MariaDB fournit nativement pas mal de fonctions intéressantes:
 - etc...  
 
 Pour avoir une liste complète: https://mariadb.com/kb/en/built-in-functions/
-
-### 20.1 Créer une fonction - CREATE FUNCTION
-On va prendre le cas où on souhaite souhaite afficher la date du jour.
-
+### 20.1 FONCTION sans paramètre
+On va prendre le cas où d'une fonction sans paramètre.
+Soit la fonction whois_the_best()  :-)
 ```sql
-CREATE FUNCTION SHOW_DATE()
+USE BlindCode;
+CREATE FUNCTION whois_the_best() RETURNS VARCHAR(50)
+RETURN 'Johnny Piette';
+```
+
+On peut tester le résultat avec un simple SELECT:
+```sql
+SELECT whois_the_best();
+
++------------------+
+| whois_the_best() |
++------------------+
+| Johnny Piette    |
++------------------+
+1 row in set (0,001 sec)
+```
+
+### 20.2 FONCTION avec paramètres
+```sql
+USE Ventes;
+DELIMITER $$
+DROP FUNCTION IF EXISTS price_tvac;
+CREATE FUNCTION price_tvac(price FLOAT(5,2)) RETURNS FLOAT(5,2) 
 BEGIN
-END
+DECLARE price_tvac FLOAT(5,2);
+SET price_tvac=price+price*0.21;
+RETURN price_tvac;
+END;
+$$
+DELIMITER ;
 ```
 
 ### 20.2 Supprimer une fonction - DROP FUNCTION
