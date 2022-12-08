@@ -44,9 +44,10 @@ C'est une proposition, pas une obligation. ;-)
 4. Groupez les longitudes et leurs nombres. Le nombre sera affiché nb.
 5. Reprenez votre requête différente et ajoutez HAVING nb >1. Que se passe-t-il à votre avis ?
 
+<!--
 ### 1.3 DB BlindCode
 1. 
-
+-->
 ## Exercice 2 - CREATION de la DB Biblio
 ### 1. Intro
 Ici le but de l'exercice est de modéliser les tables pour la gestion des emprunts de livres dans une bibliothèques.
