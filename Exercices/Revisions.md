@@ -69,7 +69,6 @@ Vous allez créez la table **Livre** avec une clef primaire et peut-être une cl
 - Année de publication
 - Nombre de pages
 - Nombre d'exemplaires
-- Date achat
 
 Un livre est écrit par un seul auteur.
 Un livre porte sur un thème.
@@ -148,7 +147,8 @@ Un exemplaire correspond à 1 et 1 seul livre.
 Un exemplaire a été emprunté aucune fois ou plusieurs fois.
 
 ### 5.2 Table livre
-On supprimera de la table livre le champ: nombre d'exemplaires (pourquoi ?).
+On supprimera de la table livre le champ: nombre d'exemplaires (pourquoi ?)
+On supprimera de la table livre le champ date achat si vous l'aviez mis.
 
 Un livre peut avoir 1 ou plusieurs exemplaires.
 
