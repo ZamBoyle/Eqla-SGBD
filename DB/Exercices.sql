@@ -1032,3 +1032,7 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Laurélie', '
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Wá', 'Connah', '1995-03-24', 1);
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Kévina', 'Andriss', '1975-07-29', 1);
 insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Gwenaëlle', 'Wadhams', '1988-08-27', 1);
+
+
+
+

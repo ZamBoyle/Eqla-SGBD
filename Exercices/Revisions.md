@@ -157,6 +157,7 @@ La différence c'est que l'emprunt portera maintenant sur un exemplaire de livre
 
 Un emprunt porte sur 1 et 1 seul exemplaire.
 
+## Exercices
 
 
 
