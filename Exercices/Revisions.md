@@ -129,13 +129,26 @@ Ajoutez 5 auteurs.
 - La différence entre cette base de données (biblio2) et biblio c'est que maintenant un livre peut avoir un ou plusieurs auteurs.
 - Une fois que vous aurez trouvé comment faire, pour deux des précédents livres faites en sorte qu'ils aient 2 auteurs.
 
-## Exercice 4 - Naming Convention - CREATION de la DB Biblio3
+## Exercice 4 - ALTER TABLE & UPDATE
+### 4.1 UPDATE TABLE
+- Modifier la table lecteur et ajouter une colonne date_inscription.
+- Dans un premier temps, vous permettrez l'ajout de la valeur NULL.
+
+### 4.2  UPDATE
+- Ajoutez une date d'inscription à chaque lecteur.
+- La date_inscription sera différente pour chaque lecteur: Attention à votre à ce que votre UPDATE ne porte pas sur tous les enregistrements.
+
+## 4.3 ALTER TABLE
+- Modifier la table lecteur et modifier la colonne date_inscription.
+- Vous définirez que la colonne date_inscription ne permet pas les NULL
+
+## Exercice 5 - Naming Convention - CREATION de la DB Biblio3
 - Utiliser la convention de nommage pour toute la création de la base de données biblio3 en vous basant sur biblio2.
 
-## Exercice 5 - Table Exemplaire - CREATION de la DB Biblio4
+## Exercice 6 - Table Exemplaire - CREATION de la DB Biblio4
 - La différence entre biblio3 et biblio4, c'est que maintenant il y a une table exemplaire.
 
-### 5.1 Table exemplaire
+### 6.1 Table exemplaire
 Vous allez créez la table **exemplaire** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
 - reference_biblio
 - rayon
@@ -146,13 +159,13 @@ Vous allez créez la table **exemplaire** avec une clef primaire et peut-être u
 Un exemplaire correspond à 1 et 1 seul livre.
 Un exemplaire a été emprunté aucune fois ou plusieurs fois.
 
-### 5.2 Table livre
+### 6.2 Table livre
 On supprimera de la table livre le champ: nombre d'exemplaires (pourquoi ?)
 On supprimera de la table livre le champ date achat si vous l'aviez mis.
 
 Un livre peut avoir 1 ou plusieurs exemplaires.
 
-### 5.3 Table emprunt
+### 6.3 Table emprunt
 La différence c'est que l'emprunt portera maintenant sur un exemplaire de livre et nom directement sur le livre.
 
 Un emprunt porte sur 1 et 1 seul exemplaire.

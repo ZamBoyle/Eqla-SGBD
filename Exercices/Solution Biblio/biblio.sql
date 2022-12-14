@@ -2,7 +2,6 @@ DROP DATABASE IF EXISTS biblio;
 CREATE DATABASE biblio;
 USE biblio;
 
-
 CREATE TABLE auteur (
   id INT NOT NULL AUTO_INCREMENT,
   nom VARCHAR(50) NOT NULL,
@@ -22,14 +21,14 @@ CREATE TABLE theme (
 -- crée une table 'livre' liée à la table 'auteur' par la clé étrangère 'auteur_id'
 CREATE TABLE livre (
   id INT NOT NULL AUTO_INCREMENT,
-  titre VARCHAR(50) NOT NULL,
-  langue VARCHAR(50) NOT NULL,
-  annee_publication INT NOT NULL,
+  titre VARCHAR(1000) NOT NULL,
+  langue VARCHAR(50) NULL,
+  annee_publication INT NULL,
   nombre_pages INT NOT NULL,
   nombre_exemplaires INT NULL,
   code_isbn VARCHAR(50) NOT NULL,
   auteur_id INT NOT NULL,
-  theme_id INT NOT NULL,
+  theme_id INT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (auteur_id) REFERENCES auteur(id),
   FOREIGN KEY (theme_id) REFERENCES theme(id)
@@ -53,7 +52,7 @@ CREATE TABLE lecteur (
 CREATE TABLE emprunt (
   id INT NOT NULL AUTO_INCREMENT,
   date_emprunt DATE NOT NULL,
-  date_retour DATE NOT NULL,
+  date_retour DATE NULL,
   lecteur_id INT NOT NULL,
   livre_id INT NOT NULL,
   PRIMARY KEY (id),
@@ -62,8 +61,11 @@ CREATE TABLE emprunt (
 );
 
 
-source auteur;
+source auteur.sql;
 
-source theme;
-source livre.sql; 
+source theme.sql;
+source livre.sql;
 
+source lecteur.sql;
+
+source emprunt.sql;

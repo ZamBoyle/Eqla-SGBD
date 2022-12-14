@@ -1,0 +1,16 @@
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Leblanc', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Dupont', 'Jeanne', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Durand', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Martin', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Dubois', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Thomas', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Petit', 'Jean', '1980-01-01', 'Rue de la Paix', 1 , 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Robert', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Richard', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Leroy', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Moreau', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Simon', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Laurent', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Michel', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Lefebvre', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Lefevre', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
