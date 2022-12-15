@@ -18,16 +18,20 @@ BEGIN
     DECLARE i INT DEFAULT 1;
     DECLARE date_emprunt DATE;
     DECLARE date_retour DATE;
-    SET @nombre_lecteurs:=0;
-    SET @nombre_livres:=0;
-    SELECT COUNT(*) INTO @nombre_lecteurs FROM lecteur;
-    SELECT COUNT(*) INTO @nombre_livres FROM livre;
+    DECLARE nombre_lecteurs INT;
+    DECLARE nombre_livres INT;
+    DECLARE lecteur_id INT;
+    DECLARE livre_id INT;
+    SELECT COUNT(*) INTO nombre_lecteurs FROM lecteur;
+    SELECT COUNT(*) INTO nombre_livres FROM livre;
 
     WHILE i <= nombre_emprunts DO
         SET date_emprunt = (SELECT date_aleatoire('2022-01-01',CURRENT_DATE()));
         SET date_retour = (SELECT date_aleatoire(date_emprunt, CURRENT_DATE()));
+        SET lecteur_id = (SELECT nombre_aleatoire(1,@nombre_lecteurs));
+        SET livre_id = (SELECT nombre_aleatoire(1,@nombre_livres));
 
-        INSERT INTO emprunt (`lecteur_id`, `livre_id`, `date_emprunt`, `date_retour`) VALUES ((SELECT nombre_aleatoire(1,@nombre_lecteurs)), (SELECT nombre_aleatoire(1,@nombre_livres)), date_emprunt, date_retour);
+        INSERT INTO emprunt (`lecteur_id`, `livre_id`, `date_emprunt`, `date_retour`) VALUES (lecteur_id , livre_id, date_emprunt, date_retour);
         SET i = i + 1;
     END WHILE;
     RETURN nombre_emprunts;
