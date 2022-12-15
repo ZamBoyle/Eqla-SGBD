@@ -133,13 +133,11 @@ Ajoutez 5 auteurs.
 ### 4.1 UPDATE TABLE
 - Modifier la table lecteur et ajouter une colonne date_inscription.
 - Dans un premier temps, vous permettrez l'ajout de la valeur NULL.
-- Ensuite mettez la date_inscription pour tout le monde au '01-01-01': En effet, de cette manière lorsque l'on verra cette date '01-01-01' on saura que ces lecteurs n'avait pas de date_inscription.
+
+### 4.2  UPDATE
+- Mettez la date_inscription pour tout le monde au '01-01-01': En effet, de cette manière lorsque l'on verra cette date '01-01-01' on saura que ces lecteurs n'avait pas de date_inscription.
 - Enfin, modifier la date_inscription pour qu'elle n'accepte pas la valeur NULL.
 
-==> Grâce à ces modifications, les nouveaux lecteurs auront d'office une date d'inscription obligatoire.
-### 4.2  UPDATE
-- Ajoutez une date d'inscription à chaque lecteur.
-- La date_inscription sera différente pour chaque lecteur: Attention à votre à ce que votre UPDATE ne porte pas sur tous les enregistrements.
 
 ## 4.3 ALTER TABLE
 - Modifier la table lecteur et modifier la colonne date_inscription.
@@ -153,7 +151,7 @@ Ajoutez 5 auteurs.
 
 ### 6.1 Table exemplaire
 Vous allez créez la table **exemplaire** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
-- reference_biblio
+- reference
 - rayon
 - date_acquisition
 - etat
