@@ -122,7 +122,7 @@ Ajoutez 3 Emprunts par des lecteurs différents et des livres différents.
 #### 4.4 Ajout de thèmes dans la table Theme
 Ajoutez 5 thèmes: Programmation, Roman, Science-Fiction, Thriller et Policier.
 
-#### 4.5 Ajout de lecteurs dans la table Lecteur
+#### 4.5 Ajout de auteurs dans la table Auteur
 Ajoutez 5 auteurs.
 
 ## Exercice 3 - CREATION de la DB biblio2
