@@ -60,109 +60,80 @@ ELSE RETURN date_aleatoire(date_min, date_max);
 END IF;
 
 END $$
-CREATE FUNCTION
-    nombre_aleatoire(nombre_min INT, nombre_max INT) RETURNS INT BEGIN
-RETURN (
-        SELECT
-            FLOOR(
-                RAND() * (nombre_max - nombre_min + 1)
-            ) + nombre_min
-    );
 
+CREATE FUNCTION nombre_aleatoire(nombre_min INT, nombre_max INT) RETURNS INT 
+BEGIN
+    RETURN (SELECT FLOOR(RAND() * (nombre_max - nombre_min + 1)) + nombre_min);
 END $$
-CREATE FUNCTION
-    populate_exemplaire(nombre_exemplaires INT) RETURNS VARCHAR(255) BEGIN DECLARE i INT DEFAULT 1;
+CREATE FUNCTION populate_exemplaire(nombre_exemplaires INT) RETURNS VARCHAR(255) 
+BEGIN 
+    DECLARE i INT DEFAULT 1;
+    DECLARE reference VARCHAR(50) ;
+    DECLARE rayon VARCHAR(50) ;
 
-DECLARE reference VARCHAR(50) ;
+    DECLARE date_acquisition DATE ;
 
-DECLARE rayon VARCHAR(50) ;
+    DECLARE etat VARCHAR(50);
 
-DECLARE date_acquisition DATE ;
-
-DECLARE etat VARCHAR(50);
-
-DECLARE est_perdu BOOLEAN;
+    DECLARE est_perdu BOOLEAN;
 
 /*DECLARE livre_id INT;*/
 
-DECLARE nombre_livres INT;
+    DECLARE nombre_livres INT;
 
-SELECT COUNT(*) INTO nombre_livres FROM livre;
+    SELECT COUNT(*) INTO nombre_livres FROM livre;
 
-SET est_perdu = 0;
+    SET est_perdu = 0;
 
 /*nombre_aleatoire(0,1);*/
 
-IF nombre_livres > 0
-AND nombre_exemplaires <= nombre_livres THEN
-WHILE
-    i <= nombre_exemplaires
-DO
-SET
-    reference = CONCAT('REF', i);
+    IF nombre_livres > 0 THEN
+        WHILE i <= nombre_exemplaires
+        DO
+            SET reference = CONCAT('REF-', nombre_aleatoire(1, 10000000));
+            SET rayon = CONCAT('RAYON-', nombre_aleatoire(1, 100));
+            SET date_acquisition = (SELECT date_aleatoire('2022-01-01', CURRENT_DATE()));
+            SET etat = 
+                CASE
+                    when rand() < 0.1 then 'mauvais'
+                    when rand() < 0.2 then 'bon'
+                    when rand() < 0.3 then 'neuf'
+                    else 'moyen'
+                    /*when rand() < 0.4 then 'mauvais'
+                    else 'détruit'*/
+                END;
+            SET @livre_id = (SELECT nombre_aleatoire(1,nombre_livres));
 
-SET rayon = CONCAT('RAYON', i);
+            /*WHILE @livre_id IN (SELECT livre_id FROM exemplaire)
+            DO
+                SET @livre_id = (SELECT nombre_aleatoire(1, nombre_livres));
+            END WHILE;*/
+            SET @livre_id = (SELECT nombre_aleatoire(1, nombre_livres));
 
-SET date_acquisition = (
-        SELECT
-            date_aleatoire('2022-01-01', CURRENT_DATE())
-    );
+            INSERT INTO
+                exemplaire (
+                    reference,
+                    rayon,
+                    date_acquisition,
+                    etat,
+                    est_perdu,
+                    livre_id
+                )
+            VALUES (
+                    reference,
+                    rayon,
+                    date_acquisition,
+                    etat,
+                    est_perdu,
+                    @livre_id
+                );
 
-SET
-    etat = case
-        when rand() < 0.1 then 'mauvais'
-        when rand() < 0.2 then 'bon'
-        when rand() < 0.3 then 'neuf'
-        else 'moyen'
-        /*when rand() < 0.4 then 'mauvais'
-        else 'détruit'*/
-    END;
-
-SET @livre_id = (SELECT nombre_aleatoire(1,nombre_livres));
-
-WHILE @livre_id IN (
-        SELECT livre_id
-        FROM exemplaire
-    )
-DO
-SET @livre_id = (
-        SELECT
-            nombre_aleatoire(1, nombre_livres)
-    );
-
-END WHILE;
-
-INSERT INTO
-    exemplaire (
-        reference,
-        rayon,
-        date_acquisition,
-        etat,
-        est_perdu,
-        livre_id
-    )
-VALUES (
-        reference,
-        rayon,
-        date_acquisition,
-        etat,
-        est_perdu,
-        @livre_id
-    );
-
-SET i = i + 1;
-
-END WHILE;
-
-ELSE SET nombre_exemplaires = 0;
-
-END IF;
-
-RETURN
-    CONCAT(
-        nombre_exemplaires,
-        ' exemplaires aléatoires ont été ajoutés à la table exemplaire'
-    );
+            SET i = i + 1;
+        END WHILE;
+    ELSE 
+        SET nombre_exemplaires = 0;
+    END IF;
+RETURN CONCAT(nombre_exemplaires,' exemplaires aléatoires ont été ajoutés à la table exemplaire');
 
 END $$
 CREATE FUNCTION

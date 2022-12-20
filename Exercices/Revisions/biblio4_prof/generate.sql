@@ -52,7 +52,7 @@ CREATE TABLE lecteur (
 -- crée la table 'exemplaire'
 CREATE TABLE exemplaire (
   id INT NOT NULL AUTO_INCREMENT,
-  reference VARCHAR(50) NOT NULL,
+  reference VARCHAR(50) NOT NULL UNIQUE,
   rayon VARCHAR(50) NOT NULL,
   date_acquisition DATE NOT NULL,
   etat VARCHAR(50) NOT NULL,
