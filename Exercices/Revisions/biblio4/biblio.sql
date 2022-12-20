@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS biblio2;
-CREATE DATABASE biblio2;
-USE biblio2;
+DROP DATABASE IF EXISTS biblio4;
+CREATE DATABASE biblio4;
+USE biblio4;
 
 -- crée une table 'auteur'
 CREATE TABLE auteur (
