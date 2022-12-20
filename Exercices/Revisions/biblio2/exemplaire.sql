@@ -1,0 +1,1 @@
+SELECT populate_exemplaire(100) as Result;

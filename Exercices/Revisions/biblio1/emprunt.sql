@@ -1,3 +1,4 @@
+--RETURNS VARCHAR(255)
 DELETE FROM emprunt;
 DROP FUNCTION IF EXISTS date_aleatoire;
 DROP FUNCTION IF EXISTS nombre_aleatoire;
@@ -28,14 +29,14 @@ BEGIN
     WHILE i <= nombre_emprunts DO
         SET date_emprunt = (SELECT date_aleatoire('2022-01-01',CURRENT_DATE()));
         SET date_retour = (SELECT date_aleatoire(date_emprunt, CURRENT_DATE()));
-        SET lecteur_id = (SELECT nombre_aleatoire(1,@nombre_lecteurs));
-        SET livre_id = (SELECT nombre_aleatoire(1,@nombre_livres));
-
-        INSERT INTO emprunt (`lecteur_id`, `livre_id`, `date_emprunt`, `date_retour`) VALUES (lecteur_id , livre_id, date_emprunt, date_retour);
+        SET lecteur_id = (SELECT nombre_aleatoire(1,nombre_lecteurs));
+        SET livre_id = (SELECT nombre_aleatoire(1,nombre_livres));
+        
+        INSERT INTO emprunt (date_emprunt, date_retour, lecteur_id, livre_id) VALUES (date_emprunt, date_retour, lecteur_id, livre_id);
         SET i = i + 1;
     END WHILE;
-    RETURN nombre_emprunts;
+    RETURN CONCAT(nombre_emprunts, ' emprunts ont été ajoutés à la table emprunt');
 END$$
 DELIMITER ;
 
-SELECT populate_emprunt(2000) as 'Nombre d''emprunts ajoutés';
+SELECT populate_emprunt(100) as Result;--nombre_emprunts;

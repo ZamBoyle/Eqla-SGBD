@@ -1,0 +1,1 @@
+SELECT populate_emprunt(100) as Result;
