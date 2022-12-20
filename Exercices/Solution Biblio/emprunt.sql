@@ -7,11 +7,11 @@ DELIMITER $$
 CREATE FUNCTION date_aleatoire(date_min DATE, date_max DATE) RETURNS DATE
 BEGIN
     RETURN (SELECT DATE(DATE_ADD(date_min, INTERVAL FLOOR(RAND() * DATEDIFF(date_max, date_min)) DAY)));
-END$$
+END\p$$
 CREATE FUNCTION nombre_aleatoire(nombre_min INT, nombre_max INT) RETURNS INT
 BEGIN
     RETURN (SELECT FLOOR(RAND() * (nombre_max - nombre_min + 1)) + nombre_min);
-END$$
+END\p$$
 
 CREATE FUNCTION populate_emprunt(nombre_emprunts INT) RETURNS VARCHAR(255)
 BEGIN
