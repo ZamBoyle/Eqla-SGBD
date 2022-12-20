@@ -1,9 +1,10 @@
-DELETE FROM emprunt;
-DROP FUNCTION IF EXISTS date_aleatoire;
-DROP FUNCTION IF EXISTS nombre_aleatoire;
-DROP FUNCTION IF EXISTS update_date_retour;
+DROP FUNCTION IF EXISTS populate_exemplaire;
 DROP FUNCTION IF EXISTS populate_emprunt;
 DROP FUNCTION IF EXISTS get_random_nationalite;
+DROP FUNCTION IF EXISTS date_aleatoire;
+DROP FUNCTION IF EXISTS date_aleatoire_nullable;
+DROP FUNCTION IF EXISTS nombre_aleatoire;
+
 DELIMITER $$
 
 CREATE FUNCTION get_random_nationalite()
@@ -32,6 +33,18 @@ BEGIN
     RETURN (SELECT DATE(DATE_ADD(date_min, INTERVAL FLOOR(RAND() * DATEDIFF(date_max, date_min)) DAY)));
 END$$
 
+CREATE FUNCTION date_aleatoire_nullable(date_min DATE, date_max DATE)
+RETURNS DATE
+BEGIN
+    DECLARE alea FLOAT;
+    SET alea = rand();
+    IF alea < 0.5 THEN
+        RETURN NULL;
+    ELSE
+        RETURN date_aleatoire(date_min, date_max);
+    END IF;
+END$$
+
 CREATE FUNCTION nombre_aleatoire(nombre_min INT, nombre_max INT)
 RETURNS INT
 BEGIN
@@ -47,13 +60,13 @@ BEGIN
     DECLARE date_acquisition DATE ;
     DECLARE etat VARCHAR(50);
     DECLARE est_perdu BOOLEAN;
-    DECLARE livre_id INT;
+    /*DECLARE livre_id INT;*/
     DECLARE nombre_livres INT;
     
     SELECT COUNT(*) INTO nombre_livres FROM livre;
     SET est_perdu = nombre_aleatoire(0,1);
 
-    IF nombre_livres > 0 THEN
+    IF nombre_livres > 0 AND nombre_exemplaires <= nombre_livres THEN
     WHILE i <= nombre_exemplaires DO
         SET reference = CONCAT('REF', i);
         SET rayon = CONCAT('RAYON', i);
@@ -65,14 +78,20 @@ BEGIN
             when rand() < 0.4 then 'mauvais'
             else 'détruit'
         END;
-        SET livre_id = (SELECT nombre_aleatoire(1,nombre_livres));
-        INSERT INTO exemplaire (reference, rayon, date_acquisition, etat, est_perdu, livre_id) VALUES (reference, rayon, date_acquisition, etat, est_perdu, livre_id);
+
+        SET @livre_id = (SELECT nombre_aleatoire(1,nombre_livres));
+
+        WHILE @livre_id IN (SELECT livre_id FROM exemplaire) DO
+            SET @livre_id = (SELECT nombre_aleatoire(1,nombre_livres));
+        END WHILE;
+
+        INSERT INTO exemplaire (reference, rayon, date_acquisition, etat, est_perdu, livre_id) VALUES (reference, rayon, date_acquisition, etat, est_perdu, @livre_id);
         SET i = i + 1;
     END WHILE;
     ELSE
         SET nombre_exemplaires = 0;
     END IF;
-    RETURN CONCAT(nombre_exemplaires, ' exemplaires ont été ajoutés à la table exemplaire');
+    RETURN CONCAT(nombre_exemplaires, ' exemplaires aléatoires ont été ajoutés à la table exemplaire');
 END$$
 
 CREATE FUNCTION populate_emprunt(nombre_emprunts INT)
@@ -91,16 +110,21 @@ BEGIN
     IF nombre_exemplaires > 0 THEN
     WHILE i < nombre_emprunts DO
         SET date_emprunt = (SELECT date_aleatoire('2022-01-01',CURRENT_DATE()));
-        SET date_retour = (SELECT date_aleatoire(date_emprunt, CURRENT_DATE()));
+        SET date_retour = (SELECT date_aleatoire_nullable(date_emprunt, CURRENT_DATE()));
         SET lecteur_id = (SELECT nombre_aleatoire(1,nombre_lecteurs));
-        SET exemplaire_id = (SELECT nombre_aleatoire(1,nombre_exemplaires));
+        SET @exemplaire_id = (SELECT nombre_aleatoire(1,nombre_exemplaires));
+
+        WHILE @exemplaire_id IN (SELECT exemplaire_id FROM emprunt WHERE date_retour IS NULL AND exemplaire_id = @exemplaire_id) DO
+            SET @exemplaire_id = (SELECT nombre_aleatoire(1,nombre_exemplaires));
+        END WHILE;
+
         
-        INSERT INTO emprunt (date_emprunt, date_retour, lecteur_id, exemplaire_id) VALUES (date_emprunt, date_retour, lecteur_id, exemplaire_id);
+        INSERT INTO emprunt (date_emprunt, date_retour, lecteur_id, exemplaire_id) VALUES (date_emprunt, date_retour, lecteur_id, @exemplaire_id);
         SET i = i + 1;
     END WHILE;
     ELSE
         SET nombre_emprunts = 0;
     END IF;
-    RETURN CONCAT(nombre_emprunts, ' emprunts ont été ajoutés à la table emprunt');
+    RETURN CONCAT(nombre_emprunts, ' emprunts aléatoires ont été ajoutés à la table emprunt');
 END$$
 DELIMITER ;

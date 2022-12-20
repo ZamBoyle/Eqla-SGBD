@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS biblio;
-CREATE DATABASE biblio;
-USE biblio;
+DROP DATABASE IF EXISTS biblio2;
+CREATE DATABASE biblio2;
+USE biblio2;
 
 -- crée une table 'auteur'
 CREATE TABLE auteur (
@@ -84,6 +84,8 @@ source livre.sql;
 
 source lecteur.sql;
 
+SET @nb_exemplaires = (SELECT COUNT(*) FROM livre);
 source exemplaire.sql;
 
+SET @nb_emprunts = 100;
 source emprunt.sql;

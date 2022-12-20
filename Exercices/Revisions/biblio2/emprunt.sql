@@ -1,1 +1,1 @@
-SELECT populate_emprunt(100) as Result;
+SELECT populate_emprunt(@nb_emprunts) as Result;
