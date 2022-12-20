@@ -45,17 +45,6 @@ C'est une proposition, pas une obligation. ;-)
 5. Reprenez votre requête différente et ajoutez HAVING nb >1. Que se passe-t-il à votre avis ?
 6. Quelle est la différence entre WHERE et HAVING ?
 
-### 1.3 DB biblio4_prof
-1. Télécharger la base de données [biblio4_prof](https://raw.githubusercontent.com/ZamBoyle/Eqla-SGBD/master/Exercices/Revisions/biblio4_prof/backup_biblio4_prof.sql).
-2. Mettez-la dans le répertoire avec les autres bases de données: pays.sql, blindcode.sql, etc.
-3. Faites un source backup_biblio4_prof.sql
-4. Comment pourriez-vous vérifier que la nouvelle base de données biblio4_prof existe bien dans mariadb ?
-5. Combien d'exemplaires sont empruntés en ce moment ?
-6. Quel est le lecteur qui a emprunté le plus de livres ? (Affichez ton nom, prénom et le nombre de livres)
-7. Quel est le livre le plus emprunté ? (Affichez le titre et le nombre de fois qu'il a été emprunté)
-8. 
-
-
 <!--
 ### 1.3 DB BlindCode
 1. 
@@ -183,8 +172,20 @@ La différence c'est que l'emprunt portera maintenant sur un exemplaire de livre
 
 Un emprunt porte sur 1 et 1 seul exemplaire.
 
-## Exercices
+## Exercice 3 - DB biblio4_prof
+### 3.1 Importation de la DB 
+1. Télécharger la base de données [biblio4_prof](https://raw.githubusercontent.com/ZamBoyle/Eqla-SGBD/master/Exercices/Revisions/biblio4_prof/backup_biblio4_prof.sql).
+2. Mettez-la dans le répertoire avec les autres bases de données: pays.sql, blindcode.sql, etc.
+3. Faites un source backup_biblio4_prof.sql
+4. Comment pourriez-vous vérifier que la nouvelle base de données biblio4_prof existe bien dans mariadb ?
+5. Utilisez la base de données biblio4_prof
 
+### 3.2 SELECT
+1. Afficher la liste de tous les livres avec leur titre et leur theme.
+5. Combien d'exemplaires sont empruntés en ce moment ?
+6. Quel est le lecteur qui a emprunté le plus de livres ? (Affichez ton nom, prénom et le nombre de livres)
+7. Quel est le livre le plus emprunté ? (Affichez le titre et le nombre de fois qu'il a été emprunté)
+8. 
 
 
 
