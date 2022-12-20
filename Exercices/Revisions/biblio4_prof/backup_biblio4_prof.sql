@@ -15,6 +15,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+DROP DATABASE IF EXISTS `biblio4_prof`;
+CREATE DATABASE IF NOT EXISTS `biblio4_prof` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `biblio4_prof`;
+
 --
 -- Table structure for table `auteur`
 --
