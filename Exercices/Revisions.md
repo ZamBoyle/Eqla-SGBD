@@ -46,6 +46,9 @@ C'est une proposition, pas une obligation. ;-)
 6. Quelle est la différence entre WHERE et HAVING ?
 
 ### 1.3 DB biblio4_prof
+1. Télécharger la base de données [biblio4_prof](https://raw.githubusercontent.com/ZamBoyle/Eqla-SGBD/master/Exercices/Revisions/biblio4_prof/biblio4_prof.sql).
+2. Mettez-la dans le répertoire avec les autres bases de données: pays.sql, blindcode.sql, etc.
+3. Faites un source biblio
 
 <!--
 ### 1.3 DB BlindCode
