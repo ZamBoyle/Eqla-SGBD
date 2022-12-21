@@ -183,9 +183,9 @@ Un emprunt porte sur 1 et 1 seul exemplaire.
 ### 3.2 Exercices
 1. Afficher la liste de tous les livres avec leur titre et leur theme.
 2. Combien d'exemplaires sont empruntés en ce moment ?
-3. Quel est le lecteur qui a emprunté le plus de livres ? (Affichez le nom, prénom et le nombre de livres). Indice: nous avons vu comment limiter le nombre de résultat et classer le résultat dans l'ordre descendant.
+3. Quel est le lecteur qui a emprunté le plus de livres ? (Affichez le nom, prénom et le nombre de livres). Indice: nous avons vu comment limiter le nombre de résultat et classer le résultat par ordre croissant/décroissant.
 4. Quel est le livre qui a été le plus emprunté ? Emprunts tout confondus: en cours ou passés. Affichez le titre et le nombre de fois qu'il a été emprunté. Utilisez une colonne nb_emprunts.
-5. Afficher la liste des exemplaires empruntés par le lecteur ayant l'ID 1. On affichera le nom du livre et la date d'emprunt ainsi que la date retour.
+5. Afficher la liste des exemplaires empruntés par le lecteur ayant l'ID 1. On affichera le nom du lecteur, son prénom, le nom du livre et la date d'emprunt ainsi que la date retour.
 6. Afficher la liste des livres ayant un auteur né avant le 1er janvier 1980.
 7. Afficher tous les champs de la table livre des livres ayant au moins un exemplaire.
 8. Afficher la liste des auteurs ayant une nationalité 'française'.
