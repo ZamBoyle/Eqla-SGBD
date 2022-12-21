@@ -1025,12 +1025,12 @@ set theme_id = FLOOR(RAND()*(5-1)+1)
 where theme_id is null;
 
 
-UPDATE livre
+/*UPDATE livre
 set nombre_exemplaires = FLOOR(RAND()*(5-1)+1)
-where nombre_exemplaires is null;
+where nombre_exemplaires is null;*/
 
 ALTER TABLE livre
 MODIFY langue varchar(50) NOT NULL,
 MODIFY annee_publication int(4) NOT NULL,
-MODIFY theme_id INT NULL,
-MODIFY nombre_exemplaires int(11) NOT NULL;
+MODIFY theme_id INT NULL;
+/*MODIFY nombre_exemplaires int(11) NOT NULL;*/

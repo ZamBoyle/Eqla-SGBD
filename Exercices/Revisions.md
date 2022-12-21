@@ -180,12 +180,45 @@ Un emprunt porte sur 1 et 1 seul exemplaire.
 4. Comment pourriez-vous vérifier que la nouvelle base de données biblio4_prof existe bien dans mariadb ?
 5. Utilisez la base de données biblio4_prof
 
-### 3.2 SELECT
+### 3.2 Requêtes
 1. Afficher la liste de tous les livres avec leur titre et leur theme.
-5. Combien d'exemplaires sont empruntés en ce moment ?
-6. Quel est le lecteur qui a emprunté le plus de livres ? (Affichez ton nom, prénom et le nombre de livres)
-7. Quel est le livre le plus emprunté ? (Affichez le titre et le nombre de fois qu'il a été emprunté)
-8. 
+2. Combien d'exemplaires sont empruntés en ce moment ?
+3. Quel est le lecteur qui a emprunté le plus de livres ? (Affichez le nom, prénom et le nombre de livres). Indice: nous avons vu comment limiter le nombre de résultat et classer le résultat dans l'ordre descendant.
+4. Quel est le livre qui a été le plus emprunté ? Emprunts tout confondus: en cours ou passés. Affichez le titre et le nombre de fois qu'il a été emprunté. Utilisez une colonne nb_emprunts.
+5. Afficher la liste des exemplaires empruntés par le lecteur ayant l'ID 1. On affichera le nom du livre et la date d'emprunt ainsi que la date retour.
+6. Afficher la liste des livres ayant un auteur né avant le 1er janvier 1980.
+7. Afficher tous les champs de la table livre des livres ayant au moins un exemplaire.
+8. Afficher la liste des auteurs ayant une nationalité 'française'.
+9. Afficher la liste des auteurs ayant un nom commençant par la lettre 'M'.
+10. Afficher la liste des auteurs ayant un prénom comportant plus de 5 caractères. Aidez-vous de Google pour trouver la fonction à utiliser.
+11. Afficher la liste des auteurs dont le nom ou le prénom comporte la lettre 'e'.
+12. Afficher la liste des auteurs avec leur nom, prénom et l'âge qu'ils ont.
+13. Afficher la liste des exemplaires acutellement empruntés avec le nom et prénom de l'emprunteur.
+14. Combien d'exemplaires y a-t-il du livre suivant:Charlie Chan's Murder Cruise
+15. Quels sont les livres qui ont été empruntés au moins 2 fois ? Indice: Agrégat et HAVING
+16. Reprenez la requête précédente et modifiez la pour n'avoir que les emprunts en cours.
+17. Combien d'exemplaires sont empruntés en ce moment portant sur le thème Fantastique ?
+18. Combien d'exemplaires ont été emprunté en avril 2022 ? En utisant les opérateurs >= et =<
+19. Même question mais en utilisant les fonctions MONTH et YEAR.
+20. Afficher la liste des titres et auteurs de tous les livres.
+21. Afficher la liste des lecteurs ayant emprunté au moins un livre avec leur nom, prénom et le nombre de livres empruntés.
+
+
+
+
+
+
+<!--
+9. Maintenant on va
+
+
+
+8. Affichez l'id, le titre des livres qui ont un exemplaire qui a une entrée dans la table emprunt. Appelez-moi avant de passer au point suivant.
+9. Affichez les livres qui n'ont pas d'exemplaire.
+
+
+9. Nous allons trouver les exemplaires qui n'ont jamais été empruntés. Pour cela on peut partir du principe suivante:"Les livres qui n'ont jamais été empruntés
+-->
 
 
 
