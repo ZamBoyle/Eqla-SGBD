@@ -48,17 +48,14 @@ RETURN (
     );
 
 END $$
-CREATE FUNCTION
-    date_aleatoire_nullable(date_min DATE, date_max DATE) RETURNS DATE BEGIN DECLARE alea FLOAT;
+CREATE FUNCTION date_aleatoire_nullable(date_min DATE, date_max DATE) RETURNS DATE 
+BEGIN 
+    DECLARE alea FLOAT;
+    SET alea = rand();
 
-SET alea = rand();
-
-IF alea < 0.5 THEN RETURN NULL;
-
-ELSE RETURN date_aleatoire(date_min, date_max);
-
-END IF;
-
+    IF alea < 0.5 THEN RETURN NULL;
+    ELSE RETURN date_aleatoire(date_min, date_max);
+    END IF;
 END $$
 
 CREATE FUNCTION nombre_aleatoire(nombre_min INT, nombre_max INT) RETURNS INT 
