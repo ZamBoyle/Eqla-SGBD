@@ -180,7 +180,7 @@ Un emprunt porte sur 1 et 1 seul exemplaire.
 4. Comment pourriez-vous vérifier que la nouvelle base de données biblio4_prof existe bien dans mariadb ?
 5. Utilisez la base de données biblio4_prof
 
-### 3.2 Requêtes
+### 3.2 Exercices
 1. Afficher la liste de tous les livres avec leur titre et leur theme.
 2. Combien d'exemplaires sont empruntés en ce moment ?
 3. Quel est le lecteur qui a emprunté le plus de livres ? (Affichez le nom, prénom et le nombre de livres). Indice: nous avons vu comment limiter le nombre de résultat et classer le résultat dans l'ordre descendant.
@@ -202,6 +202,7 @@ Un emprunt porte sur 1 et 1 seul exemplaire.
 19. Même question mais en utilisant les fonctions MONTH et YEAR.
 20. Afficher la liste des titres et auteurs de tous les livres.
 21. Afficher la liste des lecteurs ayant emprunté au moins un livre avec leur nom, prénom et le nombre de livres empruntés.
+
 
 
 
