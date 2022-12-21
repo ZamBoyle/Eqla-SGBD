@@ -26,7 +26,6 @@ CREATE TABLE livre (
   langue VARCHAR(50) NULL,
   annee_publication INT NULL,
   nombre_pages INT NOT NULL,
-  nombre_exemplaires INT NULL,
   code_isbn VARCHAR(50) NOT NULL,
   auteur_id INT NOT NULL,
   theme_id INT NULL,
