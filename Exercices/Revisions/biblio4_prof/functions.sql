@@ -26,8 +26,7 @@ CREATE FUNCTION GET_RANDOM_NATIONALITE() RETURNS VARCHAR
 	        when alea < 0.5 then 'russe'
 	        when alea < 0.6 then 'ukrainien'
 	        when alea < 0.7 then 'italien'
-	        when alea < 0.8 then 'espagnol'
-	        else 'autre'
+	        when alea < 1 then 'espagnol'
 END; 
 
 RETURN nationalite;
