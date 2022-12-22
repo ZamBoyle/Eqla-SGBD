@@ -1013,6 +1013,8 @@ set    date_naissance = (SELECT date_aleatoire('1950-01-01', '2014-01-01'));
 
 
 -- ajoute au champ 'nationalité' de type VARCHAR une valeur aléatoire parmis les valeurs suivantes: belge, français, américain, allemand, russe, ukrainien, italien, espagnol
+UPDATE auteur
+set nationalite = (SELECT get_random_nationalite());
 /*
 update auteur
 set
