@@ -1,5 +1,5 @@
 # Exercices de révisions - Correction
-Voici la correction des [Exercices de révisions](Revisions.md)  
+Voici la correction des [Exercices de révisions](Revisions.md). 
 
 Comparez avec votre réponse. Si vous ne comprenez pas la correction, notez-la et nous en discuterons en classe.
 ## Exercice 1
