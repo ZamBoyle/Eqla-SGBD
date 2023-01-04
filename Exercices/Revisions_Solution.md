@@ -1,27 +1,7 @@
-# Exercices de révisions.
-<!--
-Vu que certains mettent leurs exercices dans des fichiers et que je demande parfois par exercice plusieurs choses, on peut utiliser la commande SELECT pour afficher quelque chose sans l'utilisation de FROM.
-Exemple:
-```sql
-  
-USE Pays;
-SELECT 'Exercice 1.2';
-SELECT * FROM continent \p;
+# Exercices de révisions - Correction
+Voici la correction des [Exercices de révisions](Revisions.md)  
 
-```
-Dans l'exemple précédent notez que j'ai mis un \p avant le ; cela permet d'afficher la requête complètre à l'écran avant de l'exécuter. Ce qui est très utile lorsque vous appelez votre exercice via la commande SOURCE;
-
-Ou bien, vous pouvez créer une colonne indiquant la partie de l'exercice.
-```sql
-  
-USE Pays;
-SELECT '1.2' AS Exercice , continent.* FROM continent \p;
-SELECT '1.3' AS Exercice , Pays.name FROM Pays WHERE code='be'\p;
-
-```
-
-C'est une proposition, pas une obligation. ;-)
--->
+Comparez avec votre réponse. Si vous ne comprenez pas la correction, notez-la et nous en discuterons en classe.
 ## Exercice 1
 ### 1.1 DB Pays
 1. Afficher la colonne name que l'on renommera Nom à l'affichage de la table Pays où les pays ont un nom commençant par 'u';
