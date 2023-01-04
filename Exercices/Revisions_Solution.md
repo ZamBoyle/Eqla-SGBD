@@ -159,11 +159,23 @@ Nous allons y aller lentement et petit à petit on va complexifier aux prochains
 
 ### 2. Création de la base de données
 Premièrement, vous allez donc créer une base de données nommée Biblio.
-
+```sql
+CREATE DATABASE Biblio;
+```
+On peut aussi supprimer la base de données si elle existe déjà:
+```sql
+DROP DATABASE IF EXISTS Biblio;
+CREATE DATABASE Biblio;
+```
 ### 3. Créations des tables
 Je ne vais pas vous donner les clefs primaires et étrangères, vous devrez les trouver.
 
 Je ne vous donnerai pas l'ordre de création des tables non plus. Vous êtes grands maintenant. :-)
+> - auteur
+> - theme
+> - livre
+> - lecteur
+> - emprunt
 #### 3.1 Table Livre
 Vous allez créez la table **Livre** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
 - Titre
@@ -177,6 +189,22 @@ Un livre est écrit par un seul auteur.
 Un livre porte sur un thème.
 Un livre peut être emprunté 0 ou plusieurs fois.
 
+```sql
+CREATE TABLE livre (
+  id INT NOT NULL AUTO_INCREMENT,
+  titre VARCHAR(1000) NOT NULL,
+  langue VARCHAR(50) NULL,
+  annee_publication INT NULL,
+  nombre_pages INT NOT NULL,
+  code_isbn VARCHAR(50) NOT NULL,
+  auteur_id INT NOT NULL,
+  theme_id INT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (auteur_id) REFERENCES auteur(id),
+  FOREIGN KEY (theme_id) REFERENCES theme(id)
+);
+```
+
 #### 3.2 Table Auteur
 Vous allez créez la table **Auteur** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
 - Le nom 
@@ -185,12 +213,29 @@ Vous allez créez la table **Auteur** avec une clef primaire et peut-être une c
 - La nationalité
 
 Un auteur peut avoir écrit 0 ou plusieurs livres.
+```sql
+CREATE TABLE auteur (
+  id INT NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(50) NOT NULL,
+  prenom VARCHAR(50) NOT NULL,
+  date_naissance DATE NULL,
+  nationalite VARCHAR(50) NULL,
+  PRIMARY KEY (id)
+);
+```
 
 #### 3.3 Table Theme
 Vous allez créez la table **Theme** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
-- Libellé
+- libelle 
 
 Un thème porte sur 0 ou plusieurs livres.
+```sql
+CREATE TABLE theme (
+  id INT NOT NULL AUTO_INCREMENT,
+  theme VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+);
+```
 
 #### 3.4 Table Lecteur
 Vous allez créez la table **Lecteur** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
@@ -199,7 +244,20 @@ Vous allez créez la table **Lecteur** avec une clef primaire et peut-être une 
 - Naissance
 
 Un lecteur a emprunté 0 ou plusieurs livres.
-
+```sql
+CREATE TABLE lecteur (
+  id INT NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(50) NOT NULL,
+  prenom VARCHAR(50) NOT NULL,
+  date_naissance DATE NOT NULL,
+  adresse VARCHAR(50) NOT NULL,
+  num_rue INT NOT NULL,
+  code_postal INT NOT NULL,
+  localite VARCHAR(50) NOT NULL,
+  telephone VARCHAR(50) NOT NULL, 
+  PRIMARY KEY (id)
+);
+```
 ### 3.5 Table Emprunt
 Vous allez créez la table **Emprunt** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
 - Date début.
@@ -208,6 +266,17 @@ Vous allez créez la table **Emprunt** avec une clef primaire et peut-être une 
 
 Un livre est emprunté par un et un seul lecteur.
 Un emprunt concerne 1 et seul livre.
+```sql
+CREATE TABLE emprunt (
+  id INT NOT NULL AUTO_INCREMENT,
+  date_emprunt DATE NOT NULL,
+  date_retour DATE NULL,
+  lecteur_id INT NOT NULL,
+  exemplaire_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (lecteur_id) REFERENCES lecteur(id)
+);
+```
 
 ### 4. Insertion des données
 A nouveau, vous devez trouvez l'ordre d'insertion dans les bases de données.
@@ -215,18 +284,43 @@ Rappelez-vous l'exercice sur les joueurs de foot. Pour pouvoir ajouter un joueur
 
 #### 4.1 Ajout de livres dans la table Livre
 Ajoutez 3 livres.
-
+```sql
+insert into livre (titre, annee_publication, nombre_pages, code_isbn, auteur_id) values ('Conspirators of Pleasure (Spiklenci slasti)', 1996, 189, '891755755-4', 435);
+insert into livre (titre, annee_publication, nombre_pages, code_isbn, auteur_id) values ('Ghost Ship, The', null, 730, '810124811-0', 290);
+insert into livre (titre, annee_publication, nombre_pages, code_isbn, auteur_id) values ('Remarkable Power', 2007, 993, '782773505-3', 423);
+```
 #### 4.2 Ajout de lecteurs dans la table Lecteur
 Ajoutez 5 lecteurs.
-
+```sql
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Leblanc', 'Jean', '1980-01-01', 'Rue de la Paix', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Dupont', 'Jeanne', '1980-01-01', 'Rue de la Corolle', 36, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Durand', 'Philip', '1980-01-01', 'Rue de la Libération', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Martin', 'Paul', '1980-01-01', 'Rue de la Statue', 1, 1000, 'Bruxelles', '02/111.11.11');
+INSERT INTO lecteur (nom, prenom, date_naissance, adresse, num_rue, code_postal, localite, telephone) VALUES ('Dubois', 'Christophe', '1980-01-01', 'Rue du Pont', 1, 1000, 'Bruxelles', '02/111.11.11');
+```
 #### 4.3 Ajout d'emprunts dans la table Emprunt
 Ajoutez 3 Emprunts par des lecteurs différents et des livres différents.
-
+```sql
+INSERT INTO emprunt (date_emprunt, date_retour, lecteur_id, livre_id) VALUES ('2022-05-05',NULL,2,1);
+INSERT INTO emprunt (date_emprunt, date_retour, lecteur_id, livre_id) VALUES ('2022-05-09',NULL,1,2);
+INSERT INTO emprunt (date_emprunt, date_retour, lecteur_id, livre_id) VALUES ('2022-05-14',NULL,3,3);
+```
 #### 4.4 Ajout de thèmes dans la table Theme
 Ajoutez 5 thèmes: Programmation, Roman, Science-Fiction, Thriller et Policier.
 
+```sql
+INSERT INTO theme (libelle) VALUES ('Aventure'),('Fantastique'),('Policier'),('Science-fiction'),('Roman');
+```
+
 #### 4.5 Ajout de auteurs dans la table Auteur
 Ajoutez 5 auteurs.
+```sql
+INSERT INTO auteur (titre, date_acquisition, nationalite) VALUES ('Leven','Holli','1959-07-24','espagnol');
+INSERT INTO auteur (titre, date_acquisition, nationalite) VALUES ('Mauchline','Gabe','1975-04-03','allemand');
+INSERT INTO auteur (titre, date_acquisition, nationalite) VALUES ('Silwood','Vaughan','1983-08-02','belge');
+INSERT INTO auteur (titre, date_acquisition, nationalite) VALUES ('Kitchener','Merline','1978-02-28','allemand');
+INSERT INTO auteur (titre, date_acquisition, nationalite) VALUES ('Cattermull','Levi','1990-01-21','russe')
+```
 
 ## Exercice 3 - CREATION de la DB biblio2
 - La différence entre cette base de données (biblio2) et biblio c'est que maintenant un livre peut avoir un ou plusieurs auteurs.
@@ -237,18 +331,27 @@ Ajoutez 5 auteurs.
 - Modifier la table lecteur et ajouter une colonne date_inscription.
 - Dans un premier temps, vous permettrez l'ajout de la valeur NULL.
 
+ ```sql
+ ALTER TABLE lecteur
+ ADD date_inscription DATE NULL;
+ ```
 ### 4.2  UPDATE
 - Mettez la date_inscription pour tout le monde au '01-01-01': En effet, de cette manière lorsque l'on verra cette date '01-01-01' on saura que ces lecteurs n'avait pas de date_inscription.
-- Enfin, modifier la date_inscription pour qu'elle n'accepte pas la valeur NULL.
-
+```sql
+ ALTER TABLE lecteur
+ MODIFY COLUMN date_inscription DATE DEFAULT '01-01-01' NULL;
+```
 
 ## 4.3 ALTER TABLE
 - Modifier la table lecteur et modifier la colonne date_inscription.
 - Vous définirez que la colonne date_inscription ne permet pas les NULL
-
+```sql
+ ALTER TABLE lecteur
+ MODIFY COLUMN date_inscription DATE DEFAULT '01-01-01' NOT NULL;
+```
 ## Exercice 5 - Naming Convention - CREATION de la DB Biblio3
 - Utiliser la convention de nommage pour toute la création de la base de données biblio3 en vous basant sur biblio2.
-
+> voir le fichier biblio4_prof.sql plus loin dans les exercices.
 ## Exercice 6 - Table Exemplaire - CREATION de la DB Biblio4
 - La différence entre biblio3 et biblio4, c'est que maintenant il y a une table exemplaire.
 
@@ -263,16 +366,44 @@ Vous allez créez la table **exemplaire** avec une clef primaire et peut-être u
 Un exemplaire correspond à 1 et 1 seul livre.
 Un exemplaire a été emprunté aucune fois ou plusieurs fois.
 
+```sql
+CREATE TABLE exemplaire (
+  id INT NOT NULL AUTO_INCREMENT,
+  reference VARCHAR(50) NOT NULL UNIQUE,
+  rayon VARCHAR(50) NOT NULL,
+  date_acquisition DATE NOT NULL,
+  etat VARCHAR(50) NOT NULL,
+  est_perdu BOOLEAN NOT NULL DEFAULT FALSE,
+  livre_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (livre_id) REFERENCES livre(id)
+);
+```
 ### 6.2 Table livre
 On supprimera de la table livre le champ: nombre d'exemplaires (pourquoi ?)
 On supprimera de la table livre le champ date achat si vous l'aviez mis.
 
 Un livre peut avoir 1 ou plusieurs exemplaires.
 
+```sql
+ALTER TABLE livre
+DROP COLUMN nombre_exemplaires,
+DROP COLUMN date_achat;
+```
+> On peut supprimer le nombre d'exemplaires de la table livre car il suffira maintenant de compter le nombre d'exemplaires liés à un livre donné.
+
 ### 6.3 Table emprunt
 La différence c'est que l'emprunt portera maintenant sur un exemplaire de livre et nom directement sur le livre.
 
 Un emprunt porte sur 1 et 1 seul exemplaire.
+
+```sql
+ALTER TABLE emprunt
+DROP COLUMN livre_id,
+ADD COLUMN exemplaire_id INT NOT NULL,
+ADD CONSTRAINT fk_emprunt_exemplaire FOREIGN KEY(exemplaire_id) REFERENCES exemplaire(id);
+```
+> Ici, vous pouvez voir que j'ai fait plusieurs opérations séparées par des virgules.
 
 ## Exercice 3 - DB biblio4_prof
 ### 3.1 Importation de la DB 
@@ -281,6 +412,8 @@ Un emprunt porte sur 1 et 1 seul exemplaire.
 3. Faites un source backup_biblio4_prof.sql
 4. Comment pourriez-vous vérifier que la nouvelle base de données biblio4_prof existe bien dans mariadb ?
 5. Utilisez la base de données biblio4_prof
+
+> Pour voir si une db est bien présente, on peut utiliser la commande SHOW DATABASES;
 
 ### 3.2 Exercices
 1. Afficher la liste de tous les livres avec leur titre et leur theme.
