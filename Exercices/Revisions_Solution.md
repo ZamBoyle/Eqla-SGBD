@@ -171,11 +171,14 @@ CREATE DATABASE Biblio;
 Je ne vais pas vous donner les clefs primaires et étrangères, vous devrez les trouver.
 
 Je ne vous donnerai pas l'ordre de création des tables non plus. Vous êtes grands maintenant. :-)
+> Voici l'ordre à suivre:
 > - auteur
 > - theme
 > - livre
 > - lecteur
 > - emprunt
+>
+> On peut inverser auteur et theme. Mais ils doivent être créés avant la table livre.
 #### 3.1 Table Livre
 Vous allez créez la table **Livre** avec une clef primaire et peut-être une clef étrangère. Devra s'y trouver:
 - Titre
