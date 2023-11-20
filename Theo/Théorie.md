@@ -393,7 +393,7 @@ Casquette  | 10
 
 Nous allons donc faire évoluer notre exemple pour utiliser `ID_Produit` au lieu de Produit. Cela implique l'introduction d'une table `Produits` distincte, où chaque produit est identifié par un `ID_Produit` unique. Voici comment cela se présente :
 
-Produit
+Produits
 --
 ID_Produit | Nom_Produit | Prix_Unitaire
 ---------- | ----------- | -------------
@@ -402,7 +402,7 @@ ID_Produit | Nom_Produit | Prix_Unitaire
 
 Nous gardons la même table Clients :
 
-Client
+Clients
 --
 ID_Client | Nom_Client
 --------- | ----------
@@ -411,7 +411,7 @@ ID_Client | Nom_Client
 
 Et nous modifions la table Commandes pour utiliser les identifiants uniques :
 
-Commande
+Commandes
 --
 
 ID_Commande | ID_Produit | Quantité | ID_Client
@@ -419,7 +419,6 @@ ID_Commande | ID_Produit | Quantité | ID_Client
 1           | 1          | 2        | 101
 1           | 2          | 1        | 101
 2           | 1          | 1        | 102
-
 
 # IV. Le langage SQL
 Nous allons maintenant manipuler les données qui se trouvent dans une base de données. Nous utiliserons un langage qui s'appelle le SQL. Les commandes SQL s'écrivent en MAJUSCULES par convention. Ne pas le faire ne provoquera pas une erreur.
