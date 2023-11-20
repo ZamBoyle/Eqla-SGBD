@@ -450,11 +450,13 @@ Et nous modifions la table Commandes pour utiliser les identifiants uniques :
 Commandes
 --
 
-ID_Commande | ID_Produit | Quantité | ID_Client
------------ | ---------- | -------- | ---------
-1           | 1          | 2        | 101
-1           | 2          | 1        | 101
-2           | 1          | 1        | 102
+ID_Commande | ID_Client | ID_Produit | Quantité
+----------- | --------- | ---------- | --------
+1           | 101       | 1          | 2
+1           | 101       | 2          | 1
+2           | 102       | 1          | 1
+
+On constate aussi que l'ordre des colonnes peut aider à une meilleure lire. si on devait lire une commande: une commande porte sur un client pour un produit en une quantité donnée. d'où l'ordre des colonnes: ID_Commande, ID_Client, ID_Produit, Quantité.
 
 # IV. Le langage SQL
 Nous allons maintenant manipuler les données qui se trouvent dans une base de données. Nous utiliserons un langage qui s'appelle le SQL. Les commandes SQL s'écrivent en MAJUSCULES par convention. Ne pas le faire ne provoquera pas une erreur.
