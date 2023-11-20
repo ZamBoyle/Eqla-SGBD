@@ -300,6 +300,126 @@ Maintenant, si on sait que notre modèle évoluera vers une association de type 
 
 Dans la pratique si les entités ont une distinction fonctionnelle forte. On peut les séparer. En effet, imaginons qu'un voilier ait 100 propriétés qui le caractérisent. Remettre toutes ces propriétés dans l'entité Marin est assez discutable. Personnellement, dans ce cas, je fais deux entités.
 
+# IIIb. Les formes normales
+## 1. Définition
+Les formes normales sont des principes de conception de bases de données relationnelles qui visent à réduire la redondance des données et à augmenter l'intégrité des données. Elles représentent des règles pour la structuration de tables et de relations dans une base de données.
+
+L'application de ces formes normales aide à prévenir les anomalies de base de données, facilite l'entretien des données, et améliore la performance des requêtes.
+
+Il y a 5 formes normales (1NF, 2NF, 3NF, 4NF et 5NF). La plupart des bases de données sont normalisées jusqu'à la 3NF. Nous ne verrons que les 3 premières formes normales. Les 4 et 5NF sont très peu utilisées: elles sont surtout utiles pour les bases de données très complexes.
+
+Pour illustrer ces principes, considérons une table simple `Commandes` dans une base de données de commerce électronique :
+
+Commandes
+---------
+
+ID_Commande | Produits           | Quantité | Prix_Unitaire | ID_Client | Nom_Client
+----------- | ------------------ | -------- | ------------- | --------- | ----------
+1           | T-shirt, Casquette | 2, 1     | 15, 10        | 101       | Alice
+2           | T-shirt            | 1        | 15            | 102       | Bob
+
+
+## 2. Première forme normale (1FN)
+
+Une table est dite en **Première Forme Normale** (`1NF`) si et seulement si tous les champs contiennent des valeurs atomiques, c'est-à-dire chaque colonne contient des valeurs indivisibles.
+
+De plus, chaque enregistrement doit être unique. 
+
+Cette normalisation élimine les groupes répétitifs, assurant que la table représente une relation correcte. La première forme normale est la forme normale la plus simple.
+
+Elle stipule que toutes les valeurs d'une table doivent être atomiques. C'est-à-dire qu'elles ne doivent pas être décomposables en d'autres valeurs.
+
+En d'autres termes, chaque colonne d'une table doit contenir une seule valeur et cette valeur doit être de même type que les autres valeurs de la colonne.
+
+ Dans notre table Commandes, les champs Produits et Quantité contiennent des valeurs non atomiques. Pour atteindre la 1NF, nous devons les diviser :
+
+ Commandes (1NF)
+----------------
+ID_Commande | Produit    | Quantité | Prix_Unitaire | ID_Client | Nom_Client
+----------- | ---------- | -------- | ------------- | --------- | ----------
+1           | T-shirt    | 2        | 15            | 101       | Alice
+1           | Casquette  | 1        | 10            | 101       | Alice
+2           | T-shirt    | 1        | 15            | 102       | Bob
+
+## 3. Deuxième forme normale (2FN)
+Pour qu'une table soit en **Deuxième Forme Normale** (`2FN`), elle doit d'abord satisfaire toutes les conditions de la 1NF. Ensuite, elle doit s'assurer que tous les attributs non-clés sont pleinement fonctionnels dépendants de la clé primaire. Cela signifie qu'il n'y a pas de dépendance partielle d'un attribut sur une partie seulement de la clé primaire.
+
+Dans notre exemple, Nom_Client dépend de ID_Client et non de ID_Commande. Pour atteindre la 2NF, nous séparons les informations du client dans une table distincte :
+
+Commandes
+--
+ID_Commande | Produit    | Quantité | Prix_Unitaire | ID_Client
+----------- | ---------- | -------- | ------------- | ---------
+1           | T-shirt    | 2        | 15            | 101
+1           | Casquette  | 1        | 10            | 101
+2           | T-shirt    | 1        | 15            | 102
+
+Clients
+--
+ID_Client | Nom_Client
+--------- | ----------
+101       | Alice
+102       | Bob
+
+## 4. Troisième forme normale (3FN)
+Une table est en Troisième Forme Normale si elle est en 2NF et que tous ses attributs non-clés sont non seulement dépendants de la clé primaire mais aussi mutuellement indépendants. En d'autres termes, aucun attribut non-clé ne doit dépendre d'un autre attribut non-clé. Cela aide à éliminer les dépendances transitives.
+
+Dans notre exemple, Prix_Unitaire pourrait dépendre du Produit et non de la Commande. Nous créons donc une table distincte pour les produits :
+
+Commandes
+--
+ID_Commande | Produit    | Quantité | ID_Client
+----------- | ---------- | -------- | ---------
+1           | T-shirt    | 2        | 101
+1           | Casquette  | 1        | 101
+2           | T-shirt    | 1        | 102
+
+Clients
+--
+ID_Client | Nom_Client
+--------- | ----------
+101       | Alice
+102       | Bob
+
+Produits
+--
+Produit    | Prix_Unitaire
+---------- | -------------
+T-shirt    | 15
+Casquette  | 10
+
+## 5. Vers une Conception Plus Avancée
+À ce stade, notre table `Commandes` est bien structurée selon les principes de la 3NF. Cependant, dans une conception de base de données relationnelle avancée, il est courant d'utiliser des identifiants uniques pour les relations entre les tables. Cela réduit la redondance et améliore l'efficacité.
+
+Nous allons donc faire évoluer notre exemple pour utiliser `ID_Produit` au lieu de Produit. Cela implique l'introduction d'une table `Produits` distincte, où chaque produit est identifié par un `ID_Produit` unique. Voici comment cela se présente :
+
+Produit
+--
+ID_Produit | Nom_Produit | Prix_Unitaire
+---------- | ----------- | -------------
+1          | T-shirt     | 15
+2          | Casquette   | 10
+
+Nous gardons la même table Clients :
+
+Client
+--
+ID_Client | Nom_Client
+--------- | ----------
+101       | Alice
+102       | Bob
+
+Et nous modifions la table Commandes pour utiliser les identifiants uniques :
+
+Commande
+--
+
+ID_Commande | ID_Produit | Quantité | ID_Client
+----------- | ---------- | -------- | ---------
+1           | 1          | 2        | 101
+1           | 2          | 1        | 101
+2           | 1          | 1        | 102
+
 
 # IV. Le langage SQL
 Nous allons maintenant manipuler les données qui se trouvent dans une base de données. Nous utiliserons un langage qui s'appelle le SQL. Les commandes SQL s'écrivent en MAJUSCULES par convention. Ne pas le faire ne provoquera pas une erreur.
