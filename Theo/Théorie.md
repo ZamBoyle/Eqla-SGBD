@@ -7,13 +7,14 @@
 <i>Johnny Piette</i>
 </div>
 
-****
-<!--
-<h1>Table des matières</h1>
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
 
 - [I. Introduction](#i-introduction)
   - [1. Mise en situation](#1-mise-en-situation)
-  - [2. Brainstorming : Qu'auriez-vous pu faire pour garder les résultats ?](#2-brainstorming-quauriez-vous-pu-faire-pour-garder-les-résultats)
+  - [2. Brainstorming : Qu'auriez-vous pu faire pour garder les résultats ?](#2-brainstorming--quauriez-vous-pu-faire-pour-garder-les-résultats-)
   - [3. Approche intuitive des SGBD](#3-approche-intuitive-des-sgbd)
 - [II. Base de données](#ii-base-de-données)
   - [1. Définition](#1-définition)
@@ -24,7 +25,7 @@
   - [1. Entité](#1-entité)
   - [2. Clef d'identité](#2-clef-didentité)
   - [3. Relation/association](#3-relationassociation)
-  - [4. Cardinalités/Multiplicité ou combien ?](#4-cardinalitésmultiplicité-ou-combien)
+  - [4. Cardinalités/Multiplicité ou combien ?](#4-cardinalitésmultiplicité-ou-combien-)
   - [5. Passage du MCD au MLD](#5-passage-du-mcd-au-mld)
     - [5.1 Entités, clefs, propriétés](#51-entités-clefs-propriétés)
       - [5.1.1 Une entité devient une table](#511-une-entité-devient-une-table)
@@ -32,14 +33,20 @@
       - [5.1.3 Une propriété devient un attribut](#513-une-propriété-devient-un-attribut)
     - [5.2 Associations](#52-associations)
       - [5.2.1 Une association de type 1:N](#521-une-association-de-type-1n)
-      - [5.2.2 Une association de type N :N](#522-une-association-de-type-nn)
-      - [5.2.3 Une association de type 1 :1](#523-une-association-de-type-11)
+      - [5.2.2 Une association de type N :N](#522-une-association-de-type-n-n)
+      - [5.2.3 Une association de type 1 :1](#523-une-association-de-type-1-1)
+- [IIIb. Les formes normales](#iiib-les-formes-normales)
+  - [1. Définition](#1-définition-1)
+  - [2. Première forme normale (1FN)](#2-première-forme-normale-1fn)
+  - [3. Deuxième forme normale (2FN)](#3-deuxième-forme-normale-2fn)
+  - [4. Troisième forme normale (3FN)](#4-troisième-forme-normale-3fn)
+  - [5. Vers une Conception Plus Avancée](#5-vers-une-conception-plus-avancée)
 - [IV. Le langage SQL](#iv-le-langage-sql)
   - [1. SELECT: Chercher des informations](#1-select-chercher-des-informations)
     - [1.1 DISTINCT](#11-distinct)
-  - [2. WHERE : Filtrage](#2-where-filtrage)
-    - [a. WHERE : Opérateurs Booléens](#a-where-opérateurs-booléens)
-    - [b. WHERE : AND et OR](#b-where-and-et-or)
+  - [2. WHERE : Filtrage](#2-where--filtrage)
+    - [a. WHERE : Opérateurs Booléens](#a-where--opérateurs-booléens)
+    - [b. WHERE : AND et OR](#b-where--and-et-or)
     - [c. Opérateur AND](#c-opérateur-and)
     - [d. Opérateur OR](#d-opérateur-or)
     - [e. Combiner AND et OR](#e-combiner-and-et-or)
@@ -91,8 +98,37 @@
     - [12.2 Suppression ou champ Deleted ?](#122-suppression-ou-champ-deleted-)
     - [12.3 Pourquoi mon DELETE provoque une erreur ?](#123-pourquoi-mon-delete-provoque-une-erreur-)
     - [12.4 Droit à l'oubli ?](#124-droit-à-loubli-)
-  - [13. ALTER TABLE](#13-alter-table)
--->
+  - [13. Limiter le résultat - LIMIT](#13-limiter-le-résultat---limit)
+  - [14. DROP TABLE](#14-drop-table)
+  - [15. TRUNCATE](#15-truncate)
+  - [16. ALTER TABLE](#16-alter-table)
+    - [16.1 Ajouter une colonne - ADD](#161-ajouter-une-colonne---add)
+    - [16.2 Changer le type d'une colonne - MODIFY COLUMN](#162-changer-le-type-dune-colonne---modify-column)
+  - [16.3 Supprimer le type d'une colonne - DROP COLUMN](#163-supprimer-le-type-dune-colonne---drop-column)
+  - [17. CHECK - Validation](#17-check---validation)
+  - [18. Les indexes](#18-les-indexes)
+  - [18.1 Création d'un INDEX - CREATE INDEX](#181-création-dun-index---create-index)
+    - [18.2 Suppression d'un INDEX - DROP INDEX](#182-suppression-dun-index---drop-index)
+  - [19. Naming convention - Covention de nommage](#19-naming-convention---covention-de-nommage)
+    - [19.1 Règles communes](#191-règles-communes)
+    - [19.1 Nom d'une base de données](#191-nom-dune-base-de-données)
+    - [19.2 Nom d'une table](#192-nom-dune-table)
+    - [19.3 Nom d'une clef primaire](#193-nom-dune-clef-primaire)
+    - [19.4 Nom d'une clef étrangère](#194-nom-dune-clef-étrangère)
+    - [19.5 Nom des champs](#195-nom-des-champs)
+    - [19.6 Nom de la contrainte de Clef étrangère](#196-nom-de-la-contrainte-de-clef-étrangère)
+  - [20. Les fonctions](#20-les-fonctions)
+    - [20.1 FONCTION sans paramètre](#201-fonction-sans-paramètre)
+    - [20.2 FONCTION avec paramètres](#202-fonction-avec-paramètres)
+    - [20.2 Supprimer une fonction - DROP FUNCTION](#202-supprimer-une-fonction---drop-function)
+    - [20.3 Modifier une fonction - ALTER FUNCTION](#203-modifier-une-fonction---alter-function)
+  - [21. Les Procédures stockées](#21-les-procédures-stockées)
+  - [22. Les vues - VIEW](#22-les-vues---view)
+
+<!-- /code_chunk_output -->
+
+
+
 
 # I. Introduction
 ## 1. Mise en situation
