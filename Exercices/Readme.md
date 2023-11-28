@@ -1,4 +1,4 @@
-<h1>Exercices sur les bases de données</h1>
+<h1>Exercices SQL</h1>
 
 ![](../Theo/media/image1.png)
 <div style="text-align: right">
