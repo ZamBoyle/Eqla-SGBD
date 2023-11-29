@@ -57,8 +57,10 @@ prompt <\d>
 ```
 
 ## Copier les DB exercices
-Copier les fichiers SQL se trouvant via cette adresse: [https://github.com/ZamBoyle/Eqla-SGBD/tree/master/DB ](https://downgit.github.io/#/home?url=https://github.com/ZamBoyle/Eqla-SGBD/tree/master/DB)
+Copier les fichiers SQL se trouvant via cette adresse: [Base de données des exercices ](https://github.com/ZamBoyle/Eqla-SGBD/raw/master/DB/DB.zip)
+
 Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt Eqla-Exercices.
+Demandez-moi le mot de passe pour décompresser le fichier.
 
 ## Exercice n°1 - Importation des fichiers de base de données
 1. Allez dans le répertoire d'exercices SQL
@@ -100,7 +102,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
 2. Entrez votre mot de passe.
 3. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 4. Ecrivez l'instruction qui affichez tous les enregistrements de la table Eleve: tous les champs à l'aide du caractère *
-5. Ecrivez l'instruction qui affichez tous les enregistrements de la table Classe: tous les champs à l'aide du caractère *
+5. Ecrivez l'instruction qui affichez tous les enregistrements de la table formation: tous les champs à l'aide du caractère *
 
 ## Exercice n°3 - SELECT ch1, ch2, etc.
 1. Allez dans le répertoire d'exercices SQL
@@ -108,7 +110,7 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez tous les enregistrements de la table Eleve avec les champs suivants: Nom, Prenom, Email
-6. Affichez tous les enregistrements de la table Classe avec les champs: Nom, Lieux
+6. Affichez tous les enregistrements de la table formation avec les champs: Nom, Lieux
 
 ## Exercice n°4 - Notre premier WHERE
 1. Allez dans le répertoire d'exercices SQL
@@ -258,13 +260,13 @@ Décompresssez ce fichier DB.zip et mettez le répertoire DB dans votre dépôt 
 5. Expliquez ce que fait cette commande SQL:
 ```sql
 SELECT YEAR(DateInscription) As 'Annee Inscription', COUNT(DateInscription)
-FROM EleveClasse
+FROM eleve_formation
 group by YEAR(DateInscription);
 ```
 6. Pourquoi avoir utilisé la Fonction **YEAR** ? Pour vous aider, comparez sans le **YEAR**:
 ```sql
 SELECT DateInscription As 'Annee Inscription', COUNT(DateInscription)
-FROM EleveClasse
+FROM eleve_formation
 group by DateInscription;
 ```
 
@@ -285,7 +287,7 @@ group by DateInscription;
 5. Affichez le nom COMPLET du pays et le nom COMPLET du continent (pas l'acronyme) dont il fait partie.
 
 ## Exercice n°24 - INNER JOIN
-Ici, on va travailler sur trois tables. La table _Eleve_, la table _Classe_ et la table _EleveClasse_.
+Ici, on va travailler sur trois tables. La table _eleve_, la table _formation_ et la table _eleve_formation_.
 Analyser la description des tables pour comprendre comment les lier entre elles.
 Pour connaître la description d'une table, on utilise la commande: **DESC nomdelatable;**
 No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
