@@ -1,3 +1,9 @@
+<h1 id="sommaire" style="display: flex; align-items: center; justify-content: center;">
+    <img src="/Theo/media/image1.png" style="height:50px">
+    &nbsp;Sommaire du Cours de SGBD
+</h1>
+
+
 Cher stagiaire :man_student: ! 
 
 Bienvenue sur le cours d'introduction aux SGBD ! Ce dépôt sera souvent mis à jour, n'oubliez pas souvent de faire un git pull.

@@ -1,6 +1,11 @@
 [:arrow_left:Revenir au menu principal.](../README.md)
-<h1>Cours d'introduction aux SGBD</h1>
-L'ensemble des points de matière se trouvent dans les documents suivants:<br/><br/>
+<h1 id="sommaire" style="display: flex; align-items: center; justify-content: center;">
+    <img src="/Theo/media/image1.png" style="height:50px">
+    &nbsp;Cours d'introduction aux SGBD
+</h1>
+
+<br/>
+L'ensemble des points de matière se trouvent dans les documents suivants:<br/>
 
 1. [Installation de MariaDB](Install.md)
 2. [Théorie](Théorie.md)

@@ -1,11 +1,9 @@
-d
 [:arrow_left:Revenir au menu.](../Theo/README.md)
-<h1>Introduction aux bases de données</h1>
+<h1 id="sommaire" style="display: flex; align-items: center; justify-content: center;">
+    <img src="/Theo/media/image1.png" style="height:50px">
+    &nbsp;Introduction aux bases de données
+</h1>
 
-![](media/image1.png)
-<div style="text-align: right">
-<i>Johnny Piette</i>
-</div>
 
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
