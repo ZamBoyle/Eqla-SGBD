@@ -241,7 +241,9 @@ La propriété Matricule va s'appeler « clé d'identité ».
 La clef d'identité permet d'identifier de manière sûre et fiable notre élève. Cette clé doit être pensée pour qu'il ne puisse JAMAIS y avoir de doublons. La clef peut être composée d'une ou plusieurs propriétés. Les valeurs de clefs d'identités sont uniques et non nulles.
 
 Dans l'entité, cette clef est soulignée pour marquer justement que c'est une clef.
-Il arrive souvent qu'on ajoute le préfixe « Id » (pour identifiant) à une clef d'identité. <u>Exemple</u> : IdClient, IdEtudiant. Cette clef est souvent écrite Id. Rajouter IdEleve dans l'entité Elève est un peu redondant : c'est évident. Mais ça c'est selon l'endroit et les conventions que vous ou votre équipe utiliserez.
+Il arrive qu'on ajoute le préfixe « id » (pour identifiant) à une clef d'identité. <u>Exemple</u> : id_client, id_etudiant. Cette clef est souvent écrite Id. Rajouter id_eleve dans l'entité Elève est un peu redondant : c'est évident. 
+
+Mais ça c'est selon l'endroit et les conventions que vous ou votre équipe utiliserez.
 
 Dans beaucoup de cas, c'est souvent un numéro automatique incrémenté de 1. L'intérêt d'avoir un numéro automatique, c'est que la gestion de ce numéro automatique est laissée au SGBD. Il déduira automatique le nouveau numéro à générer pour le nouvel enregistrement. Si le précédent Eleve avait comme identifiant 43, le nouvel étudiant que l'on encodera aura le numéro 44. Et pour le suivant, ça sera le numéro 45, etc.
 
@@ -277,6 +279,9 @@ Dans l'affichage de l'ensemble des données de notre table. Par exemple la table
 La valeur prise par un champ pour un enregistrement donné se situe à l'intersection entre l'enregistrement et le nom du champ.
 #### 5.1.2 La clef d'identité devient la clef primaire
 Dans une table, la clef d'identité devient une clef primaire. La clef primaire (Primary key en anglais) permet d'identifier de manière unique un enregistrement d'une table. Si on liste tous les enregistrements de la table élèves = si on liste tous les élèves de la table élèves, nous n'aurons pas deux élèves avec la même clef primaire. Le SGBD ne le permettrait pas et provoquerait une erreur si on essayait de le faire. La création d'une clef primaire donne lieu dans les SGBD la création d'un index qui permet aux SGBD de traiter plus rapidement les recherches, les tris. C'est très intéressant quand on brasse une très grosse quantité de données.
+
+Comme dit, la clef s'appelle clef primaire. Mais on peut aussi l'appeler clef d'identité. Ou encore Primary Key ou PK en anglais. Ou encore Id. Ou encore idEleve. Ou encore id_eleve. Il n'est pas rare de voir des noms de clef primaire avec le préffixe "pk_".
+
 #### 5.1.3 Une propriété devient un attribut
 Une propriété d'une entité devient un attribut/champ/une colonne. Ce champ a un type : integer, float, boolean,  varchar (chaîne à taille variable), char (chaîne à taille fixe), date (date, datetime, timespamp). Cet attribut peut aussi être qualité de NULL, NOT NULL, UNIQUE par exemple.
 ### 5.2 Associations
