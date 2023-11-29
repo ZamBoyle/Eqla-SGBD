@@ -63,3 +63,9 @@ Votre tâche est de restructurer ces tables pour qu'elles respectent la Troisiè
    - Expliquez pourquoi cette nouvelle structure respecte les critères de la 3FN.
 
 Envisagez de scinder la table "Employés" pour créer une nouvelle table "Départements", réduisant ainsi les redondances et éliminant les dépendances transitives. Pensez à la meilleure façon d'organiser ces informations tout en respectant les principes de la 3FN.
+
+---
+&copy; 2023 [Johnny Piette](https://github.com/ZamBoyle).  
+[![Creative Commons Attribution 4.0 International License](https://i.creativecommons.org/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)  
+Ce travail est licencié sous [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).   
+_Vous pouvez copier, modifier, distribuer et représenter ce travail, même à des fins commerciales, à condition de donner le crédit approprié, fournir un lien vers la licence, et indiquer si des modifications ont été effectuées._
