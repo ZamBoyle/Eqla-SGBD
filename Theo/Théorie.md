@@ -1,4 +1,4 @@
-
+d
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 <h1>Introduction aux bases de données</h1>
 
@@ -35,10 +35,23 @@
       - [5.2.1 Une association de type 1:N](#521-une-association-de-type-1n)
       - [5.2.2 Une association de type N :N](#522-une-association-de-type-n-n)
       - [5.2.3 Une association de type 1 :1](#523-une-association-de-type-1-1)
-- [IIIb. Les formes normales](#iiib-les-formes-normales)
+- [IIIb. Les formes normales / Normalisation des bases de données](#iiib-les-formes-normales--normalisation-des-bases-de-données)
   - [1. Définition](#1-définition-1)
   - [2. Première forme normale (1FN)](#2-première-forme-normale-1fn)
+    - [2.1 Définition](#21-définition)
+    - [2.2 Exemples](#22-exemples)
+      - [2.2.1 Exemple 1 - Table etudiant](#221-exemple-1---table-etudiant)
+      - [2.2.2 Exemple 2 - Table etudiant_cours](#222-exemple-2---table-etudiant_cours)
+    - [2.3 En résumé, comment passer de la `0FN` à la `1FN` ?](#23-en-résumé-comment-passer-de-la-0fn-à-la-1fn-)
   - [3. Deuxième forme normale (2FN)](#3-deuxième-forme-normale-2fn)
+    - [3.1 Définition](#31-définition)
+    - [3.2 Exemple - Table etudiant_cours](#32-exemple---table-etudiant_cours)
+- [IIIb. Les formes normales](#iiib-les-formes-normales)
+  - [1. Définition](#1-définition-2)
+  - [2. Première forme normale (1FN)](#2-première-forme-normale-1fn-1)
+    - [2.1 Définition](#21-définition-1)
+    - [2.2 Comment passer de la `0FN` à la `1FN` ?](#22-comment-passer-de-la-0fn-à-la-1fn-)
+  - [3. Deuxième forme normale (2FN)](#3-deuxième-forme-normale-2fn-1)
   - [4. Troisième forme normale (3FN)](#4-troisième-forme-normale-3fn)
   - [5. Vers une Conception Plus Avancée](#5-vers-une-conception-plus-avancée)
 - [IV. Le langage SQL](#iv-le-langage-sql)
@@ -237,6 +250,7 @@ Dans l'entité, cette clef est soulignée pour marquer justement que c'est une c
 Il arrive souvent qu'on ajoute le préfixe « Id » (pour identifiant) à une clef d'identité. <u>Exemple</u> : IdClient, IdEtudiant. Cette clef est souvent écrite Id. Rajouter IdEleve dans l'entité Elève est un peu redondant : c'est évident. Mais ça c'est selon l'endroit et les conventions que vous ou votre équipe utiliserez.
 
 Dans beaucoup de cas, c'est souvent un numéro automatique incrémenté de 1. L'intérêt d'avoir un numéro automatique, c'est que la gestion de ce numéro automatique est laissée au SGBD. Il déduira automatique le nouveau numéro à générer pour le nouvel enregistrement. Si le précédent Eleve avait comme identifiant 43, le nouvel étudiant que l'on encodera aura le numéro 44. Et pour le suivant, ça sera le numéro 45, etc.
+
 Souvent on prend un entier comme clef primaire. Car un entier prend 4 octets. Une clef primaire de type entier prend moins de place et la recherche dans les index est plus rapide.
 
 ## 3. Relation/association
@@ -336,28 +350,208 @@ Maintenant, si on sait que notre modèle évoluera vers une association de type 
 
 Dans la pratique si les entités ont une distinction fonctionnelle forte. On peut les séparer. En effet, imaginons qu'un voilier ait 100 propriétés qui le caractérisent. Remettre toutes ces propriétés dans l'entité Marin est assez discutable. Personnellement, dans ce cas, je fais deux entités.
 
+# IIIb. Les formes normales / Normalisation des bases de données
+## 1. Définition
+Les formes normales sont des principes de conception de bases de données relationnelles qui visent à réduire la redondance des données et à augmenter l'intégrité des données. Elles représentent des règles pour la structuration de tables et de relations dans une base de données.
+
+L'application de ces formes normales aide à prévenir les anomalies de base de données, facilite l'entretien des données, et améliore la performance des requêtes.
+
+Il y a 5 formes normales (1FN, 2FN, 3FN, 4FN et 5FN). La plupart des bases de données sont normalisées jusqu'à la 3FN. Nous ne verrons que les 3 premières formes normales. Les 4 et 5FN sont très peu utilisées: elles sont surtout utiles pour les bases de données très complexes.
+
+## 2. Première forme normale (1FN)
+
+### 2.1 Définition
+Une table est dite en **Première Forme Normale** (`1FN`) si et seulement si tous les champs contiennent des valeurs atomiques, c'est-à-dire chaque colonne contient une sule valeur.
+
+De plus, chaque ligne doit être unique. C'est-à-dire que chaque ligne doit avoir une valeur unique pour la clef primaire.
+
+### 2.2 Exemples
+#### 2.2.1 Exemple 1 - Table etudiant
+Soit la table `etudiant` suivante :
+
+etudiant (0FN)
+---------
+id | nom | prenom | email | telephones | adresse | cp | ville | date_naissance
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean | jean.dupont@dupont.com      | 0478/45.45.46, 02/555.55.55 | Rue de l'insertion, 1 | 1000 | Bruxelles | 01/01/2000
+2         | Durand     | Marie  | Durand.Marie@Durand.com    | 0478/45.45.47, 02/555.55.55 | Rue des sélections, 45 | 4000 | Liège | 10/08/2002
+3         | Martin     | Jean   | jean.Martin@Martin.com    | 0478/45.05.05, 02/555.55.55 | Rue de l'instance, 100 | 5300 | Andenne | 15/03/2003
+
+Dans cette table, le champ `telephones` contient plusieurs valeurs séparées par une virgule. Ce n'est pas une valeur atomique. Pour atteindre la `1FN`, nous devons le diviser :
+
+etudiant (presque 1FN)
+---------
+id | nom | prenom | email | gsm | telephone | adresse | cp | ville | date_naissance |
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean    | jean.dupont@dupont.com    | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion, 1 | 1000 | Bruxelles | 01/01/2000
+2         | Durand     | Marie   | Durand.Marie@Durand.com    | 0478/45.45.47 | 02/555.55.55 | Rue des sélections, 45 | 4000 | Liège | 10/08/2002 
+3         | Martin     | Jean    | jean.Martin@Martin.com    | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance, 100 | 5300 | Andenne | 15/03/2003
+
+Cependant, cette table n'est pas encore en `1FN`. En effet, le champ `adresse` contient plusieurs valeurs séparées par une virgule. Pour atteindre la `1FN`, nous devons le diviser :
+
+etudiant (1FN)
+---------
+id | nom | prenom | email | gsm | telephone | rue | numero | cp | ville | date_naissance
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean | jean.dupont@dupont.com       | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | 01/01/2000
+2         | Durand     | Marie | Durand.Marie@Durand.com      | 0478/45.45.47 | 02/555.55.55 | Rue des sélections | 45 | 4000 | Liège | 10/08/2002
+3         | Martin     | Jean | jean.Martin@Martin.com      | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | 15/03/2003
+
+#### 2.2.2 Exemple 2 - Table etudiant_cours
+Soit la table `etudiant_cours`. Cette table reprend les informations de l'étudiant et les cours qu'il suit.
+
+etudiant_cours (0FN)
+---------
+id | nom | prenom | date_naissance | email | gsm | telephone | rue | numero | cp | ville | cours
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean | 01/01/2000 | jean.dupont@dupont.com      | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | Python, PHP
+2         | Durand     | Marie | 10/08/2002 | Durand.Marie@Durand.com   | 0478/45.45.47 | 02/555.55.55 | Rue des sélections | 45 | 4000 | Liège | Python
+3         | Martin     | Jean | 15/03/2003 | jean.Martin@Martin.com   | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | HTML, Bootstrap
+
+On constate que la colonne `cours` contient plusieurs valeurs séparées par une virgule. Ce n'est pas une valeur atomique. Pour atteindre la `1FN`, nous pourrions avoir une solution non générique en ajoutant des colonnes `cours1`, `cours2`, `cours3`, etc. Mais cette solution n'est pas optimale. En effet, si on veut ajouter un cours à un étudiant, il faudra ajouter une colonne à la table etudiant. Si un étudiant suit 50 cours différents, il faudra ajouter 50 colonnes à la table etudiant. Cette solution n'est pas optimale.
+
+etudiant_cours (1FN)
+---------
+id | nom | prenom | date_naissance | email | gsm | telephone | rue | numero | cp | ville | cours1 | cours2
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean | 01/01/2000 | jean.dupont@dupont.com     | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | Python | PHP
+2         | Durand     | Marie | 10/08/2002 | Durand.Marie@Durand.com | 0478/45.45.47 | 02/555.55.55 | Rue des sélections | 45 | 4000 | Liège | Python | NULL
+3         | Martin     | Jean | 15/03/2003 | jean.Martin@Martin.com | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | HTML | Bootstrap
+
+Notre table est en 1FN mais ce n'est pas top top... En effet, on a des redondances de données. Par exemple, on a deux fois les mêmes informations pour Jean Dupont. On a deux fois son nom, son prénom, sa date de naissance, son email, son gsm, son téléphone, son adresse, son numéro, son code postal et sa ville. Ca sera lors de la 2FN que nous allons supprimer ces redondances de données.
+
+
+Ou bien on peut imaginer que l'on va mettre qu'une seule donnée atomique pour la colonne cours. Par exemple "Jean Dupont" a suivit les cours de Python et de PHP. On pourrait avoir deux enregistrements dans la table etudiant_cours. Un enregistrement pour le cours de Python et un enregistrement pour le cours de PHP. 
+
+Notre table etudiant_cours serait alors comme ceci :
+
+etudiant_cours (1FN)
+---------
+id | nom | prenom | date_naissance | email | gsm | telephone | rue | numero | cp | ville | cours
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean | 01/01/2000 | jean.dupont@dupont.com     | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | Python
+1         | Dupont     | Jean | 01/01/2000 | jean.dupont@dupont.com    | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | PHP
+2         | Durand     | Marie | 10/08/2002 | Durand.Marie@Durand.com  | 0478/45.45.47 | 02/555.55.55 | Rue des sélections | 45 | 4000 | Liège | Python
+3         | Martin     | Jean | 15/03/2003 | jean.Martin@Martin.com  | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | HTML
+3         | Martin     | Jean | 15/03/2003 | jean.Martin@Martin.com | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | Bootstrap
+
+Ici, notre table est en 1FN, on sent bien que cette solution n'est pas optimale. En effet, on a des redondances de données. Par exemple, on a deux fois les mêmes informations pour Jean Dupont. On a deux fois son nom, son prénom, sa date de naissance, son email, son gsm, son téléphone, son adresse, son numéro, son code postal et sa ville.
+
+Ca sera lors de la 2FN que nous allons supprimer ces redondances de données.
+
+### 2.3 En résumé, comment passer de la `0FN` à la `1FN` ?
+- Soit diviser les champs qui contiennent plusieurs valeurs en plusieurs champs qui ne contiennent qu'une seule valeur.
+- Soit diviser les champs qui contiennent plusieurs valeurs en plusieurs enregistrements qui ne contiennent qu'une seule valeur.
+
+
+## 3. Deuxième forme normale (2FN)
+### 3.1 Définition
+Une table est dite en **Deuxième Forme Normale** (`2FN`) si et seulement si elle est en `1FN` et si tous les champs non-clés dépendent de la clé primaire.
+
+### 3.2 Exemple - Table etudiant_cours
+Reprenons notre table `etudiant_cours` qui était en `1FN` :
+
+etudiant_cours (1FN)
+---------
+id | nom | prenom | date_naissance | email | gsm | telephone | rue | numero | cp | ville | cours
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean | 01/01/2000 | jean.dupont@dupont.com     | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | Python
+1         | Dupont     | Jean | 01/01/2000 | jean.dupont@dupont.com    | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | PHP
+2         | Durand     | Marie | 10/08/2002 | Durand.Marie@Durand.com  | 0478/45.45.47 | 02/555.55.55 | Rue des sélections | 45 | 4000 | Liège | Python
+3         | Martin     | Jean | 15/03/2003 | jean.Martin@Martin.com  | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | HTML
+3         | Martin     | Jean | 15/03/2003 | jean.Martin@Martin.com | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | Bootstrap
+
+On voit que les champs `nom`, `prenom`, `date_naissance`, `email`, `gsm`, `telephone`, `rue`, `numero`, `cp` et `ville` sont redondants. En effet, on a deux fois les mêmes informations pour Jean Dupont. On a deux fois son nom, son prénom, sa date de naissance, son email, son gsm, son téléphone, son adresse, son numéro, son code postal et sa ville.
+
+De plus, on a plusieurs fois les mêmes cours. Par exemple, le cours Python est écrit 2 fois. C'est une redondance de données.
+
+Il est donc difficile de trouver une clé primaire pour cette table. En effet, si on prend le champ `id`, on aura plusieurs fois le même `id` pour un même étudiant. Si on prend le champ `cours`, on aura plusieurs fois le même `cours` pour un même étudiant.
+
+Pour atteindre la `2FN`, nous allons procéder par étapes :
+1. Créer une clef primaire composée des champs `id` et `cours`. Cette clef primaire permettra d'identifier de manière unique un enregistrement de la table `etudiant_cours`.
+
+
+
+
+
+
+
+
+Pour atteindre la `1FN`, nous allons procéder par étapes :
+- 1. Créer une table `cours` avec les champs `id` et `nom`
+- 2. Créer une table `etudiant_cours` avec les champs `etudiant_id` et `cours_id`
+- 3. Supprimer le champ `cours` de la table `etudiant`
+
+etudiant (1FN)
+---------
+id | nom | prenom | email | gsm | telephone | rue | numero | cp | ville | date_naissance
+----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ----------
+1         | Dupont     | Jean       | 0478/45.45.46 | 02/555.55.55 | Rue de l'insertion | 1 | 1000 | Bruxelles | 01/01/2000
+2         | Durand     | Marie      | 0478/45.45.47 | 02/555.55.55 | Rue des sélections | 45 | 4000 | Liège | 10/08/2002
+3         | Martin     | Jean       | 0478/45.05.05 | 02/555.55.55 | Rue de l'instance | 100 | 5300 | Andenne | 15/03/2003
+
+La table etudiant est maintenant en `1FN`.
+
+cours (1FN)
+---------
+id | nom
+----------- | ----------
+1         | Python
+2         | PHP
+3         | HTML
+4         | Bootstrap
+
+etudiant_cours (1FN)
+---------
+etudiant_id | cours_id
+----------- | ----------
+1         | 1
+1         | 2
+2         | 1
+3         | 3
+3         | 4
+
+On voit donc que la décomposition de la colonne cours en une table à part permet de supprimer les redondances de données. En effet, le cours Python n'est plus écrit 2 fois dans la table etudiant.
+
+On aurait pu imaginer qu'on aurait pu ajouter à la table etudiant plusieurs colonnes cours1, cours2, cours3, etc. Mais cette solution n'est pas optimale. En effet, si on veut ajouter un cours à un étudiant, il faudra ajouter une colonne à la table etudiant. Si un étudiant suit 50 cours différents, il faudra ajouter 50 colonnes à la table etudiant. Cette solution n'est pas optimale. En informatique, on essaie d'avoir une solution générique. Nous avons pu y arriver en passant par  une table à part.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # IIIb. Les formes normales
 ## 1. Définition
 Les formes normales sont des principes de conception de bases de données relationnelles qui visent à réduire la redondance des données et à augmenter l'intégrité des données. Elles représentent des règles pour la structuration de tables et de relations dans une base de données.
 
 L'application de ces formes normales aide à prévenir les anomalies de base de données, facilite l'entretien des données, et améliore la performance des requêtes.
 
-Il y a 5 formes normales (1NF, 2NF, 3NF, 4NF et 5NF). La plupart des bases de données sont normalisées jusqu'à la 3NF. Nous ne verrons que les 3 premières formes normales. Les 4 et 5NF sont très peu utilisées: elles sont surtout utiles pour les bases de données très complexes.
+Il y a 5 formes normales (1FN, 2FN, 3FN, 4FN et 5FN). La plupart des bases de données sont normalisées jusqu'à la 3FN. Nous ne verrons que les 3 premières formes normales. Les 4 et 5FN sont très peu utilisées: elles sont surtout utiles pour les bases de données très complexes.
 
-Pour illustrer ces principes, considérons une table simple `Commandes` dans une base de données de commerce électronique :
+Pour illustrer ces principes, considérons une table simple `commande` dans une base de données de commerce électronique :
 
-Commandes
+commande
 ---------
 
-ID_Commande | Produits           | Quantité | Prix_Unitaire | ID_Client | Nom_Client
+id | produits           | quantite | prix_unitaire | client_id | nom_client
 ----------- | ------------------ | -------- | ------------- | --------- | ----------
 1           | T-shirt, Casquette | 2, 1     | 15, 10        | 101       | Alice
 2           | T-shirt            | 1        | 15            | 102       | Bob
 
-
 ## 2. Première forme normale (1FN)
 
-Une table est dite en **Première Forme Normale** (`1NF`) si et seulement si tous les champs contiennent des valeurs atomiques, c'est-à-dire chaque colonne contient des valeurs indivisibles.
+### 2.1 Définition
+Une table est dite en **Première Forme Normale** (`1FN`) si et seulement si tous les champs contiennent des valeurs atomiques, c'est-à-dire chaque colonne contient une sule valeur.
+
+A l'inverse, un attribut non atomique a plusieurs valeurs. Par exemple, le champ `produits` contient plusieurs valeurs séparées par une virgule.
 
 De plus, chaque enregistrement doit être unique. 
 
@@ -367,105 +561,134 @@ Elle stipule que toutes les valeurs d'une table doivent être atomiques. C'est-�
 
 En d'autres termes, chaque colonne d'une table doit contenir une seule valeur et cette valeur doit être de même type que les autres valeurs de la colonne.
 
- Dans notre table Commandes, les champs Produits et Quantité contiennent des valeurs non atomiques. Pour atteindre la 1NF, nous devons les diviser :
+### 2.2 Comment passer de la `0FN` à la `1FN` ?
+**Deux solutions** :
+**I. Création d'une table séparée**
+1. Sortir les valeurs non atomiques dans une table séparée.
+2. Transformer l'attribut non atomique en table, ajouter une clé primaire dans la table nouvellement créée et une clé étrangère dans la table d'origine.
 
- Commandes (1NF)
+**II. Faire un nouvel enregistrement pour chaque valeur non atomique**
+Dupliquer les enregistrements pour chaque valeur non atomique.
+
+
+
+ Dans notre table `commande`, les champs `produits` et `quantité` contiennent des valeurs non atomiques.
+ 
+ Pour atteindre la `1FN`, nous devons les diviser :
+
+ commande (1FN)
 ----------------
-ID_Commande | Produit    | Quantité | Prix_Unitaire | ID_Client | Nom_Client
+id | produit    | quantite | prix_unitaire | client_id | nom_client
 ----------- | ---------- | -------- | ------------- | --------- | ----------
 1           | T-shirt    | 2        | 15            | 101       | Alice
 1           | Casquette  | 1        | 10            | 101       | Alice
 2           | T-shirt    | 1        | 15            | 102       | Bob
 
-## 3. Deuxième forme normale (2FN)
-Pour qu'une table soit en **Deuxième Forme Normale** (`2FN`), elle doit d'abord satisfaire toutes les conditions de la 1NF. Ensuite, elle doit s'assurer que tous les attributs non-clés sont pleinement fonctionnels dépendants de la clé primaire. Cela signifie qu'il n'y a pas de dépendance partielle d'un attribut sur une partie seulement de la clé primaire.
+Prenons un autre exemple avec des valeurs non atomiques dans une table `ouvrage` :
 
-Dans notre exemple, Nom_Client dépend de ID_Client et non de ID_Commande. Pour atteindre la 2NF, nous séparons les informations du client dans une table distincte :
-
-Commandes
+ouvrage
 --
-ID_Commande | Produit    | Quantité | Prix_Unitaire | ID_Client
+id | titre | auteur
+--------- | ---------- | ----------
+1         | Base de données | Andreas, Larousse
+2         | Python pour les nuls | John, Larousse
+
+Pour atteindre la `1FN`, nous devons diviser les valeurs non atomiques :
+
+
+
+
+## 3. Deuxième forme normale (2FN)
+Pour qu'une table soit en **Deuxième Forme Normale** (`2FN`), elle doit d'abord satisfaire toutes les conditions de la `1NF`. Ensuite, elle doit s'assurer que tous les attributs non-clés sont pleinement fonctionnels dépendants de la clé primaire. Cela signifie qu'il n'y a pas de dépendance partielle d'un attribut sur une partie seulement de la clé primaire.
+
+Dans notre exemple, `nom_client` dépend de `client_id` et non de `id`. Pour atteindre la `2NF`, nous séparons les informations du client dans une table distincte :
+
+commande
+--
+id | produit    | quantite | prix_unitaire | client_id
 ----------- | ---------- | -------- | ------------- | ---------
 1           | T-shirt    | 2        | 15            | 101
 1           | Casquette  | 1        | 10            | 101
 2           | T-shirt    | 1        | 15            | 102
 
-Clients
+client
 --
-ID_Client | Nom_Client
+id | nom
 --------- | ----------
 101       | Alice
 102       | Bob
 
 ## 4. Troisième forme normale (3FN)
-Une table est en Troisième Forme Normale si elle est en 2NF et que tous ses attributs non-clés sont non seulement dépendants de la clé primaire mais aussi mutuellement indépendants. En d'autres termes, aucun attribut non-clé ne doit dépendre d'un autre attribut non-clé. Cela aide à éliminer les dépendances transitives.
+Une table est en **Troisième Forme Normale** si elle est en `2NF` et que tous ses attributs non-clés sont non seulement dépendants de la clé primaire mais aussi mutuellement indépendants. En d'autres termes, aucun attribut non-clé ne doit dépendre d'un autre attribut non-clé. Cela aide à éliminer les dépendances transitives (lorsqu'un attribut dépend d'un autre attribut qui dépend lui-même de la clé primaire).
 
-Dans notre exemple, Prix_Unitaire pourrait dépendre du Produit et non de la Commande. Nous créons donc une table distincte pour les produits :
+Dans notre exemple, `prix_unitaire` pourrait dépendre du `produit` et non de la `commande`. Nous créons donc une table distincte pour les produits :
 
-Commandes
+commande
 --
-ID_Commande | Produit    | Quantité | ID_Client
+id | produit    | quantite | client_id
 ----------- | ---------- | -------- | ---------
 1           | T-shirt    | 2        | 101
 1           | Casquette  | 1        | 101
 2           | T-shirt    | 1        | 102
 
-Clients
+client
 --
-ID_Client | Nom_Client
+id | nom
 --------- | ----------
 101       | Alice
 102       | Bob
 
-Produits
+produit
 --
-Produit    | Prix_Unitaire
+produit    | prix_unitaire
 ---------- | -------------
 T-shirt    | 15
 Casquette  | 10
 
 ## 5. Vers une Conception Plus Avancée
-À ce stade, notre table `Commandes` est bien structurée selon les principes de la 3NF. Cependant, dans une conception de base de données relationnelle avancée, il est courant d'utiliser des identifiants uniques pour les relations entre les tables. Cela réduit la redondance et améliore l'efficacité.
+À ce stade, notre table `commande` est bien structurée selon les principes de la `3NF`. Cependant, dans une conception de base de données relationnelle avancée, il est courant d'utiliser des identifiants uniques pour les relations entre les tables. Cela réduit la redondance et améliore l'efficacité.
 
-Nous allons donc faire évoluer notre exemple pour utiliser `ID_Produit` au lieu de Produit. Cela implique l'introduction d'une table `Produits` distincte, où chaque produit est identifié par un `ID_Produit` unique. Voici comment cela se présente :
+Nous allons donc faire évoluer notre exemple pour utiliser `id` au lieu de Produit. Cela implique l'introduction d'une table `produit` distincte, où chaque produit est identifié par un `id` unique. Voici comment cela se présente :
 
-Produits
+produit
 --
-ID_Produit | Nom_Produit | Prix_Unitaire
+id | nom | prix_unitaire
 ---------- | ----------- | -------------
 1          | T-shirt     | 15
 2          | Casquette   | 10
 
-Nous gardons la même table Clients :
+Nous gardons la même table `client` :
 
-Clients
+client
 --
-ID_Client | Nom_Client
+id | nom
 --------- | ----------
 101       | Alice
 102       | Bob
 
 Et nous modifions la table Commandes pour utiliser les identifiants uniques :
 
-Commandes
+commande
 --
 
-ID_Commande | ID_Client | ID_Produit | Quantité
+id | client_id | produit_id | quantite
 ----------- | --------- | ---------- | --------
 1           | 101       | 1          | 2
 1           | 101       | 2          | 1
 2           | 102       | 1          | 1
 
-On constate aussi que l'ordre des colonnes peut aider à une meilleure lire. si on devait lire une commande: une commande porte sur un client pour un produit en une quantité donnée. d'où l'ordre des colonnes: ID_Commande, ID_Client, ID_Produit, Quantité.
+On constate aussi que l'ordre des colonnes peut aider à une meilleure lire. si on devait lire une commande: une commande donnée (id) porte sur un client pour un produit et pour une quantité donnée. d'où l'ordre des colonnes: `id`, `client_id`, `produit_id`, `quantite`.
 
 # IV. Le langage SQL
 Nous allons maintenant manipuler les données qui se trouvent dans une base de données. Nous utiliserons un langage qui s'appelle le SQL. Les commandes SQL s'écrivent en MAJUSCULES par convention. Ne pas le faire ne provoquera pas une erreur.
 Pour faire simple, voici les commandes de base que l'on utilise en SQL :
-1. Chercher des informations avec SELECT 
-2. Ajouter des enregistrements avec INSERT INTO 
-3. Modifier des enregistrements avec UPDATE 
-4. Effacer des enregistrements avec DELETE FROM
+1. Chercher des informations avec `SELECT` 
+2. Ajouter des enregistrements avec `INSERT INTO` 
+3. Modifier des enregistrements avec `UPDATE` 
+4. Effacer des enregistrements avec `DELETE FROM`
+
 Nous allons présenter chaque type de commande SQL au cours de ce chapitre.
+
 ## 1. SELECT: Chercher des informations
 L'instruction la plus célèbre du langage SQL est sans conteste l'instruction SELECT. Cette instruction est utilisée pour faire chercher des résultats d'une table ou plusieurs tables.
 
