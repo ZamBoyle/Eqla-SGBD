@@ -10,9 +10,11 @@ Bienvenue sur le cours d'introduction aux SGBD ! Ce dépôt sera souvent mis à 
 
 Vous trouverez l'ensemble du cours découpé en plusieurs parties:
 1. [Théorie](https://github.com/ZamBoyle/Eqla-SGBD/blob/master/Theo/Readme.md)
-2. [Exercices Formes Normales](Exercices/FN/README.md)
-3. [Exercices SQL](Exercices/Readme.md)
-3. [Révisions](Exercices/Revisions.md)
+2. [Exercice MCD 1](Exercices/Ex_MCD1.md)
+3. [Exercice MCD 2](Exercices/Ex_MCD2.md)
+4. [Exercices Formes Normales]()
+5. [Exercices SQL](Exercices/Readme.md)
+6. [Révisions](Exercices/Revisions.md)
 
 ---
 &copy; 2023 [Johnny Piette](https://github.com/ZamBoyle).  
