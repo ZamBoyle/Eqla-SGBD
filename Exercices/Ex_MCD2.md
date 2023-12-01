@@ -72,51 +72,21 @@ Prix unitaire: 150€
 Prix total: 1.830€
 Prix TVAC: 2.214,30€
 
+## Partie 1 - Identification des entités et des propriétés
 
+Vous allez devoir identifier les entités de cette facture. Pour chaque entité, vous allez devoir me donner les propriétés de cette entité. Pour chaque propriété, vous allez devoir me donner le type de donnée de cette propriété (entier, string, date, float, etc.). Vous allez devoir me dire si cette propriété peut être NULL ou NOT NULL.
 
+## Partie 2 - Relations entre les entités
 
+Essayez de trouver les relations entre les entités. Trouvez déjà en français les relations entre entités.
 
+Vous allez devoir me dire si la relation est 1:1, 1:N, N:1 ou N:N.
 
+Pour rappel
+- 1:1 signifie qu'une entité A est liée à une et une seule entité B. 
+- 1:N signifie qu'une entité A est liée à une ou plusieurs entités B. 
+- N:N signifie qu'une entité A est liée à une ou plusieurs entités B et qu'une entité B est liée à une ou plusieurs entités A.
 
-
-
-
-
-Partie 1 - Entité Elève, types de données, NULL, NOT NULL
-========
-Définissez au mieux ce qui caractérise un élève d'une des classes de BlindCode.
-J'attends ici que vous me donniez des informations qui sont propres à chaque élève.
-Pensez à ce qu'on vous demande quand vous vous inscrivez dans une école.
-
-Pour chaque propriété:
-a. Indiquez le type de donnée de la propriété: entier, string, date, float
-b. indiquez NULL ou NOT NULL.
-NULL signifiera que la propriété peut ne pas avoir de valeur (pas d'email, pas de gsm, etc.). Donc peut avoir une valeur nulle (c'est à dire rien).
-NOT NULL signifiera que la propriété DOIT impérativement avoir une valeur. Donc ne peut pas avoir une valeur nulle.
-
-Partie 2 - Entité Classe
-========
-Faites de même avec l'Entité Classe:
-Qu'est-ce qui caractérise votre classe de Louvain-La-Neuve à celle de BXL.
-
-Partie 3 - Clef d'entité
-========
-Pour l'Entité Eleve trouvez une information, une propriété qui caractérise de manière unique un Eleve.
-Avec cette information, il est impossible d'avoir deux élèves avec cette même propriété.
-
-Faites de même avec l'Entité Classe.
-
-Partie 4 - Relation entre l'entité Elève et l'Entité Classe
-========
-Je vous demande de lier l'Entité Elève à l'Entité Classe par une phrase.
-Exemples:
-1. Entité Animal et Entité Famille
-==> chien (Entité Animal) FAIT PARTIE DES (Relation) des canidés(Entité Famille)
-2. entité Commune et entité Province
-==> Namur (Entité Commune) FAIT PARTIE DE (Relation) Namur (Entité Province)
-==> Huy (Entité Commune) FAIT PARTIE DE (RELATION) Liège (Entité Province)
-
-Ensuite faite la relation reliant Classe à Elève.
 
 Partie 5 - Cardinalité d'une relation
 ========
