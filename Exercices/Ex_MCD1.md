@@ -1,4 +1,8 @@
-# Le MCD - Modèle Conceptuel de Données
+[:arrow_left:Revenir au menu.](../README.md)
+<h1 id="sommaire" style="display: flex; align-items: center; justify-content: center;">
+    <img src="/Theo/media/image1.png" style="height:50px">
+    &nbsp;Le MCD - Elève / Classe
+</h1>
 
 ## Introduction: Approche de la notion du MCD par tâtonnement/Discussion
 Vous allez vous répartir en deux groupes. Chaque groupe travaillera sur le même exercice. Nous remettrons en commun les résultats de chaque groupe.
@@ -59,18 +63,13 @@ Exemples:
 Ensuite faite la relation reliant Classe à Elève.
 
 ### Partie 5 - Cardinalité d'une relation
-Si on reprend l'exemple des communes et des provinces.
-Une Commune fait partie d'une et une seule Province: Sa cardinalité s'écrit 1,1 (Le premier 1 est le nombre minimum de Province et le second est le nombre maximum de Provinces).
-A l'inverse Une Province a 1 ou plusieurs Communes: Sa cardinalité s'écrit 1, N (Le 1 est le nombre minimum de Communes et N est un nombre >1 (Donc plusieurs))
-
-A vous d'essayer d'écrire les cardinalités suivantes:
-Eleve  ==> (Cardinalité) RELATION ==> Classe
-Classe ==> (Cardinalité) RELATION ==> Eleve
-Notez que l'on considère dans ce cas (pour le moment) qu'un élève fait partie d'une seule classe.
-
+Pour rappel
+- 1:1 signifie qu'une entité A est associée à une entité B et inversément.
+- 1:N signifie qu'une entité A est associée à plusieurs entités B et qu'une entité B peut être liée à une entité A. 
+- N:N signifie qu'une entité A est liée à une ou plusieurs entités B et qu'une entité B est liée à une ou plusieurs entités A.
 
 ### Partie 6 - Ajout d'un champ de liaison entre les deux entités
-Ici, je vais vous demander d'ajouter un champ dans une des deux entités qui permettra de lier les deux entités. Discutez entre vous. Si vous avez déjà fait BlindCode, je vous demanderai de laisser chercher les autres.
+Ici, je vais vous demander d'ajouter un champ dans une des deux entités qui permettra de lier les deux entités. Discutez entre vous. Si vous avez déjà fait la formation BlindCode, je vous demande de laisser chercher les autres.
 
 Si vous ne trouvez pas ce n'est pas grave. Nous verrons cela ensemble.
 
@@ -120,12 +119,21 @@ Formateur ==> (Cardinalité) RELATION ==> Cours
 ### Partie 6 - MISE EN COMMUN
 
 
-## IV. Clef étrangère
+## IV. Clef mystère (pour ne pas la citer)
 
-### Partie 1 - Clef étrangère 
+### Partie 1 - Clef mystère
 Votre entité Eleve  est composée de propriétés.
 Votre entité Classe est composée de propriétés.
 
 - Essayez d'ajouter une propriété dans l'entité Eleve: Cette nouvelle propriété doit venir de l'entité Classe. Et doit identifier de manière unique votre entité Classe.
 - En fait, comment se nomme cette propriété dans l'entité classe ?
 - Et comment se nomme cette propriété dans l'entité Eleve ?
+
+
+[:arrow_left:Revenir au menu.](../README.md)
+
+---
+&copy; 2023 [Johnny Piette](https://github.com/ZamBoyle).  
+[![Creative Commons Attribution 4.0 International License](https://i.creativecommons.org/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)  
+Ce travail est licencié sous [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).   
+_Vous pouvez copier, modifier, distribuer et représenter ce travail, même à des fins commerciales, à condition de donner le crédit approprié, fournir un lien vers la licence, et indiquer si des modifications ont été effectuées._
