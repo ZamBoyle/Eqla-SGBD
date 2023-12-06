@@ -158,7 +158,7 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves nés entre 1980 ET 1990.
 6. Affichez les élèves qui ne sont pas nés entre 1980 ET 1990.
-   Pour cela, vous devez inverser la requête précédente.  Dans une inversion de condition:
+   Pour cela, vous devez inverser la requête précédente.  Pour rappel, dans une inversion de condition:
    - AND devient OR
    - OR devient AND
    - = devient \<\>
@@ -168,7 +168,8 @@ Demandez-moi le mot de passe pour décompresser le fichier.
    - \< devient \>=
    - \<= devient \>
    Exemple: `a \< b AND d >= e` devient `a \>= b OR d \< e`
-7. Reprenez la reqquète des élèves nés entre 1980 ET 1990. Encadrez celle-ci de parenthèses et ajoutez juste devant le NOT. Vous devriez avoir le même résultat que la requête précédente.
+   A vous de jouer. :-)
+7. Reprenez la requète des élèves nés entre 1980 ET 1990. Encadrez celle-ci de parenthèses et ajoutez juste devant le NOT. Vous devriez avoir le même résultat que la requête précédente. Parfois quand on a des requêtes complexes, il est plus facile de les inverser en ajoutant un NOT devant la requête. C'est plus facile que de tout inverser. :-)
 
 ## Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
