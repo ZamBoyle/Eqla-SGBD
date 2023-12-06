@@ -119,7 +119,7 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez tous les élèves de sexe Féminin.
 6. Affichez tous les élèves de sexe Masculin.
-7. Affichez Le nom, le prénom, la localite des élèves qui habitent sur le CP 6890.
+7. Affichez Le nom, le prénom, la localite des élèves qui habitent sur le CP 1030.
 
 ## Exercice n°5 - WHERE   AND
 1. Allez dans le répertoire d'exercices SQL
@@ -134,30 +134,41 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez tous les élèves qui n'ont pas de numéro de téléphone: On utilisera IS NULL
-6. A l'inverse, affichez les élèves qui ont un numéro de téléphone: On utilisera IS NOT NULL: On peut faire autrement, rappelez-le moi :)
+6. A l'inverse, affichez les élèves qui ont un numéro de téléphone: On utilisera IS NOT NULL.
 
 ## Exercice n°7 - WHERE     AND
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
-5. Affichez les élèves dont le code postal est dans les 4000
+5. Affichez les élèves dont le code postal est dans les 1000 (il y a donc plusieurs valeurs).
 
 ## Exercice n°8 - WHERE  sur une DATE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
-5. Affichez les élèves nés après 1980: Le format de la date est année/Mois/Jour
-6. Affichez les élèves nés avant 1980: Le format de la date est année/Mois/Jour
+5. Affichez les élèves nés après 1980: Le format de la date est année/Mois/Jour.
+6. Affichez les élèves nés avant 1980: Le format de la date est année/Mois/Jour.
 
 ## Exercice n°9 - WHERE sur des DATES
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
-5. Affichez les élèves nés entre 1970 ET 1980.
-6. Affichez les élèves qui ne sont pas nés entre 1970 ET 1980.
+5. Affichez les élèves nés entre 1980 ET 1990.
+6. Affichez les élèves qui ne sont pas nés entre 1980 ET 1990.
+   Pour cela, vous devez inverser la requête précédente.  Dans une inversion de condition:
+   - AND devient OR
+   - OR devient AND
+   - = devient \<\>
+   - \<\> devient =
+   - \> devient \<=
+   - \>= devient \<
+   - \< devient \>=
+   - \<= devient \>
+   Exemple: `a \< b AND d >= e` devient `a \>= b OR d \< e`
+7. Reprenez la reqquète des élèves nés entre 1980 ET 1990. Encadrez celle-ci de parenthèses et ajoutez juste devant le NOT. Vous devriez avoir le même résultat que la requête précédente.
 
 ## Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL

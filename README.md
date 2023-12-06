@@ -10,7 +10,7 @@ Bienvenue sur le cours d'introduction aux SGBD ! Ce dépôt sera souvent mis à 
 
 Vous trouverez l'ensemble du cours découpé en plusieurs parties:
 1. [Théorie](https://github.com/ZamBoyle/Eqla-SGBD/blob/master/Theo/Readme.md)
-2. [Exercice MCD 1: Joueur, Equipe, Entraineur](Exercices/Ex_MCD1.md)
+2. [Exercice MCD 1: Club de Foot](Exercices/Ex_MCD1.md)
 3. [Exercice MCD 2: Facture](Exercices/Ex_MCD2.md)
 4. [Exercices SQL](Exercices/Readme.md)
 5. [Révisions](Exercices/Revisions.md)
