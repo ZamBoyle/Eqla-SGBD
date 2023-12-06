@@ -81,33 +81,22 @@ Vous allez devoir identifier les entités de cette facture. Pour chaque entité,
 Essayez de trouver les relations entre les entités. Trouvez déjà en français les relations entre entités.
 
 ## Partie 5 - Cardinalité d'une relation
-Pour les couples d'entités suivantes faites les relations:
-- client, commande
-- produit, commande
-- société (émeteur), commande
-- client, facture
-- facture, commande
+Pour les couples d'entités suivantes, vous donnerez la cardinalité de la relation entre les deux entités (minimum et maximum). Donc vous notez simplement entre parenthèse le minimum et le maximum. 
 
+- client, commande (  ,  )
+- commande, client (  ,  )
 
-Vous allez devoir me dire si la relation est 1:1, 1:N, N:1 ou N:N.
+- produit, commande (  ,  )
+- commande, produit (  ,  )
 
-Pour rappel
-- 1:1 signifie qu'une entité A est associée à une entité B et inversément.
-- 1:N signifie qu'une entité A est associée à plusieurs entités B et qu'une entité B peut être liée à une entité A. 
-- N:N signifie qu'une entité A est liée à une ou plusieurs entités B et qu'une entité B est liée à une ou plusieurs entités A.
+- société (émeteur), commande (  ,  )
+- commande, société (émeteur) (  ,  )
 
+- client, facture (  ,  )
+- facture, client (  ,  )
 
-V. Clef étrangère
-=================
-
-Partie 1 - Clef étrangère 
-========
-Votre entité Eleve  est composée de propriétés.
-Votre entité Classe est composée de propriétés.
-
-Essayez d'ajouter une propriété dans l'entité Eleve.
-Cette nouvelle propriété doit venir de l'entité Classe. Et doit identifier de manière unique votre entité Classe.
-En fait, comment se nomme cette propriété dans l'entité classe ?
+- facture, commande (  ,  )
+- commande, facture (  ,  )
 
 [:arrow_left:Revenir au menu.](../README.md)
 
