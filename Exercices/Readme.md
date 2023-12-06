@@ -20,8 +20,8 @@
 - [Exercice n°8 - WHERE  sur une DATE](#exercice-n8---where--sur-une-date)
 - [Exercice n°9 - WHERE sur des DATES](#exercice-n9---where-sur-des-dates)
 - [Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'](#exercice-n10---where----avec-like-quelquechose--se-termine-par-quelquechose)
-- [Exercice n°11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'](#exercice-n11---where----avec-like-quelquechose--commence-par-quelquechose)
-- [Exercice n°12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'](#exercice-n12---where----avec-like-quelquechose--contient-quelquechose)
+- [Exercice n°11 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'](#exercice-n11---where----avec-like-quelquechose--contient-quelquechose)
+- [Exercice n°12 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'](#exercice-n12---where----avec-like-quelquechose--commence-par-quelquechose)
 - [Exercice n°13 - WHERE   AND     OR](#exercice-n13---where---and-----or)
 - [Exercice n°14 - ORDER BY](#exercice-n14---order-by)
 - [Exercice n°15 - ORDER BY](#exercice-n15---order-by)
@@ -43,7 +43,9 @@
 - [Exercice n°31 - UPDATE](#exercice-n31---update)
 - [Exercice n°32 - UPDATE](#exercice-n32---update)
 - [Exercice n°33 - DELETE](#exercice-n33---delete)
-- [Exercice n°34](#exercice-n34)
+- [Exercice n°34 - FUNCTIONS](#exercice-n34---functions)
+- [Exercice n°35 - FUNCTIONS avec paramètres](#exercice-n35---functions-avec-paramètres)
+- [Exercice n°35 - FUNCTIONS avec paramètres](#exercice-n35---functions-avec-paramètres-1)
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
@@ -179,14 +181,14 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 5. Affichez les élèves qui ont une adresse de type gmail.com
 6. Affichez les élèves qui n'ont pas une adresse de type gmail.com
 
-## Exercice n°11 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
+## Exercice n°11 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
 5. Affichez les élèves qui n'ont pas une adresse de type gmail.com
 
-## Exercice n°12 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'
+## Exercice n°12 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
