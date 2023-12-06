@@ -35,10 +35,13 @@ Définissez au mieux ce qui caractérise un joueur de foot.
 J'attends ici que vous me donniez des informations qui sont propres à chaque joueur.
 
 Pour chaque propriété:
+
 a. Indiquez le type de donnée de la propriété: entier, string, date, float
-b. indiquez NULL ou NOT NULL.
-NULL signifiera que la propriété peut ne pas avoir de valeur (pas d'email, pas de gsm, etc.). Donc peut avoir une valeur nulle (c'est à dire rien).
-NOT NULL signifiera que la propriété DOIT impérativement avoir une valeur. Donc ne peut pas avoir une valeur nulle.
+b. indiquez `NULL` ou `NOT NULL`.
+
+`NULL` signifiera que la propriété peut ne pas avoir de valeur (pas d'email, pas de gsm, etc.). Donc peut avoir une valeur nulle (c'est à dire rien).
+
+`NOT NULL` signifiera que la propriété DOIT impérativement avoir une valeur. Donc ne peut pas avoir une valeur nulle.
 
 ### Partie 2 - Entité Equipe
 Faites de même avec l'Entité Equipe:
@@ -90,13 +93,53 @@ Faites comme pour le point I partie 3 pour les Entités Joueur et Equipe.
 
 Faites comme pour le point I partie 4 pour les Entités Equipe et l'Entité Entraineur.
 
-### Partie 5 - Cardinalité d'une relation
-
+### Partie 5 - Cardinalité d'une relation / Type de relation
+### 5.1 Exercice
 A vous d'essayer d'écrire les cardinalités suivantes:
 Equipe  ==> Cardinalité (min, max) RELATION ==> Entraineur
 Entraineur  ==> Cardinalité (min, max) RELATION ==> Equipe
 
-Reprenez les cardinalités maximales des relations précédentes et vous optiendrez le type de cardinalité: 1:1, 1:N ou N:N.
+Reprenez les cardinalités maximales des relations précédentes et vous obtiendrez une relation de type: 1:1, 1:N ou N:N.
+
+### 5.2 Exemples
+On va partir de deux entités abstraites A et B avec des noms d'attributs abstraits: attribut1, attribut2, attribut3, etc.
+
+entité A
+--
+
+id | attribut1 | attribut2 | attribut3 | attribut4
+-----|-----| -----|-----|-----
+
+entité B
+--
+
+id | attribut1 | attribut2
+-----|-----| -----|
+
+
+- entité A, entité B ( 1, `1` )
+- entité B, entité A ( 1, `1` )
+
+> ==> le type de relation est 1 à 1 ou `1:1` car la cardinalité maximale est 1 pour les deux entités.
+==> dans ce cas, on peut fusionner les deux entités en une seule entité sauf si on veut séparer les données pour une raison X ou Y.
+==> on devra mettre une clef étrangère dans l'entité A pour faire le lien avec l'entité B ou l'inverse c'est selon le bon sens.
+
+- entité A, entité B ( 1, `1` )
+- entité B, entité A ( 1, `N` ) ou on peut l'écrire aussi (1, `*`)
+
+> ==> le type de relation est 1 à N ou `1:N` car la cardinalité maximale est 1 pour l'entité A vers l'entité B et N pour l'entité B vers l'entité A.
+==> on devra mettre la clef primaire de l'entité B dans l'entité A pour faire le lien entre les deux entités.
+
+- entité A, entité B ( 1, `N` ) ou on peut l'écrire aussi (1, `*`)
+- entité B, entité A ( 1, `N` ) ou on peut l'écrire aussi (1, `*`)
+
+> ==> le type de relation est N à N ou `N:N`
+Dans ce cas, il faut créer une entité intermédiaire soit entité A_B où l'on va mettre les clefs primaires des deux entités A et B pour créer une clef primaire composée.
+
+entité A_B
+---
+a_id | b_id
+-----|-----
 
 ### Partie 6 - Comment lier les deux entités ?
 
@@ -114,27 +157,29 @@ No stress on va ariver à la solution. Mais il faut se poser les bonnes question
 <!-- 
 On va prendre les données suivantes:
 
-Joueur
+equipe
 --
-| id | nom | prenom | email | gsm | date_naissance | equipe_id |
-|----|-----|--------|-------|-----|----------------|-----------|
-| 1  | Dupont | Jean | jean.dupont@gmail.com | 0475/12.34.56 | 2005-01-01 | 1 |
-| 2  | Piette Jacques | Gabriel | gabriel.piette-jacques@gmail.com | 0475/12.34.56 | 2014-08-22 | 1 |
-| 3  | Dormal | Francky |  francky.dormal@gmail.com | 0475/12.34.56 | 2013-01-01 | 2 |
+| id (clef) | nom 
+|----|-----
+| 1  | U9  
+| 2  | U10 
+| 3  | U11 
+| 4  | U12 
 
-
-Equipe
+joueur
 --
-| id | nom |
-|----|-----|
-| 1  | U9  |
-| 2  | U10 |
-| 3  | U11 |
-| 4  | U12 |
+| id (clef primaire) | nom | prenom | email | gsm | date_naissance | equipe_id (clef étrangère) 
+|----|-----|--------|-------|-----|----------------|-----------
+| 1  | Dupont | Jean | jean.dupont@gmail.com | 0475/12.34.56 | 2014-01-01 | 1 
+| 2  | Piette Jacques | Gabriel | gabriel.piette-jacques@gmail.com | 0475/12.34.56 | 2014-08-22 | 1 
+| 3  | Dormal | Francky |  francky.dormal@gmail.com | 0475/12.34.56 | 2013-01-01 | 2 
+| 4  | Adam | Olive | olive.adam@gmail.com | 0475/12.34.56 | 2012-01-01 | 3  
 
-Entraineur
+Dans la définition de l'entité joueur, nous avons ajouté un champ `equipe_id` qui est une clef étrangère. Cette clef étrangère fait référence à la clef primaire de l'entité `equipe`. En effet, de cette manière, nous pouvons lier un joueur à une équipe et une seule.
+
+entraineur
 --
-| id | nom | prenom | email | gsm | date_naissance
+| id  (clef) | nom | prenom | email | gsm | date_naissance
 |----|-----|--------|-------|-----|----------------
 | 1  | Mapo | Patrick | patrick.mapo@gmail.com | 0475/12.34.56 | 1970-01-01
 | 2  | Lee | Paul | paul.lee@gmail.com  | 0475/12.34.56 | 1980-03-07
@@ -143,14 +188,34 @@ Entraineur
 <!--
 On va créer une table de liaison entre les deux entités Equipe et Entraineur. Cette table de liaison va contenir les clefs primaires des deux entités Equipe et Entraineur.
 
-Equipe_Entraineur (N:N)
+equipe_entraineur (N:N)
 --
-| equipe_id | entraineur_id |
+| equipe_id (clef) | entraineur_id (clef) |
 |-----------|---------------|
 | 1         | 1             |
 | 1         | 2             |
 | 2         | 1             |
 | 3         | 2             |
+
+La table `equipe_entraineur` est conçue pour établir des relations multiples entre les équipes et les entraîneurs. Elle possède deux colonnes principales : `equipe_id` et `entraineur_id`. Chacune de ces colonnes contient des identifiants référençant respectivement les tables `equipe` et `entraineur`.
+
+- `equipe_id` : Référence l'identifiant unique d'une équipe dans la table `equipe`. 
+- `entraineur_id` : Référence l'identifiant unique d'un entraîneur dans la table `entraineur`.
+
+La clé primaire de la table `equipe_entraineur` est une combinaison de `equipe_id` et `entraineur_id`, formant ainsi une clé composée. Cette structure assure qu'une même paire équipe-entraîneur ne peut être enregistrée qu'une seule fois, préservant l'unicité de chaque relation.
+
+Dans votre exemple :
+
+- La première ligne (`equipe_id = 1`, `entraineur_id = 1`) représente une relation entre l'équipe 1 et l'entraîneur 1.
+- La deuxième ligne (`equipe_id = 1`, `entraineur_id = 2`) indique que l'équipe 1 est également entraînée par l'entraîneur 2.
+- La troisième ligne (`equipe_id = 2`, `entraineur_id = 1`) montre que l'entraîneur 1 entraîne aussi l'équipe 2.
+- La quatrième ligne (`equipe_id = 3`, `entraineur_id = 2`) illustre que l'équipe 3 est entraînée par l'entraîneur 2.
+
+Cette table intermédiaire permet donc de multiples associations entre les équipes et les entraîneurs, illustrant parfaitement la nature d'une relation N:N.
+
+
+
+
 -->
 
 

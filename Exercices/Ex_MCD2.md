@@ -81,6 +81,7 @@ Vous allez devoir identifier les entités de cette facture. Pour chaque entité,
 Essayez de trouver les relations entre les entités. Trouvez déjà en français les relations entre entités.
 
 ## Partie 5 - Cardinalité d'une relation
+### 5.1 Exercice
 Pour les couples d'entités suivantes, vous donnerez la cardinalité de la relation entre les deux entités (minimum et maximum). Donc vous notez simplement entre parenthèse le minimum et le maximum. 
 
 - client, commande (  ,  )
@@ -97,6 +98,47 @@ Pour les couples d'entités suivantes, vous donnerez la cardinalité de la relat
 
 - facture, commande (  ,  )
 - commande, facture (  ,  )
+
+Ensuite, vous allez reprendre les couples d'entités précédents et déterminer le type de relation entre les deux entités en reprenant les cardinalités maximales.
+
+## Partie 6 - Mise en commun
+
+Vous allez devoir mettre en commun vos résultats avec l'autre groupe. Vous allez devoir comparer vos résultats et voir les différences et les similitudes.
+
+
+
+societe
+--
+id | nom | adresse | numero | boite | code_postal | localite | pays | tva | telephone | email | web | compte_bancaire
+-- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | --
+
+client
+--
+id | nom | date_naissance | date_inscription | adresse | numero | boite | code_postal | localite | pays | tva | telephone | email | web | est_societe | compte_bancaire 
+-- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | --
+
+produit
+--
+id | nom | description | prix_unitaire | quantite_stock | quantite_minimale | quantite_maximale
+-- | -- | -- | -- | -- | -- | --
+
+commande
+--
+id | client_id  date_commande | date_livraison | est_annule
+-- | -- | -- | --
+
+commande_produit
+--
+commande_id | produit_id | quantite | prix_unitaire
+-- | -- | -- | --
+
+facture
+--
+id | commande_id | client_id | date_facture | date_echeance | date_paiement
+-- | -- | -- | -- | -- | --
+
+
+
 
 [:arrow_left:Revenir au menu.](../README.md)
 
