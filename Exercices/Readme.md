@@ -186,7 +186,7 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
-5. Affichez les élèves qui n'ont pas une adresse de type gmail.com
+5. Affichez les élèves qui ont une adresse  qui n'ont pas une adresse de type gmail.com
 
 ## Exercice n°12 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'
 1. Allez dans le répertoire d'exercices SQL
