@@ -14,14 +14,14 @@ Vous allez devoir écrire ces entités et vous me donnerez à la fin votre modè
 Lors de la présentation, je vais confronter les deux résultats et nous allons voir ensemble les différences et les similitudes.
 
 ## I. Vous allez vous répartir en deux groupes
-Groupe 1
+**Groupe 1**
 
 - Anthony
 - Christian
 - Amir
 - Karim
 
-Groupe 2
+**Groupe 2**
 
 - Carmen
 - Baptiste
