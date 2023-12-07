@@ -16,17 +16,17 @@ Lors de la présentation, je vais confronter les deux résultats et nous allons 
 ## I. Vous allez vous répartir en deux groupes
 Groupe 1
 
--
--
--
--
+- Anthony
+- Christian
+- Amir
+- 
 
 Groupe 2
 
--
--
--
--
+- Carmen
+- Baptiste
+- Thomas
+- Filippo
 
 ## II. Entité Joueur & Entité Equipe
 
