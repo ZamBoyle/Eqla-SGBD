@@ -75,6 +75,9 @@ Ici, je vais vous demander d'ajouter un champ dans une des deux entités qui per
 Si vous ne trouvez pas ce n'est pas grave. Nous verrons cela ensemble.
 
 ### Partie 7 - MISE EN COMMUN
+La dernière fois, nous avons vu que lorsqu'une relation entre une entité joueur et une entité équipe était de type 1:N, nous pouvions ajouter un champ dans l'entité joueur qui permettait de lier le joueur à une équipe: une clef étrangère (equipe_id).
+
+Je vais tout réexpliquer dans le second exercice: **III. Entité Entraineur, Entité Equipe**
 
 <hr>
 
