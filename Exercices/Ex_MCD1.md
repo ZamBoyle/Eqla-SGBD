@@ -188,7 +188,6 @@ entraineur
 | 2  | Lee | Paul | paul.lee@gmail.com  | 0475/12.34.56 | 1980-03-07
 
 
-<!--
 On va créer une table de liaison entre les deux entités Equipe et Entraineur. Cette table de liaison va contenir les clefs primaires des deux entités Equipe et Entraineur.
 
 equipe_entraineur (N:N)
@@ -215,15 +214,6 @@ Dans votre exemple :
 - La quatrième ligne (`equipe_id = 3`, `entraineur_id = 2`) illustre que l'équipe 3 est entraînée par l'entraîneur 2.
 
 Cette table intermédiaire permet donc de multiples associations entre les équipes et les entraîneurs, illustrant parfaitement la nature d'une relation N:N.
-
-
-
-
--->
-
-
-
-
 
 
 [:arrow_left:Revenir au menu.](../README.md)
