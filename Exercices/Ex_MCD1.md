@@ -30,7 +30,7 @@ Lors de la présentation, je vais confronter les deux résultats et nous allons 
 
 ## II. Entité Joueur & Entité Equipe
 
-### Partie 1 - Entité Elève, types de données, NULL, NOT NULL
+### Partie 1 - Entité Joueur, types de données, NULL, NOT NULL
 Définissez au mieux ce qui caractérise un joueur de foot.
 J'attends ici que vous me donniez des informations qui sont propres à chaque joueur.
 
@@ -76,7 +76,7 @@ Si vous ne trouvez pas ce n'est pas grave. Nous verrons cela ensemble.
 
 ### Partie 7 - MISE EN COMMUN
 
-
+<hr>
 
 ## III. Entités Equipe, Entraineur
 
@@ -88,20 +88,20 @@ Faites comme pour le point I partie 1 pour l'Entité Joueur.
 
 Faites comme pour le point I partie 3 pour les Entités Joueur et Equipe.
 
-### Partie 4 - Relations
-#### Partie 4.1 - Relation entre l'Entité Equipe et l'Entité Entraineur
+### Partie 3 - Relations
+#### Partie 3.1 - Relation entre l'Entité Equipe et l'Entité Entraineur
 
 Faites comme pour le point I partie 4 pour les Entités Equipe et l'Entité Entraineur.
 
-### Partie 5 - Cardinalité d'une relation / Type de relation
-### 5.1 Exercice
+### Partie 4 - Cardinalité d'une relation / Type de relation
+### 4.1 Exercice
 A vous d'essayer d'écrire les cardinalités suivantes:
 Equipe  ==> Cardinalité (min, max) RELATION ==> Entraineur
 Entraineur  ==> Cardinalité (min, max) RELATION ==> Equipe
 
 Reprenez les cardinalités maximales des relations précédentes et vous obtiendrez une relation de type: 1:1, 1:N ou N:N.
 
-### 5.2 Exemples
+### 4.2 Exemples
 On va partir de deux entités abstraites A et B avec des noms d'attributs abstraits: attribut1, attribut2, attribut3, etc.
 
 entité A
@@ -141,7 +141,7 @@ entité A_B
 a_id | b_id
 -----|-----
 
-### Partie 6 - Comment lier les deux entités ?
+### Partie 5 - Comment lier les deux entités ?
 
 Prenons l'exemple suivant l'équipe des U9 de l'UR Namur. Cette équipe a deux entraineurs: Patrick et Paul. Patrick est aussi entraineur de l'équipe des U10. Paul est aussi entraineur de l'équipe des U11.
 
@@ -153,7 +153,7 @@ Y arrivez-vous ? Pourquoi à votre avis ? Comment dire à nos entités Equipe et
 
 No stress on va ariver à la solution. Mais il faut se poser les bonnes questions.
 
-### Partie 7 - MISE EN COMMUN
+### Partie 6 - MISE EN COMMUN
 <!-- 
 On va prendre les données suivantes:
 
