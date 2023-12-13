@@ -157,7 +157,7 @@ Y arrivez-vous ? Pourquoi à votre avis ? Comment dire à nos entités Equipe et
 No stress on va ariver à la solution. Mais il faut se poser les bonnes questions.
 
 ### Partie 6 - MISE EN COMMUN
-<!-- 
+
 On va prendre les données suivantes:
 
 equipe
@@ -186,7 +186,7 @@ entraineur
 |----|-----|--------|-------|-----|----------------
 | 1  | Mapo | Patrick | patrick.mapo@gmail.com | 0475/12.34.56 | 1970-01-01
 | 2  | Lee | Paul | paul.lee@gmail.com  | 0475/12.34.56 | 1980-03-07
--->
+
 
 <!--
 On va créer une table de liaison entre les deux entités Equipe et Entraineur. Cette table de liaison va contenir les clefs primaires des deux entités Equipe et Entraineur.
