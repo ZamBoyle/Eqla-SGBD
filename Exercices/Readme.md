@@ -274,15 +274,15 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
 5. Expliquez ce que fait cette commande SQL:
 ```sql
-SELECT YEAR(DateInscription) As 'Annee Inscription', COUNT(DateInscription)
+SELECT YEAR(date_inscription) As 'Annee Inscription', COUNT(date_inscription)
 FROM eleve_formation
-group by YEAR(DateInscription);
+group by YEAR(date_inscription);
 ```
 6. Pourquoi avoir utilisé la Fonction **YEAR** ? Pour vous aider, comparez sans le **YEAR**:
 ```sql
-SELECT DateInscription As 'Annee Inscription', COUNT(DateInscription)
+SELECT date_inscription As 'Annee Inscription', COUNT(date_inscription)
 FROM eleve_formation
-group by DateInscription;
+group by date_inscription;
 ```
 
 ## Exercice n°22 - INNER JOIN
