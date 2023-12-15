@@ -215,6 +215,144 @@ Dans votre exemple :
 
 Cette table intermédiaire permet donc de multiples associations entre les équipes et les entraîneurs, illustrant parfaitement la nature d'une relation N:N.
 
+## IV. Qui suis-je ?
+
+Soit les données suivantes:
+
+joueur
+--
+| id (clef primaire) | nom | prenom | email | gsm | date_naissance | equipe_id (clef étrangère) 
+|----|-----|--------|-------|-----|----------------|-----------
+| 1  | Dupont | Jean | jean.dupont@gmail.com | 0475/12.34.56 | 2014-01-01 | 1 
+| 2  | Piette Jacques | Gabriel | gabriel.piette-jacques@gmail.com | 0475/12.34.56 | 2014-08-22 | 1 
+| 3  | Dormal | Francky |  francky.dormal@gmail.com | 0475/12.34.56 | 2013-01-01 | 2 
+| 4  | Adam | Olive | olive.adam@gmail.com | 0475/12.34.56 | 2012-01-01 | 3  
+| 5   | Martin           | Hugo         | hugo.martin@gmail.com                | 0476/12.34.56 | 2014-05-12     | 1         |
+| 6   | Bernard          | Léo          | leo.bernard@gmail.com                | 0476/12.34.57 | 2014-07-08     | 1         |
+| 7   | Petit            | Alice        | alice.petit@gmail.com                | 0476/12.34.58 | 2014-03-15     | 1         |
+| 8   | Leroy            | Chloé        | chloe.leroy@gmail.com                | 0476/12.34.59 | 2014-09-20     | 1         |
+| 9   | Moreau           | Nathan       | nathan.moreau@gmail.com              | 0477/12.34.56 | 2013-02-22     | 2         |
+| 10  | Simon            | Emma         | emma.simon@gmail.com                 | 0477/12.34.57 | 2013-11-30     | 2         |
+| 11  | Michel           | Lucas        | lucas.michel@gmail.com               | 0477/12.34.58 | 2013-04-18     | 1         |
+| 12  | Lefebvre         | Jade         | jade.lefebvre@gmail.com              | 0477/12.34.59 | 2013-06-24     | 2         |
+| 13  | Leroux           | Ethan        | ethan.leroux@gmail.com               | 0478/12.34.56 | 2012-01-30     | 3         |
+| 14  | Roy              | Zoé          | zoe.roy@gmail.com                    | 0478/12.34.57 | 2012-05-15     | 3         |
+| 15  | Girard           | Théo         | theo.girard@gmail.com                | 0478/12.34.58 | 2012-08-09     | 3         |
+| 16  | Bonnet           | Louise       | louise.bonnet@gmail.com              | 0478/12.34.59 | 2012-10-20     | 3         |
+| 17  | Dupuis           | Gabriel      | gabriel.dupuis@gmail.com             | 0479/12.34.56 | 2011-03-25     | 4         |
+| 18  | Lambert          | Jules        | jules.lambert@gmail.com              | 0479/12.34.57 | 2011-06-17     | 4         |
+| 19  | Fontaine         | Léa          | lea.fontaine@gmail.com               | 0479/12.34.58 | 2011-12-05     | 4         |
+| 20  | Rousseau         | Adam         | adam.rousseau@gmail.com              | 0479/12.34.59 | 2011-09-29     | 4         |
+
+
+
+entraineur
+--
+| id  (clef) | nom | prenom | email | gsm | date_naissance
+|----|-----|--------|-------|-----|----------------
+| 1  | Mapo | Patrick | patrick.mapo@gmail.com | 0475/12.34.56 | 1970-01-01
+| 2  | Lee | Paul | paul.lee@gmail.com  | 0475/12.34.56 | 1980-03-07
+| 3   | Dubois      | Marie        | marie.dubois@gmail.com       | 0475/23.45.67 | 1975-04-15     |
+| 4   | Durand      | Bruno        | bruno.durand@gmail.com       | 0475/23.45.68 | 1982-08-22     |
+| 5   | Lemoine     | Nathalie     | nathalie.lemoine@gmail.com   | 0475/23.45.69 | 1978-11-30     |
+
+
+equipe_entraineur
+--
+| equipe_id | entraineur_id |
+|-----------|---------------|
+| 1         | 1             |
+| 1         | 3             |
+| 2         | 2             |
+| 2         | 4             |
+| 3         | 1             |
+| 3         | 5             |
+| 4         | 2             |
+| 4         | 3             |
+
+equipe
+--
+| id (clef) | nom 
+|----|-----
+| 1  | U9  
+| 2  | U10 
+| 3  | U11 
+| 4  | U12 
+
+### 1. Exercices table joueur
+1. Question : Examinez la table joueur pour trouver le nom et prénom du joueur ayant l'ID 13, puis consultez les tables equipe et equipe_entraineur pour déterminer son équipe et ses entraîneurs.
+2. Question : Trouvez dans la table joueur le nom complet, l'adresse email, et l'équipe du joueur avec l'ID 17. Identifiez ensuite les entraîneurs de cette équipe.
+3. Question : Cherchez le numéro de GSM et la date de naissance du joueur avec l'ID 10 dans la table joueur, puis déterminez son équipe et ses entraîneurs.
+
+### 2. Exercices table equipe
+1. Identifiez tous les joueurs (nom, prénom) de l'équipe U10 dans la table joueur.
+2. Regardez qui sont les entraîneurs de l'équipe U12.
+3. Retrouvez les adresses email de tous les joueurs de l'équipe U9 dans la table joueur.
+
+### 3. Exercices table entraineur
+1. Quelles équipes sont entraînées par l'entraîneur ayant l'ID 1 ? Consultez la table equipe_entraineur pour cette information.
+2. Trouvez les joueurs de l'équipe (ou des équipes) entraînée(s) par l'entraîneur avec l'ID 5, en utilisant les tables equipe_entraineur et joueur.
+3. Quel est le nom complet et la date de naissance de l'entraîneur avec l'ID 3 ? Vérifiez aussi quelles équipes il entraîne.
+
+<!--
+Voici les solutions pour chaque énigme basée sur les tables `joueur`, `equipe`, et `entraineur` :
+
+### 4. Solutions des énigmes de la table `joueur` :
+
+1. **Joueur ID 13** :
+   - **Nom et Prénom** : Leroux Ethan
+   - **Équipe** : U11
+   - **Entraîneurs** : Paul Lee (ID 2) et Nathalie Lemoine (ID 5)
+
+2. **Joueur ID 17** :
+   - **Nom complet** : Dupuis Gabriel
+   - **Adresse Email** : gabriel.dupuis@gmail.com
+   - **Équipe** : U12
+   - **Entraîneurs** : Bruno Durand (ID 4) et Marie Dubois (ID 3)
+
+3. **Joueur ID 10** :
+   - **Numéro de GSM** : 0477/12.34.57
+   - **Date de Naissance** : 2013-11-30
+   - **Équipe** : U10
+   - **Entraîneurs** : Paul Lee (ID 2) et Bruno Durand (ID 4)
+
+### 5. Solutions des énigmes de la table `equipe` :
+
+1. **Joueurs de l'équipe U10** :
+   - Nathan Moreau
+   - Emma Simon
+   - Lucas Michel
+   - Jade Lefebvre
+
+2. **Entraîneurs de l'équipe U12** :
+   - Bruno Durand (ID 4)
+   - Marie Dubois (ID 3)
+
+3. **Adresses Email des joueurs de l'équipe U9** :
+   - jean.dupont@gmail.com
+   - gabriel.piette-jacques@gmail.com
+   - hugo.martin@gmail.com
+   - leo.bernard@gmail.com
+   - alice.petit@gmail.com
+   - chloe.leroy@gmail.com
+
+### 6. Solutions des énigmes de la table `entraineur` :
+
+1. **Équipes entraînées par l'entraîneur ID 1 (Patrick Mapo)** :
+   - Équipes : U9 et U11
+
+2. **Joueurs de l'équipe(s) entraînée(s) par l'entraîneur ID 5 (Nathalie Lemoine)** :
+   - Équipe : U11
+   - Joueurs : Ethan Leroux, Zoé Roy, Théo Girard, Louise Bonnet
+
+3. **Informations sur l'entraîneur ID 3 (Marie Dubois)** :
+   - **Nom complet** : Marie Dubois
+   - **Date de Naissance** : 1975-04-15
+   - **Équipes entraînées** : U12 et U10
+
+Ces solutions sont basées sur les informations fournies précédemment pour les tables `joueur`, `equipe`, `entraineur`, et `equipe_entraineur`.
+-->
+
 
 [:arrow_left:Revenir au menu.](../README.md)
 
