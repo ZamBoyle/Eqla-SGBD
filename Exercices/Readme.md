@@ -242,7 +242,7 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 4. Si vous n'êtes pas dans la DB Ventes, tapez: **use ventes;**
 5. Affichez le prix maximum des produits
 6. Affichez le prix minimum des produits
-7. Affichez le prix total de tous les produits en tenant du stock de chaque produit. :-)
+7. Affichez le prix total de tous les produits en tenant compte du stock de chaque produit. :-)
 
 ## Exercice n°18 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
