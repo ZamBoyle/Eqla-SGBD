@@ -199,10 +199,11 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
-4. Si vous n'êtes pas dans la DB Localite, tapez: **use Localite;**
-5. Affichez toutes les communes sur le code Postal 4280
-6. Affichez toutes les communes sur le code Postal 4280 et dont la commune commence par 'b' ou par 'a'
-7. Affichez les CP et les noms des communes de la Province de Liège: les CP sont compris entre 4000 et 4999
+4. Si vous n'êtes pas dans la DB Localite, tapez: **use Localites;**
+5. Vous utiliserez la table localite pour les points suivants.
+6. Affichez toutes les communes sur le code Postal 4280
+7. Affichez toutes les communes sur le code Postal 4280 et dont la commune commence par 'b' ou par 'a'
+8. Affichez les CP et les noms des communes de la Province de Liège: les CP sont compris entre 4000 et 4999
 
 ## Exercice n°14 - ORDER BY    
 1. Allez dans le répertoire d'exercices SQL
