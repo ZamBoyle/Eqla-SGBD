@@ -1012,7 +1012,6 @@ FROM Produit
 GROUP BY Categorie;
 ```
 
-
 ## 6Bis.1 HAVING
 Si l'on veut maintenant filtrer le résultat d'un regroupement (GROUP BY) on va utiliser le mot clé HAVING (qui peut se traduire par "ayant"). Donc pour rechercher sur un regroupement on utilise HAVING et non un WHERE. Si l'on utilise HAVING sans regroupement, celui-ci agira comme un WHERE classique.
 
