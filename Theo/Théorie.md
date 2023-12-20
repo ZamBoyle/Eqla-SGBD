@@ -12,7 +12,7 @@
 
 - [I. Introduction](#i-introduction)
   - [1. Mise en situation](#1-mise-en-situation)
-  - [2. Brainstorming : Qu'auriez-vous pu faire pour garder les résultats ?](#2-brainstorming-quauriez-vous-pu-faire-pour-garder-les-résultats)
+  - [2. Brainstorming : Qu'auriez-vous pu faire pour garder les résultats ?](#2-brainstorming--quauriez-vous-pu-faire-pour-garder-les-résultats-)
   - [3. Approche intuitive des SGBD](#3-approche-intuitive-des-sgbd)
 - [II. Base de données](#ii-base-de-données)
   - [1. Définition](#1-définition)
@@ -23,7 +23,7 @@
   - [1. Entité](#1-entité)
   - [2. Clef d'identité](#2-clef-didentité)
   - [3. Relation/association](#3-relationassociation)
-  - [4. Cardinalités/Multiplicité ou combien ?](#4-cardinalitésmultiplicité-ou-combien)
+  - [4. Cardinalités/Multiplicité ou combien ?](#4-cardinalitésmultiplicité-ou-combien-)
   - [5. Passage du MCD au MLD](#5-passage-du-mcd-au-mld)
     - [5.1 Entités, clefs, propriétés](#51-entités-clefs-propriétés)
       - [5.1.1 Une entité devient une table](#511-une-entité-devient-une-table)
@@ -31,42 +31,29 @@
       - [5.1.3 Une propriété devient un attribut](#513-une-propriété-devient-un-attribut)
     - [5.2 Associations](#52-associations)
       - [5.2.1 Une association de type 1:N](#521-une-association-de-type-1n)
-      - [5.2.2 Une association de type N :N](#522-une-association-de-type-nn)
-      - [5.2.3 Une association de type 1 :1](#523-une-association-de-type-11)
+      - [5.2.2 Une association de type N :N](#522-une-association-de-type-n-n)
+      - [5.2.3 Une association de type 1 :1](#523-une-association-de-type-1-1)
 - [IIIb. Les formes normales / Normalisation des bases de données](#iiib-les-formes-normales--normalisation-des-bases-de-données)
   - [1. Définition](#1-définition-1)
   - [2. Première forme normale (1FN)](#2-première-forme-normale-1fn)
     - [2.1 Définition](#21-définition)
     - [2.2 Exemples](#22-exemples)
       - [2.2.1 Exemple 1 - Table etudiant](#221-exemple-1---table-etudiant)
-  - [etudiant (0FN)](#etudiant-0fn)
-  - [etudiant (presque 1FN)](#etudiant-presque-1fn)
-  - [etudiant (1FN)](#etudiant-1fn)
-      - [2.2.2 Exemple 2 - Table etudiant\_cours](#222-exemple-2---table-etudiant_cours)
-  - [etudiant\_cours (0FN)](#etudiant_cours-0fn)
-  - [etudiant\_cours (1FN)](#etudiant_cours-1fn)
-  - [etudiant\_cours (1FN)](#etudiant_cours-1fn-1)
+      - [2.2.2 Exemple 2 - Table etudiant_cours](#222-exemple-2---table-etudiant_cours)
     - [2.3 En résumé, comment passer de la `0FN` à la `1FN` ?](#23-en-résumé-comment-passer-de-la-0fn-à-la-1fn-)
   - [3. Deuxième forme normale (2FN)](#3-deuxième-forme-normale-2fn)
     - [3.1 Définition](#31-définition)
-    - [3.2 Exemple - Table etudiant\_cours](#32-exemple---table-etudiant_cours)
-  - [etudiant\_cours (1FN)](#etudiant_cours-1fn-2)
-  - [etudiant (2FN)](#etudiant-2fn)
-  - [cours (2FN)](#cours-2fn)
-  - [etudiant\_cours (2FN)](#etudiant_cours-2fn)
+    - [3.2 Exemple - Table etudiant_cours](#32-exemple---table-etudiant_cours)
     - [3.3 En résumé, comment passer de la `1FN` à la `2FN` ?](#33-en-résumé-comment-passer-de-la-1fn-à-la-2fn-)
   - [4. Troisième forme normale (3FN)](#4-troisième-forme-normale-3fn)
     - [4.1 Exemple - Table etudiant](#41-exemple---table-etudiant)
-  - [etudiant (2FN)](#etudiant-2fn-1)
-  - [etudiant (3FN)](#etudiant-3fn)
-  - [cp](#cp)
     - [4.2 En résumé, comment passer de la `2FN` à la `3FN` ?](#42-en-résumé-comment-passer-de-la-2fn-à-la-3fn-)
 - [IV. Le langage SQL](#iv-le-langage-sql)
   - [1. SELECT: Chercher des informations](#1-select-chercher-des-informations)
     - [1.1 DISTINCT](#11-distinct)
-  - [2. WHERE : Filtrage](#2-where-filtrage)
-    - [a. WHERE : Opérateurs Booléens](#a-where-opérateurs-booléens)
-    - [b. WHERE : AND et OR](#b-where-and-et-or)
+  - [2. WHERE : Filtrage](#2-where--filtrage)
+    - [a. WHERE : Opérateurs Booléens](#a-where--opérateurs-booléens)
+    - [b. WHERE : AND et OR](#b-where--and-et-or)
     - [c. Opérateur AND](#c-opérateur-and)
     - [d. Opérateur OR](#d-opérateur-or)
     - [e. Combiner AND et OR](#e-combiner-and-et-or)
@@ -81,7 +68,8 @@
       - [5.2 Le Minimum - MIN](#52-le-minimum---min)
       - [5.3 Le Maximum – MAX](#53-le-maximum--max)
       - [5.4 La Somme – SUM](#54-la-somme--sum)
-      - [5.5 COUNT(champ) et COUNT(\*)](#55-countchamp-et-count)
+      - [5.5 COUNT(*)](#55-count)
+      - [5.6 COUNT(champ)](#56-countchamp)
   - [6. GROUP BY](#6-group-by)
   - [6Bis.1 HAVING](#6bis1-having)
   - [7. INNER JOIN: Jointure entre tables.](#7-inner-join-jointure-entre-tables)
@@ -104,7 +92,7 @@
     - [9.6 PRIMARY KEY](#96-primary-key)
     - [9.7 FOREIGN KEY](#97-foreign-key)
     - [9.8 UNIQUE](#98-unique)
-    - [9.9 AUTO\_INCREMENT](#99-auto_increment)
+    - [9.9 AUTO_INCREMENT](#99-auto_increment)
     - [9.10 Exemples](#910-exemples)
   - [10. INSERT INTO](#10-insert-into)
     - [10.1 La commande](#101-la-commande)
@@ -599,7 +587,7 @@ Ici le symbole * prendra tous les attributs de la table en question.|
 
 ```sql
 SELECT Nom, Prenom, Sexe, Naissance
-FROM Eleve ;
+FROM eleve ;
 ```
 
 Cette instruction SQL va nous lister TOUS les élèves de la table Eleve et affichera les attributs Nom, Prenom, Sexe, Naissance. Maintenant, si vous avez 10.000 élèves ça risque d'être le tsunami d'informations  C'est pourquoi on couple avec l'instruction WHERE qui permet de mettre une expression booléenne pour restreindre la quantité d'informations reçues.
@@ -609,7 +597,7 @@ Si l'on veut connaître par exemple toutes les nationalités de la table élève
 
 ```sql
 SELECT Nationalite
-FROM Eleve ;
+FROM eleve ;
 ```
 
 Le problème ici, c'est que l'on va avoir autant de fois Belge que l'on a des étudiants belges. Donc si on a 12 belges et 1 camerounais, on aura comme résultats : 12 fois 'belges' et 1 fois 'camerounais'. Ce qui n'est pas exactement ce que l'on veut.
@@ -617,7 +605,7 @@ Pour y arriver, on va utiliser après notre **SELECT** le mot clef **DISTINCT**
 
 ```sql
 SELECT DISTINCT Nationalite
-FROM Eleve ;
+FROM eleve ;
 ```
 
 Et ici, nous n'aurons plus que 2 résultats : 'Belge' et 'Camerounais'. Dans ce cas, DISTINCT va supprimer les doublons.
@@ -629,7 +617,7 @@ WHERE signifie Où en français. Le où indique qu'on attend une condition pour 
 
 ```sql
 SELECT Nom, Prenom, Sexe, Naissance
-FROM Eleve
+FROM eleve
 WHERE Sexe = 'F' ;
 ```
 
@@ -734,7 +722,7 @@ Par exemple on veut afficher les élèves nés dans les années 90. Pour le tri 
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 WHERE Naissance BETWEEN '1990/01/01' AND '1999/12/31'
 ORDER BY Sexe, Nom, Prenom;
 ```
@@ -743,7 +731,7 @@ On pourrait bien entendu utiliser simplement l'opérateur AND :
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 WHERE Naissance >= '1990/01/01' AND Naissance <= '1999/12/31'
 ORDER BY Sexe, Nom, Prenom;
 ```
@@ -754,7 +742,7 @@ Prenons les élèves qui ont comme CP soit 6890, 1348 et 1490 :
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 WHERE CP IN (1490, 6890, 1348);
 ```
 
@@ -762,7 +750,7 @@ Cette requête aurait pu s'écrire de cette manière :
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 WHERE CP=1490 OR CP = 1348 OR CP = 6890 ;
 ```
 
@@ -778,7 +766,7 @@ Recherchons les rues qui se terminent par 'SGBD' :
 
 ```sql
 SELECT Prenom, Nom, Rue
-FROM Eleve
+FROM eleve
 WHERE RUE LIKE '%SGBD' ;
 ```
 
@@ -786,7 +774,7 @@ Recherchons les rues qui commencent par 'Place' ;
 
 ```sql
 SELECT Prenom, Nom, Rue
-FROM Eleve
+FROM eleve
 WHERE RUE LIKE 'Place%' ;
 ```
 
@@ -794,7 +782,7 @@ Et pour finir les rues qui contiennent ' des ' :
 
 ```sql
 SELECT Prenom, Nom, Rue
-FROM Eleve
+FROM eleve
 WHERE RUE LIKE '% des %' ; #Notez Ici qu'il y a des espaces avant et après 'des'. Pourquoi ?
 ```
 
@@ -803,7 +791,7 @@ Rechercher les personnes nées au mois de mars :
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 WHERE NAISSANCE LIKE '%-03-%'; #On ferait normalement MONTH(Naissance) = 3 ;
 ```
 
@@ -811,7 +799,7 @@ Ou encore nées dans les années 1990 :
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 WHERE NAISSANCE LIKE '199%'; #On ferait normalement YEAR(Naissance) BETWEEN 1990 AND 1999;
 ```
 
@@ -824,7 +812,7 @@ Exemple **IS NOT NULL**: Les élèves qui ont un numéro de Téléphone.
 
 ```sql
 SELECT *
-FROM Eleve
+FROM eleve
 WHERE Tel IS NOT NULL ;
 ```
 
@@ -832,7 +820,7 @@ Exemple **IS NULL** : Les élève qui n'ont pas de Téléphone
 
 ```sql
 SELECT *
-FROM Eleve
+FROM eleve
 WHERE Tel IS NULL ;
 ```
 
@@ -855,14 +843,14 @@ Par défaut le tri est ascendant : ordre croissant **ASC** c'est pourquoi on ne
 Soit classer nos élèves par Nom de famille :
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 ORDER BY Nom ;
 ```
 
 Classer nos élèves par Nom et puis par prénom : Ce cas est intéressant si nous avons plusieurs mêmes noms de famille, le SGBD classera alors ensuite sur le prénom.
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 ORDER BY Nom, Prenom ;
 ```
 
@@ -872,7 +860,7 @@ Si l'on veut classer nos élèves dans l'ordre décroissant sur le nom puis croi
 
 ```sql
 SELECT Nom, Prenom, Naissance, Sexe
-FROM Eleve
+FROM eleve
 ORDER BY Nom DESC, Prenom ASC ;
 ```
 
@@ -886,7 +874,7 @@ La fonction AVG() permet de calculer une valeur moyenne sur un ensemble d'enregi
 
 ```sql
 SELECT AVG(YEAR(CURDATE())-YEAR(Naissance)) AS AgeMoyen 
-FROM Eleve;
+FROM eleve;
 ```
 
 Petite explication sur la précédente requête. Pour connaître l'âge approximatif d'un élève on retire de l'année en cours l'année de naissance. C'est sur ce résultat de tous les élèves qu'on fera la moyenne.
@@ -917,42 +905,42 @@ FROM Produit
 WHERE Categorie = 'Informatique' ;
 ```
 
-#### 5.5 COUNT(champ) et COUNT(*)
-Si nous voulons connaître le nombre d'élèves faisant partie de la table Eleve : on utilise COUNT
+#### 5.5 COUNT(*)
+Si nous voulons connaître le nombre d'élèves faisant partie de la table eleve : on utilise COUNT
 
 ```sql
 SELECT COUNT(*)
-FROM Eleve ;
+FROM eleve ;
 ```
 
-On va voir que le résultat sera une colonne avec comme nom : count(*) avec une cellule ayant 13 comme valeur. Il y a donc 13 élèves.
+On va voir que le résultat sera une colonne avec comme nom : count(*) avec une cellule ayant 14 comme valeur. Il y a donc 14 élèves.
 Cependant le nom de la colonne n'est pas très agréable à lire, on peut lui donner un autre nom simple :
 
 ```sql
 SELECT COUNT(*) AS NB_Eleves
-FROM Eleve ;
+FROM eleve ;
 ```
 
 On peut utiliser le mot clef AS qui signifie Comme. On pourrait aussi l'omettre et mettre un espace :
 
 ```sql
 SELECT COUNT(*) NB_Eleves
-FROM Eleve ;
+FROM eleve ;
 ```
 
 Si nous voulions connaître le nombre de garçons parmi nos élèves :
 
 ```sql
-SELECT COUNT(Sexe) AS NB_Garcons
-FROM Eleve
+SELECT COUNT(*) AS NB_Garcons
+FROM eleve
 WHERE Sexe = 'M' ;
 ```
 
-Nous avons comme résultats 11 garçons. Faisons la même chose avec les filles, nous devrions en avoir : 13-11 = 2 filles
+Nous avons comme résultats 11 garçons. Faisons la même chose avec les filles, nous devrions en avoir : 14-13 = 1 fille
 
 ```sql
-SELECT COUNT(Sexe) AS NB_Filles
-FROM Eleve
+SELECT COUNT(*) AS NB_Filles
+FROM eleve
 WHERE Sexe = 'F' ;
 ```
 
@@ -960,9 +948,33 @@ Dernier exemple, nous voulons connaître le nombre d'élèves nés de 1990 à a
 
 ```sql
 SELECT COUNT(*)
-FROM Eleve
+FROM eleve
 WHERE Naissance >= '1990/01/01' ;
 ```
+#### 5.6 COUNT(champ)
+Ici, cette syntaxe permet de compter le nombre de valeurs non nulles pour un champ donné. Si on veut connaître le nombre de Tel non nul :
+
+```sql
+SELECT COUNT(Tel), COUNT(CP)
+FROM eleve ;
+```
+qui est équivalent à :
+
+```sql
+SELECT COUNT(*) AS NB_Tel
+FROM eleve
+WHERE Tel IS NOT NULL ;
+```
+
+Ajoutons une colonne pour connaître le nombre de boites non nul :
+
+```sql
+SELECT COUNT(Tel) AS NB_Tel, COUNT(boite) AS NB_boites
+FROM eleve;
+```
+
+
+
 
 ## 6. GROUP BY
 La clause GROUP BY en SQL permet d'organiser des données identiques en groupes à l'aide de certaines fonctions. C'est-à-dire si une colonne particulière a les mêmes valeurs dans différentes lignes, elle organisera ces lignes dans un groupe.
@@ -970,16 +982,36 @@ Prenons un exemple qui a été demandé par un étudiant l'autre jour quand on a
 
 ```sql
 SELECT Sexe, Count(*) AS Nombre
-FROM Eleve
-GROUP BY Sexe ;
+FROM eleve
+GROUP BY Sexe;
 ```
+
+Explications:
+--
+
+On va regrouper les élèves par sexe. On va donc avoir un groupe pour les filles et un groupe pour les garçons. Ensuite, on va compter le nombre d'élèves dans chaque groupe. On va donc avoir comme résultats :
+
+|**Sexe**|**Nombre**|
+|--------|----------|
+|F       |1         |
+|M       |13        |
+
+
 
 Ou bien si l'on veut avoir la moyenne des prix par catégorie :
 ```sql
 SELECT Categorie, AVG(Prix)
 FROM Produit
-GROUP BY Categorie ;
+GROUP BY Categorie;
 ```
+
+Ou savoir combien j'ai en stock par catégorie tout produit confondu :
+```sql
+SELECT Categorie, SUM(Stock)
+FROM Produit
+GROUP BY Categorie;
+```
+
 
 ## 6Bis.1 HAVING
 Si l'on veut maintenant filtrer le résultat d'un regroupement (GROUP BY) on va utiliser le mot clé HAVING (qui peut se traduire par "ayant"). Donc pour rechercher sur un regroupement on utilise HAVING et non un WHERE. Si l'on utilise HAVING sans regroupement, celui-ci agira comme un WHERE classique.
@@ -992,7 +1024,10 @@ FROM Localite
 GROUP BY CP
 HAVING nb >1;
 ```
-Ou bienn elle pourrait s'écrire ainsi
+
+On va regrouper les CP et compter le nombre de fois qu'ils apparaissent. On va ensuite filtrer les CP qui apparaissent plus d'une fois. Si on a un CP qui apparaît plus d'une fois, c'est qu'il y a plusieurs communes avec ce CP.
+
+<!-- Ou bien elle pourrait s'écrire ainsi
 ```sql
 USE Localites;
 SELECT CP
@@ -1000,6 +1035,8 @@ FROM Localite
 GROUP BY CP
 HAVING COUNT(*) >1;
 ```
+-->
+
 ## 7. INNER JOIN: Jointure entre tables.
 Maintenant que nous savons lire/sélectionner des données depuis une table.
 Il est parfois nécessaire de lire les données depuis plusieurs tables en même temps. Et de n'afficher que certaines données de ces tables.
@@ -1039,7 +1076,7 @@ Reprenons les tables Eleve et Classe.
 Si nous voulons afficher tous les élèves et leur classe, nous faisions ceci en SQL:
 ```sql
 SELECT *
-FROM Eleve
+FROM eleve
 ```
 Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un nombre. Ce nombre est la clef étrangère qui fait référence à la clef primaire de la table Classe.
 
@@ -1047,7 +1084,7 @@ Si on veut lier/joindre nos tables pour afficher le nom de la classe au lieu d'u
 
 ```sql
 SELECT Eleve.Nom, Prenom, Classe.Nom
-FROM Eleve
+FROM eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
 ```
 Décortiquons cette requête:
@@ -1060,7 +1097,7 @@ Décortiquons cette requête:
 Si on a besoin de tous les champs de la table _Eleve_, on peut changer la requête de cette manière pour éviter de taper tous les champs:
 ```sql
 SELECT Eleve.*, Classe.Nom
-FROM Eleve
+FROM eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
 ```
 Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole **\***: SELECT nomtable.**\***
@@ -1068,7 +1105,7 @@ Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole **\***
 Avant (les vieux comme moi), on ne faisait pas d'**INNER JOIN** mais on faisait la jointure de table dans un **WHERE**. Notre précédente requête peut s'écrire de cette manière:
 ```sql
 SELECT Eleve.Nom, Prenom, Classe.Nom
-FROM Eleve, Classe
+FROM eleve, Classe
 WHERE Eleve.IdClasse = Classe.IdClasse ;
 ```
 Mais c'est à déconseiller car c'est plus logique de faire la jointure via un **INNER JOIN**. Le **WHERE** est plutôt là pour faire des recherches spécifiques et non pour les jointures. Je vous le montre car vous verrez parfois des personnes faire des jointures de tables non pas via un **INNER JOIN** mais via un **WHERE**. Au final, on optient le même résultat... Et c'est ce qui compte. ;) 
@@ -1076,7 +1113,7 @@ Mais c'est à déconseiller car c'est plus logique de faire la jointure via un *
 Si par exemple on veut afficher le nom de l'élève, le prénom de l'élève et le nom de la classe des élèves masculins dont le nom de famille commence par un 'b':
 ```sql
 SELECT Eleve.Nom, Prenom, Classe.Nom
-FROM Eleve
+FROM eleve
 INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse 
 WHERE Sexe='M' AND Eleve.nom LIKE 'b%' ;
 ```
@@ -1314,7 +1351,7 @@ Cependant, j'ai lu que beaucoup de personnes ajoutent **NOT NULL** à une clef p
 Update: Après une énième lecture, j'ai lu que dans la norme [SQL-92](http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt), on devait explicitement ajouter **NOT NULL** à tout champ primaire:
 > If **PRIMARY KEY** or **UNIQUE** is specified, then the **\<column defi-nition\>** for each column whose **\<column name\>** is in the **\<unique column list\>** shall specify **NOT NULL**.
 
-Mais la norme [SQL-99](http://web.cecs.pdx.edu/~len/sql1999.pdf), ne l'oblige pas car c'est implicite que le champ est **NOT NULL**:
+Mais la norme [SQL-99](https://web.cecs.pdx.edu/~len/sql1999.pdf#page=450), ne l'oblige pas car c'est implicite que le champ est **NOT NULL**:
 >  If the **\<unique specification\>** specifies **PRIMARY KEY**, then for each **\<column name\>** in the explicit or implicit **\<unique column list\>** for which **NOT NULL** is not specified, **NOT NULL** is implicit in the **\<column definition\>**.
 
 Voilà pourquoi aussi on peut trouver sur un champ clef primaire/unique la contrainte **NOT NULL** ou non.
