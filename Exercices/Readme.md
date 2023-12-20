@@ -344,7 +344,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 4. Créez une base de données nommée: Exercice26
 5. Utilisez cette nouvelle de données avec la commande USE Exercice26;
 6. Créer une Table Equipe. Cette table aura les champs suivants:
-   - IdEquipe (clef primaire): Entier, NOT NULL, non signé, auto-incrémenté.
+   - IdEquipe (clef primaire): Entier, non signé, NOT NULL, auto-incrémenté.
    - NomClub: chaîne de max 30 caractères, NOT NULL.
    - Localité: chaîne de max 30 caractères, NOT NULL.
    - Division: TINYINT non signé, NOT NULL.

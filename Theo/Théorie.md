@@ -148,6 +148,7 @@
   - [22. Les vues - VIEW](#22-les-vues---view)
   - [CTE - Common Table Expression](#cte---common-table-expression)
   - [Union - Union All](#union---union-all)
+  - [Limit à remettre plus tôt dans le cours pour éviter un tsunami de données et tuer le lecteur d'écran.](#limit-à-remettre-plus-tôt-dans-le-cours-pour-éviter-un-tsunami-de-données-et-tuer-le-lecteur-décran)
 
 <!-- /code_chunk_output -->
 
@@ -1862,7 +1863,7 @@ DELIMITER ;
 
 ## Union - Union All
 
-
+## Limit à remettre plus tôt dans le cours pour éviter un tsunami de données et tuer le lecteur d'écran.
 
 
 
