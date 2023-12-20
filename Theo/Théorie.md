@@ -1005,12 +1005,25 @@ FROM Produit
 GROUP BY Categorie;
 ```
 
+| Categorie    | AVG(Prix)         |
+|--------------|-------------------|
+| Fourniture   | 2                 |
+| Informatique | 338.33            |
+
+
 Ou savoir combien j'ai en stock par catégorie tout produit confondu :
 ```sql
 SELECT Categorie, SUM(Stock)
 FROM Produit
 GROUP BY Categorie;
 ```
+
+| Categorie    | SUM(Stock) |
+|--------------|------------|
+| Fourniture   | 147        |
+| Informatique | 53         |
+
+
 
 ## 6Bis.1 HAVING
 Si l'on veut maintenant filtrer le résultat d'un regroupement (GROUP BY) on va utiliser le mot clé HAVING (qui peut se traduire par "ayant"). Donc pour rechercher sur un regroupement on utilise HAVING et non un WHERE. Si l'on utilise HAVING sans regroupement, celui-ci agira comme un WHERE classique.
@@ -1045,76 +1058,81 @@ Il faut essayer de trouver un point d'anchrage dans chaque table. Essayer de lie
 Tiens qu'est-ce encore qu'une clef primaire/étrangère ? :) 
 
 ### 7.1 Jointure sur deux tables
-Reprenons les tables Eleve et Classe.
+Reprenons les tables eleve et formation.
 
-<u>Table Classe</u>:
+<u>Table formation</u>:
 
-|**IdClasse** (Clef primaire)|**Nom**       |**Lieu**|
+|**ide** (Clef primaire)|**Nom**       |**Lieu**|
 |------------|--------------|--------|
 |1           |BlindCode     |BXL     |
-|2           |BlindCode4Data|LLN     |
+|2           |BlindCodeJava|Mons     |
 
-<u>Table Élève</u>: Elle a été épurée pour l'exemple. Dans les exercices, elle contient plus de champs.
+<u>Table eleve</u>: Elle a été épurée pour l'exemple. Dans les exercices, elle contient plus de champs.
 
-|**IdEleve** (Clef primaire)|**Prénom**|**Nom**   |**IdClasse** (clef étrangère)|
-|-----------|----------|----------|------------|
-|1          |Alain     |Dufrasne  |2           |
-|2          |Bruno     |Defalque  |2           |
-|3          |Eleonor   |Sana      |2           |
-|4          |Jessie    |Bakashika |2           |
-|5          |Mahsum    |Kizmaz    |2           |
-|6          |Maxime    |Borsen    |2           |
-|7          |Isaac     |Tcheuyassi|2           |
-|8          |Matthieu  |DARFEUILLE|1           |
-|9          |Simon     |DESSEILLE |1           |
-|10         |Ibrahim   |TAMDITI   |1           |
-|11         |Sophie    |De BACKER |1           |
-|12         |Yves      |BEYA      |1           |
-|13         |Mounir    |BEN AHMED |1           |
+|**id** (Clef primaire)|**Prenom**|**Nom**   |**formation_id** (clef étrangère)|
+|----|---------------|------------|--------------|
+|  1 | Karim         | Bouchaïb   |            1 |
+|  2 | Amir          | El Gharbi  |            1 |
+|  3 | Baptiste      | Brasseur   |            1 |
+|  4 | Carmen Ramona | Todorut    |            1 |
+|  5 | ANTHONY       | VELEZ PAEZ |            1 |
+|  6 | Filippo       | Muratore   |            1 |
+|  7 | Nabil         | Elrhanaoui |            1 |
+|  8 | Thomas        | Ardui      |            1 |
+|  9 | Christian     | Honore     |            1 |
+| 10 | Sébastien     | Baloge     |            2 |
+| 11 | David         | Dehoust    |            2 |
+| 12 | Simon         | Desseille  |            2 |
+| 13 | Christian     | Vanneste   |            2 |
+| 14 | Bruno         | Defalque   |            2 |
+
+
 
 Si nous voulons afficher tous les élèves et leur classe, nous faisions ceci en SQL:
 ```sql
 SELECT *
-FROM eleve
+FROM eleve;
 ```
 Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un nombre. Ce nombre est la clef étrangère qui fait référence à la clef primaire de la table Classe.
 
 Si on veut lier/joindre nos tables pour afficher le nom de la classe au lieu d'un identifiant, nous allons utiliser la commande sql suivante: **INNER JOIN**
 
 ```sql
-SELECT Eleve.Nom, Prenom, Classe.Nom
-FROM eleve
-INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
+SELECT eleve.Nom, Prenom, formation.Nom 
+FROM eleve 
+INNER JOIN formation ON eleve.formation_id = formation.id;
 ```
-Décortiquons cette requête:
-- Le **SELECT** est particulier car on a mis Eleve.Nom et Classe.Nom pour éviter une ambiguité. En effet, Mysql ne saura pas si on veut le nom de l'élève ou le nom de la Classe si on ne spécifie pas la table.
-- **FROM** _Eleve_: On veut prendre des informations de la table _Eleve_.
-- **INNER JOIN** _Classe_ **ON** _Eleve.IdClasse_ **=** _Classe.IdClasse_
-  1.  **INNER JOIN** _Classe_: on veut joindre la table _Classe_ à la table _Eleve_ (du **FROM**).
-  2.  **ON** _Eleve.IdClasse_ **=** _Classe.IdClasse_: On dit comment on va lier nos tables. Ici on va lier l'_IdClasse_ de la table _Eleve_ sur (**ON**) l'_IdClasse_ de la table _Classe_. Le SGBD cherchera les enregistrements dans les deux tables où l'IdClasse de table Eleve = à l'IdClasse de la table Classe. On fait donc une égalité sur la clef étrangère de la table Eleve (Eleve.IdClasse) et sur la clef primaire de la table Classe (Classe.IdClasse).
 
-Si on a besoin de tous les champs de la table _Eleve_, on peut changer la requête de cette manière pour éviter de taper tous les champs:
+Décortiquons cette requête:
+- Le **SELECT** est particulier car on a mis `eleve.Nom` et `formation.Nom` pour éviter une ambiguité. En effet, MySQL ne saura pas si on veut le nom de l'élève ou le nom de la formation si on ne spécifie pas la table.
+- **FROM** `eleve`: On veut prendre des informations de la table `eleve`.
+- **INNER JOIN** `formation` **ON** `eleve.formation_id` = `formation.id`
+  1. **INNER JOIN** `formation`: on veut joindre la table `formation` à la table `eleve` (du **FROM**).
+  2. **ON** `eleve.formation.id` **=** `formation.id`: On dit comment on va lier nos tables. Ici on va lier l'`formation.id` de la table `eleve` sur (**ON**) l'`id` de la table `formation`. Le SGBD cherchera les enregistrements dans les deux tables où `formation_id` de la table `eleve` = à l'`id` de la table `formation`. On fait donc une égalité sur la clé étrangère de la table `eleve` (`eleve.formation_id`) et sur la clé primaire de la table `formation` (`formation.id`).
+
+
+Si on a besoin de tous les champs de la table `eleve` et de la table `formation`, on peut changer la requête de cette manière pour éviter de taper tous les champs:
 ```sql
-SELECT Eleve.*, Classe.Nom
+SELECT eleve.*, formation.*
 FROM eleve
-INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse ; 
+INNER JOIN formation ON eleve.formation_id = formation.id; 
 ```
 Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole **\***: SELECT nomtable.**\***
 
 Avant (les vieux comme moi), on ne faisait pas d'**INNER JOIN** mais on faisait la jointure de table dans un **WHERE**. Notre précédente requête peut s'écrire de cette manière:
 ```sql
-SELECT Eleve.Nom, Prenom, Classe.Nom
-FROM eleve, Classe
-WHERE Eleve.IdClasse = Classe.IdClasse ;
+SELECT eleve.Nom, Prenom, formation.Nom as Formation
+FROM eleve, formation
+WHERE eleve.formation_id = formation.id ;
 ```
 Mais c'est à déconseiller car c'est plus logique de faire la jointure via un **INNER JOIN**. Le **WHERE** est plutôt là pour faire des recherches spécifiques et non pour les jointures. Je vous le montre car vous verrez parfois des personnes faire des jointures de tables non pas via un **INNER JOIN** mais via un **WHERE**. Au final, on optient le même résultat... Et c'est ce qui compte. ;) 
 
 Si par exemple on veut afficher le nom de l'élève, le prénom de l'élève et le nom de la classe des élèves masculins dont le nom de famille commence par un 'b':
 ```sql
-SELECT Eleve.Nom, Prenom, Classe.Nom
+SELECT eleve.Nom, Prenom, formation.Nom as Formation
 FROM eleve
-INNER JOIN Classe ON Eleve.IdClasse = Classe.IdClasse 
-WHERE Sexe='M' AND Eleve.nom LIKE 'b%' ;
+INNER JOIN formation ON eleve.formation_id = formation.id
+WHERE Sexe='M' AND eleve.nom LIKE 'b%' ;
 ```
 
 ### 7.2 Utilisation du AS dans un FROM et INNER JOIN
