@@ -132,6 +132,8 @@
     - [20.3 Modifier une fonction - ALTER FUNCTION](#203-modifier-une-fonction---alter-function)
   - [21. Les Procédures stockées](#21-les-procédures-stockées)
   - [22. Les vues - VIEW](#22-les-vues---view)
+  - [CTE - Common Table Expression](#cte---common-table-expression)
+  - [Union - Union All](#union---union-all)
 
 <!-- /code_chunk_output -->
 
@@ -1841,6 +1843,12 @@ DELIMITER ;
 
 
 ## 22. Les vues - VIEW
+
+## CTE - Common Table Expression
+
+## Union - Union All
+
+
 
 
 

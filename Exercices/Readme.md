@@ -26,7 +26,9 @@
 - [Exercice n°14 - ORDER BY](#exercice-n14---order-by)
 - [Exercice n°15 - ORDER BY](#exercice-n15---order-by)
 - [Exercice n°16 - AVG](#exercice-n16---avg)
-- [Exercice n°17 - MIN, MAX, SUM](#exercice-n17---min-max-sum)
+- [Exercice n°17.1 - MIN, MAX, SUM](#exercice-n171---min-max-sum)
+- [Exercice n°17.2 - COUNT(\*)](#exercice-n172---count)
+- [Exercice n°17.3 - COUNT(champ)](#exercice-n173---countchamp)
 - [Exercice n°18 - GROUP BY](#exercice-n18---group-by)
 - [Exercice n°19 - GROUP BY](#exercice-n19---group-by)
 - [Exercice n°20 - GROUP BY](#exercice-n20---group-by)
@@ -235,7 +237,7 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 5. Reprenez la requête de la Exercice n°15.
 6. Modifiez-la pour que l'on ait l'age moyen des élèves.
 
-## Exercice n°17 - MIN, MAX, SUM
+## Exercice n°17.1 - MIN, MAX, SUM
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe
@@ -243,6 +245,20 @@ Demandez-moi le mot de passe pour décompresser le fichier.
 5. Affichez le prix maximum des produits
 6. Affichez le prix minimum des produits
 7. Affichez le prix total de tous les produits en tenant compte du stock de chaque produit. :-)
+
+## Exercice n°17.2 - COUNT(*)
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Si vous n'êtes pas dans la DB Ventes, tapez: **use ventes;**
+4. Affichez le nombre total de produits différents.
+5. Utilisez la DB BlindCode, tapez: **use BlindCode;**
+6. Affichez le nombre total d'élèves qui ont plus de 25 ans et appelez cette colonne 'nb_eleves'.
+
+## Exercice n°17.3 - COUNT(champ)
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Si vous n'êtes pas dans la DB Ventes, tapez: **use ventes;**
+4. 
 
 ## Exercice n°18 - GROUP BY
 1. Allez dans le répertoire d'exercices SQL
