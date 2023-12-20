@@ -1,4 +1,4 @@
-[:arrow_left:Revenir au menu principal.](../README.md)
+[:arrow_left:Revenir au menu principal.](../README.md#sommaire)
 <h1 id="sommaire" style="display: flex; align-items: center; justify-content: center;">
     <img src="/Theo/media/image1.png" style="height:50px">
     &nbsp;Cours d'introduction aux SGBD
@@ -11,7 +11,7 @@ L'ensemble des points de matière se trouvent dans les documents suivants:<br/>
 2. [Théorie](Théorie.md)
 3. [Résumé du MCD (Modèle Conceptuel de Données)](Résumé_MCD.md)
 
-[:arrow_left:Revenir au menu principal.](../README.md)
+[:arrow_left:Revenir au menu principal.](../README.md#sommaire)
 
 --- 
 &copy; 2023 [Johnny Piette](https://github.com/ZamBoyle).  

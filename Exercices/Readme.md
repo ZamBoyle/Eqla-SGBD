@@ -225,7 +225,7 @@ Demandez-moi le mot de passe pour décompresser le fichier.
    Pour cela, je vous rappelle que la fonction YEAR()   permet de récupérer l'année d'une date et que CURDATE() donne la date du jour. Pour avoir l'age approximatif de l'élève on pourrait donc faire Année en cours(2022)-Année de naissance(ex:1974) AS Age
 6. Reprenez la requête précédente et affichez les élèves du plus jeune au plus vieux.
 7. Ensuite, du plus vieux au plus jeune.
-8. Réécrivez vos deux requêtes pour ne traîter que des élèves de BlindCode4Data.
+8. Réécrivez vos deux requêtes pour ne traîter que des élèves de BlindCodeJava.
 
 ## Exercice n°16 - AVG
 1. Allez dans le répertoire d'exercices SQL
