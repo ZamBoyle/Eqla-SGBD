@@ -421,7 +421,7 @@ ORDER BY NBEleves DESC;
 -->
 
 ## Exercice n°25.2 - Nouvelle DB !! :-) - employees
-1. Vous allez clonez le dépôt suivant: [test_db](https://github.com/datacharmer/test_db.git)
+1. Vous allez clonez le dépôt suivant: [test_db](https://github.com/datacharmer/test_db.git) (Aie aie aie, ça sent le git ça... mais quelle idée de mettre du git dans un cours SQL... vous devrez utiliser la commande git clone pour cloner le dépôt.)
 2. Allez dans le répertoire test_db
 3. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 4. Entre votre mot de passe.
