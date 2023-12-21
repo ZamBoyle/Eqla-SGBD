@@ -1027,7 +1027,8 @@ GROUP BY Categorie;
 | Fourniture   | 147        |
 | Informatique | 53         |
 
-> La liste des champs qui se trouvent dans le GROUP BY doit se trouver dans le SELECT. On ne peut pas mettre un champ qui n'est pas dans le GROUP BY dans le SELECT. (c) Copyright JC :-)
+> La liste des champs qui se trouvent dans le GROUP BY doit se trouver dans le SELECT.  
+(c) Copyright JC :-)
 
 ## 6Bis.1 HAVING
 Si l'on veut maintenant filtrer le résultat d'un regroupement (GROUP BY) on va utiliser le mot clé HAVING (qui peut se traduire par "ayant"). Donc pour rechercher sur un regroupement on utilise HAVING et non un WHERE. Si l'on utilise HAVING sans regroupement, celui-ci agira comme un WHERE classique.
