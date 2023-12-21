@@ -445,6 +445,18 @@ ORDER BY NBEleves DESC;
       - **departments et dept_manager**: Un département (1) peut avoir plusieurs (N) managers.
       - Il est à noter que les relations de type "plusieurs-à-plusieurs" (N:N) sont représentées via des tables d'association telles que `dept_emp` et `dept_manager`, qui permettent de résoudre ces relations en deux relations "un-à-plusieurs" (1:N).
 
+Utilisation de LIMIT
+--
+Pour éviter d'être submergé par certains résultats, vous pouvez ajouter une clause `LIMIT` à la fin de vos requêtes, par exemple `LIMIT 10` pour n'afficher que les 10 premiers résultats. En effet, la table `employees` contient plus de 300 000 enregistrements, ce qui peut être difficile à gérer.
+
+Exemple:
+```sql
+SELECT *
+FROM employees
+LIMIT 10;
+```
+
+
 ## Exercice n°25.3 - INNER JOIN
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)

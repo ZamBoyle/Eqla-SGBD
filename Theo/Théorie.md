@@ -1190,7 +1190,17 @@ FROM table1
 INNER JOIN table2 ON table1.FK_Key = table2.PK_Key
 INNER JOIN table3 ON table2.FK_Key = table3.PK_Key;
 ```
+
 Où les FK_Key seraient les clefs étrangères (Foreign Key) et les PK_Key seraient les clefs primaires.
+
+L'ordre des `INNER JOIN` a son importance. On pourrait pas faire ceci:
+```sql
+SELECT champ1, champ2, champ3, champX
+FROM table1
+INNER JOIN table3 ON table2.FK_Key = table3.PK_Key;
+INNER JOIN table2 ON table1.FK_Key = table2.PK_Key
+```
+En effet, on ne peut pas faire un INNER JOIN sur une table qui n'existe pas encore. Il faut donc que les tables soient dans l'ordre d'utilisation. Ici, on va d'abord lier table1 à table2 puis table2 à table3
 
 Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple concret à l'exercice n°24.
 
