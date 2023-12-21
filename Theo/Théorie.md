@@ -135,6 +135,7 @@
   - [CTE - Common Table Expression](#cte---common-table-expression)
   - [Union - Union All](#union---union-all)
   - [Limit à remettre plus tôt dans le cours pour éviter un tsunami de données et tuer le lecteur d'écran.](#limit-à-remettre-plus-tôt-dans-le-cours-pour-éviter-un-tsunami-de-données-et-tuer-le-lecteur-décran)
+  - [INNER JOIN sur la même table: exemple élève et parrain](#inner-join-sur-la-même-table-exemple-élève-et-parrain)
 
 <!-- /code_chunk_output -->
 
@@ -1120,6 +1121,12 @@ SELECT eleve.*, formation.*
 FROM eleve
 INNER JOIN formation ON eleve.formation_id = formation.id; 
 ```
+Ou bien ainsi
+```sql
+SELECT *
+FROM eleve
+INNER JOIN formation ON eleve.formation_id = formation.id; 
+```
 Il suffit donc d'utiliser le nom de table suivit d'un point et du symbole **\***: SELECT nomtable.**\***
 
 Avant (les vieux comme moi), on ne faisait pas d'**INNER JOIN** mais on faisait la jointure de table dans un **WHERE**. Notre précédente requête peut s'écrire de cette manière:
@@ -1851,7 +1858,7 @@ DELIMITER ;
 
 ## Limit à remettre plus tôt dans le cours pour éviter un tsunami de données et tuer le lecteur d'écran.
 
-
+## INNER JOIN sur la même table: exemple élève et parrain
 
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 <!--
