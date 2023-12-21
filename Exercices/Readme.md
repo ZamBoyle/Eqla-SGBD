@@ -301,6 +301,21 @@ FROM eleve_formation
 group by date_inscription;
 ```
 
+<!--
+1. **Explication de la commande SQL** :
+   La commande SQL donnée effectue les actions suivantes :
+   - `SELECT YEAR(date_inscription) As 'Annee Inscription'` : Cette partie extrait l'année de la colonne `date_inscription` de chaque enregistrement dans la table `eleve_formation` et la nomme 'Annee Inscription'.
+   - `COUNT(date_inscription)` : Cette partie compte le nombre d'enregistrements (élèves inscrits) pour chaque année.
+   - `FROM eleve_formation` : Indique que la requête récupère les données de la table `eleve_formation`.
+   - `GROUP BY YEAR(date_inscription)` : Cette partie groupe les résultats par année d'inscription. Cela signifie que pour chaque année distincte dans la table, la requête comptera le nombre d'élèves inscrits cette année-là.
+
+2. **Utilisation de la fonction YEAR** :
+   - L'utilisation de `YEAR(date_inscription)` permet de regrouper et de compter les enregistrements par année, sans tenir compte des mois et des jours. Cela donne un aperçu de combien d'élèves se sont inscrits chaque année.
+   - Sans le `YEAR`, la requête `GROUP BY date_inscription` grouperait les données par date exacte, y compris l'année, le mois et le jour. Cela donnerait un compte de combien d'élèves se sont inscrits à chaque date précise, ce qui pourrait mener à des résultats très fragmentés et moins utiles pour une analyse annuelle.
+-->
+
+
+
 ## Exercice n°22 - INNER JOIN
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
@@ -310,12 +325,52 @@ group by date_inscription;
 6. Faites un tri ascendant sur le nom du pays.
 7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
 
+<!--
+1. Affichage des pays et de leurs continents :
+SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
+FROM Pays p
+JOIN continent c ON p.continent = c.code;
+
+2. Tri ascendant sur le nom du pays :
+SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
+FROM Pays p
+JOIN continent c ON p.continent = c.code
+ORDER BY p.name ASC;
+
+-->
+
+
+
+<!--
 ## Exercice n°23 - INNER JOIN
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Pays, tapez: **use Pays;**
 5. Affichez le nom COMPLET du pays et le nom COMPLET du continent (pas l'acronyme) dont il fait partie.
+-->
+
+## Exercice n°23 - INNER JOIN
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Ventes, tapez: **use ventes;**
+5. Pour cet exercice, on va travailler sur deux tables: ProduitV2 et Categorie.
+6. Affichez tous les noms de produits et le nom de la catégorie dont ils font partie.
+7. Faites un tri ascendant sur le nom du produit.
+
+<!--
+1. Afficher les noms de produits et leurs catégories :
+SELECT p.Nom, c.Nom
+FROM ProduitV2 p
+JOIN Categorie c ON p.IdCategorie = c.IdCategorie;
+
+2. Trier par nom de produit en ordre ascendant :
+SELECT p.Nom, c.Nom
+FROM ProduitV2 p
+JOIN Categorie c ON p.IdCategorie = c.IdCategorie
+ORDER BY p.Nom ASC;
+-->
 
 ## Exercice n°24 - INNER JOIN
 Ici, on va travailler sur trois tables. La table _eleve_, la table _formation_ et la table _eleve_formation_.
@@ -327,15 +382,151 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
-5. On va afficher le nom et prénom de l'élève, le nom de la classe et la date d'inscription.
+5. On va afficher le nom et prénom de l'élève, le nom de la formation et la date d'inscription.
 
-## Exercice n°25 - INNER JOIN
+<!--
+SELECT e.prenom, e.nom, f.nom AS Nom_Formation, ef.date_inscription
+FROM eleve e
+JOIN eleve_formation ef ON e.id = ef.eleve_id
+JOIN formation f ON ef.formation_id = f.id;
+-->
+
+## Exercice n°25.1 - INNER JOIN
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB BlindCode, tapez: **use BlindCode;**
-5. Affichez le nom des différentes classes/formations et le nombre d'élèves dans chacune d'elle. La colonne du nombre d'élèves s'appelera NBEleves.
-6. Faites un tri descendant sur le nombre d'élèves.
+5. Affichez le nom, le prénom, le sexe et le nom de la formation de chaque élève.
+6. Affichez le nom des différentes formations et le nombre d'élèves dans chacune d'elle. La colonne du nombre d'élèves s'appelera NBEleves. (ça sent le `COUNT` ça ainsi que d'un `GROUP BY` et `INNER JOIN`... Il n'est pas sympa le prof. :-))
+7. Faites un tri descendant sur le nombre d'élèves.
+
+<!--
+1. Affichez le nom, le prénom, le sexe et le nom de la formation de chaque élève.
+SELECT e.nom, e.prenom, e.sexe, f.nom AS Nom_Formation
+FROM eleve e
+JOIN formation f ON e.formation_id = f.id;
+
+2. Afficher le nom des formations et le nombre d'élèves dans chacune :
+SELECT f.nom AS Nom_Formation, COUNT(e.id) AS NBEleves
+FROM formation f
+JOIN eleve e ON f.id = e.formation_id
+GROUP BY f.nom;
+
+3. Trier par nombre d'élèves en ordre descendant :
+SELECT f.nom AS Nom_Formation, COUNT(e.id) AS NBEleves
+FROM formation f
+JOIN eleve e ON f.id = e.formation_id
+GROUP BY f.nom
+ORDER BY NBEleves DESC;
+-->
+
+## Exercice n°25.2 - Nouvelle DB !! :-) - employees
+1. Vous allez clonez le dépôt suivant: [test_db](https://github.com/datacharmer/test_db.git)
+2. Allez dans le répertoire test_db
+3. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+4. Entre votre mot de passe.
+5. Importez la base de données: source employees.sql
+6. Si vous avez des erreurs, appelez-moi.
+7. Explorons la base de données: **USE employees;**
+8. Voyons quelles sont les tables: **SHOW TABLES;**
+9. Voyons la structure de la table employees: **DESC employees;**
+10. Voyons la structure de la table titles: **DESC titles;**
+11. Voyons la structure de la table salaries: **DESC salaries;**
+12. Voyons la structure de la table dept_emp: **DESC dept_emp;**
+13. Voyons la structure de la table dept_manager: **DESC dept_manager;**
+14. Voyons la structure de la table departments: **DESC departments;**
+15. En plus, si cela vous est possible, regardez l'image qui se trouve dans le répertoire: images/employees.png pour comprendre comment les tables sont liées entre elles.
+16. Sur la base du schéma fourni, voici les cardinalités des relations entre les tables :
+      - **employees et titles**: Un employé (1) peut avoir plusieurs (N) titres.
+      - **employees et salaries**: Un employé (1) peut avoir plusieurs (N) enregistrements de salaire.
+      - **employees et dept_emp**: Un employé (1) peut appartenir à plusieurs (N) départements.
+      - **employees et dept_manager**: Un employé (1) peut être manager de plusieurs (N) départements.
+      - **departments et dept_emp**: Un département (1) peut avoir plusieurs (N) employés.
+      - **departments et dept_manager**: Un département (1) peut avoir plusieurs (N) managers.
+      - Il est à noter que les relations de type "plusieurs-à-plusieurs" (N:N) sont représentées via des tables d'association telles que `dept_emp` et `dept_manager`, qui permettent de résoudre ces relations en deux relations "un-à-plusieurs" (1:N).
+
+## Exercice n°25.3 - INNER JOIN
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB employees, tapez: **use employees;**
+5. Affichez le nom, le prénom de l'employé, son genre, la date de son embauche. (Rien de difficile ici).
+6. Affichez le nom, le prénom de l'employé, son genre, la date de son embauche et ses titres.
+7. Pour l'employé 10500, affichez son nom, prénom, genre, date d'embauche, ses différents salaires avec les dates de début et de fin de chaque salaire (from_date et to_date).
+8. Triez le précédent résultat pour afficher les salaires du plus récent au plus ancien. Vous verrez qu'il y a comme date de fin de salaire le 9999-01-01. Cela signifie que l'employé est toujours en fonction avec ce salaire. :-)
+> La date '9999-01-01' est une valeur réelle, concrète, qui est utilisée conventionnellement pour représenter une date de fin ouverte ou indéfinie, par exemple dans un contrat de travail ou une licence qui est toujours active. C'est une astuce courante pour éviter d'utiliser `NULL`, qui pourrait être interprété comme une absence d'information ou une erreur, alors que '9999-01-01' transmet clairement l'intention que l'élément est toujours en cours sans date de fin prévue.
+
+<!--
+1. Informations de base de l'employé :
+SELECT first_name, last_name, gender, hire_date
+FROM employees;
+
+2.Informations de l'employé avec titres :
+SELECT e.first_name, e.last_name, e.gender, e.hire_date, t.title
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no;
+
+3. Détails spécifiques pour l'employé 10500 :
+SELECT e.first_name, e.last_name, e.gender, e.hire_date, s.salary, s.from_date, s.to_date
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE e.emp_no = 10500;
+
+4. Trie des salaires de l'employé 10500 :
+SELECT e.first_name, e.last_name, e.gender, e.hire_date, s.salary, s.from_date, s.to_date
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE e.emp_no = 10500
+ORDER BY s.from_date DESC;
+-->
+
+
+## Exercice n°25.4 - INNER JOIN
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB employees, tapez: **use employees;**
+5. Affichez le nom du département, le nom du manager, le prénon du manager, sa date de début et sa date de fin de fonction. (On utilisera la table dept_manager qui est la table intermédiaire entre employees et departments).
+5. Affichez le nom, prénom des employés qui ont le titre de manager;
+6. Afficher le nom, le prénom et le département de chaque employé.
+7. Affichez les employés qui ont travaillé dans le département 'Finance'.
+8. Affichez les employés qui ont travaillé dans le département 'Finance' et qui ont été manager de ce département.
+
+<!--
+1. Informations des managers de département :
+SELECT d.dept_name, e.first_name, e.last_name, dm.from_date, dm.to_date
+FROM departments d
+JOIN dept_manager dm ON d.dept_no = dm.dept_no
+JOIN employees e ON dm.emp_no = e.emp_no;
+
+2. Employés avec titre de manager :
+SELECT e.first_name, e.last_name
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+WHERE t.title = 'Manager';
+
+3. Nom, prénom et département de chaque employé :
+SELECT e.first_name, e.last_name, d.dept_name
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no;
+
+4. Employés du département 'Finance' :
+SELECT e.first_name, e.last_name
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+WHERE d.dept_name = 'Finance';
+
+5. Employés de 'Finance' qui ont été managers :
+SELECT DISTINCT e.first_name, e.last_name
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+JOIN dept_manager dm ON e.emp_no = dm.emp_no AND d.dept_no = dm.dept_no
+WHERE d.dept_name = 'Finance';
+
+-->
 
 ## Exercice n°26 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL

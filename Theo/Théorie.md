@@ -1091,12 +1091,12 @@ Reprenons les tables eleve et formation.
 
 
 
-Si nous voulons afficher tous les élèves et leur classe, nous faisions ceci en SQL:
+Si nous voulons afficher tous les élèves et leur formation, nous faisions ceci en SQL:
 ```sql
 SELECT *
 FROM eleve;
 ```
-Ca nous affiche tous le champs mais malheureusement le champ relatif à la classe est un nombre. Ce nombre est la clef étrangère qui fait référence à la clef primaire de la table Classe.
+Ca nous affiche tous le champs mais malheureusement le champ relatif à la formation (formation_id) est un nombre. Ce nombre est la clef étrangère qui fait référence à la clef primaire de la table Classe.
 
 Si on veut lier/joindre nos tables pour afficher le nom de la classe au lieu d'un identifiant, nous allons utiliser la commande sql suivante: **INNER JOIN**
 
@@ -1130,7 +1130,7 @@ WHERE eleve.formation_id = formation.id ;
 ```
 Mais c'est à déconseiller car c'est plus logique de faire la jointure via un **INNER JOIN**. Le **WHERE** est plutôt là pour faire des recherches spécifiques et non pour les jointures. Je vous le montre car vous verrez parfois des personnes faire des jointures de tables non pas via un **INNER JOIN** mais via un **WHERE**. Au final, on optient le même résultat... Et c'est ce qui compte. ;) 
 
-Si par exemple on veut afficher le nom de l'élève, le prénom de l'élève et le nom de la classe des élèves masculins dont le nom de famille commence par un 'b':
+Si par exemple on veut afficher le nom de l'élève, le prénom de l'élève et le nom de la formation des élèves masculins dont le nom de famille commence par un 'b':
 ```sql
 SELECT eleve.Nom, Prenom, formation.Nom as Formation
 FROM eleve
@@ -1139,7 +1139,7 @@ WHERE Sexe='M' AND eleve.nom LIKE 'b%' ;
 ```
 
 ### 7.2 Utilisation du AS dans un FROM et INNER JOIN
-Lors d'une requête avec un INNER JOIN, il peut être intéressant de raccourcir le nom des tables via l'utilisation de AS
+Lors d'une requête avec un `INNER JOIN`, il peut être intéressant de raccourcir le nom des tables via l'utilisation de `AS`
 
 Reprenons l'exemple suivant:
 ```SQL
@@ -1149,7 +1149,7 @@ FROM ProduitV2
 INNER JOIN Categorie ON ProduitV2.IdCategorie = Categorie.IdCategorie
 WHERE ProduitV2.IdProduit <> 4;
 ```
-En utilisant AS on peut réduire la requête et lui donner une meilleure visibilité:
+En utilisant `AS` on peut réduire la requête et lui donner une meilleure visibilité:
 ```SQL
 USE Ventes;
 SELECT p.IdProduit, p.Nom, c.Nom
