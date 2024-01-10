@@ -577,13 +577,23 @@ Pour avoir la description de la table titles, on tape: **DESC titles;**
 1. Écrivez une requête SQL qui renvoie chaque titre d'emploi unique et le nombre d'employés qui ont ce titre. Votre requête devrait renvoyer un tableau avec deux colonnes : title et Number of Employees. (Humm ça ne sentirait pas le GROUP BY ?)
 <!--
 ```sql
-SELECT t.title, COUNT(*) AS 'Nombre d''employés'
+SELECT t.title, COUNT(*) AS Nombre_employes
 FROM employees e
 JOIN titles t ON e.emp_no = t.emp_no
 GROUP BY t.title;
 ```
 -->
 2. Triez les résultats par nombre d'employés en ordre descendant.
+<!--
+```sql
+SELECT t.title, COUNT(*) AS Nombre_employes
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+GROUP BY t.title
+ORDER BY Nombre_employes DESC;
+```
+-->
+
 <!--
 ```sql
 SELECT t.title, AVG(s.salary) AS moyenne_salaire
@@ -595,7 +605,7 @@ ORDER BY moyenne_salaire DESC;
 ```
 -->
 3. Faites deux requêtes:
-   - Quel titre est le plus courant ? (On utilisera LIMIT 1)
+   - Quel titre est le plus courant ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
 <!--
 ```sql
 SELECT t.title, COUNT(*) AS Number_of_Employees
@@ -606,7 +616,7 @@ ORDER BY Number_of_Employees DESC
 LIMIT 1;
 ```
 -->
-   - Quel titre est le moins courant ? (On utilisera LIMIT 1)
+   - Quel titre est le moins courant ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
 <!--
 ```sql
 SELECT t.title, COUNT(*) AS Number_of_Employees
@@ -628,13 +638,12 @@ GROUP BY t.title
 ORDER BY moyenne_salaire DESC;
 ```
 -->
-5. Vous utiliserez la table salaries. Quel est le salaire moyen des employés de l'entreprise ?
-
+5. Vous utiliserez la table salaries. Quel est le salaire moyen des employés de l'entreprise ? (Ne vous prenez pas la tête, c'est très simple)
 <!-- ```sql
 SELECT AVG(salary) AS Moyenne_salaire
 FROM salaries;
 ``` -->
-6. Quel est l'employé le mieux payé de l'entreprise ? (On utilisera LIMIT 1)
+6. Quel est l'employé ayant le salaire le plus élevé de l'entreprise ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
 <!-- ```sql
 SELECT e.first_name, e.last_name, s.salary
 FROM salaries s
@@ -642,7 +651,7 @@ INNER JOIN employees e ON s.emp_no = e.emp_no
 ORDER BY s.salary DESC
 LIMIT 1;
 ``` -->
-7. Quel est l'employé le moins bien payé de l'entreprise ? (On utilisera LIMIT 1)
+7. Quel est l'employé ayant le salaire le plus bas de l'entreprise ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
 <!-- ```sql
 SELECT e.first_name, e.last_name, s.salary
 FROM salaries s
