@@ -384,6 +384,7 @@ ORDER BY p.Nom ASC;
 
 ## Exercice n°24 - INNER JOIN
 ![Alt text](image-2.png)
+
 Ici, on va travailler sur trois tables. La table _eleve_, la table _formation_ et la table _eleve_formation_.
 Analyser la description des tables pour comprendre comment les lier entre elles.
 Pour connaître la description d'une table, on utilise la commande: **DESC nomdelatable;**
@@ -611,8 +612,7 @@ JOIN titles t ON e.emp_no = t.emp_no
 JOIN salaries s ON e.emp_no = s.emp_no
 GROUP BY t.title
 ORDER BY moyenne_salaire DESC;
-```
--->
+```-->
 3. Faites deux requêtes:
    - Quel titre est le plus courant ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
 <!--
@@ -623,8 +623,7 @@ JOIN titles t ON e.emp_no = t.emp_no
 GROUP BY t.title
 ORDER BY Number_of_Employees DESC
 LIMIT 1;
-```
--->
+```-->
    - Quel titre est le moins courant ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
 <!--
 ```sql
