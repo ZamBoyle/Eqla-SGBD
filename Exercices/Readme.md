@@ -326,17 +326,20 @@ group by date_inscription;
 7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
 
 <!--
+```sql
 1. Affichage des pays et de leurs continents :
 SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
 FROM Pays p
 JOIN continent c ON p.continent = c.code;
+```
 
 2. Tri ascendant sur le nom du pays :
+```sql
 SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
 FROM Pays p
 JOIN continent c ON p.continent = c.code
 ORDER BY p.name ASC;
-
+```
 -->
 
 
@@ -361,15 +364,19 @@ ORDER BY p.name ASC;
 
 <!--
 1. Afficher les noms de produits et leurs catégories :
+```sql
 SELECT p.Nom, c.Nom
 FROM ProduitV2 p
 JOIN Categorie c ON p.IdCategorie = c.IdCategorie;
+```
 
 2. Trier par nom de produit en ordre ascendant :
+```sql
 SELECT p.Nom, c.Nom
 FROM ProduitV2 p
 JOIN Categorie c ON p.IdCategorie = c.IdCategorie
 ORDER BY p.Nom ASC;
+```
 -->
 
 ## Exercice n°24 - INNER JOIN
@@ -385,10 +392,12 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 5. On va afficher le nom et prénom de l'élève, le nom de la formation et la date d'inscription.
 
 <!--
+```sql
 SELECT e.prenom, e.nom, f.nom AS Nom_Formation, ef.date_inscription
 FROM eleve e
 JOIN eleve_formation ef ON e.id = ef.eleve_id
 JOIN formation f ON ef.formation_id = f.id;
+```
 -->
 
 ## Exercice n°25.1 - INNER JOIN
@@ -402,22 +411,28 @@ JOIN formation f ON ef.formation_id = f.id;
 
 <!--
 1. Affichez le nom, le prénom, le sexe et le nom de la formation de chaque élève.
+```sql
 SELECT e.nom, e.prenom, e.sexe, f.nom AS Nom_Formation
 FROM eleve e
 JOIN formation f ON e.formation_id = f.id;
+```
 
 2. Afficher le nom des formations et le nombre d'élèves dans chacune :
+```sql
 SELECT f.nom AS Nom_Formation, COUNT(e.id) AS NBEleves
 FROM formation f
 JOIN eleve e ON f.id = e.formation_id
 GROUP BY f.nom;
+```
 
 3. Trier par nombre d'élèves en ordre descendant :
+```sql
 SELECT f.nom AS Nom_Formation, COUNT(e.id) AS NBEleves
 FROM formation f
 JOIN eleve e ON f.id = e.formation_id
 GROUP BY f.nom
 ORDER BY NBEleves DESC;
+```
 -->
 
 ## Exercice n°25.2 - Nouvelle DB !! :-) - employees
@@ -470,26 +485,31 @@ LIMIT 10;
 
 <!--
 1. Informations de base de l'employé :
+```sql
 SELECT first_name, last_name, gender, hire_date
 FROM employees;
-
+```
 2.Informations de l'employé avec titres :
+```sql
 SELECT e.first_name, e.last_name, e.gender, e.hire_date, t.title
 FROM employees e
 JOIN titles t ON e.emp_no = t.emp_no;
-
+```
 3. Détails spécifiques pour l'employé 10500 :
+```sql
 SELECT e.first_name, e.last_name, e.gender, e.hire_date, s.salary, s.from_date, s.to_date
 FROM employees e
 JOIN salaries s ON e.emp_no = s.emp_no
 WHERE e.emp_no = 10500;
-
+```
 4. Trie des salaires de l'employé 10500 :
+```sql
 SELECT e.first_name, e.last_name, e.gender, e.hire_date, s.salary, s.from_date, s.to_date
 FROM employees e
 JOIN salaries s ON e.emp_no = s.emp_no
 WHERE e.emp_no = 10500
 ORDER BY s.from_date DESC;
+```
 -->
 
 
@@ -506,41 +526,131 @@ ORDER BY s.from_date DESC;
 
 <!--
 1. Informations des managers de département :
+```sql
 SELECT d.dept_name, e.first_name, e.last_name, dm.from_date, dm.to_date
 FROM departments d
 JOIN dept_manager dm ON d.dept_no = dm.dept_no
 JOIN employees e ON dm.emp_no = e.emp_no;
-
+```
 2. Employés avec titre de manager :
+```sql
 SELECT e.first_name, e.last_name
 FROM employees e
 JOIN titles t ON e.emp_no = t.emp_no
 WHERE t.title = 'Manager';
-
+```
 3. Nom, prénom et département de chaque employé :
+```sql
 SELECT e.first_name, e.last_name, d.dept_name
 FROM employees e
 JOIN dept_emp de ON e.emp_no = de.emp_no
 JOIN departments d ON de.dept_no = d.dept_no;
-
+```
 4. Employés du département 'Finance' :
+```sql
 SELECT e.first_name, e.last_name
 FROM employees e
 JOIN dept_emp de ON e.emp_no = de.emp_no
 JOIN departments d ON de.dept_no = d.dept_no
 WHERE d.dept_name = 'Finance';
-
+```
 5. Employés de 'Finance' qui ont été managers :
+```sql
 SELECT DISTINCT e.first_name, e.last_name
 FROM employees e
 JOIN dept_emp de ON e.emp_no = de.emp_no
 JOIN departments d ON de.dept_no = d.dept_no
 JOIN dept_manager dm ON e.emp_no = dm.emp_no AND d.dept_no = dm.dept_no
 WHERE d.dept_name = 'Finance';
-
+```
 -->
 
-## Exercice n°26 - CREATE DATABASE / CREATE TABLE
+## Exercice n°25.5 - INNER JOIN - Analyse des titres d'emploi et des salaires
+Dans une entreprise, chaque employé a un titre spécifique associé à son poste. Ces titres peuvent varier de "Ingénieur" à "Directeur", "Manager", etc. Votre tâche est d'analyser la distribution des titres d'emploi dans l'entreprise.
+
+Utilisez la base de données `employees` qui contient deux tables pertinentes pour cet exercice : employees et titles. La table employees contient des informations sur chaque employé. La table titles contient des informations sur les titres d'emploi de chaque employé et son titre.
+
+Je vous rappelle que pour avoir la description d'une table, on utilise la commande: **DESC nomdelatable;**
+Donc, pour avoir la description de la table employees, on tape: **DESC employees;**
+Pour avoir la description de la table titles, on tape: **DESC titles;**
+
+1. Écrivez une requête SQL qui renvoie chaque titre d'emploi unique et le nombre d'employés qui ont ce titre. Votre requête devrait renvoyer un tableau avec deux colonnes : title et Number of Employees. (Humm ça ne sentirait pas le GROUP BY ?)
+<!--
+```sql
+SELECT t.title, COUNT(*) AS 'Nombre d''employés'
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+GROUP BY t.title;
+```
+-->
+2. Triez les résultats par nombre d'employés en ordre descendant.
+<!--
+```sql
+SELECT t.title, AVG(s.salary) AS moyenne_salaire
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+JOIN salaries s ON e.emp_no = s.emp_no
+GROUP BY t.title
+ORDER BY moyenne_salaire DESC;
+```
+-->
+3. Faites deux requêtes:
+   - Quel titre est le plus courant ?
+<!--
+```sql
+SELECT t.title, COUNT(*) AS Number_of_Employees
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+GROUP BY t.title
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+```
+-->
+   - Quel titre est le moins courant ?
+<!--
+```sql
+SELECT t.title, COUNT(*) AS Number_of_Employees
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+GROUP BY t.title
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+```
+-->
+4. Quelle est la moyenne des salaires des différents titres ?
+<!--
+```sql
+SELECT t.title, AVG(s.salary) AS moyenne_salaire
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+JOIN salaries s ON e.emp_no = s.emp_no
+GROUP BY t.title
+ORDER BY moyenne_salaire DESC;
+```
+-->
+5. Vous utiliserez la table salaries. Quel est le salaire moyen des employés de l'entreprise ?
+
+<!-- ```sql
+SELECT AVG(salary) AS Moyenne_salaire
+FROM salaries;
+``` -->
+6. Quel est l'employé le mieux payé de l'entreprise ?
+<!-- ```sql
+SELECT e.first_name, e.last_name, s.salary
+FROM salaries s
+INNER JOIN employees e ON s.emp_no = e.emp_no
+ORDER BY s.salary DESC
+LIMIT 1;
+``` -->
+7. Quel est l'employé le moins bien payé de l'entreprise ?
+<!-- ```sql
+SELECT e.first_name, e.last_name, s.salary
+FROM salaries s
+INNER JOIN employees e ON s.emp_no = e.emp_no
+ORDER BY s.salary ASC
+LIMIT 1;
+``` -->
+ ## Exercice n°26 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.

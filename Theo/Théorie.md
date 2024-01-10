@@ -76,6 +76,7 @@
     - [7.1 Jointure sur deux tables](#71-jointure-sur-deux-tables)
     - [7.2 Utilisation du AS dans un FROM et INNER JOIN](#72-utilisation-du-as-dans-un-from-et-inner-join)
     - [7.3 Jointure sur plus de 2 tables](#73-jointure-sur-plus-de-2-tables)
+  - [7b. Limitation des résultats - LIMIT](#7b-limitation-des-résultats---limit)
   - [8. Création d'une base de données - CREATE DATABASE](#8-création-dune-base-de-données---create-database)
   - [9. CREATE TABLE](#9-create-table)
     - [9.1 La commande](#91-la-commande)
@@ -1205,6 +1206,22 @@ En effet, on ne peut pas faire un INNER JOIN sur une table qui n'existe pas enco
 
 Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple concret à l'exercice n°24.
 
+## 7b. Limitation des résultats - LIMIT
+Si on veut limiter le nombre de résultats, on peut utiliser le mot clef **LIMIT**. Il est souvent utilisé avec **ORDER BY** pour avoir les premiers résultats ou les derniers résultats.
+
+
+
+
+Ou bien pour afficher les 5 premiers élèves de la table eleve :
+
+```sql
+SELECT *
+FROM eleve
+LIMIT 5;
+```
+
+
+
 ## 8. Création d'une base de données - CREATE DATABASE
 Avant de pouvoir créer nos tables, nos devrons avant tout créer une base de données.
 Pour cela on utilise la commande suivante **CREATE DATABASE**
@@ -1217,7 +1234,7 @@ Si j'exécute cette commande, le SGDB va créer notre base de données Jeux. C'e
 
 Cependant, si je réexécute cette instruction mysql me dira que la base de données existe déjà.
 
-C'est pour ça que pour les exercices, je supprime la base de données avant de la créer. De fait manière, vous pouvez modifier comme vous le souhaitez nos base de données. Après un appel du script de création tout sera supprimé et recréé:
+C'est pour ça que pour les exercices, je supprime la base de données avant de la créer. De cette manière, vous pouvez modifier comme vous le souhaitez nos bases de données. Après un appel du script de création tout sera supprimé et recréé:
 ```sql
 DROP DATABASE IF EXISTS Jeux;
 CREATE DATABASE Jeux;
@@ -1244,11 +1261,11 @@ CREATE TABLE nomtable
     champ4 type_donnees
 )
 ```
-Ici, on utilise la base de données ayant pour nom: UneBaseDeDonnees et nous avons créé une table avec pour nom: nomtable.
+Ici, on utilise la base de données ayant pour nom: `UneBaseDeDonnees` et nous avons créé une table avec pour nom: nomtable.
 
 Nous avons 4 champs. Chaque champ a une nom (champ1 à champ2) et chaque champ a un type de données (**INT**, **DATE**, **VARCHAR**, **CHAR**, etc.). Entre chaque champ, il y a une virgule.
 
-Notez l'utilisation du mot clef **USE** qui permet de changer de base données. En effet, soyez bien sûrs d'être dans la base de données avant de faire des créations de tables ou toute autre manipulation.
+Notez l'utilisation du mot clef `USE` qui permet de changer de base données. En effet, soyez bien sûrs d'être dans la base de données avant de faire des créations de tables ou toute autre manipulation.
 
 ### 9.3 Types de données / types des champs
 Un champ a un type de données. Voici les principaux:
