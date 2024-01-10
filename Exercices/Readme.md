@@ -595,25 +595,25 @@ ORDER BY moyenne_salaire DESC;
 ```
 -->
 3. Faites deux requêtes:
-   - Quel titre est le plus courant ?
+   - Quel titre est le plus courant ? (On utilisera LIMIT 1)
 <!--
 ```sql
 SELECT t.title, COUNT(*) AS Number_of_Employees
 FROM employees e
 JOIN titles t ON e.emp_no = t.emp_no
 GROUP BY t.title
-ORDER BY COUNT(*) DESC
+ORDER BY Number_of_Employees DESC
 LIMIT 1;
 ```
 -->
-   - Quel titre est le moins courant ?
+   - Quel titre est le moins courant ? (On utilisera LIMIT 1)
 <!--
 ```sql
 SELECT t.title, COUNT(*) AS Number_of_Employees
 FROM employees e
 JOIN titles t ON e.emp_no = t.emp_no
 GROUP BY t.title
-ORDER BY COUNT(*) DESC
+ORDER BY Number_of_Employees DESC
 LIMIT 1;
 ```
 -->
@@ -634,7 +634,7 @@ ORDER BY moyenne_salaire DESC;
 SELECT AVG(salary) AS Moyenne_salaire
 FROM salaries;
 ``` -->
-6. Quel est l'employé le mieux payé de l'entreprise ?
+6. Quel est l'employé le mieux payé de l'entreprise ? (On utilisera LIMIT 1)
 <!-- ```sql
 SELECT e.first_name, e.last_name, s.salary
 FROM salaries s
@@ -642,7 +642,7 @@ INNER JOIN employees e ON s.emp_no = e.emp_no
 ORDER BY s.salary DESC
 LIMIT 1;
 ``` -->
-7. Quel est l'employé le moins bien payé de l'entreprise ?
+7. Quel est l'employé le moins bien payé de l'entreprise ? (On utilisera LIMIT 1)
 <!-- ```sql
 SELECT e.first_name, e.last_name, s.salary
 FROM salaries s

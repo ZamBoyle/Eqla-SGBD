@@ -77,6 +77,8 @@
     - [7.2 Utilisation du AS dans un FROM et INNER JOIN](#72-utilisation-du-as-dans-un-from-et-inner-join)
     - [7.3 Jointure sur plus de 2 tables](#73-jointure-sur-plus-de-2-tables)
   - [7b. Limitation des résultats - LIMIT](#7b-limitation-des-résultats---limit)
+    - [7b.1 Simplement limiter le nombre de résultats](#7b1-simplement-limiter-le-nombre-de-résultats)
+    - [7b.2 Pour avoir les premiers résultats ou les derniers résultats](#7b2-pour-avoir-les-premiers-résultats-ou-les-derniers-résultats)
   - [8. Création d'une base de données - CREATE DATABASE](#8-création-dune-base-de-données---create-database)
   - [9. CREATE TABLE](#9-create-table)
     - [9.1 La commande](#91-la-commande)
@@ -1207,21 +1209,54 @@ En effet, on ne peut pas faire un INNER JOIN sur une table qui n'existe pas enco
 Ici, j'ai lié table2 à table1 et table3 à table2. Mais tout dépend de la situation réelle. Vous aurez un exemple concret à l'exercice n°24.
 
 ## 7b. Limitation des résultats - LIMIT
-Si on veut limiter le nombre de résultats, on peut utiliser le mot clef **LIMIT**. Il est souvent utilisé avec **ORDER BY** pour avoir les premiers résultats ou les derniers résultats.
+### 7b.1 Simplement limiter le nombre de résultats
+Si on veut limiter le nombre de résultats, on peut utiliser le mot clef **LIMIT**.
 
-
-
-
-Ou bien pour afficher les 5 premiers élèves de la table eleve :
+Pour afficher les 5 premiers élèves de la table eleve triés par nom:
 
 ```sql
+USE BlindCode;
 SELECT *
 FROM eleve
+ORDER BY Nom ASC
 LIMIT 5;
 ```
 
+Donc il faut bien faire attention au fait que l'on limite le résultat à 5 enregistrements. Si on avait mis LIMIT 10, on aurait eu les 10 premiers élèves. Et donc que c'est un résultat tronqué. On n'a pas tous les élèves. On a juste les 5 premiers.
 
+### 7b.2 Pour avoir les premiers résultats ou les derniers résultats
+ Il est souvent utilisé avec **ORDER BY** pour avoir les premiers résultats ou les derniers résultats.
 
+vous pouvez créer une requête SQL pour afficher, par exemple, la formation ayant l'âge moyen des élèves le plus élevé et l'âge moyen le plus bas, en utilisant GROUP BY, ORDER BY et LIMIT.
+
+Pour cela, vous pouvez d'abord calculer l'âge moyen des élèves dans chaque formation, puis trier ces moyennes pour trouver la plus haute et la plus basse. Voici comment cela peut être fait :
+
+**Pour afficher la formation ayant l'âge moyen le plus élevé** :
+
+```sql
+USE BlindCode;
+SELECT formation.Nom, AVG(YEAR(CURDATE())-YEAR(Naissance)) AS AgeMoyen
+FROM eleve
+INNER JOIN formation ON eleve.formation_id = formation.id
+GROUP BY formation.Nom
+ORDER BY AgeMoyen DESC
+LIMIT 1;
+```
+On peut voir que l'on a trié par ordre décroissant sur l'âge moyen et on a limité à 1. On aura donc le premier résultat qui sera la formation ayant l'âge moyen le plus élevé.
+
+**Trouver la formation avec l'âge moyen des élèves le plus bas** :
+```sql
+USE BlindCode;
+SELECT formation.Nom, AVG(YEAR(CURDATE())-YEAR(Naissance)) AS AgeMoyen
+FROM eleve
+INNER JOIN formation ON eleve.formation_id = formation.id
+GROUP BY formation.Nom
+ORDER BY AgeMoyen ASC
+LIMIT 1;
+```
+On peut voir que l'on a trié par ordre croissant sur l'âge moyen et on a limité à 1. On aura donc le premier résultat qui sera la formation ayant l'âge moyen le plus bas.
+
+Bien entendu, on peut demander les 3 élèves les plus âgés de la formation BlindCode en modifiant la requête de cette manière en mettant LIMIT 3 au lieu de LIMIT 1.
 ## 8. Création d'une base de données - CREATE DATABASE
 Avant de pouvoir créer nos tables, nos devrons avant tout créer une base de données.
 Pour cela on utilise la commande suivante **CREATE DATABASE**
