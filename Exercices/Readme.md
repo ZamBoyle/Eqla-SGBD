@@ -314,8 +314,6 @@ group by date_inscription;
    - Sans le `YEAR`, la requête `GROUP BY date_inscription` grouperait les données par date exacte, y compris l'année, le mois et le jour. Cela donnerait un compte de combien d'élèves se sont inscrits à chaque date précise, ce qui pourrait mener à des résultats très fragmentés et moins utiles pour une analyse annuelle.
 -->
 
-
-
 ## Exercice n°22 - INNER JOIN
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
@@ -324,6 +322,7 @@ group by date_inscription;
 5. Affichez chaque pays et le nom du continent dont il fait partie.
 6. Faites un tri ascendant sur le nom du pays.
 7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
+![Alt text](image-1.png)
 
 <!--
 ```sql
@@ -362,6 +361,8 @@ ORDER BY p.name ASC;
 6. Affichez tous les noms de produits et le nom de la catégorie dont ils font partie.
 7. Faites un tri ascendant sur le nom du produit.
 
+![Alt text](image.png)
+
 <!--
 1. Afficher les noms de produits et leurs catégories :
 ```sql
@@ -390,7 +391,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
 5. On va afficher le nom et prénom de l'élève, le nom de la formation et la date d'inscription.
-
+![Alt text](image-2.png)
 <!--
 ```sql
 SELECT e.prenom, e.nom, f.nom AS Nom_Formation, ef.date_inscription
