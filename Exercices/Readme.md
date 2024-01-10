@@ -315,6 +315,7 @@ group by date_inscription;
 -->
 
 ## Exercice n°22 - INNER JOIN
+![Alt text](image-1.png)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -322,7 +323,7 @@ group by date_inscription;
 5. Affichez chaque pays et le nom du continent dont il fait partie.
 6. Faites un tri ascendant sur le nom du pays.
 7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
-![Alt text](image-1.png)
+
 
 <!--
 ```sql
@@ -353,6 +354,7 @@ ORDER BY p.name ASC;
 -->
 
 ## Exercice n°23 - INNER JOIN
+![Alt text](image.png)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -361,7 +363,7 @@ ORDER BY p.name ASC;
 6. Affichez tous les noms de produits et le nom de la catégorie dont ils font partie.
 7. Faites un tri ascendant sur le nom du produit.
 
-![Alt text](image.png)
+
 
 <!--
 1. Afficher les noms de produits et leurs catégories :
@@ -381,6 +383,7 @@ ORDER BY p.Nom ASC;
 -->
 
 ## Exercice n°24 - INNER JOIN
+![Alt text](image-2.png)
 Ici, on va travailler sur trois tables. La table _eleve_, la table _formation_ et la table _eleve_formation_.
 Analyser la description des tables pour comprendre comment les lier entre elles.
 Pour connaître la description d'une table, on utilise la commande: **DESC nomdelatable;**
@@ -391,7 +394,7 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
 5. On va afficher le nom et prénom de l'élève, le nom de la formation et la date d'inscription.
-![Alt text](image-2.png)
+
 <!--
 ```sql
 SELECT e.prenom, e.nom, f.nom AS Nom_Formation, ef.date_inscription
@@ -402,6 +405,7 @@ JOIN formation f ON ef.formation_id = f.id;
 -->
 
 ## Exercice n°25.1 - INNER JOIN
+![Alt text](image-4.png)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
@@ -437,6 +441,7 @@ ORDER BY NBEleves DESC;
 -->
 
 ## Exercice n°25.2 - Nouvelle DB !! :-) - employees
+![Alt text](image-3.png)
 1. Vous allez clonez le dépôt suivant: [test_db](https://github.com/datacharmer/test_db.git) (Aie aie aie, ça sent le git ça... mais quelle idée de mettre du git dans un cours SQL... vous devrez utiliser la commande git clone pour cloner le dépôt.)
 2. Allez dans le répertoire test_db
 3. Connectez-vous au SGBD MySQL: **mysql -u root -p**
@@ -474,6 +479,7 @@ LIMIT 10;
 
 
 ## Exercice n°25.3 - INNER JOIN
+![Alt text](image-3.png)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
 3. Entrez votre mot de passe.
@@ -515,6 +521,7 @@ ORDER BY s.from_date DESC;
 
 
 ## Exercice n°25.4 - INNER JOIN
+![Alt text](image-3.png)
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
 3. Entrez votre mot de passe.
@@ -567,6 +574,7 @@ WHERE d.dept_name = 'Finance';
 -->
 
 ## Exercice n°25.5 - INNER JOIN - Analyse des titres d'emploi et des salaires
+![Alt text](image-3.png)
 Dans une entreprise, chaque employé a un titre spécifique associé à son poste. Ces titres peuvent varier de "Ingénieur" à "Directeur", "Manager", etc. Votre tâche est d'analyser la distribution des titres d'emploi dans l'entreprise.
 
 Utilisez la base de données `employees` qui contient deux tables pertinentes pour cet exercice : employees et titles. La table employees contient des informations sur chaque employé. La table titles contient des informations sur les titres d'emploi de chaque employé et son titre.
