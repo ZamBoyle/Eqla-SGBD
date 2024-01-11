@@ -675,16 +675,16 @@ ORDER BY s.salary ASC
 LIMIT 1;
 ``` -->
 ## Exercice n°25.6 - INNER JOIN
-J'ai constaté que vous aviez pas mal de problème à identifier les champs de liaison. Je vous propose donc un exercice qui va vous permettre de vous entraîner à identifier les champs de liaison. Et de manière manuelle, vous allez faire un INNER JOIN entre deux tables mais sans utiliser de SQL. :-)
+J'ai constaté que vous aviez pas mal de problèmes à identifier les champs de liaison. Je vous propose donc un exercice qui va vous permettre de vous entraîner à identifier les champs de liaison. Et de manière manuelle, vous allez faire un INNER JOIN entre deux tables mais sans utiliser de SQL. :-)
 
 **Table Client**
 | Id | Nom      | Prénom    | ActeurPrefere_Id |
 |----|----------|-----------|-----------------|
 | 1  | Todorut  | Carmen    | 1               |
-| 2  |          | Thomas    | 1               |
-| 3  |          | Christian | 3               |
-| 4  |          | Anthony   | 4               |
-| 5  |          | Nabil     | 5               |
+| 2  | Ardui         | Thomas    | 2               |
+| 3  | Honoré         | Christian | 3               |
+| 4  | Velez         | Anthony   | 4               |
+| 5  |  Elrhanaoui        | Nabil     | 5               |
 
 **Table Acteur**
 | Id | Nom        | Prénom    | Date_Naissance |
