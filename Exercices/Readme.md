@@ -716,6 +716,7 @@ J'ai constaté que vous aviez pas mal de problèmes à identifier les champs de 
 1. Sans faire du SQL juste en regardant les tables.
 2. Donnez la liste des clients (nom et prénom) avec leur acteur préféré: nom et prénom. Comment avez-vous fait ? Donnez en détails votre démarche.
 3. Donnez le nom des films des différentes séances ainsi que l'année de production du film. Comment avez-vous fait ? Donnez en détails votre démarche.
+4. Convertissez les deux précédents points en requête SQL.
 
  ## Exercice n°26 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
