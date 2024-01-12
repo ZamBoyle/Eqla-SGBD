@@ -675,50 +675,159 @@ ORDER BY s.salary ASC
 LIMIT 1;
 ``` -->
 ## Exercice n°25.6 - INNER JOIN
+### Introduction
 J'ai constaté que vous aviez pas mal de problèmes à identifier les champs de liaison. Je vous propose donc un exercice qui va vous permettre de vous entraîner à identifier les champs de liaison. Et de manière manuelle, vous allez faire un INNER JOIN entre deux tables mais sans utiliser de SQL. :-)
 
-**Table Client**
-| Id | Nom      | Prénom    | ActeurPrefere_Id |
+**Table client**
+| id | nom      | prenom    | acteurPrefere_Id |
 |----|----------|-----------|-----------------|
 | 1  | Todorut  | Carmen    | 1               |
-| 2  | Ardui         | Thomas    | 2               |
-| 3  | Honoré         | Christian | 3               |
-| 4  | Velez         | Anthony   | 4               |
-| 5  |  Elrhanaoui        | Nabil     | 5               |
+| 2  |          | Thomas    | 1               |
+| 3  |          | Christian | 3               |
+| 4  |          | Anthony   | 4               |
+| 5  |          | Nabil     | 5               |
 
-**Table Acteur**
-| Id | Nom        | Prénom    | Date_Naissance |
-|----|------------|-----------|----------------|
-| 1  | Cruise     | Tom       | 01/01/1974     |
-| 2  | Gadot      | Gal       | 10/05/1986     |
-| 3  | Tapping    | Amanda    | 07/07/1960     |
-| 4  | Di Caprio  | Leonardo  | 14/02/1970     |
-| 5  | Stallone   | Sylvester | 03/03/1955     |
+**Table acteur**
+| id | nom        | prenom    | date_naissance |
+|----|------------|-----------|---------------------------|
+| 1  | Cruise     | Tom       | 03/07/1962                |
+| 2  | Gadot      | Gal       | 30/04/1985                |
+| 3  | Tapping    | Amanda    | 28/08/1965                |
+| 4  | Di Caprio  | Leonardo  | 11/11/1974                |
+| 5  | Stallone   | Sylvester | 06/07/1946                |
+| 6 | Pitt       | Brad      | 18/12/1963                |
 
-**Table Film**
-| Id | Nom                  | Annee |
-|----|----------------------|-------|
-| 1  | Mission Impossible 1 | 2000  |
-| 2  | Stargate             | 2005  |
-| 3  | Titanic              | 1999  |
-| 4  | Rocky                | 1990  |
-| 5  | Wonder Woman         | 2019  |
+**Table film**
+| id | nom                  | annee |
+|----|----------------------|-------------------------|
+| 1  | Mission Impossible 1 | 1996                    |
+| 2  | Stargate             | 1994                    |
+| 3  | Titanic              | 1997                    |
+| 4  | Rocky                | 1976                    |
+| 5  | Wonder Woman         | 2017                    |
+| 6 | Once Upon a Time in Hollywood | 2019            |
 
-**Table Seance**
-| Id | Film_Id | Date_Seance |
-|----|---------|-------------|
-| 1  | 1       | 01/01/24    |
-| 2  | 1       | 01/01/24    |
-| 3  | 2       | 01/01/24    |
-| 4  | 3       | 01/01/24    |
-| 5  | 4       | 01/01/24    |
+**Table film_acteur**
+| film_id | acteur_id |
+|---------|-----------|
+| 2       | 4         |
+| 4       | 1         |
+| 1       | 3         |
+| 5       | 6         |
+| 3       | 2         |
+| 6       | 5         |
+| 6       | 1         |
 
-1. Sans faire du SQL juste en regardant les tables.
-2. Donnez la liste des clients (nom et prénom) avec leur acteur préféré: nom et prénom. Comment avez-vous fait ? Donnez en détails votre démarche.
-3. Donnez le nom des films des différentes séances ainsi que l'année de production du film. Comment avez-vous fait ? Donnez en détails votre démarche.
-4. Convertissez les deux précédents points en requête SQL.
 
- ## Exercice n°26 - CREATE DATABASE / CREATE TABLE
+
+**Table seance**
+| id | film_id | date_seance | heure_seance |
+|----|---------|-------------|-------------|
+| 1  | 1       | 01/01/24    | 20:00       |
+| 2  | 1       | 01/01/24    | 22:00       |
+| 3  | 6       | 01/01/24    | 17:00       |
+| 4  | 3       | 01/01/24    | 14h30       |
+| 5  | 4       | 02/01/24    | 14:00       |
+| 6  | 2       | 02/01/24    | 17:00       |
+
+**Table reservation**
+| id | client_id | seance_id |
+|----|-----------|-----------|
+| 1  | 1         | 1         |
+| 2  | 1         | 2         |
+| 3  | 2         | 1         |
+| 4  | 3         | 3         |
+| 5  | 4         | 4         |
+| 6  | 5         | 5         |
+| 7  | 5         | 1         |
+### Exercices
+1. Sans faire du SQL juste en regardant les tables, exprimez en français ce que vous voulez afficher et comment vous allez faire.
+2. Donnez la liste des clients (nom et prénom) avec leur acteur préféré: nom et prénom.
+3. Donnez le nom des films des différentes séances ainsi que l'année de production du film.
+4. Donnez le nom des films des différentes séances ainsi que l'année de production du film, la date et l'heure de la séance.
+5. Donnez le nom du film des séances 1 et 3.
+6. En plus, donnez le nom des acteurs qui jouent dans ces films.
+7. Convertissez les précédents points en requêtes SQL.
+
+<!--
+### Solutions
+1. Donnez la liste des clients (nom et prénom) avec leur acteur préféré: nom et prénom.
+![Lien entre la table client et acteur](image-5.png)
+
+**En français:**
+> **SELECTIONNE** les colonnes `nom` et `prénom` de la table `client` et les colonnes `nom` et `prénom` de la table `acteur`. 
+**JOINS** les deux tables `client` et `acteur` en utilisant l'identifiant `acteurPrefere_Id` de la table `client` et l'identifiant `id` de la table `acteur`.
+
+**En SQL:**
+```sql
+SELECT client.nom, client.prenom, acteur.nom, acteur.prenom
+FROM client
+JOIN acteur ON client.acteurPrefere_Id = acteur.id;
+```
+Pour que ça soit plus lisible on va utiliser des alias pour les noms des colonnes (si besoin, on le fera aussi pour les autres exercices):
+```sql
+SELECT client.nom AS client_nom, client.prenom AS client_prenom, acteur.nom AS acteur_nom, acteur.prenom AS acteur_prenom
+FROM client
+JOIN acteur ON client.acteurPrefere_Id = acteur.id;
+```
+2. Donnez le nom des films des différentes séances ainsi que l'année de production du film.
+![Alt text](image-6.png)
+**En français:**
+> **SELECTIONNE** la colonne `nom` de la table `film` et la colonne `annee` de la table `film`.
+**JOINS** les deux tables `film` et `seance` en utilisant l'identifiant `id` de la table `film` et l'identifiant `film_id` de la table `seance`.
+
+**En SQL:**
+```sql
+SELECT film.nom, film.annee
+FROM film
+JOIN seance ON film.id = seance.film_id;
+```
+3. Donnez le nom des films des différentes séances ainsi que l'année de production du film, la date et l'heure de la séance.
+![Alt text](image-6.png)
+**En français:**
+> **SELECTIONNE** la colonne `nom` de la table `film`, la colonne `annee` de la table `film` et la colonne `heure_seance` de la table `seance`.
+**JOINS** les deux tables `film` et `seance` en utilisant l'identifiant `id` de la table `film` et l'identifiant `film_id` de la table `seance`.
+
+**En SQL:**
+```sql
+SELECT film.nom, film.annee, seance.heure_seance
+FROM film
+JOIN seance ON film.id = seance.film_id;
+```
+4. Donnez le nom du film des séances 1 et 3.
+
+**En français:**
+> **SELECTIONNE** la colonne `nom` de la table `film`.
+**JOINS** les deux tables `film` et `seance` en utilisant l'identifiant `id` de la table `film` et l'identifiant `film_id` de la table `seance`.
+**OÙ** les résultats en ne gardant que les enregistrements où l'identifiant `seance_id` de la table `seance` est égal à 1 ou 3.
+
+**En SQL:**
+```sql
+SELECT film.nom AS film
+FROM film
+JOIN seance ON film.id = seance.film_id
+WHERE seance.id = 1 OR seance.id = 3;
+```
+5. En plus, donnez le nom des acteurs qui jouent dans ces films.
+![Alt text](image-7.png)
+
+**En français:**
+> **SELECTIONNE** la colonne `nom` de la table `film`, la colonne `nom` de la table `acteur` et la colonne `prenom` de la table `acteur`.
+**JOINS** les trois tables `film`, `seance` et `acteur` en utilisant l'identifiant `id` de la table `film` et l'identifiant `film_id` de la table `seance` et l'identifiant `acteur_id` de la table `film_acteur`.
+**OÙ** les résultats en ne gardant que les enregistrements où l'identifiant `seance_id` de la table `seance` est égal à 1 ou 3.
+
+**En SQL:**
+```sql
+SELECT film.nom AS film, acteur.nom, acteur.prenom
+FROM film
+JOIN seance ON film.id = seance.film_id
+JOIN film_acteur ON film.id = film_acteur.film_id
+JOIN acteur ON film_acteur.acteur_id = acteur.id
+WHERE seance.id = 1 OR seance.id = 3;
+```
+-->
+
+## Exercice n°26 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
