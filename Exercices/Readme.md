@@ -326,7 +326,7 @@ group by date_inscription;
 7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
 
 
-<!--
+
 ```sql
 1. Affichage des pays et de leurs continents :
 SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
@@ -341,7 +341,6 @@ FROM Pays p
 JOIN continent c ON p.continent = c.code
 ORDER BY p.name ASC;
 ```
--->
 
 
 
@@ -367,22 +366,22 @@ ORDER BY p.name ASC;
 
 
 
-<!--
-1. Afficher les noms de produits et leurs catégories :
+
+A. Afficher les noms de produits et leurs catégories :
 ```sql
 SELECT p.Nom, c.Nom
 FROM ProduitV2 p
 JOIN Categorie c ON p.IdCategorie = c.IdCategorie;
 ```
 
-2. Trier par nom de produit en ordre ascendant :
+B. Trier par nom de produit en ordre ascendant :
 ```sql
 SELECT p.Nom, c.Nom
 FROM ProduitV2 p
 JOIN Categorie c ON p.IdCategorie = c.IdCategorie
 ORDER BY p.Nom ASC;
 ```
--->
+
 
 ## Exercice n°24 - INNER JOIN
 ![Schéma relationnel de la DB BlindCode2](image-2.png)
