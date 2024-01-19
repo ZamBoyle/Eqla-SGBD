@@ -326,15 +326,14 @@ group by date_inscription;
 7. Je vous conseille d'utiliser le mot clef **AS** après le nom du pays et après le nom du continent. Sinon vous allez avoir deux colonnes Name pour le pays et le continent. Ce qui n'est pas très pratique...
 
 
-
+A. Affichage des pays et de leurs continents :
 ```sql
-1. Affichage des pays et de leurs continents :
 SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
 FROM Pays p
 JOIN continent c ON p.continent = c.code;
 ```
 
-2. Tri ascendant sur le nom du pays :
+B. Tri ascendant sur le nom du pays :
 ```sql
 SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
 FROM Pays p
