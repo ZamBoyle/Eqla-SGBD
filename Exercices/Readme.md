@@ -330,14 +330,14 @@ A. Affichage des pays et de leurs continents :
 ```sql
 SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
 FROM Pays p
-JOIN continent c ON p.continent = c.code;
+INNER JOIN continent c ON p.continent = c.code;
 ```
 
 B. Tri ascendant sur le nom du pays :
 ```sql
 SELECT p.name AS Nom_Pays, c.name AS Nom_Continent
 FROM Pays p
-JOIN continent c ON p.continent = c.code
+INNER JOIN continent c ON p.continent = c.code
 ORDER BY p.name ASC;
 ```
 
@@ -370,14 +370,14 @@ A. Afficher les noms de produits et leurs catégories :
 ```sql
 SELECT p.Nom, c.Nom
 FROM ProduitV2 p
-JOIN Categorie c ON p.IdCategorie = c.IdCategorie;
+INNER JOIN Categorie c ON p.IdCategorie = c.IdCategorie;
 ```
 
 B. Trier par nom de produit en ordre ascendant :
 ```sql
 SELECT p.Nom, c.Nom
 FROM ProduitV2 p
-JOIN Categorie c ON p.IdCategorie = c.IdCategorie
+INNER JOIN Categorie c ON p.IdCategorie = c.IdCategorie
 ORDER BY p.Nom ASC;
 ```
 
