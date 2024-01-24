@@ -980,8 +980,9 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 6. Elle recevra deux paramètres de type VARCHAR(20).
 7. Le premier se nommera first_name, le second last_name.
 8. La fonction retournera par exemple 'Hello Johnny Piette !'
+9. Pour concaténer des chaînes de caractères, on utilise la fonction [CONCAT](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_concat).
 
-## Exercice n°35 - FUNCTIONS avec paramètres
+## Exercice n°36 - FUNCTIONS avec paramètres
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.

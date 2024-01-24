@@ -131,14 +131,6 @@
   - [20. Les fonctions](#20-les-fonctions)
     - [20.1 FONCTION sans paramètre](#201-fonction-sans-paramètre)
     - [20.2 FONCTION avec paramètres](#202-fonction-avec-paramètres)
-    - [20.2 Supprimer une fonction - DROP FUNCTION](#202-supprimer-une-fonction---drop-function)
-    - [20.3 Modifier une fonction - ALTER FUNCTION](#203-modifier-une-fonction---alter-function)
-  - [21. Les Procédures stockées](#21-les-procédures-stockées)
-  - [22. Les vues - VIEW](#22-les-vues---view)
-  - [CTE - Common Table Expression](#cte---common-table-expression)
-  - [Union - Union All](#union---union-all)
-  - [Limit à remettre plus tôt dans le cours pour éviter un tsunami de données et tuer le lecteur d'écran.](#limit-à-remettre-plus-tôt-dans-le-cours-pour-éviter-un-tsunami-de-données-et-tuer-le-lecteur-décran)
-  - [INNER JOIN sur la même table: exemple élève et parrain](#inner-join-sur-la-même-table-exemple-élève-et-parrain)
 
 <!-- /code_chunk_output -->
 
@@ -1907,7 +1899,7 @@ $$
 DELIMITER ;
 ```
 
-### 20.2 Supprimer une fonction - DROP FUNCTION
+<!-- ### 20.2 Supprimer une fonction - DROP FUNCTION
 
 ### 20.3 Modifier une fonction - ALTER FUNCTION
 ## 21. Les Procédures stockées
@@ -1922,7 +1914,7 @@ DELIMITER ;
 ## Limit à remettre plus tôt dans le cours pour éviter un tsunami de données et tuer le lecteur d'écran.
 
 ## INNER JOIN sur la même table: exemple élève et parrain
-
+ -->
 [:arrow_left:Revenir au menu.](../Theo/README.md)
 <!--
 ## 15. Différents type de jointures: INNER, LEFT, RIGHT, FULL
