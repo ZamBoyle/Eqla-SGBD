@@ -1963,9 +1963,6 @@ DROP FUNCTION price_tvac;
 ```
 - Vous la recréez comme vu précédemment.
 
-
-
-
 ## 21. Les vues - VIEW
 Une vue est une table virtuelle. Elle ne contient pas de données. Elle est créée à partir d'une ou plusieurs tables. Elle est le résultat d'une requête.
 
@@ -2018,7 +2015,7 @@ LIMIT 10;
 |  10093 | Sailaja    | Desikan      | Sales     |
 |  10095 | Hilari     | Morton       | Sales     |
 
-
+L'intérêt ce qu'il ne faut plus jouer avec des jointures complexes pour obtenir ce résultat. On a juste à faire un SELECT sur la vue.
 
 
 <!--

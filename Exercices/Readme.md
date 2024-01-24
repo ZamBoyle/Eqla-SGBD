@@ -984,7 +984,6 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 10. Pour pouvoir modifier votre fonction si elle ne fonctionne pas, vous devez la supprimer avant de la recréer.
 ```sql
 DROP FUNCTION hello;
-CREATE FUNCTION hello .......................
 ```
 
 ## Exercice n°36 - FUNCTIONS avec paramètres
@@ -1010,6 +1009,59 @@ Créez une fonction qui s'appellera remove_tvac.
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Ventes;**
 5. Vous allez afficher tous les produits de la table produit mais avec le prix TVAC grâce à la fonction price_tvac créée dans le cours: [Les fonctions avec paramètres](../Theo/Théorie.md#202-fonction-avec-paramètres).
+
+## Exercice n°38 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employes;**
+5. Vous allez créer une fonction qui s'appellera anciennete_employe.
+6. Cette fonction calculera l'ancienneté d'un employé en fonction de son identifiant `emp_no`.
+7. Elle aura un paramètre nommé `emp_id`. (pas `emp_no` pour éviter les ambiguités entre paramètre et champ de la table dans votre fonction).
+8. La fonction retournera le nombre d'années d'ancienneté.
+9. Pour calculer l'ancienneté approximative vous utiliserez les fonctions `YEAR()` et `CURRENT_DATE()` comme déjà vu dans les exercices.
+10. Vous donnerez l'ancienneté ainsi que l'`emp_no`, le prénom et nom des employés suivants:
+- 10614
+- 10444
+- 10001
+- 10562
+- 10006
+11. Soit vous faites une requête par employé, soit vous faites une requête qui affiche l'ancienneté de tous les employés et vous utilisez la clause `WHERE` pour ne garder que les employés dont l'`emp_no` est dans la liste ci-dessus: il serait peut-être intéressant d'utiliser IN dans le WHERE de votre requête SQL. ;-)
+
+
+## Exercice n°38 - VIEW - Création d'une vue
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employes;**
+5. Créez une vue qui s'appellera `employees_info` qui contiendra les champs suivants:
+- `emp_no`
+- `first_name`
+- `last_name`
+- `gender`
+- `birth_date`
+- `hire_date`
+- `dept_name`
+- `title`
+- `salary`
+6. Cette vue contiendra les informations de la table `employees` ainsi que les informations de la table `departments`, `titles` et `salaries`. Et ce, grâce à des `INNER JOIN` d'amour <3. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ---
