@@ -131,6 +131,8 @@
   - [20. Les fonctions](#20-les-fonctions)
     - [20.1 FONCTION sans paramètre](#201-fonction-sans-paramètre)
     - [20.2 FONCTION avec paramètres](#202-fonction-avec-paramètres)
+    - [20.3 Modifier une fonction - ALTER FUNCTION](#203-modifier-une-fonction---alter-function)
+  - [21. Les vues - VIEW](#21-les-vues---view)
 
 <!-- /code_chunk_output -->
 
@@ -1885,6 +1887,10 @@ SELECT whois_the_best();
 ```
 
 ### 20.2 FONCTION avec paramètres
+Une fonction avec paramètres est plus intéressante. On va prendre l'exemple d'une fonction qui calcule le prix TVAC d'un produit. On va donc avoir un paramètre qui est le prix HTVA.
+
+Cependant, ici c'est assez particulier. On définit le délimiteur par défaut qui est normalement le point-virgule. Mais comme nous allons utiliser des points-virgules dans notre fonction, nous devons changer le délimiteur par défaut. Nous utilisons donc la commande DELIMITER \$\$ pour changer le délimiteur par \$\$.
+
 ```sql
 USE Ventes;
 DELIMITER $$
@@ -1899,9 +1905,79 @@ $$
 DELIMITER ;
 ```
 
-<!-- ### 20.2 Supprimer une fonction - DROP FUNCTION
+ ### 20.2 Supprimer une fonction - DROP FUNCTION
+Si vous voulez supprimer une fonction, il suffit de faire:
+```sql
+DROP FUNCTION price_tvac;
+```
 
 ### 20.3 Modifier une fonction - ALTER FUNCTION
+Pour modifier une fonction:
+- Vous la supprimez: 
+```sql
+DROP FUNCTION price_tvac;
+```
+- Vous la recréez comme vu précédemment.
+
+
+
+
+## 21. Les vues - VIEW
+Une vue est une table virtuelle. Elle ne contient pas de données. Elle est créée à partir d'une ou plusieurs tables. Elle est le résultat d'une requête.
+
+Elle permet de simplifier les requêtes: au lieu d'avoir une requête complexe, on peut créer une vue qui contient cette requête complexe.
+
+Elle permet aussi de ne pas donner accès à certaines données. Par exemple, si vous avez une table avec des données sensibles, vous pouvez créer une vue qui ne contient pas ces données sensibles. Vous pourrez de cette manière donner accès à cette vue sans que les utilisateurs/développeurs aient accès aux données sensibles.
+
+**Syntaxe:**
+> `CREATE VIEW` nomVue `AS` 
+> `SELECT` ... (et le reste de votre requête terminée par un point-virgule)
+
+Soit la création une vue qui fournit une liste des employés actuels, avec leurs noms, leur département, mais sans inclure les informations sensibles comme la date de naissance ou le genre.
+```sql
+CREATE VIEW VueEmployesDepartements AS
+SELECT 
+    e.emp_no,
+    e.first_name,
+    e.last_name,
+    d.dept_name
+FROM 
+    employees e
+JOIN 
+    dept_emp de ON e.emp_no = de.emp_no
+JOIN 
+    departments d ON de.dept_no = d.dept_no
+WHERE 
+    de.to_date = '9999-01-01';  -- Cela assure que nous sélectionnons seulement les employés actuellement dans un département
+```
+
+Notez que **de.to_date = '9999-01-01'** nous assure que nous sélectionnons seulement les employés actuellement dans un département.
+
+Nous pouvons maintenant utiliser cette vue comme une table normale. Par exemple, nous pouvons sélectionner tous les employés du département de la vente:
+```sql
+SELECT * 
+FROM VueEmployesDepartements 
+WHERE dept_name = 'Sales'
+LIMIT 10;
+```
+**Résultat limité à 10 enregistrements**:
+| emp_no | first_name | last_name | dept_name |
+| ------ | ---------- | --------- | --------- |
+|  10002 | Bezalel    | Simmel       | Sales     |
+|  10016 | Kazuhito   | Cappelletti  | Sales     |
+|  10041 | Uri        | Lenart       | Sales     |
+|  10050 | Yinghua    | Dredge       | Sales     |
+|  10053 | Sanjiv     | Zschoche     | Sales     |
+|  10061 | Tse        | Herber       | Sales     |
+|  10068 | Charlene   | Brattka      | Sales     |
+|  10089 | Sudharsan  | Flasterstein | Sales     |
+|  10093 | Sailaja    | Desikan      | Sales     |
+|  10095 | Hilari     | Morton       | Sales     |
+
+
+
+
+<!--
 ## 21. Les Procédures stockées
 
 

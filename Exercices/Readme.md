@@ -992,9 +992,9 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 7. Elle aura un second paramètre nommé taux_tva.
 8. La fonction retournera le prix sans tva.
 9. Soit le prix_tvac = 80
-> prix_htva = prix_tvac/(taux_tva+1)
-> prix_htva = 80/1.21
-> prix_htva = 66,1157
+> prix_htva = prix_tvac/(taux_tva+1)  
+> prix_htva = 80/1.21  
+> prix_htva = 66,1157  
 10. Votre fonction retournera donc 66,1157.
 
 ---
