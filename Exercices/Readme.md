@@ -1035,16 +1035,13 @@ Créez une fonction qui s'appellera remove_tvac.
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employes;**
 5. Créez une vue qui s'appellera `employees_info` qui contiendra les champs suivants:
-- `emp_no`
-- `first_name`
-- `last_name`
-- `gender`
-- `birth_date`
-- `hire_date`
+- Tous les champs de la table `employees`: employees.* (On utilisera par exemple un `SELECT employees.*` pour les champs de la table `employees`)
 - `dept_name`
 - `title`
 - `salary`
 6. Cette vue contiendra les informations de la table `employees` ainsi que les informations de la table `departments`, `titles` et `salaries`. Et ce, grâce à des `INNER JOIN` d'amour <3. 
+
+
 
 
 
