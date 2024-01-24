@@ -981,21 +981,36 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 7. Le premier se nommera first_name, le second last_name.
 8. La fonction retournera par exemple 'Hello Johnny Piette !'
 9. Pour concaténer des chaînes de caractères, on utilise la fonction [CONCAT](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_concat).
+10. Pour pouvoir modifier votre fonction si elle ne fonctionne pas, vous devez la supprimer avant de la recréer.
+```sql
+DROP FUNCTION hello;
+CREATE FUNCTION hello .......................
+```
 
 ## Exercice n°36 - FUNCTIONS avec paramètres
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
-5. Créez une fonction qui s'appellera remove_tvac.
-6. Elle aura un paramètre nommé prix_tvac.
-7. Elle aura un second paramètre nommé taux_tva.
-8. La fonction retournera le prix sans tva.
-9. Soit le prix_tvac = 80
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Ventes;**
+5. En théorie, nous avons créé une fonction qui s'appelle price_tvac.
+6. Ici, nous allons faire l'inverse: retirer la tva.
+Créez une fonction qui s'appellera remove_tvac.
+7. Elle aura un paramètre nommé prix_tvac.
+8. Elle aura un second paramètre nommé taux_tva.
+9. La fonction retournera le prix sans tva.
+10. Soit le prix_tvac = 80
 > prix_htva = prix_tvac/(taux_tva+1)  
 > prix_htva = 80/1.21  
 > prix_htva = 66,1157  
-10. Votre fonction retournera donc 66,1157.
+11. Votre fonction retournera donc 66,1157.
+
+## Exercice n°37 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Ventes;**
+5. Vous allez afficher tous les produits de la table produit mais avec le prix TVAC grâce à la fonction price_tvac créée dans le cours: [Les fonctions avec paramètres](../Theo/Théorie.md#202-fonction-avec-paramètres).
+
 
 ---
 &copy; 2023 [Johnny Piette](https://github.com/ZamBoyle).  

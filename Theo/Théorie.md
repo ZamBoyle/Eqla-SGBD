@@ -1865,9 +1865,14 @@ MariaDB fournit nativement pas mal de fonctions intéressantes:
 - etc...  
 
 Pour avoir une liste complète: https://mariadb.com/kb/en/built-in-functions/
+
+Mais vous pouvez aussi créer vos propres fonctions ! C'est ce que nous allons voir maintenant.
+
+Cependant, il faut faire attention à ne pas mettre de la logique métier dans une base de données. C'est le rôle de l'application. Mais parfois, il peut être utile de créer une fonction pour simplifier une requête complexe ou pour une question de performance.
+
 ### 20.1 FONCTION sans paramètre
 On va prendre le cas où d'une fonction sans paramètre.
-Soit la fonction whois_the_best()  :-)
+Soit la fonction `whois_the_best() ` :-)
 ```sql
 USE BlindCode;
 CREATE FUNCTION whois_the_best() RETURNS VARCHAR(50)
@@ -1895,14 +1900,53 @@ Cependant, ici c'est assez particulier. On définit le délimiteur par défaut q
 USE Ventes;
 DELIMITER $$
 DROP FUNCTION IF EXISTS price_tvac;
-CREATE FUNCTION price_tvac(price FLOAT(5,2)) RETURNS FLOAT(5,2) 
+CREATE FUNCTION price_tvac(price FLOAT(10,2)) RETURNS FLOAT(10,2) 
 BEGIN
-DECLARE price_tvac FLOAT(5,2);
+DECLARE price_tvac FLOAT(10,2);
 SET price_tvac=price+price*0.21;
 RETURN price_tvac;
 END;
 $$
 DELIMITER ;
+```
+Expliquons un peu ce code:
+1. **`DELIMITER $$`**
+   - Cette commande change le délimiteur par défaut de MySQL de `;` à `$$`. 
+   - Cela est nécessaire car, dans le corps des fonctions ou des procédures stockées, vous pouvez avoir plusieurs instructions SQL, chacune se terminant par `;`. Pour indiquer à MySQL où se termine l'ensemble de la fonction ou de la procédure, un délimiteur différent est utilisé.
+
+2. **`DROP FUNCTION IF EXISTS price_tvac;`**
+   - Cette commande vérifie si une fonction nommée `price_tvac` existe déjà dans la base de données. Si c'est le cas, elle la supprime.
+   - Cela garantit qu'il n'y aura pas d'erreur de "fonction déjà existante" lorsque vous créerez la nouvelle fonction.
+
+3. **`CREATE FUNCTION price_tvac(price FLOAT(10,2)) RETURNS FLOAT(10,2)`**
+   - `CREATE FUNCTION` est la commande pour créer une nouvelle fonction.
+   - `price_tvac` est le nom de la fonction.
+   - `(price FLOAT(10,2))` déclare un paramètre nommé `price` avec un type de données `FLOAT(10,2)`. Cela signifie que le paramètre `price` peut être un nombre à virgule flottante avec jusqu'à 10 chiffres au total, dont 2 après la virgule.
+   - `RETURNS FLOAT(10,2)` indique que le type de retour de la fonction est également un `FLOAT(10,2)`.
+
+4. **Corps de la fonction (entre `BEGIN` et `END;`)**
+   - `BEGIN` et `END;` délimitent le corps de la fonction.
+   - `DECLARE price_tvac FLOAT(10,2);` déclare une variable locale nommée `price_tvac` (qui est différente de la fonction `price_tvac`) avec un type de données `FLOAT(10,2)`.
+   - `SET price_tvac = price + (price * 0.21);` est une instruction qui calcule le prix avec TVA en ajoutant 21% au prix original et stocke le résultat dans la variable `price_tvac`.
+   - `RETURN price_tvac;` renvoie le résultat stocké dans la variable `price_tvac`.
+
+5. **`$$`**
+   - Ce `$$` est utilisé pour indiquer la fin de la fonction, conformément au délimiteur personnalisé défini au début.
+
+6. **`DELIMITER ;`**
+   - Cette commande rétablit le délimiteur par défaut à `;` pour les opérations normales après la création de la fonction.
+
+En résumé, cette série de commandes crée une fonction SQL `price_tvac` qui prend un prix (sans TVA), ajoute 21% de TVA à ce prix, et renvoie le prix total avec TVA. La modification du délimiteur garantit que la fonction est correctement interprétée et créée dans MySQL.
+
+Testons notre fonction:
+```sql
+SELECT price_tvac(100);
++----------------+
+| price_tvac(100)|
++----------------+
+|          121.00|
++----------------+
+1 row in set (0,001 sec)
 ```
 
  ### 20.2 Supprimer une fonction - DROP FUNCTION
