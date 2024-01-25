@@ -964,12 +964,22 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 8. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 3.
 
 ## Exercice n°34 - FUNCTIONS
-1. Allez dans le répertoire d'exercices SQL
+1. Allez dans le répertoire d'exercices SQL.
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
 3. Entrez votre mot de passe.
 4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
 5. Créez une fonction qui s'appellera hello_world.
 6. Elle retournera la phrase 'Hello Word from SQL !'
+
+```sql
+DELIMITER $$
+CREATE FUNCTION hello_world() RETURNS VARCHAR(255)
+BEGIN
+    RETURN 'Hello World from SQL !';
+END;
+$$
+DELIMITER ;
+```
 
 ## Exercice n°35 - FUNCTIONS avec paramètres
 1. Allez dans le répertoire d'exercices SQL
@@ -1003,6 +1013,16 @@ Créez une fonction qui s'appellera remove_tvac.
 > prix_htva = 66,1157  
 11. Votre fonction retournera donc 66,1157.
 
+```sql
+DELIMITER $$
+CREATE FUNCTION remove_tvac(prix_tvac FLOAT, taux_tva FLOAT) RETURNS FLOAT
+BEGIN
+    RETURN prix_tvac / (1 + taux_tva);
+END;
+$$
+DELIMITER ;
+```
+
 ## Exercice n°37 - FUNCTIONS avec paramètres
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
@@ -1028,8 +1048,25 @@ Créez une fonction qui s'appellera remove_tvac.
 - 10006
 11. Soit vous faites une requête par employé, soit vous faites une requête qui affiche l'ancienneté de tous les employés et vous utilisez la clause `WHERE` pour ne garder que les employés dont l'`emp_no` est dans la liste ci-dessus: il serait peut-être intéressant d'utiliser IN dans le WHERE de votre requête SQL. ;-)
 
+<!-- 
+```sql
+DELIMITER $$
 
-## Exercice n°38 - VIEW - Création d'une vue
+CREATE FUNCTION CalculerAnciennete(emp_id INT) RETURNS INT
+BEGIN
+    DECLARE anciennete INT;
+    SELECT (YEAR(CURDATE()) - YEAR(hire_date)) INTO anciennete
+    FROM employees
+    WHERE emp_no = emp_id;
+    RETURN anciennete;
+END;
+
+$$
+DELIMITER ;
+```
+-->
+
+## Exercice n°39 - VIEW - Création d'une vue
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
 3. Entrez votre mot de passe.
@@ -1040,26 +1077,63 @@ Créez une fonction qui s'appellera remove_tvac.
 - `title`
 - `salary`
 6. Cette vue contiendra les informations de la table `employees` ainsi que les informations de la table `departments`, `titles` et `salaries`. Et ce, grâce à des `INNER JOIN` d'amour <3. 
+7. On testera la vue en faisant un `SELECT * FROM employees_info LIMIT 10;`
 
+<!-- 
+```sql
+CREATE VIEW employees_info AS
+SELECT 
+    e.*,
+    d.dept_name,
+    t.title,
+    s.salary
+FROM 
+    employees e
+INNER JOIN 
+    dept_emp de ON e.emp_no = de.emp_no
+INNER JOIN 
+    departments d ON de.dept_no = d.dept_no
+INNER JOIN 
+    titles t ON e.emp_no = t.emp_no
+INNER JOIN 
+    salaries s ON e.emp_no = s.emp_no
+WHERE 
+    de.to_date = '9999-01-01' 
+    AND t.to_date = '9999-01-01' 
+    AND s.to_date = '9999-01-01';
+```
+Les conditions dans le WHERE assurent que seuls les départements, titres et salaires actuels sont inclus (en supposant que '9999-01-01' est utilisé comme date de fin pour les enregistrements actuels).
+-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Exercice n°40 - VIEW - Création d'une vue
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employes;**
+5. Créez une vue qui s'appellera inactive_employees qui retournera les employés inactifs: c'est-à-dire ceux qui ne travaillent plus dans l'entreprise.
+6. Cette vue contiendra les champs suivants:
+- Tous les champs de la table `employees`: employees.* (On utilisera par exemple un `SELECT employees.*` pour les champs de la table `employees`).
+- `dept_name`
+- `dept_emp.to_date`
+7. Astuce dans votre WHERE vous pouvez utiliser la fonction `CURDATE()` qui retourne la date du jour et  la comparer au champ `dept_emp.to_date` qui contient la date de fin de contrat de l'employé. A vous de trouver le test à faire. ;-)
+<!--
+CREATE VIEW AnciensEmployes AS
+SELECT 
+    e.emp_no,
+    e.first_name,
+    e.last_name,
+    e.hire_date,
+    de.to_date AS end_date,
+    d.dept_name
+FROM 
+    employees e
+JOIN 
+    dept_emp de ON e.emp_no = de.emp_no
+JOIN 
+    departments d ON de.dept_no = d.dept_no
+WHERE 
+    de.to_date < CURDATE();
+-->
 
 ---
 &copy; 2023 [Johnny Piette](https://github.com/ZamBoyle).  

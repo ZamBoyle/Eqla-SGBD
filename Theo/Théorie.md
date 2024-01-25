@@ -79,7 +79,9 @@
   - [7b. Limitation des résultats - LIMIT](#7b-limitation-des-résultats---limit)
     - [7b.1 Simplement limiter le nombre de résultats](#7b1-simplement-limiter-le-nombre-de-résultats)
     - [7b.2 Pour avoir les premiers résultats ou les derniers résultats](#7b2-pour-avoir-les-premiers-résultats-ou-les-derniers-résultats)
-  - [8. Création d'une base de données - CREATE DATABASE](#8-création-dune-base-de-données---create-database)
+  - [8.a Création d'une base de données - CREATE DATABASE](#8a-création-dune-base-de-données---create-database)
+  - [8.b Jeu de caractères - CHARACTER SET](#8b-jeu-de-caractères---character-set)
+  - [8.c Collation - COLLATE](#8c-collation---collate)
   - [9. CREATE TABLE](#9-create-table)
     - [9.1 La commande](#91-la-commande)
     - [9.2 La syntaxe](#92-la-syntaxe)
@@ -1251,7 +1253,7 @@ LIMIT 1;
 On peut voir que l'on a trié par ordre croissant sur l'âge moyen et on a limité à 1. On aura donc le premier résultat qui sera la formation ayant l'âge moyen le plus bas.
 
 Bien entendu, on peut demander les 3 élèves les plus âgés de la formation BlindCode en modifiant la requête de cette manière en mettant LIMIT 3 au lieu de LIMIT 1.
-## 8. Création d'une base de données - CREATE DATABASE
+## 8.a Création d'une base de données - CREATE DATABASE
 Avant de pouvoir créer nos tables, nos devrons avant tout créer une base de données.
 Pour cela on utilise la commande suivante **CREATE DATABASE**
 
@@ -1270,6 +1272,29 @@ CREATE DATABASE Jeux;
 ```
 Attention donc qu'un **DROP DATABASE** supprime toute la base de données ! A utiliser avec les précautions qui s'imposent...
 
+## 8.b Jeu de caractères - CHARACTER SET
+Lors de la création d'une base de données, on peut spécifier le jeu de caractères à utiliser. Par défaut, c'est **latin1**. Mais on peut spécifier **utf8** ou **utf8mb4**.
+
+Pourquoi utiliser **utf8mb4** ? Car il permet de stocker des émojis. En effet, **utf8** ne permet pas de stocker des émojis. Si vous voulez stocker des émojis, il faut utiliser **utf8mb4**. Ensuite utf8 est sur 3 octets et utf8mb4 est sur 4 octets.
+
+Pour spécifier le jeu de caractères, on utilise **CHARACTER SET** suivi du jeu de caractères. Par exemple, pour créer une base de données avec le jeu de caractères **utf8mb4**:
+```sql
+CREATE DATABASE Jeux CHARACTER SET utf8mb4;
+```
+
+## 8.c Collation - COLLATE
+Non, il n'est pas question ici de manger des collations. :-) Même si vous pouvez manger des collations pendant que vous créez votre base de données. :-)
+
+La collation permet de spécifier l'ordre de tri des caractères. Pour un jeu de caractères donné, il existe plusieurs collations.
+
+Nous utiliserons la collation **utf8mb4_unicode_ci**. Ci signifie Case Insensitive. C'est-à-dire que les caractères majuscules et minuscules seront considérés comme identiques. Par exemple, si on trie sur le nom de famille, on aura les noms de famille commençant par une majuscule et ceux commençant par une minuscule.
+
+Pour spécifier la collation, on utilise **COLLATE** suivi de la collation. Par exemple, pour créer une base de données avec le jeu de caractères **utf8mb4** et la collation **utf8mb4_unicode_ci**:
+```sql
+CREATE DATABASE Jeux CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Ne vous prenez pas la tête avec les collations. Utilisez **utf8mb4_unicode_ci** et ça ira très bien. :-)
 
 ## 9. CREATE TABLE
 ### 9.1 La commande
@@ -1308,7 +1333,7 @@ Ici aussi c'est une chaîne de caractères. A la différence que si lors de l'af
 ```sql
 prenom CHAR(50)
 ```
-Personnellement, je n'utilise que des **VARCHAR** sauf par exemple pour un champ Sexe.
+Ou bien pour un champ Sexe.
 ```sql
 Sexe CHAR(1)
 ```
@@ -1385,7 +1410,7 @@ Ce type permet de définir une valeur booléenne.
 ```sql
 EstActif boolean NOT NULL
 ```
-Cependant, il faut faire attention car en fait c'est le type TINYINT(1) qui est utilisé par MySQL. Donc on pourrait avoir une valeur comprise entre 0 et 9.
+Cependant, il faut faire attention car en fait c'est le type TINYINT qui est utilisé par MySQL. Donc on pourrait avoir une valeur comprise entre 0 et 255.
 
 Lors de l'insert on utilisera soit 0 ou 1 pour rester cohérent. On peut aussi utiliser true ou false qui seront remplacé par MySQL par 0 ou 1.
 ```sql
@@ -2027,8 +2052,6 @@ L'intérêt ce qu'il ne faut plus jouer avec des jointures complexes pour obteni
 ## CTE - Common Table Expression
 
 ## Union - Union All
-
-## Limit à remettre plus tôt dans le cours pour éviter un tsunami de données et tuer le lecteur d'écran.
 
 ## INNER JOIN sur la même table: exemple élève et parrain
  -->
