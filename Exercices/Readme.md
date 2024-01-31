@@ -8,6 +8,64 @@
 ****
 <h1>Table des matières</h1>
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=2 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Introduction](#introduction)
+- [Copier les DB exercices](#copier-les-db-exercices)
+- [Exercice n°1 - Importation des fichiers de base de données](#exercice-n1---importation-des-fichiers-de-base-de-données)
+- [Exercice n°2 - Notre premier SELECT *](#exercice-n2---notre-premier-select-)
+- [Exercice n°3 - SELECT ch1, ch2, etc.](#exercice-n3---select-ch1-ch2-etc)
+- [Exercice n°4 - Notre premier WHERE](#exercice-n4---notre-premier-where)
+- [Exercice n°5 - WHERE   AND](#exercice-n5---where---and)
+- [Exercice n°6 - WHERE   IS NULL IS NOT NULL](#exercice-n6---where---is-null-is-not-null)
+- [Exercice n°7 - WHERE     AND](#exercice-n7---where-----and)
+- [Exercice n°8 - WHERE  sur une DATE](#exercice-n8---where--sur-une-date)
+- [Exercice n°9 - WHERE sur des DATES](#exercice-n9---where-sur-des-dates)
+- [Exercice n°10 - WHERE    avec LIKE '%quelquechose' = se termine par 'quelquechose'](#exercice-n10---where----avec-like-quelquechose--se-termine-par-quelquechose)
+- [Exercice n°11 - WHERE    avec LIKE '%quelquechose%' = contient 'quelquechose'](#exercice-n11---where----avec-like-quelquechose--contient-quelquechose)
+- [Exercice n°12 - WHERE    avec LIKE 'quelquechose%' = commence par 'quelquechose'](#exercice-n12---where----avec-like-quelquechose--commence-par-quelquechose)
+- [Exercice n°13 - WHERE   AND     OR](#exercice-n13---where---and-----or)
+- [Exercice n°14 - ORDER BY](#exercice-n14---order-by)
+- [Exercice n°15 - ORDER BY](#exercice-n15---order-by)
+- [Exercice n°16 - AVG](#exercice-n16---avg)
+- [Exercice n°17.1 - MIN, MAX, SUM](#exercice-n171---min-max-sum)
+- [Exercice n°17.2 - COUNT(*)](#exercice-n172---count)
+- [Exercice n°17.3 - COUNT(champ)](#exercice-n173---countchamp)
+- [Exercice n°18 - GROUP BY](#exercice-n18---group-by)
+- [Exercice n°19 - GROUP BY](#exercice-n19---group-by)
+- [Exercice n°20 - GROUP BY](#exercice-n20---group-by)
+- [Exercice n°21 - GROUP BY](#exercice-n21---group-by)
+- [Exercice n°22 - INNER JOIN](#exercice-n22---inner-join)
+- [Exercice n°23 - INNER JOIN](#exercice-n23---inner-join)
+- [Exercice n°24 - INNER JOIN](#exercice-n24---inner-join)
+- [Exercice n°25.1 - INNER JOIN](#exercice-n251---inner-join)
+- [Exercice n°25.2 - Nouvelle DB !! :-) - employees](#exercice-n252---nouvelle-db------employees)
+- [Exercice n°25.3 - INNER JOIN](#exercice-n253---inner-join)
+- [Exercice n°25.4 - INNER JOIN](#exercice-n254---inner-join)
+- [Exercice n°25.5 - INNER JOIN - Analyse des titres d'emploi et des salaires](#exercice-n255---inner-join---analyse-des-titres-demploi-et-des-salaires)
+- [Exercice n°25.6 - INNER JOIN](#exercice-n256---inner-join)
+- [Exercice n°26 - CREATE DATABASE / CREATE TABLE](#exercice-n26---create-database--create-table)
+- [Exercice n°27 - CREATE DATABASE / CREATE TABLE](#exercice-n27---create-database--create-table)
+- [Exercice n°28 - INSERT INTO](#exercice-n28---insert-into)
+- [Exercice n°29 - INSERT INTO](#exercice-n29---insert-into)
+- [Exercice n°30 - UPDATE](#exercice-n30---update)
+- [Exercice n°31 - UPDATE](#exercice-n31---update)
+- [Exercice n°32 - UPDATE](#exercice-n32---update)
+- [Exercice n°33 - DELETE](#exercice-n33---delete)
+- [Exercice n°34 - FUNCTIONS](#exercice-n34---functions)
+- [Exercice n°35 - FUNCTIONS avec paramètres](#exercice-n35---functions-avec-paramètres)
+- [Exercice n°36 - FUNCTIONS avec paramètres](#exercice-n36---functions-avec-paramètres)
+- [Exercice n°37 - FUNCTIONS avec paramètres](#exercice-n37---functions-avec-paramètres)
+- [Exercice n°38 - FUNCTIONS avec paramètres](#exercice-n38---functions-avec-paramètres)
+- [Exercice n°39 - VIEW - Création d'une vue](#exercice-n39---view---création-dune-vue)
+- [Exercice n°40 - VIEW - Création d'une vue](#exercice-n40---view---création-dune-vue)
+
+<!-- /code_chunk_output -->
+
+
+<!--
 - [Introduction](#introduction)
 - [Copier les DB exercices](#copier-les-db-exercices)
 - [Exercice n°1 - Importation des fichiers de base de données](#exercice-n1---importation-des-fichiers-de-base-de-données)
@@ -48,6 +106,7 @@
 - [Exercice n°34 - FUNCTIONS](#exercice-n34---functions)
 - [Exercice n°35 - FUNCTIONS avec paramètres](#exercice-n35---functions-avec-paramètres)
 - [Exercice n°35 - FUNCTIONS avec paramètres](#exercice-n35---functions-avec-paramètres-1)
+-->
 
 ## Introduction
 Toute commande dans mysql doit se terminer par un point virgule ;
