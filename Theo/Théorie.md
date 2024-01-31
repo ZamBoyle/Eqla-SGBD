@@ -1313,7 +1313,7 @@ CREATE TABLE nomtable
     champ2 type_donnees,
     champ3 type_donnees,
     champ4 type_donnees
-)
+);
 ```
 Ici, on utilise la base de données ayant pour nom: `UneBaseDeDonnees` et nous avons créé une table avec pour nom: nomtable.
 
@@ -1996,7 +1996,7 @@ Elle permet de simplifier les requêtes: au lieu d'avoir une requête complexe, 
 Elle permet aussi de ne pas donner accès à certaines données. Par exemple, si vous avez une table avec des données sensibles, vous pouvez créer une vue qui ne contient pas ces données sensibles. Vous pourrez de cette manière donner accès à cette vue sans que les utilisateurs/développeurs aient accès aux données sensibles.
 
 **Syntaxe:**
-> `CREATE VIEW` nomVue `AS` 
+> `CREATE VIEW` nomVue `AS`    
 > `SELECT` ... (et le reste de votre requête terminée par un point-virgule)
 
 Soit la création une vue qui fournit une liste des employés actuels, avec leurs noms, leur département, mais sans inclure les informations sensibles comme la date de naissance ou le genre.
@@ -2042,8 +2042,32 @@ LIMIT 10;
 
 L'intérêt ce qu'il ne faut plus jouer avec des jointures complexes pour obtenir ce résultat. On a juste à faire un SELECT sur la vue.
 
+<!--
+AJOUTER CELA POUR LE CREATE TABLE ET LE MOT DE PASSE
+
+CREATE TABLE user (
+    login VARCHAR(255) NOT NULL,
+    password VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_cs NOT NULL,
+    PRIMARY KEY (login)
+);
+
+-->
+
+
 
 <!--
+## création d'un utilisation de la db pour le php
+CREATE USER 'php'@'localhost' IDENTIFIED BY 'php';
+GRANT ALL PRIVILEGES ON *.* TO 'php'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+## création d'un utilisateur de la db pour une utilisation externe
+CREATE USER 'php'@'%' IDENTIFIED BY 'php';
+GRANT ALL PRIVILEGES ON *.* TO 'php'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+
+
 ## 21. Les Procédures stockées
 
 
