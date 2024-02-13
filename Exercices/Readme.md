@@ -360,7 +360,7 @@ FROM eleve_formation
 group by date_inscription;
 ```
 
-<!--
+
 1. **Explication de la commande SQL** :
    La commande SQL donnée effectue les actions suivantes :
    - `SELECT YEAR(date_inscription) As 'Annee Inscription'` : Cette partie extrait l'année de la colonne `date_inscription` de chaque enregistrement dans la table `eleve_formation` et la nomme 'Annee Inscription'.
@@ -371,7 +371,7 @@ group by date_inscription;
 2. **Utilisation de la fonction YEAR** :
    - L'utilisation de `YEAR(date_inscription)` permet de regrouper et de compter les enregistrements par année, sans tenir compte des mois et des jours. Cela donne un aperçu de combien d'élèves se sont inscrits chaque année.
    - Sans le `YEAR`, la requête `GROUP BY date_inscription` grouperait les données par date exacte, y compris l'année, le mois et le jour. Cela donnerait un compte de combien d'élèves se sont inscrits à chaque date précise, ce qui pourrait mener à des résultats très fragmentés et moins utiles pour une analyse annuelle.
--->
+
 
 ## Exercice n°22 - INNER JOIN
 ![Schéma relationnel de la DB Pays](image-1.png)
@@ -455,14 +455,14 @@ No stress, si vous n'y arrivez pas. On va le faire ensemble de toute manière ;)
 4. Si vous n'êtes pas dans la DB BlindCode2, tapez: **use BlindCode2;**
 5. On va afficher le nom et prénom de l'élève, le nom de la formation et la date d'inscription.
 
-<!--
+
 ```sql
 SELECT e.prenom, e.nom, f.nom AS Nom_Formation, ef.date_inscription
 FROM eleve e
 JOIN eleve_formation ef ON e.id = ef.eleve_id
 JOIN formation f ON ef.formation_id = f.id;
 ```
--->
+
 
 ## Exercice n°25.1 - INNER JOIN
 ![Schéma relationnel de la DB BlindCode](image-4.png)
@@ -475,7 +475,7 @@ JOIN formation f ON ef.formation_id = f.id;
 6. Affichez le nom des différentes formations et le nombre d'élèves dans chacune d'elle. La colonne du nombre d'élèves s'appelera NBEleves. (ça sent le `COUNT` ça ainsi que d'un `GROUP BY` et `INNER JOIN`... Il n'est pas sympa le prof. :-))
 7. Faites un tri descendant sur le nombre d'élèves.
 
-<!--
+
 1. Affichez le nom, le prénom, le sexe et le nom de la formation de chaque élève.
 ```sql
 SELECT e.nom, e.prenom, e.sexe, f.nom AS Nom_Formation
@@ -499,7 +499,7 @@ JOIN eleve e ON f.id = e.formation_id
 GROUP BY f.nom
 ORDER BY NBEleves DESC;
 ```
--->
+
 
 ## Exercice n°25.2 - Nouvelle DB !! :-) - employees
 ![Schéma relationnel de la DB employees](image-3.png)
@@ -553,7 +553,7 @@ LIMIT 10;
 8. Triez le précédent résultat pour afficher les salaires du plus récent au plus ancien. Vous verrez qu'il y a comme date de fin de salaire le 9999-01-01. Cela signifie que l'employé est toujours en fonction avec ce salaire. :-)
 > La date '9999-01-01' est une valeur réelle, concrète, qui est utilisée conventionnellement pour représenter une date de fin ouverte ou indéfinie, par exemple dans un contrat de travail ou une licence qui est toujours active. C'est une astuce courante pour éviter d'utiliser `NULL`, qui pourrait être interprété comme une absence d'information ou une erreur, alors que '9999-01-01' transmet clairement l'intention que l'élément est toujours en cours sans date de fin prévue.
 
-<!--
+
 1. Informations de base de l'employé :
 ```sql
 SELECT first_name, last_name, gender, hire_date
@@ -580,7 +580,7 @@ JOIN salaries s ON e.emp_no = s.emp_no
 WHERE e.emp_no = 10500
 ORDER BY s.from_date DESC;
 ```
--->
+
 
 
 ## Exercice n°25.4 - INNER JOIN
@@ -596,7 +596,7 @@ ORDER BY s.from_date DESC;
 7. Affichez les employés qui ont travaillé dans le département 'Finance'.
 8. Affichez les employés qui ont travaillé dans le département 'Finance' et qui ont été manager de ce département.
 
-<!--
+
 1. Informations des managers de département :
 ```sql
 SELECT d.dept_name, e.first_name, e.last_name, dm.from_date, dm.to_date
@@ -635,7 +635,7 @@ JOIN departments d ON de.dept_no = d.dept_no
 JOIN dept_manager dm ON e.emp_no = dm.emp_no AND d.dept_no = dm.dept_no
 WHERE d.dept_name = 'Finance';
 ```
--->
+
 
 ## Exercice n°25.5 - INNER JOIN - Analyse des titres d'emploi et des salaires
 ![Schéma relationnel de la DB employees](image-3.png)
@@ -649,16 +649,16 @@ Donc, pour avoir la description de la table employees, on tape: **DESC employees
 Pour avoir la description de la table titles, on tape: **DESC titles;**
 
 1. Écrivez une requête SQL qui renvoie chaque titre d'emploi unique et le nombre d'employés qui ont ce titre. Votre requête devrait renvoyer un tableau avec deux colonnes : title et Number of Employees. (Humm ça ne sentirait pas le GROUP BY ?)
-<!--
+
 ```sql
 SELECT t.title, COUNT(*) AS Nombre_employes
 FROM employees e
 JOIN titles t ON e.emp_no = t.emp_no
 GROUP BY t.title;
 ```
--->
+
 2. Triez les résultats par nombre d'employés en ordre descendant.
-<!--
+
 ```sql
 SELECT t.title, COUNT(*) AS Nombre_employes
 FROM employees e
@@ -666,9 +666,9 @@ JOIN titles t ON e.emp_no = t.emp_no
 GROUP BY t.title
 ORDER BY Nombre_employes DESC;
 ```
--->
 
-<!--
+
+
 ```sql
 SELECT t.title, AVG(s.salary) AS moyenne_salaire
 FROM employees e
@@ -676,20 +676,10 @@ JOIN titles t ON e.emp_no = t.emp_no
 JOIN salaries s ON e.emp_no = s.emp_no
 GROUP BY t.title
 ORDER BY moyenne_salaire DESC;
-```-->
+```
 3. Faites deux requêtes:
    - Quel titre est le plus courant ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
-<!--
-```sql
-SELECT t.title, COUNT(*) AS Number_of_Employees
-FROM employees e
-JOIN titles t ON e.emp_no = t.emp_no
-GROUP BY t.title
-ORDER BY Number_of_Employees DESC
-LIMIT 1;
-```-->
-   - Quel titre est le moins courant ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
-<!--
+
 ```sql
 SELECT t.title, COUNT(*) AS Number_of_Employees
 FROM employees e
@@ -698,9 +688,19 @@ GROUP BY t.title
 ORDER BY Number_of_Employees DESC
 LIMIT 1;
 ```
--->
+   - Quel titre est le moins courant ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
+
+```sql
+SELECT t.title, COUNT(*) AS Number_of_Employees
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+GROUP BY t.title
+ORDER BY Number_of_Employees DESC
+LIMIT 1;
+```
+
 4. Quelle est la moyenne des salaires des différents titres ?
-<!--
+
 ```sql
 SELECT t.title, AVG(s.salary) AS moyenne_salaire
 FROM employees e
@@ -709,28 +709,28 @@ JOIN salaries s ON e.emp_no = s.emp_no
 GROUP BY t.title
 ORDER BY moyenne_salaire DESC;
 ```
--->
+
 5. Vous utiliserez la table salaries. Quel est le salaire moyen des employés de l'entreprise ? (Ne vous prenez pas la tête, c'est très simple)
-<!-- ```sql
+```sql
 SELECT AVG(salary) AS Moyenne_salaire
 FROM salaries;
-``` -->
+```
 6. Quel est l'employé ayant le salaire le plus élevé de l'entreprise ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
-<!-- ```sql
+```sql
 SELECT e.first_name, e.last_name, s.salary
 FROM salaries s
 INNER JOIN employees e ON s.emp_no = e.emp_no
 ORDER BY s.salary DESC
 LIMIT 1;
-``` -->
+```
 7. Quel est l'employé ayant le salaire le plus bas de l'entreprise ? (On utilisera [LIMIT](../Theo/Théorie.md#7b-limitation-des-résultats---limit))
-<!-- ```sql
+```sql
 SELECT e.first_name, e.last_name, s.salary
 FROM salaries s
 INNER JOIN employees e ON s.emp_no = e.emp_no
 ORDER BY s.salary ASC
 LIMIT 1;
-``` -->
+```
 ## Exercice n°25.6 - INNER JOIN
 ### Introduction
 J'ai constaté que vous aviez pas mal de problèmes à identifier les champs de liaison. Je vous propose donc un exercice qui va vous permettre de vous entraîner à identifier les champs de liaison. Et de manière manuelle, vous allez faire un INNER JOIN entre deux tables mais sans utiliser de SQL. :-)
@@ -1093,7 +1093,7 @@ DELIMITER ;
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
 3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employes;**
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employees;**
 5. Vous allez créer une fonction qui s'appellera anciennete_employe.
 6. Cette fonction calculera l'ancienneté d'un employé en fonction de son identifiant `emp_no`.
 7. Elle aura un paramètre nommé `emp_id`. (pas `emp_no` pour éviter les ambiguités entre paramètre et champ de la table dans votre fonction).

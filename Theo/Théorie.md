@@ -2043,6 +2043,13 @@ LIMIT 10;
 L'intérêt ce qu'il ne faut plus jouer avec des jointures complexes pour obtenir ce résultat. On a juste à faire un SELECT sur la vue.
 
 <!--
+AJOUTER une clef primaire composée. Exemple: idEleve, idClasse
+
+
+AJOUTER DANS LE COURS LE STOCKAGE DU MOT DE PASSE DANS LA DB
+
+
+
 AJOUTER CELA POUR LE CREATE TABLE ET LE MOT DE PASSE
 
 CREATE TABLE user (
