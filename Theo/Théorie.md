@@ -117,11 +117,20 @@
   - [16. ALTER TABLE](#16-alter-table)
     - [16.1 Ajouter une colonne - ADD](#161-ajouter-une-colonne---add)
     - [16.2 Changer le type d'une colonne - MODIFY COLUMN](#162-changer-le-type-dune-colonne---modify-column)
-  - [16.3 Supprimer le type d'une colonne - DROP COLUMN](#163-supprimer-le-type-dune-colonne---drop-column)
+    - [16.3 Supprimer une colonne - DROP COLUMN](#163-supprimer-une-colonne---drop-column)
+    - [16.4 Renommer une colonne - CHANGE COLUMN](#164-renommer-une-colonne---change-column)
+    - [16.5 Renommer une clef primaire utilisée dans une clef étrangère](#165-renommer-une-clef-primaire-utilisée-dans-une-clef-étrangère)
+      - [Étape 1: Supprimer la Contrainte de Clé Étrangère](#étape-1-supprimer-la-contrainte-de-clé-étrangère)
+      - [Étape 2: Renommer la Colonne dans la Table Personne](#étape-2-renommer-la-colonne-dans-la-table-personne)
+      - [Étape 3: Mettre à Jour la Table Commande](#étape-3-mettre-à-jour-la-table-commande)
+        - [1. Modifier la Colonne pour Correspondre au Nouveau Nom :](#1-modifier-la-colonne-pour-correspondre-au-nouveau-nom-)
+        - [2. Recréer la Contrainte de Clé Étrangère :](#2-recréer-la-contrainte-de-clé-étrangère-)
+      - [Étape 4: Vérification](#étape-4-vérification)
   - [17. CHECK - Validation](#17-check---validation)
-  - [18. Les indexes](#18-les-indexes)
-  - [18.1 Création d'un INDEX - CREATE INDEX](#181-création-dun-index---create-index)
-    - [18.2 Suppression d'un INDEX - DROP INDEX](#182-suppression-dun-index---drop-index)
+  - [18. Les vues - VIEW](#18-les-vues---view)
+    - [19. Les indexes](#19-les-indexes)
+    - [19.1 Création d'un INDEX - CREATE INDEX](#191-création-dun-index---create-index)
+    - [19.2 Suppression d'un INDEX - DROP INDEX](#192-suppression-dun-index---drop-index)
   - [19. Naming convention - Covention de nommage](#19-naming-convention---covention-de-nommage)
     - [19.1 Règles communes](#191-règles-communes)
     - [19.1 Nom d'une base de données](#191-nom-dune-base-de-données)
@@ -134,7 +143,6 @@
     - [20.1 FONCTION sans paramètre](#201-fonction-sans-paramètre)
     - [20.2 FONCTION avec paramètres](#202-fonction-avec-paramètres)
     - [20.3 Modifier une fonction - ALTER FUNCTION](#203-modifier-une-fonction---alter-function)
-  - [21. Les vues - VIEW](#21-les-vues---view)
 
 <!-- /code_chunk_output -->
 
@@ -1744,13 +1752,91 @@ MODIFY COLUMN Prenom VARCHAR(30);
 ```
 Dans d'autres bases de données que MySQL ça peut être ALTER COLUMN. 
 
-## 16.3 Supprimer le type d'une colonne - DROP COLUMN
+### 16.3 Supprimer une colonne - DROP COLUMN
 On supprime une colonne d'une table.
 ```sql
 ALTER TABLE Eleve
 DROP COLUMN Tel2;
 ```
 Attention que si vous avez des enregistrements, vous risquez bien entendu la perte de données.
+
+### 16.4 Renommer une colonne - CHANGE COLUMN
+Si l'on veut renommer le champ Pranom en Prenom:
+```sql
+ALTER TABLE Eleve
+CHANGE COLUMN Pranom Prenom VARCHAR(30);
+```
+Ici on a fait le cas simple où le champ n'est pas une clef primaire utilisée dans une clef étrangère. Si c'est le cas, il faudra faire une requête plus complexe.
+
+### 16.5 Renommer une clef primaire utilisée dans une clef étrangère
+Pour renommer la colonne `PersonID` en `id` dans la table `Personne` et mettre à jour la table Commande pour qu'elle fasse référence au nouveau nom de colonne, tu devras suivre plusieurs étapes pour assurer l'intégrité référentielle de ta base de données.
+Je ne vais pas insister sur cette partie mais je vais vous donner un exemple de comment faire. Comme ça, si vous avez un jour à le faire, vous saurez comment procéder.
+
+Voici comment procéder étape par étape :
+
+#### Étape 1: Supprimer la Contrainte de Clé Étrangère
+D'abord, supprime la contrainte de clé étrangère de la table Commande qui fait référence à PersonID dans la table Personne.
+  
+  ```sql
+  ALTER TABLE Commande DROP FOREIGN KEY Commande_ibfk_1;
+  ```
+Note : Remplace Commande_ibfk_1 par le nom réel de ta contrainte de clé étrangère. Tu peux trouver ce nom en utilisant la commande `SHOW CREATE TABLE Commande;`.
+
+```sql
+SHOW CREATE TABLE Commande;
+```
+Résultat:
+```text
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                               |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Commande | CREATE TABLE `Commande` (
+  `OrderID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `OrderNumber` int(10) unsigned NOT NULL,
+  `PersonID` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`OrderID`),
+  KEY `PersonID` (`PersonID`),
+  CONSTRAINT `Commande_ibfk_1` FOREIGN KEY (`PersonID`) REFERENCES `Personne` (`PersonID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0,000 sec)
+```
+
+
+#### Étape 2: Renommer la Colonne dans la Table Personne
+Ensuite, renomme la colonne PersonID en id dans la table Personne.
+    
+```sql
+ALTER TABLE Personne CHANGE PersonID id int UNSIGNED AUTO_INCREMENT;
+```
+
+#### Étape 3: Mettre à Jour la Table Commande
+Maintenant, tu dois mettre à jour la table Commande pour qu'elle fasse référence au nouveau nom de la colonne (id) dans la table Personne.
+
+##### 1. Modifier la Colonne pour Correspondre au Nouveau Nom :
+
+Tu dois d'abord modifier la colonne PersonID dans la table Commande pour qu'elle corresponde au nouveau nom de colonne référencée.
+  
+```sql
+ALTER TABLE Commande CHANGE PersonID PersonID int UNSIGNED NOT NULL;
+```
+Cette étape peut sembler redondante, mais elle est nécessaire si tu souhaites ajuster des attributs de colonne ou si le système de gestion de base de données exige une modification explicite avant de recréer les contraintes.
+
+##### 2. Recréer la Contrainte de Clé Étrangère :
+Ensuite, ajoute la contrainte de clé étrangère pour référencer le nouveau nom de colonne.
+
+```sql
+ALTER TABLE Commande ADD CONSTRAINT fk_personne_id FOREIGN KEY (PersonID) REFERENCES Personne(id);
+```
+
+#### Étape 4: Vérification
+Après avoir effectué ces changements, il est bon de vérifier que tout fonctionne comme prévu. Tu peux utiliser SHOW CREATE TABLE pour confirmer que les modifications ont été appliquées correctement.
+
+```sql
+SHOW CREATE TABLE Personne;
+SHOW CREATE TABLE Commande;
+```
+Ces commandes te permettront de voir les définitions actuelles des tables, y compris les noms de colonnes et les contraintes de clé étrangère, pour confirmer que tout est configuré correctement.
 
 ## 17. CHECK - Validation
 Lors de la définition d'un champ, il peut être utile de directement vérifier la validité d'un champ. Par exemple le sexe d'une personne doit être soit F ou M et le code postal doit être compris entre 1000 et 9992.
@@ -1770,9 +1856,68 @@ CREATE TABLE Eleve (
 ```
 Evidemment cette validation devrait être faite en plus depuis le programme qui utilise la base de données mais si la validation n'est pas implémentée, MySQL veillera aux grains.
 
-Comme je vous l'ai déjà dit, certains développeurs vous diront que les règles de gestion n'ont pas sa place dans la définition d'une table... Pour ma part, le SGBD le permet, je l'utilise. ;-)
+Comme je vous l'ai déjà dit, certains développeurs vous diront que les règles de gestion n'ont pas sa place dans la définition d'une table...
 
-## 18. Les indexes
+Si la règle de gestion change, il faudra changer la table. C'est pour cela que certains développeurs ne veulent pas de règles de gestion dans la table: ce qui est logique.
+
+Reprenons le champ Sexe. Si la règle de gestion change et que l'on doit ajouter un troisième choix, il faudra changer la table. Si la règle de gestion est dans le programme, il suffira de changer le programme.
+
+
+
+## 18. Les vues - VIEW
+Une vue est une table virtuelle. Elle ne contient pas de données. Elle est créée à partir d'une ou plusieurs tables. Elle est le résultat d'une requête.
+
+Elle permet de simplifier les requêtes: au lieu d'avoir une requête complexe, on peut créer une vue qui contient cette requête complexe.
+
+Elle permet aussi de ne pas donner accès à certaines données. Par exemple, si vous avez une table avec des données sensibles, vous pouvez créer une vue qui ne contient pas ces données sensibles. Vous pourrez de cette manière donner accès à cette vue sans que les utilisateurs/développeurs aient accès aux données sensibles.
+
+**Syntaxe:**
+> `CREATE VIEW` nomVue `AS`    
+> `SELECT` ... (et le reste de votre requête terminée par un point-virgule)
+
+Soit la création une vue qui fournit une liste des employés actuels, avec leurs noms, leur département, mais sans inclure les informations sensibles comme la date de naissance ou le genre.
+```sql
+CREATE VIEW VueEmployesDepartements AS
+SELECT 
+    e.emp_no,
+    e.first_name,
+    e.last_name,
+    d.dept_name
+FROM 
+    employees e
+JOIN 
+    dept_emp de ON e.emp_no = de.emp_no
+JOIN 
+    departments d ON de.dept_no = d.dept_no
+WHERE 
+    de.to_date = '9999-01-01';  -- Cela assure que nous sélectionnons seulement les employés actuellement dans un département
+```
+
+Notez que **de.to_date = '9999-01-01'** nous assure que nous sélectionnons seulement les employés actuellement dans un département.
+
+Nous pouvons maintenant utiliser cette vue comme une table normale. Par exemple, nous pouvons sélectionner tous les employés du département de la vente:
+```sql
+SELECT * 
+FROM VueEmployesDepartements 
+WHERE dept_name = 'Sales'
+LIMIT 10;
+```
+**Résultat limité à 10 enregistrements**:
+| emp_no | first_name | last_name | dept_name |
+| ------ | ---------- | --------- | --------- |
+|  10002 | Bezalel    | Simmel       | Sales     |
+|  10016 | Kazuhito   | Cappelletti  | Sales     |
+|  10041 | Uri        | Lenart       | Sales     |
+|  10050 | Yinghua    | Dredge       | Sales     |
+|  10053 | Sanjiv     | Zschoche     | Sales     |
+|  10061 | Tse        | Herber       | Sales     |
+|  10068 | Charlene   | Brattka      | Sales     |
+|  10089 | Sudharsan  | Flasterstein | Sales     |
+|  10093 | Sailaja    | Desikan      | Sales     |
+|  10095 | Hilari     | Morton       | Sales     |
+
+L'intérêt ce qu'il ne faut plus jouer avec des jointures complexes pour obtenir ce résultat. On a juste à faire un SELECT sur la vue.
+### 19. Les indexes
 Comme vous le savez MySQL optimise les requêtes avec des PRIMARY KEY, FOREIGN KEY et des champs UNIQUE. Tout simplement car MySQL crée ce que l'on appelle un index. Un index permet de vite retrouver une donnée en fonction d'un critère de recherche.
 
 Maintenant, il peut arriver que de nombreuses requêtes récurentes sur un même champ posent un problème de rapidité/performance. De là, vient alors la question de mettre ou non un index sur ce champ.
@@ -1792,7 +1937,7 @@ EXPLAIN SELECT * FROM employees WHERE last_name='Simmel';
 ```
 On voit qu'il va TOUT (ALL) analyser de la table employees, qu'il n'y a pas de clef, qu'il y a 299423 lignes et qu'il utilisera un WHERE;
 
-## 18.1 Création d'un INDEX - CREATE INDEX
+### 19.1 Création d'un INDEX - CREATE INDEX
 Je vais créer maintenant un index sur la colonne last_name
 ```sql
 CREATE INDEX employees_last_name
@@ -1812,7 +1957,7 @@ EXPLAIN SELECT * FROM employees WHERE last_name='Simmel';
 ```
 On voit qu'il va analyser par référence (REF), qu'il y a une clef/index (employees_last_name) Que la référence est de type constante et qu'il va utiliser un index avec condition (WHERE). Il ne va analyser que 167 enregistrement ce qui correspond au nombre total où last_name='Simmel'. Ce qui est nettement mieux que sur 299423 enregistrements quand nous n'avions pas d'index sur le champ last_name.
 
-### 18.2 Suppression d'un INDEX - DROP INDEX
+### 19.2 Suppression d'un INDEX - DROP INDEX
 La suppresion d'un index est assez simple. On supprimer l'index par son nom et sur quelle table il porte.
 ```sql
 DROP INDEX employees_last_name ON employees;
@@ -1876,6 +2021,9 @@ CREATE TABLE livre(
 Donner un nom à une contrainte permet:
 - d'avoir des messages d'erreur beaucoup plus compréhensibles si ceux-ci utilisent le nom de la contraite de clef étrangère.
 - de modifier une contrainte via un ALTER TABLE. Par exemple: ALTER TABLE eleve DROP CONSTRAINT fk_eleve_classe_id
+
+
+
 
 ## 20. Les fonctions
 Comme pour les langages de programmation, nous pouvons utiliser et créer des fonctions.
@@ -1988,59 +2136,7 @@ DROP FUNCTION price_tvac;
 ```
 - Vous la recréez comme vu précédemment.
 
-## 21. Les vues - VIEW
-Une vue est une table virtuelle. Elle ne contient pas de données. Elle est créée à partir d'une ou plusieurs tables. Elle est le résultat d'une requête.
 
-Elle permet de simplifier les requêtes: au lieu d'avoir une requête complexe, on peut créer une vue qui contient cette requête complexe.
-
-Elle permet aussi de ne pas donner accès à certaines données. Par exemple, si vous avez une table avec des données sensibles, vous pouvez créer une vue qui ne contient pas ces données sensibles. Vous pourrez de cette manière donner accès à cette vue sans que les utilisateurs/développeurs aient accès aux données sensibles.
-
-**Syntaxe:**
-> `CREATE VIEW` nomVue `AS`    
-> `SELECT` ... (et le reste de votre requête terminée par un point-virgule)
-
-Soit la création une vue qui fournit une liste des employés actuels, avec leurs noms, leur département, mais sans inclure les informations sensibles comme la date de naissance ou le genre.
-```sql
-CREATE VIEW VueEmployesDepartements AS
-SELECT 
-    e.emp_no,
-    e.first_name,
-    e.last_name,
-    d.dept_name
-FROM 
-    employees e
-JOIN 
-    dept_emp de ON e.emp_no = de.emp_no
-JOIN 
-    departments d ON de.dept_no = d.dept_no
-WHERE 
-    de.to_date = '9999-01-01';  -- Cela assure que nous sélectionnons seulement les employés actuellement dans un département
-```
-
-Notez que **de.to_date = '9999-01-01'** nous assure que nous sélectionnons seulement les employés actuellement dans un département.
-
-Nous pouvons maintenant utiliser cette vue comme une table normale. Par exemple, nous pouvons sélectionner tous les employés du département de la vente:
-```sql
-SELECT * 
-FROM VueEmployesDepartements 
-WHERE dept_name = 'Sales'
-LIMIT 10;
-```
-**Résultat limité à 10 enregistrements**:
-| emp_no | first_name | last_name | dept_name |
-| ------ | ---------- | --------- | --------- |
-|  10002 | Bezalel    | Simmel       | Sales     |
-|  10016 | Kazuhito   | Cappelletti  | Sales     |
-|  10041 | Uri        | Lenart       | Sales     |
-|  10050 | Yinghua    | Dredge       | Sales     |
-|  10053 | Sanjiv     | Zschoche     | Sales     |
-|  10061 | Tse        | Herber       | Sales     |
-|  10068 | Charlene   | Brattka      | Sales     |
-|  10089 | Sudharsan  | Flasterstein | Sales     |
-|  10093 | Sailaja    | Desikan      | Sales     |
-|  10095 | Hilari     | Morton       | Sales     |
-
-L'intérêt ce qu'il ne faut plus jouer avec des jointures complexes pour obtenir ce résultat. On a juste à faire un SELECT sur la vue.
 
 <!--
 AJOUTER une clef primaire composée. Exemple: idEleve, idClasse

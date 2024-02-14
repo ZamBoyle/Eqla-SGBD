@@ -54,13 +54,14 @@
 - [Exercice n°31 - UPDATE](#exercice-n31---update)
 - [Exercice n°32 - UPDATE](#exercice-n32---update)
 - [Exercice n°33 - DELETE](#exercice-n33---delete)
-- [Exercice n°34 - FUNCTIONS](#exercice-n34---functions)
-- [Exercice n°35 - FUNCTIONS avec paramètres](#exercice-n35---functions-avec-paramètres)
-- [Exercice n°36 - FUNCTIONS avec paramètres](#exercice-n36---functions-avec-paramètres)
-- [Exercice n°37 - FUNCTIONS avec paramètres](#exercice-n37---functions-avec-paramètres)
+- [Exercice n°34 - VIEW - Création d'une vue](#exercice-n34---view---création-dune-vue)
+- [Exercice n°35 - VIEW - Création d'une vue](#exercice-n35---view---création-dune-vue)
+- [Exercice n°36 - Naming convention](#exercice-n36---naming-convention)
+- [Exercice n°37 - FUNCTIONS](#exercice-n37---functions)
 - [Exercice n°38 - FUNCTIONS avec paramètres](#exercice-n38---functions-avec-paramètres)
-- [Exercice n°39 - VIEW - Création d'une vue](#exercice-n39---view---création-dune-vue)
-- [Exercice n°40 - VIEW - Création d'une vue](#exercice-n40---view---création-dune-vue)
+- [Exercice n°39 - FUNCTIONS avec paramètres](#exercice-n39---functions-avec-paramètres)
+- [Exercice n°40 - FUNCTIONS avec paramètres](#exercice-n40---functions-avec-paramètres)
+- [Exercice n°41 - FUNCTIONS avec paramètres](#exercice-n41---functions-avec-paramètres)
 
 <!-- /code_chunk_output -->
 
@@ -1020,112 +1021,10 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 ```
 6. Supprimer les enregistrements qui respectent la condition suivante: Les personnes nées avant le 1er janvier 1991 et nées après le 31 décembre 1979.
 7. Supprimer tous les enregistrements qui respectent la condition suivante: Dont le nom de famille commence par M ou le prénom se termine par e.
-8. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 3.
+8. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 
 
-## Exercice n°34 - FUNCTIONS
-1. Allez dans le répertoire d'exercices SQL.
-2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
-3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
-5. Créez une fonction qui s'appellera hello_world.
-6. Elle retournera la phrase 'Hello Word from SQL !'
 
-```sql
-DELIMITER $$
-CREATE FUNCTION hello_world() RETURNS VARCHAR(255)
-BEGIN
-    RETURN 'Hello World from SQL !';
-END;
-$$
-DELIMITER ;
-```
-
-## Exercice n°35 - FUNCTIONS avec paramètres
-1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
-3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
-5. Créez une fonction qui s'appellera hello.
-6. Elle recevra deux paramètres de type VARCHAR(20).
-7. Le premier se nommera first_name, le second last_name.
-8. La fonction retournera par exemple 'Hello Johnny Piette !'
-9. Pour concaténer des chaînes de caractères, on utilise la fonction [CONCAT](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_concat).
-10. Pour pouvoir modifier votre fonction si elle ne fonctionne pas, vous devez la supprimer avant de la recréer.
-```sql
-DROP FUNCTION hello;
-```
-
-## Exercice n°36 - FUNCTIONS avec paramètres
-1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
-3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Ventes;**
-5. En théorie, nous avons créé une fonction qui s'appelle price_tvac.
-6. Ici, nous allons faire l'inverse: retirer la tva.
-Créez une fonction qui s'appellera remove_tvac.
-7. Elle aura un paramètre nommé prix_tvac.
-8. Elle aura un second paramètre nommé taux_tva.
-9. La fonction retournera le prix sans tva.
-10. Soit le prix_tvac = 80
-> prix_htva = prix_tvac/(taux_tva+1)  
-> prix_htva = 80/1.21  
-> prix_htva = 66,1157  
-11. Votre fonction retournera donc 66,1157.
-
-```sql
-DELIMITER $$
-CREATE FUNCTION remove_tvac(prix_tvac FLOAT, taux_tva FLOAT) RETURNS FLOAT
-BEGIN
-    RETURN prix_tvac / (1 + taux_tva);
-END;
-$$
-DELIMITER ;
-```
-
-## Exercice n°37 - FUNCTIONS avec paramètres
-1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
-3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Ventes;**
-5. Vous allez afficher tous les produits de la table produit mais avec le prix TVAC grâce à la fonction price_tvac créée dans le cours: [Les fonctions avec paramètres](../Theo/Théorie.md#202-fonction-avec-paramètres).
-
-## Exercice n°38 - FUNCTIONS avec paramètres
-1. Allez dans le répertoire d'exercices SQL
-2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
-3. Entrez votre mot de passe.
-4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employees;**
-5. Vous allez créer une fonction qui s'appellera anciennete_employe.
-6. Cette fonction calculera l'ancienneté d'un employé en fonction de son identifiant `emp_no`.
-7. Elle aura un paramètre nommé `emp_id`. (pas `emp_no` pour éviter les ambiguités entre paramètre et champ de la table dans votre fonction).
-8. La fonction retournera le nombre d'années d'ancienneté.
-9. Pour calculer l'ancienneté approximative vous utiliserez les fonctions `YEAR()` et `CURRENT_DATE()` comme déjà vu dans les exercices.
-10. Vous donnerez l'ancienneté ainsi que l'`emp_no`, le prénom et nom des employés suivants:
-- 10614
-- 10444
-- 10001
-- 10562
-- 10006
-11. Soit vous faites une requête par employé, soit vous faites une requête qui affiche l'ancienneté de tous les employés et vous utilisez la clause `WHERE` pour ne garder que les employés dont l'`emp_no` est dans la liste ci-dessus: il serait peut-être intéressant d'utiliser IN dans le WHERE de votre requête SQL. ;-)
-
-<!-- 
-```sql
-DELIMITER $$
-
-CREATE FUNCTION CalculerAnciennete(emp_id INT) RETURNS INT
-BEGIN
-    DECLARE anciennete INT;
-    SELECT (YEAR(CURDATE()) - YEAR(hire_date)) INTO anciennete
-    FROM employees
-    WHERE emp_no = emp_id;
-    RETURN anciennete;
-END;
-
-$$
-DELIMITER ;
-```
--->
-
-## Exercice n°39 - VIEW - Création d'une vue
+## Exercice n°34 - VIEW - Création d'une vue
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
 3. Entrez votre mot de passe.
@@ -1164,7 +1063,7 @@ WHERE
 Les conditions dans le WHERE assurent que seuls les départements, titres et salaires actuels sont inclus (en supposant que '9999-01-01' est utilisé comme date de fin pour les enregistrements actuels).
 -->
 
-## Exercice n°40 - VIEW - Création d'une vue
+## Exercice n°35 - VIEW - Création d'une vue
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
 3. Entrez votre mot de passe.
@@ -1193,6 +1092,117 @@ JOIN
 WHERE 
     de.to_date < CURDATE();
 -->
+## Exercice n°36 - Naming convention
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Vous allez créer une base de données qui s'appellera blindcode3.sql
+5. Vous allez analyser la base de données blindcode2 et vous allez la recréer en respectant les conventions de nommage vue dans la partie théorique.
+
+
+## Exercice n°37 - FUNCTIONS
+1. Allez dans le répertoire d'exercices SQL.
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
+5. Créez une fonction qui s'appellera hello_world.
+6. Elle retournera la phrase 'Hello Word from SQL !'
+
+```sql
+DELIMITER $$
+CREATE FUNCTION hello_world() RETURNS VARCHAR(255)
+BEGIN
+    RETURN 'Hello World from SQL !';
+END;
+$$
+DELIMITER ;
+```
+
+## Exercice n°38 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Exercice27;**
+5. Créez une fonction qui s'appellera hello.
+6. Elle recevra deux paramètres de type VARCHAR(20).
+7. Le premier se nommera first_name, le second last_name.
+8. La fonction retournera par exemple 'Hello Johnny Piette !'
+9. Pour concaténer des chaînes de caractères, on utilise la fonction [CONCAT](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_concat).
+10. Pour pouvoir modifier votre fonction si elle ne fonctionne pas, vous devez la supprimer avant de la recréer.
+```sql
+DROP FUNCTION hello;
+```
+
+## Exercice n°39 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Ventes;**
+5. En théorie, nous avons créé une fonction qui s'appelle price_tvac.
+6. Ici, nous allons faire l'inverse: retirer la tva.
+Créez une fonction qui s'appellera remove_tvac.
+7. Elle aura un paramètre nommé prix_tvac.
+8. Elle aura un second paramètre nommé taux_tva.
+9. La fonction retournera le prix sans tva.
+10. Soit le prix_tvac = 80
+> prix_htva = prix_tvac/(taux_tva+1)  
+> prix_htva = 80/1.21  
+> prix_htva = 66,1157  
+11. Votre fonction retournera donc 66,1157.
+
+```sql
+DELIMITER $$
+CREATE FUNCTION remove_tvac(prix_tvac FLOAT, taux_tva FLOAT) RETURNS FLOAT
+BEGIN
+    RETURN prix_tvac / (1 + taux_tva);
+END;
+$$
+DELIMITER ;
+```
+
+## Exercice n°40 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p**
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **USE Ventes;**
+5. Vous allez afficher tous les produits de la table produit mais avec le prix TVAC grâce à la fonction price_tvac créée dans le cours: [Les fonctions avec paramètres](../Theo/Théorie.md#202-fonction-avec-paramètres).
+
+## Exercice n°41 - FUNCTIONS avec paramètres
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Si vous n'êtes pas dans la DB Exercices, tapez: **use employees;**
+5. Vous allez créer une fonction qui s'appellera anciennete_employe.
+6. Cette fonction calculera l'ancienneté d'un employé en fonction de son identifiant `emp_no`.
+7. Elle aura un paramètre nommé `emp_id`. (pas `emp_no` pour éviter les ambiguités entre paramètre et champ de la table dans votre fonction).
+8. La fonction retournera le nombre d'années d'ancienneté.
+9. Pour calculer l'ancienneté approximative vous utiliserez les fonctions `YEAR()` et `CURRENT_DATE()` comme déjà vu dans les exercices.
+10. Vous donnerez l'ancienneté ainsi que l'`emp_no`, le prénom et nom des employés suivants:
+- 10614
+- 10444
+- 10001
+- 10562
+- 10006
+11. Soit vous faites une requête par employé, soit vous faites une requête qui affiche l'ancienneté de tous les employés et vous utilisez la clause `WHERE` pour ne garder que les employés dont l'`emp_no` est dans la liste ci-dessus: il serait peut-être intéressant d'utiliser IN dans le WHERE de votre requête SQL. ;-)
+
+<!-- 
+```sql
+DELIMITER $$
+
+CREATE FUNCTION CalculerAnciennete(emp_id INT) RETURNS INT
+BEGIN
+    DECLARE anciennete INT;
+    SELECT (YEAR(CURDATE()) - YEAR(hire_date)) INTO anciennete
+    FROM employees
+    WHERE emp_no = emp_id;
+    RETURN anciennete;
+END;
+
+$$
+DELIMITER ;
+```
+-->
+
 
 ---
 &copy; 2023 [Johnny Piette](https://github.com/ZamBoyle).  
