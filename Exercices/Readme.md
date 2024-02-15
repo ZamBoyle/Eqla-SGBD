@@ -1047,7 +1047,7 @@ SELECT
 FROM 
     employees e
 INNER JOIN 
-    dept_emp de ON e.emp_no = de.emp_no
+    dept_emp de ON e.emp_no = de.emp_no    
 INNER JOIN 
     departments d ON de.dept_no = d.dept_no
 INNER JOIN 
@@ -1076,10 +1076,10 @@ Les conditions dans le WHERE assurent que seuls les départements, titres et sal
 <!--
 CREATE VIEW AnciensEmployes AS
 SELECT 
-    e.emp_no,
+    e.*emp_no,
     e.first_name,
     e.last_name,
-    e.hire_date,
+    e.hire_date,*
     de.to_date AS end_date,
     d.dept_name
 FROM 
@@ -1097,7 +1097,6 @@ WHERE
 3. Entrez votre mot de passe.
 4. Vous allez créer une base de données qui s'appellera blindcode3.sql
 5. Vous allez analyser la base de données blindcode2 et vous allez la recréer en respectant les conventions de nommage vue dans la partie théorique.
-
 
 ## Exercice n°37 - FUNCTIONS
 1. Allez dans le répertoire d'exercices SQL.
