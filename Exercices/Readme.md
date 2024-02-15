@@ -807,7 +807,7 @@ J'ai constaté que vous aviez pas mal de problèmes à identifier les champs de 
 6. En plus, donnez le nom des acteurs qui jouent dans ces films.
 7. Convertissez les précédents points en requêtes SQL.
 
-<!--
+
 ### Solutions
 1. Donnez la liste des clients (nom et prénom) avec leur acteur préféré: nom et prénom.
 ![Lien entre la table client et acteur](image-5.png)
@@ -883,7 +883,6 @@ JOIN film_acteur ON film.id = film_acteur.film_id
 JOIN acteur ON film_acteur.acteur_id = acteur.id
 WHERE seance.id = 1 OR seance.id = 3;
 ```
--->
 
 ## Exercice n°26 - CREATE DATABASE / CREATE TABLE
 1. Allez dans le répertoire d'exercices SQL
