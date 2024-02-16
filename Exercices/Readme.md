@@ -15,7 +15,7 @@
 - [Introduction](#introduction)
 - [Copier les DB exercices](#copier-les-db-exercices)
 - [Exercice n°1 - Importation des fichiers de base de données](#exercice-n1---importation-des-fichiers-de-base-de-données)
-- [Exercice n°2 - Notre premier SELECT *](#exercice-n2---notre-premier-select-)
+- [Exercice n°2 - Notre premier SELECT \*](#exercice-n2---notre-premier-select-)
 - [Exercice n°3 - SELECT ch1, ch2, etc.](#exercice-n3---select-ch1-ch2-etc)
 - [Exercice n°4 - Notre premier WHERE](#exercice-n4---notre-premier-where)
 - [Exercice n°5 - WHERE   AND](#exercice-n5---where---and)
@@ -31,7 +31,7 @@
 - [Exercice n°15 - ORDER BY](#exercice-n15---order-by)
 - [Exercice n°16 - AVG](#exercice-n16---avg)
 - [Exercice n°17.1 - MIN, MAX, SUM](#exercice-n171---min-max-sum)
-- [Exercice n°17.2 - COUNT(*)](#exercice-n172---count)
+- [Exercice n°17.2 - COUNT(\*)](#exercice-n172---count)
 - [Exercice n°17.3 - COUNT(champ)](#exercice-n173---countchamp)
 - [Exercice n°18 - GROUP BY](#exercice-n18---group-by)
 - [Exercice n°19 - GROUP BY](#exercice-n19---group-by)
@@ -42,10 +42,14 @@
 - [Exercice n°24 - INNER JOIN](#exercice-n24---inner-join)
 - [Exercice n°25.1 - INNER JOIN](#exercice-n251---inner-join)
 - [Exercice n°25.2 - Nouvelle DB !! :-) - employees](#exercice-n252---nouvelle-db------employees)
+- [Utilisation de LIMIT](#utilisation-de-limit)
 - [Exercice n°25.3 - INNER JOIN](#exercice-n253---inner-join)
 - [Exercice n°25.4 - INNER JOIN](#exercice-n254---inner-join)
 - [Exercice n°25.5 - INNER JOIN - Analyse des titres d'emploi et des salaires](#exercice-n255---inner-join---analyse-des-titres-demploi-et-des-salaires)
 - [Exercice n°25.6 - INNER JOIN](#exercice-n256---inner-join)
+  - [Introduction](#introduction-1)
+  - [Exercices](#exercices)
+  - [Solutions](#solutions)
 - [Exercice n°26 - CREATE DATABASE / CREATE TABLE](#exercice-n26---create-database--create-table)
 - [Exercice n°27 - CREATE DATABASE / CREATE TABLE](#exercice-n27---create-database--create-table)
 - [Exercice n°28 - INSERT INTO](#exercice-n28---insert-into)
@@ -1020,7 +1024,7 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 ```
 6. Supprimer les enregistrements qui respectent la condition suivante: Les personnes nées avant le 1er janvier 1991 et nées après le 31 décembre 1979.
 7. Supprimer tous les enregistrements qui respectent la condition suivante: Dont le nom de famille commence par M ou le prénom se termine par e.
-8. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 
+8. Supprimer tous les enregistrements dont l'IdJoueur est supérieur à 19.
 
 
 ## Exercice n°34 - VIEW - Création d'une vue
