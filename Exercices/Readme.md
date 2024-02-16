@@ -1033,7 +1033,7 @@ insert into Joueur (Prenom, Nom, DateNaissance, IdEquipe) values ('Lauréna', 'M
 - `dept_name`
 - `title`
 - `salary`
-6. Cette vue contiendra les informations de la table `employees` ainsi que les informations de la table `departments`, `titles` et `salaries`. Et ce, grâce à des `INNER JOIN` d'amour <3. 
+6. Cette vue contiendra les informations de la table `employees` ainsi que les informations de la table `dept_emp`, `departments`, `titles` et `salaries`. Et ce, grâce à des `INNER JOIN` d'amour <3. 
 7. On testera la vue en faisant un `SELECT * FROM employees_info LIMIT 10;`
 
 <!-- 

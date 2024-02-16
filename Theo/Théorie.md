@@ -2022,9 +2022,6 @@ Donner un nom à une contrainte permet:
 - d'avoir des messages d'erreur beaucoup plus compréhensibles si ceux-ci utilisent le nom de la contraite de clef étrangère.
 - de modifier une contrainte via un ALTER TABLE. Par exemple: ALTER TABLE eleve DROP CONSTRAINT fk_eleve_classe_id
 
-
-
-
 ## 20. Les fonctions
 Comme pour les langages de programmation, nous pouvons utiliser et créer des fonctions.
 
