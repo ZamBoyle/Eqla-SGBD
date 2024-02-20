@@ -143,6 +143,17 @@
     - [20.1 FONCTION sans paramètre](#201-fonction-sans-paramètre)
     - [20.2 FONCTION avec paramètres](#202-fonction-avec-paramètres)
     - [20.3 Modifier une fonction - ALTER FUNCTION](#203-modifier-une-fonction---alter-function)
+  - [21. Création d'un utilisateur](#21-création-dun-utilisateur)
+    - [21.1 Création d'un utilisateur de la db pour php](#211-création-dun-utilisateur-de-la-db-pour-php)
+    - [21.2 Création d'un utilisateur de la db pour une utilisation externe](#212-création-dun-utilisateur-de-la-db-pour-une-utilisation-externe)
+    - [21.3 Accès à une base de données spécifique](#213-accès-à-une-base-de-données-spécifique)
+    - [21.4 Accès à une table spécifique](#214-accès-à-une-table-spécifique)
+  - [22. CTE (Common Table Expression)](#22-cte-common-table-expression)
+    - [22.1 Utilisation d'une CTE](#221-utilisation-dune-cte)
+    - [22.2 Diiféreces entre une CTE et une vue](#222-diiféreces-entre-une-cte-et-une-vue)
+      - [22.2.1 CTE (Common Table Expression)](#2221-cte-common-table-expression)
+  - [21. Les transactions](#21-les-transactions)
+  - [30.](#30)
 
 <!-- /code_chunk_output -->
 
@@ -2133,8 +2144,167 @@ DROP FUNCTION price_tvac;
 ```
 - Vous la recréez comme vu précédemment.
 
+## 21. Création d'un utilisateur
+Pour créer un utilisateur, il faut utiliser la commande `CREATE USER`.
+On crée des utilisateurs pour que ceux-ci puissent se connecter à la base de données.
+
+Ces utilisateurs peuvent être des utilisateurs locaux ou des utilisateurs distants.
+
+Il est conseillé de créer des utilisateurs avec des droits limités. Par exemple, si un utilisateur n'a besoin que de lire des données, il ne faut pas lui donner des droits d'écriture.
+
+Un utilisateur par application est une bonne pratique: de cette manière si un utilisateur est compromis, seul l'application est compromise et pas toute la base de données.
+
+### 21.1 Création d'un utilisateur de la db pour php
+Il est recommandé de créer un utilisateur pour chaque application qui se connecte à la base de données. Cela permet de limiter les droits de chaque application. Nous allons créer un utilisateur pour PHP pour simplifier les choses. Mais le principe est le même pour chaque application.
+```sql
+CREATE USER 'php'@'localhost' IDENTIFIED BY 'php';
+GRANT ALL PRIVILEGES ON *.* TO 'php'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+### 21.2 Création d'un utilisateur de la db pour une utilisation externe
+```sql
+CREATE USER 'php'@'%' IDENTIFIED BY 'php';
+GRANT ALL PRIVILEGES ON *.* TO 'php'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+### 21.3 Accès à une base de données spécifique
+Si vous voulez que l'utilisateur php ait accès à une seule base de données, vous pouvez faire:
+```sql
+GRANT ALL PRIVILEGES ON `Pays`.* TO 'php'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+### 21.4 Accès à une table spécifique
+Si vous voulez que l'utilisateur php ait accès à une seule table ou une seule vue, vous pouvez faire:
+```sql
+GRANT SELECT ON `Employees`.`employees_info` TO 'php'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent.
+
+### 21.5 Accès à plusieurs tables spécifiques
+Si vous voulez que l'utilisateur php ait accès à plusieurs tables ou vues, vous pouvez faire:
+
+## 22. Les sous-requêtes
+Une sous-requête est une requête imbriquée dans une autre requête. Elle est utilisée pour récupérer des données à partir d'une ou plusieurs tables.
+
+### 22.1 Utilisation d'une sous-requête
+Supposons que nous voulons trouver les noms des employés qui gagnent plus que le salaire moyen de tous les employés. Voici comment nous pourrions structurer cette requête avec une sous-requête :
+
+```sql
+SELECT e.first_name, e.last_name, s.salary
+FROM employees e
+JOIN salaries s ON e.employee_id = s.employee_id
+WHERE s.salary > (
+    SELECT AVG(salary) FROM salaries
+);
+```
 
 
+## 22. CTE (Common Table Expression)
+Une CTE est une sous-requête nommée qui peut être utilisée dans une requête SELECT, INSERT, UPDATE ou DELETE. Elle est utile pour simplifier les requêtes complexes et pour améliorer la lisibilité du code.
+
+Attention que le point-virgule ne se met pas à la fin de la CTE mais à la fin de la requête qui utilise la CTE.
+
+### 22.1 Utilisation d'une CTE
+```sql
+WITH cte AS (
+    SELECT 
+        e.emp_no,
+        e.first_name,
+        e.last_name,
+        d.dept_name
+    FROM 
+        employees e
+    JOIN 
+        dept_emp de ON e.emp_no = de.emp_no
+    JOIN 
+        departments d ON de.dept_no = d.dept_no
+    WHERE 
+        de.to_date = '9999-01-01'
+)
+SELECT *
+FROM cte
+WHERE dept_name = 'Sales';
+```
+
+### 22.2 Diiféreces entre une CTE et une vue
+#### 22.2.1 CTE (Common Table Expression)
+- Temporaire : Une CTE est une construction temporaire qui existe uniquement durant l'exécution de la requête dans laquelle elle est définie. Elle n'est pas stockée dans la base de données comme un objet permanent.
+- Portée : Elle est accessible seulement dans la requête qui la définit, ce qui en fait un bon choix pour structurer des requêtes complexes et pour améliorer la lisibilité sans affecter la base de données avec des objets supplémentaires.
+- Usage : Très utile pour des requêtes récursives, pour décomposer des requêtes complexes en parties plus simples, ou pour effectuer des opérations qui seraient autrement plus complexes ou moins performantes.
+
+
+
+
+## 21. Les transactions
+Une transaction est un ensemble d'opérations qui doivent être exécutées ensemble. Si une seule opération échoue, toutes les opérations de la transaction doivent être annulées.
+
+Par exemple, si vous avez une transaction qui transfère de l'argent d'un compte à un autre, vous ne voulez pas que l'argent soit retiré d'un compte sans être ajouté à l'autre.
+
+Pour commencer une transaction, vous utilisez la commande `START TRANSACTION`. Vous exécutez ensuite toutes les opérations de la transaction. Si tout se passe bien, vous utilisez la commande `COMMIT` pour valider la transaction. Si quelque chose ne va pas, vous utilisez la commande `ROLLBACK` pour annuler la transaction.
+
+```sql
+START TRANSACTION;
+UPDATE compte SET solde=solde-100 WHERE id_compte=1;
+UPDATE compte SET solde=solde+100 WHERE id_compte=2;
+COMMIT;
+```
+Si une erreur se produit entre START TRANSACTION et COMMIT, le SGBD garantira l'atomicité de la transaction soit par un ROLLBACK automatique en cas d'erreur système, soit vous permettant d'utiliser ROLLBACK manuellement pour annuler la transaction et les modifications apportées par les opérations de la transaction, en fonction du contexte de l'erreur.
+
+Ici, on a considéré qu'il y a assez d'argent sur le compte 1 pour retirer 100 et qu'il n'y a pas de problème pour ajouter 100 sur le compte 2. Si l'une des deux opérations échoue, on annule tout.
+
+Maintenant, on va voir un exemple plus complet avec une vérification de solde avant de faire le débit.
+
+```sql
+-- Démarrage de la transaction
+START TRANSACTION;
+
+-- Tentative de débit de 100 unités du compte 1
+UPDATE compte SET solde = solde - 100 WHERE id_compte = 1;
+
+-- Vérification que le solde du compte 1 ne devient pas négatif après le débit
+IF (SELECT solde FROM compte WHERE id_compte = 1) < 0 THEN
+    -- Si le solde est négatif, annulation de la transaction
+    ROLLBACK;
+    -- Sortie de la procédure ou du script avec un message d'erreur ou une action spécifique
+ELSE
+    -- Si le solde est suffisant, continuation avec le crédit sur le compte 2
+    UPDATE compte SET solde = solde + 100 WHERE id_compte = 2;
+    -- Validation de la transaction
+    COMMIT;
+END IF;
+```
+L'exemple est plus complexe car il vérifie que le solde du compte 1 ne devient pas négatif après le débit. Si c'est le cas, la transaction est annulée. Sinon, le crédit est effectué sur le compte 2 et la transaction est validée.
+
+Mais si le solde a changé au du IF ??? On pourra alors utiliser un FOR UPDATE pour bloquer le compte 1 et éviter que le solde change entre le IF et le UPDATE.
+
+```sql
+-- Démarrage de la transaction
+START TRANSACTION;
+
+-- Verrouillage pessimiste du solde du compte pour le débit
+SELECT solde FROM comptes WHERE id_compte = 1 FOR UPDATE;
+
+-- Effectuer le débit
+UPDATE comptes SET solde = solde - 100 WHERE id_compte = 1;
+
+-- Vérification et opérations suivantes
+IF (SELECT solde FROM comptes WHERE id_compte = 1) < 0 THEN
+    ROLLBACK;
+ELSE
+    -- Effectuer le crédit avec le verrouillage pessimiste aussi si nécessaire
+    UPDATE comptes SET solde = solde + 100 WHERE id_compte = 2;
+    COMMIT;
+END IF;
+```
+
+Souvent, on fait cela côté application comme en PHP mais je vous le montre en SQL pour que vous sachiez que c'est possible.
+
+
+## 30.
 <!--
 AJOUTER une clef primaire composée. Exemple: idEleve, idClasse
 
@@ -2170,9 +2340,6 @@ FLUSH PRIVILEGES;
 
 
 ## 21. Les Procédures stockées
-
-
-## 22. Les vues - VIEW
 
 ## CTE - Common Table Expression
 
