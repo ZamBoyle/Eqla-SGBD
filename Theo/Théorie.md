@@ -148,9 +148,12 @@
     - [21.2 Création d'un utilisateur de la db pour une utilisation externe](#212-création-dun-utilisateur-de-la-db-pour-une-utilisation-externe)
     - [21.3 Accès à une base de données spécifique](#213-accès-à-une-base-de-données-spécifique)
     - [21.4 Accès à une table spécifique](#214-accès-à-une-table-spécifique)
+    - [21.5 Accès à plusieurs tables spécifiques](#215-accès-à-plusieurs-tables-spécifiques)
+  - [22. Les sous-requêtes](#22-les-sous-requêtes)
+    - [22.1 Utilisation d'une sous-requête](#221-utilisation-dune-sous-requête)
   - [22. CTE (Common Table Expression)](#22-cte-common-table-expression)
     - [22.1 Utilisation d'une CTE](#221-utilisation-dune-cte)
-    - [22.2 Diiféreces entre une CTE et une vue](#222-diiféreces-entre-une-cte-et-une-vue)
+    - [22.2 Différences entre une CTE et une vue](#222-différences-entre-une-cte-et-une-vue)
       - [22.2.1 CTE (Common Table Expression)](#2221-cte-common-table-expression)
   - [21. Les transactions](#21-les-transactions)
   - [30.](#30)
@@ -2230,13 +2233,11 @@ FROM cte
 WHERE dept_name = 'Sales';
 ```
 
-### 22.2 Diiféreces entre une CTE et une vue
+### 22.2 Différences entre une CTE et une vue
 #### 22.2.1 CTE (Common Table Expression)
 - Temporaire : Une CTE est une construction temporaire qui existe uniquement durant l'exécution de la requête dans laquelle elle est définie. Elle n'est pas stockée dans la base de données comme un objet permanent.
 - Portée : Elle est accessible seulement dans la requête qui la définit, ce qui en fait un bon choix pour structurer des requêtes complexes et pour améliorer la lisibilité sans affecter la base de données avec des objets supplémentaires.
 - Usage : Très utile pour des requêtes récursives, pour décomposer des requêtes complexes en parties plus simples, ou pour effectuer des opérations qui seraient autrement plus complexes ou moins performantes.
-
-
 
 
 ## 21. Les transactions
