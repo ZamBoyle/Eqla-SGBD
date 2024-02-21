@@ -147,14 +147,19 @@
     - [21.1 Création d'un utilisateur de la db pour php](#211-création-dun-utilisateur-de-la-db-pour-php)
     - [21.2 Création d'un utilisateur de la db pour une utilisation externe](#212-création-dun-utilisateur-de-la-db-pour-une-utilisation-externe)
     - [21.3 Accès à une base de données spécifique](#213-accès-à-une-base-de-données-spécifique)
-    - [21.4 Accès à une table spécifique](#214-accès-à-une-table-spécifique)
+    - [21.4 Accès à une table spécifique en lecture seule](#214-accès-à-une-table-spécifique-en-lecture-seule)
+    - [21.5 Accès en lecture et écriture à une table spécifique](#215-accès-en-lecture-et-écriture-à-une-table-spécifique)
     - [21.5 Accès à plusieurs tables spécifiques](#215-accès-à-plusieurs-tables-spécifiques)
   - [22. Les sous-requêtes](#22-les-sous-requêtes)
-    - [22.1 Utilisation d'une sous-requête](#221-utilisation-dune-sous-requête)
+    - [22.1 Premier exemple](#221-premier-exemple)
+    - [22.2 Deuxième exemple](#222-deuxième-exemple)
+    - [22.3 Troisième exemple](#223-troisième-exemple)
   - [22. CTE (Common Table Expression)](#22-cte-common-table-expression)
     - [22.1 Utilisation d'une CTE](#221-utilisation-dune-cte)
+    - [22.2 Exemple récursif](#222-exemple-récursif)
     - [22.2 Différences entre une CTE et une vue](#222-différences-entre-une-cte-et-une-vue)
       - [22.2.1 CTE (Common Table Expression)](#2221-cte-common-table-expression)
+      - [22.2.2 Vue](#2222-vue)
   - [21. Les transactions](#21-les-transactions)
   - [30.](#30)
 
@@ -2164,6 +2169,46 @@ CREATE USER 'php'@'localhost' IDENTIFIED BY 'php';
 GRANT ALL PRIVILEGES ON *.* TO 'php'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
+Détaillons ces commandes:
+**1. Création d'un utilisateur**
+
+```sql
+CREATE USER 'php'@'localhost' IDENTIFIED BY 'php';
+```
+
+- `CREATE USER`: Cette commande est utilisée pour créer un nouvel utilisateur dans le système de gestion de base de données.
+- `'php'@'localhost'`: Ici, `'php'` est le nom de l'utilisateur que vous créez. L'adresse `'localhost'` spécifie que cet utilisateur aura uniquement le droit de se connecter à la base de données depuis la machine locale. En d'autres termes, une connexion distante utilisant cet utilisateur sera refusée. Le format est `'nom_utilisateur'@'hôte'`.
+- `IDENTIFIED BY 'php'`: Cette partie de la commande définit le mot de passe de l'utilisateur. Dans ce cas, le mot de passe est également `'php'`. Il est crucial de choisir un mot de passe fort dans un environnement de production pour sécuriser l'accès à la base de données.
+
+**2. Attribution de privilèges**
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'php'@'localhost' WITH GRANT OPTION;
+```
+
+- `GRANT`: Cette commande est utilisée pour attribuer des privilèges à un utilisateur.
+- `ALL PRIVILEGES`: Cela signifie que vous donnez à l'utilisateur tous les droits possibles sur les bases de données et les tables. C'est une configuration large qui devrait être utilisée avec prudence, surtout dans un environnement de production.
+- `ON *.*`: Ici, le premier `*` fait référence à toutes les bases de données, et le deuxième `*` à toutes les tables au sein de ces bases de données. Ensemble, `*.*` signifie que les privilèges sont accordés sur toutes les bases de données et toutes leurs tables.
+> Donc, dans une utilisation en production, il faudra remplacer `*.*` par le nom de la base de données à laquelle l'utilisateur aura accès. Car il est en effet très risqué de donner tous les privilèges à un utilisateur surtout s'il utilisé par une application. Par exemple, on donne accès à la base de données Pays: **ON `Pays`.\***
+
+- `TO 'php'@'localhost'`: Cette partie spécifie à quel utilisateur les privilèges sont accordés, en reprenant le format `'nom_utilisateur'@'hôte'`.
+- `WITH GRANT OPTION`: Cette option permet à l'utilisateur non seulement d'avoir tous les privilèges mais aussi de les accorder à d'autres utilisateurs. C'est un niveau élevé de privilège qui doit être accordé avec une grande prudence.
+> Il est très rare que vous ayez besoin d'accorder cette option à un utilisateur. C'est une bonne pratique de limiter les privilèges à ce qui est strictement nécessaire pour l'utilisateur.
+
+**3. Actualisation des privilèges**
+
+```sql
+FLUSH PRIVILEGES;
+```
+
+- `FLUSH PRIVILEGES`: Cette commande force le système de gestion de base de données à recharger les tables de privilèges. Cela signifie que tous les changements de privilèges que vous avez faits seront pris en compte immédiatement. Sans cette commande, il se pourrait que certains changements ne soient pas appliqués immédiatement, en particulier si vous avez modifié directement les tables de privilèges sans passer par les commandes `GRANT` ou `CREATE USER`.
+
+Ces commandes ensemble permettent de créer un utilisateur avec un accès complet à toutes les bases de données depuis la machine locale, et lui donnent également la capacité d'accorder ces privilèges à d'autres utilisateurs. Il est important de comprendre et de contrôler l'attribution des privilèges pour sécuriser votre base de données.
+
+
+
+
+
 
 ### 21.2 Création d'un utilisateur de la db pour une utilisation externe
 ```sql
@@ -2179,21 +2224,35 @@ GRANT ALL PRIVILEGES ON `Pays`.* TO 'php'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 
-### 21.4 Accès à une table spécifique
+### 21.4 Accès à une table spécifique en lecture seule
 Si vous voulez que l'utilisateur php ait accès à une seule table ou une seule vue, vous pouvez faire:
 ```sql
-GRANT SELECT ON `Employees`.`employees_info` TO 'php'@'localhost' WITH GRANT OPTION;
+GRANT SELECT ON `Employees`.`employees_info` TO 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
-L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent.
+L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent. Et il ne pourra que lire les données de cette vue (`GRANT SELECT`).
+
+### 21.5 Accès en lecture et écriture à une table spécifique
+Si vous voulez que l'utilisateur php ait accès à une seule table ou une seule vue, vous pouvez faire:
+```sql
+GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees_info` TO 'php'@'localhost';
+FLUSH PRIVILEGES;
+```
+L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent. Et il pourra lire, insérer, mettre à jour et supprimer les données de cette vue (`GRANT SELECT, INSERT, UPDATE, DELETE`).
 
 ### 21.5 Accès à plusieurs tables spécifiques
-Si vous voulez que l'utilisateur php ait accès à plusieurs tables ou vues, vous pouvez faire:
+Si vous voulez que l'utilisateur php ait accès à employees_info et à salaries, vous pouvez faire:
+```sql
+GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees_info` TO 'php'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`salaries` TO 'php'@'localhost';
+FLUSH PRIVILEGES;
+```
+Il n'y a pas de problème à répéter la commande GRANT plusieurs fois pour le même utilisateur. Vous pouvez aussi donner des droits différents pour chaque table. Mais il ne vous sera pas possible de tout faire en une seule commande GRANT.
 
 ## 22. Les sous-requêtes
 Une sous-requête est une requête imbriquée dans une autre requête. Elle est utilisée pour récupérer des données à partir d'une ou plusieurs tables.
 
-### 22.1 Utilisation d'une sous-requête
+### 22.1 Premier exemple
 Supposons que nous voulons trouver les noms des employés qui gagnent plus que le salaire moyen de tous les employés. Voici comment nous pourrions structurer cette requête avec une sous-requête :
 
 ```sql
@@ -2204,6 +2263,40 @@ WHERE s.salary > (
     SELECT AVG(salary) FROM salaries
 );
 ```
+Dans cet exemple, la sous-requête `(SELECT AVG(salary) FROM salaries)` est utilisée pour obtenir le salaire moyen de tous les employés. Ensuite, nous comparons chaque salaire individuel avec le salaire moyen pour filtrer les résultats.
+
+### 22.2 Deuxième exemple
+Voici un autre exemple intéressant qui illustre l'utilisation d'une sous-requête dans une clause SELECT, mais cette fois pour identifier les employés qui travaillent dans un département ayant plus de 60000 employés. Cette requête peut être utile pour identifier les membres d'équipes importantes ou pour analyser la distribution des employés par département.
+
+```sql
+SELECT e.first_name, e.last_name, d.dept_name
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+WHERE d.dept_no IN (
+    SELECT dept_no
+    FROM dept_emp
+    GROUP BY dept_no
+    HAVING COUNT(emp_no) > 60000
+);
+```
+Dans cette requête hypothétique :
+
+- La table employees est supposée contenir les informations sur les employés, avec emp_no comme identifiant de l'employé.
+- La table dept_emp lie les employés aux départements via emp_no pour l'identifiant de l'employé et dept_no pour l'identifiant du département.
+- La table departments contient les noms des départements (dept_name) et leurs identifiants (dept_no).
+
+Cette requête sélectionne les noms des employés et le nom de leur département, pour ceux qui sont dans des départements ayant plus de 10 employés. La sous-requête dans la clause WHERE détermine quels départements ont plus de 60000 employés en comptant le nombre d'emp_no dans dept_emp pour chaque dept_no, en utilisant GROUP BY et HAVING.
+
+### 22.3 Troisième exemple
+```sql
+SELECT p.name, p.full_name,
+       (SELECT COUNT(*)
+        FROM Pays p2
+        WHERE p2.continent = p.continent) AS total_countries_in_continent
+FROM Pays p;
+```
+Dans cet exemple, nous avons une requête qui sélectionne le nom et le nom complet de chaque pays, ainsi que le nombre total de pays dans le même continent. La sous-requête est utilisée pour compter le nombre de pays dans le même continent que le pays actuel.
 
 
 ## 22. CTE (Common Table Expression)
@@ -2232,6 +2325,23 @@ SELECT *
 FROM cte
 WHERE dept_name = 'Sales';
 ```
+Ce code SQL est utilisé pour récupérer les informations (numéro, prénom, nom de famille) des employés actuellement actifs (c'est-à-dire, sans date de fin ou avec une date de fin fixée à '9999-01-01') dans le département des ventes (Sales). La CTE simplifie la gestion de cette requête complexe en segmentant la logique de sélection et de jointure, avant d'appliquer le filtre final sur le département.
+
+### 22.2 Exemple récursif
+Supposons que nous voulions afficher chaque année depuis l'embauche de l'employé ayant l'ID 10001 jusqu'à l'année actuelle.
+```sql
+WITH RECURSIVE years_of_service (year, emp_no) AS (
+  SELECT YEAR(hire_date) AS year, emp_no
+  FROM employees
+  WHERE emp_no = 10001
+  UNION ALL
+  SELECT year + 1, emp_no
+  FROM years_of_service
+  WHERE year < YEAR(CURDATE())
+)
+SELECT year
+FROM years_of_service;
+```
 
 ### 22.2 Différences entre une CTE et une vue
 #### 22.2.1 CTE (Common Table Expression)
@@ -2239,6 +2349,18 @@ WHERE dept_name = 'Sales';
 - Portée : Elle est accessible seulement dans la requête qui la définit, ce qui en fait un bon choix pour structurer des requêtes complexes et pour améliorer la lisibilité sans affecter la base de données avec des objets supplémentaires.
 - Usage : Très utile pour des requêtes récursives, pour décomposer des requêtes complexes en parties plus simples, ou pour effectuer des opérations qui seraient autrement plus complexes ou moins performantes.
 
+#### 22.2.2 Vue
+Une vue est un objet de base de données qui permet de sauvegarder une requête SQL spécifique pour la réutiliser. Contrairement à une CTE, une vue est stockée dans la base de données comme un objet permanent et peut être utilisée comme une table dans les requêtes SQL. Voici quelques caractéristiques principales des vues :
+
+- Permanence : Les vues sont des objets stockés dans la base de données. Une fois créées, elles restent disponibles jusqu'à ce qu'elles soient explicitement supprimées, permettant leur réutilisation dans plusieurs requêtes ou applications.
+
+- Réutilisabilité : Étant donné qu'elles sont stockées comme des objets de la base de données, les vues peuvent être réutilisées dans différentes requêtes par différents utilisateurs, sans nécessiter de redéfinir la logique de la requête originale.
+
+- Sécurité des Données : Les vues peuvent être utilisées pour fournir un niveau d'abstraction et de sécurité des données, en exposant seulement certaines colonnes ou en appliquant des filtres pour restreindre les données accessibles aux utilisateurs.
+
+- Simplification des Requêtes : Les vues permettent de masquer la complexité des requêtes sous-jacentes, offrant une interface simplifiée pour accéder aux données. Cela est particulièrement utile dans les environnements où les utilisateurs finaux ne sont pas familiarisés avec le SQL ou la structure de la base de données.
+
+- Performance : Bien que les vues puissent simplifier l'accès aux données, elles ne stockent pas les données elles-mêmes. Les requêtes qui utilisent des vues exécutent la requête SQL sous-jacente chaque fois qu'elles sont appelées, ce qui peut affecter la performance pour des vues complexes sur de grands volumes de données. Certains SGBD offrent des vues matérialisées, qui stockent le résultat de la requête de la vue sur le disque pour améliorer la performance.
 
 ## 21. Les transactions
 Une transaction est un ensemble d'opérations qui doivent être exécutées ensemble. Si une seule opération échoue, toutes les opérations de la transaction doivent être annulées.
@@ -2258,6 +2380,8 @@ Si une erreur se produit entre START TRANSACTION et COMMIT, le SGBD garantira l'
 Ici, on a considéré qu'il y a assez d'argent sur le compte 1 pour retirer 100 et qu'il n'y a pas de problème pour ajouter 100 sur le compte 2. Si l'une des deux opérations échoue, on annule tout.
 
 Maintenant, on va voir un exemple plus complet avec une vérification de solde avant de faire le débit.
+
+Je vais ici faire du pseudo code pour que vous compreniez bien le principe. En effet, il n'est pas possible de faire un IF dans une transaction. Mais je vais vous montrer comment on pourrait faire. Vous devrez le faire côté application.
 
 ```sql
 -- Démarrage de la transaction
@@ -2280,7 +2404,7 @@ END IF;
 ```
 L'exemple est plus complexe car il vérifie que le solde du compte 1 ne devient pas négatif après le débit. Si c'est le cas, la transaction est annulée. Sinon, le crédit est effectué sur le compte 2 et la transaction est validée.
 
-Mais si le solde a changé au du IF ??? On pourra alors utiliser un FOR UPDATE pour bloquer le compte 1 et éviter que le solde change entre le IF et le UPDATE.
+Mais si le solde a changé au niveau du IF ??? On pourra alors utiliser un FOR UPDATE pour verrouiller (lock) le compte 1 et éviter que le solde change entre le IF et le UPDATE.
 
 ```sql
 -- Démarrage de la transaction
@@ -2302,7 +2426,29 @@ ELSE
 END IF;
 ```
 
-Souvent, on fait cela côté application comme en PHP mais je vous le montre en SQL pour que vous sachiez que c'est possible.
+Souvent, on fait cela côté application comme en PHP mais je vous le montre en SQL pour que vous sachiez que c'est possible. En effet, il n'est pas logique de retirer 100 d'un compte si le solde ne le permet pas. Donc on ne devrait pas faire l'update si le solde est négatif. 
+```sql
+-- Démarrage de la transaction
+START TRANSACTION;
+
+-- Verrouillage pessimiste du solde du compte pour le débit
+SELECT solde FROM comptes WHERE id_compte = 1 FOR UPDATE;
+
+-- Vérification et opérations suivantes
+IF (SELECT solde FROM comptes WHERE id_compte = 1) < 100 THEN
+    ROLLBACK;
+ELSE
+    -- Effectuer le débit
+    UPDATE comptes SET solde = solde - 100 WHERE id_compte = 1;
+    -- Effectuer le crédit avec le verrouillage pessimiste aussi si nécessaire
+    UPDATE comptes SET solde = solde + 100 WHERE id_compte = 2;
+    COMMIT;
+END IF;
+```
+
+Donc, en résumé, une transaction est un ensemble d'opérations qui doivent être exécutées ensemble. Si une seule opération échoue, toutes les opérations de la transaction doivent être annulées. Cela permet de garantir l'intégrité des données.
+
+Le IF n'est pas possible dans une transaction. Vous devrez le faire côté application. Mais je vous ai montré comment on pourrait faire en SQL. Le IF est utilisable dans une procédure stockée ou une fonction.
 
 
 ## 30.
