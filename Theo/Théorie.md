@@ -151,9 +151,9 @@
     - [21.5 Accès en lecture et écriture à une table spécifique](#215-accès-en-lecture-et-écriture-à-une-table-spécifique)
     - [21.5 Accès à plusieurs tables spécifiques](#215-accès-à-plusieurs-tables-spécifiques)
   - [22. Les sous-requêtes](#22-les-sous-requêtes)
-    - [22.1 Premier exemple](#221-premier-exemple)
-    - [22.2 Deuxième exemple](#222-deuxième-exemple)
-    - [22.3 Troisième exemple](#223-troisième-exemple)
+    - [22.1 1. Sous-requêtes corrélées](#221-1-sous-requêtes-corrélées)
+    - [22.2 Sous-requête de liste](#222-sous-requête-de-liste)
+    - [22.3 Sous-requêtes scalaires/de colonnes](#223-sous-requêtes-scalairesde-colonnes)
   - [22. CTE (Common Table Expression)](#22-cte-common-table-expression)
     - [22.1 Utilisation d'une CTE](#221-utilisation-dune-cte)
     - [22.2 Exemple récursif](#222-exemple-récursif)
@@ -2253,8 +2253,10 @@ Il n'y a pas de problème à répéter la commande GRANT plusieurs fois pour le 
 ## 22. Les sous-requêtes
 Une sous-requête est une requête imbriquée dans une autre requête. Elle est utilisée pour récupérer des données à partir d'une ou plusieurs tables.
 
-### 22.1 Premier exemple
-Supposons que nous voulons trouver les noms des employés qui gagnent plus que le salaire moyen de tous les employés. Voici comment nous pourrions structurer cette requête avec une sous-requête :
+### 22.1 1. Sous-requêtes corrélées
+- <u>**Définition**</u>: Une sous-requête corrélée est exécutée une fois pour chaque ligne traitée par la requête principale. Elle peut référencer des colonnes de la requête externe.
+
+- <u>**Exemple**</u>: Supposons que nous voulons trouver les noms des employés qui gagnent plus que le salaire moyen de tous les employés. Voici comment nous pourrions structurer cette requête avec une sous-requête :
 
 ```sql
 SELECT e.first_name, e.last_name, s.salary
@@ -2266,8 +2268,9 @@ WHERE s.salary > (
 ```
 Dans cet exemple, la sous-requête `(SELECT AVG(salary) FROM salaries)` est utilisée pour obtenir le salaire moyen de tous les employés. Ensuite, nous comparons chaque salaire individuel avec le salaire moyen pour filtrer les résultats.
 
-### 22.2 Deuxième exemple
-Voici un autre exemple intéressant qui illustre l'utilisation d'une sous-requête dans une clause SELECT, mais cette fois pour identifier les employés qui travaillent dans un département ayant plus de 60000 employés. Cette requête peut être utile pour identifier les membres d'équipes importantes ou pour analyser la distribution des employés par département.
+### 22.2 Sous-requête de liste
+- <u>**Définition**</u>: Une sous-requête de liste est une forme de sous-requête SQL qui retourne un ensemble de zéro ou plusieurs valeurs. Elle est généralement utilisée avec des opérateurs conditionnels tels que IN, NOT IN, ANY, SOME, ou ALL dans la clause WHERE (ou parfois HAVING) d'une requête principale pour tester si les valeurs d'une colonne correspondent à n'importe quelle valeur dans l'ensemble retourné par la sous-requête.
+- <u>**Exemple**</u>: Voici un autre exemple intéressant qui illustre l'utilisation d'une sous-requête dans une clause SELECT, mais cette fois pour identifier les employés qui travaillent dans un département ayant plus de 60000 employés. Cette requête peut être utile pour identifier les membres d'équipes importantes ou pour analyser la distribution des employés par département.
 
 ```sql
 SELECT e.first_name, e.last_name, d.dept_name
@@ -2289,14 +2292,18 @@ Dans cette requête hypothétique :
 
 Cette requête sélectionne les noms des employés et le nom de leur département, pour ceux qui sont dans des départements ayant plus de 10 employés. La sous-requête dans la clause WHERE détermine quels départements ont plus de 60000 employés en comptant le nombre d'emp_no dans dept_emp pour chaque dept_no, en utilisant GROUP BY et HAVING.
 
-### 22.3 Troisième exemple
+### 22.3 Sous-requêtes scalaires/de colonnes
+- <u>**Définition**</u>: Ces sous-requêtes retournent une seule valeur (c'est-à-dire un seul élément scalaire) pour chaque ligne traitée dans la requête principale. Elles sont souvent utilisées pour effectuer des calculs ou obtenir des informations spécifiques qui sont ensuite incluses comme colonnes supplémentaires dans les résultats de la requête principale.
+- <u>**Exemple**</u>: Supposons que nous voulions obtenir le nom et le nom complet de chaque pays, le continent ainsi que le nombre total de pays dans le même continent. Voici comment nous pourrions structurer cette requête avec une sous-requête scalaire :
+
 ```sql
-SELECT p.name, p.full_name,
+SELECT p.name, p.full_name, p.continent,
        (SELECT COUNT(*)
         FROM Pays p2
         WHERE p2.continent = p.continent) AS total_countries_in_continent
 FROM Pays p;
 ```
+
 Dans cet exemple, nous avons une requête qui sélectionne le nom et le nom complet de chaque pays, ainsi que le nombre total de pays dans le même continent. La sous-requête est utilisée pour compter le nombre de pays dans le même continent que le pays actuel.
 
 

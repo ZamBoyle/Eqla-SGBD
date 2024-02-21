@@ -63,6 +63,13 @@
 - [Exercice n°40 - FUNCTIONS avec paramètres](#exercice-n40---functions-avec-paramètres)
 - [Exercice n°41 - FUNCTIONS avec paramètres](#exercice-n41---functions-avec-paramètres)
 - [Exercice n°42 - ALTER TABLE](#exercice-n42---alter-table)
+- [Exercice n°43 - Création d'utilisateurs](#exercice-n43---création-dutilisateurs)
+- [Exercice n°44 - Attribution de Privilèges](#exercice-n44---attribution-de-privilèges)
+- [Exercice n°45 - Limitation des privilèges](#exercice-n45---limitation-des-privilèges)
+- [Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs](#exercice-n46---révocation-de-privilèges-et-suppression-dutilisateurs)
+- [Exercice n°47 - Création d'un Utilisateur pour une Application](#exercice-n47---création-dun-utilisateur-pour-une-application)
+- [Exercice n°48 - Sous-requêtes de liste](#exercice-n48---sous-requêtes-de-liste)
+- [Exercice n°49 - Les index](#exercice-n49---les-index)
 
 <!-- /code_chunk_output -->
 
@@ -1184,6 +1191,23 @@ DELIMITER ;
 - 10006
 11. Soit vous faites une requête par employé, soit vous faites une requête qui affiche l'ancienneté de tous les employés et vous utilisez la clause `WHERE` pour ne garder que les employés dont l'`emp_no` est dans la liste ci-dessus: il serait peut-être intéressant d'utiliser IN dans le WHERE de votre requête SQL. ;-)
 
+```sql
+DELIMITER $$
+
+CREATE FUNCTION CalculerAnciennete(emp_id INT) RETURNS INT
+BEGIN
+    DECLARE anciennete INT;
+    SELECT (YEAR(CURDATE()) - YEAR(hire_date)) INTO anciennete
+    FROM employees
+    WHERE emp_no = emp_id;
+    RETURN anciennete;
+END;
+
+$$
+DELIMITER ;
+```
+
+
 ## Exercice n°42 - ALTER TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
@@ -1219,24 +1243,115 @@ INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Laura',
 10. Modifier la taille du champ 'nom' pour qu'il puisse contenir 100 caractères.
 10. Supprimez le champ 'date_embauche'.
 
+## Exercice n°43 - Création d'utilisateurs
+Objectif : Créer deux utilisateurs, un pour un usage local et un autre pour un usage distant.
 
-<!-- 
+1. Créez un utilisateur local_user qui peut se connecter uniquement depuis la machine locale (localhost). Assurez-vous que l'utilisateur a un mot de passe sécurisé.
+2. Créez un utilisateur remote_user qui peut se connecter depuis n'importe quel hôte (%). Utilisez également un mot de passe sécurisé pour cet utilisateur.
+
+## Exercice n°44 - Attribution de Privilèges
+Objectif : Attribuer des privilèges spécifiques à des utilisateurs pour des bases de données spécifiques.
+
+- Attribuez à local_user des privilèges de lecture (SELECT) sur toutes les tables de la base de données Employees.
+- Donnez à remote_user des privilèges de lecture (SELECT), d'écriture (INSERT, UPDATE) et de suppression (DELETE) sur la base de données Inventory.
+
+## Exercice n°45 - Limitation des privilèges
+Objectif : Créer un utilisateur avec des privilèges limités à une seule table.
+
+1. Créez un utilisateur report_user avec un accès en lecture seule (SELECT) à la table employees_info dans la base de données Employees.
+
+## Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs
+Objectif : Pratiquer la révocation de privilèges et la suppression d'utilisateurs.
+
+- Révoquez tous les privilèges de remote_user sur la base de données Inventory.
+- Supprimez l'utilisateur remote_user de MySQL.
+
+## Exercice n°47 - Création d'un Utilisateur pour une Application
+Objectif : Créer un utilisateur spécifique pour une application web.
+
+- Créez un utilisateur web_app qui peut se connecter depuis l'adresse IP spécifique de votre serveur web.
+- Attribuez à cet utilisateur des privilèges SELECT, INSERT, UPDATE sur une base de données nommée BlindCode2.
+
+
+## Exercice n°48 - Sous-requêtes de liste
+Ces exercices vous seront sans doute difficiles, mais ils sont très importants pour comprendre les sous-requêtes. Lisez bien ce qu'on demande et essayez de comprendre les requêtes.
+
+Procédez par étapes, ne cherchez pas à faire la requête complète d'un coup. Essayez d'abord de faire les sous-requêtes de liste, puis les sous-requêtes scalaires.
+
+Je vais vous laisser marinier un peu avec ces exercices car j'ai tendance à trop vite vous aider. On les corrigera ensemble en classe. ;-)
+
+Bref, c'est un peu comme un bon petit plat mijoté, ça prend du temps, mais c'est tellement bon quand c'est prêt. :-)
+
+### 1. Sous-requêtes de liste
+- DB employees.
+- Affichez les noms des départements qui n'ont pas d'employés nés avant 1950.
+<!--
 ```sql
-DELIMITER $$
-
-CREATE FUNCTION CalculerAnciennete(emp_id INT) RETURNS INT
-BEGIN
-    DECLARE anciennete INT;
-    SELECT (YEAR(CURDATE()) - YEAR(hire_date)) INTO anciennete
-    FROM employees
-    WHERE emp_no = emp_id;
-    RETURN anciennete;
-END;
-
-$$
-DELIMITER ;
+SELECT d.dept_name
+FROM departments d
+WHERE d.dept_no NOT IN (
+    SELECT de.dept_no
+    FROM dept_emp de
+    INNER JOIN employees e ON de.emp_no = e.emp_no
+    WHERE e.birth_date < '1950-01-01'
+);
 ```
 -->
+### 2. Sous-requêtes Scalaires
+- DB employees.
+- Afficher pour chaque employé son nom et le nombre total d'employés dans son département.
+
+Petite astuce, une personne est toujours dans un département si elle a un enregistrement dans la table dept_emp avec une date de fin égale à '9999-01-01'.
+
+Vous aurez besoin des tables employees et 2x dept_emp: ici utiliser des alias sera très utile pour différencier les deux tables dept_emp par exemple de et de2 et e pour employees.
+<!--
+```sql
+SELECT e.first_name, e.last_name,
+    (SELECT COUNT(*)
+     FROM dept_emp de2
+     WHERE de2.dept_no = de.dept_no) AS nb_employees total_employees_in_dept
+FROM employees e
+INNER JOIN dept_emp de ON e.emp_no = de.emp_no
+WHERE de.to_date = '9999-01-01';
+```
+-->
+
+### 3. Sous-requêtes corrélées
+- DB employees.
+- Affichez les employés qui ont un salaire supérieur à la moyenne des salaires. Champs à afficher: emp_no, nom, prénom, salaire et la moyenne des salaires.
+<!--
+```sql
+SELECT DISTINCT e.emp_no, e.first_name, e.last_name, s.salary, (SELECT AVG(salary) FROM salaries) AS avg_salary
+FROM salaries s
+INNER JOIN employees e ON s.emp_no = e.emp_no
+WHERE s.salary > (SELECT AVG(salary) FROM salaries);
+```
+J'ai une redondance car j'ai deux fois la même sous-requête:
+```sql
+SELECT AVG(salary) FROM salaries
+```
+C'est le plus simple à faire, mais ce n'est pas très performant. 
+Voici une autre manière de faire:
+```sql
+-- On stocke la moyenne des salaires dans une variable
+SET @moyenne_salaires = (SELECT AVG(salary) FROM salaries);
+-- On utilise la variable pour le select
+SELECT DISTINCT e.emp_no, e.first_name, e.last_name, s.salary, @moyenne_salaires 
+FROM salaries s
+INNER JOIN employees e ON s.emp_no = e.emp_no
+-- On utilise la variable pour faire la comparaison
+WHERE s.salary > @moyenne_salaires;
+```
+Ici, on ne fait qu'une seule fois la moyenne des salaires et on la stocke dans une variable. C'est plus performant.
+-->
+
+## Exercice n°49 - Les index
+- DB employees.
+- Vous constatez que vous faites souvent des requêtes sur le champ `birth_date` de la table `employees`. Pour améliorer les performances, vous décidez de créer un index sur ce champ.
+- Créez un index sur le champ `birth_date` de la table `employees`.
+
+
+
 
 
 ---
