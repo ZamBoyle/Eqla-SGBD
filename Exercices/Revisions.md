@@ -168,7 +168,7 @@ On supprimera de la table livre le champ date achat si vous l'aviez mis.
 Un livre peut avoir 1 ou plusieurs exemplaires.
 
 ### 6.3 Table emprunt
-La différence c'est que l'emprunt portera maintenant sur un exemplaire de livre et nom directement sur le livre.
+La différence c'est que l'emprunt portera maintenant sur un exemplaire de livre et non directement sur le livre.
 
 Un emprunt porte sur 1 et 1 seul exemplaire.
 
