@@ -1837,7 +1837,7 @@ Maintenant, tu dois mettre à jour la table Commande pour qu'elle fasse référe
 Tu dois d'abord modifier la colonne PersonID dans la table Commande pour qu'elle corresponde au nouveau nom de colonne référencée.
   
 ```sql
-ALTER TABLE Commande CHANGE PersonID PersonID int UNSIGNED NOT NULL;
+ALTER TABLE Commande CHANGE PersonID person_id int UNSIGNED NOT NULL;
 ```
 Cette étape peut sembler redondante, mais elle est nécessaire si tu souhaites ajuster des attributs de colonne ou si le système de gestion de base de données exige une modification explicite avant de recréer les contraintes.
 
