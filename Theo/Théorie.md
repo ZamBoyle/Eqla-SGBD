@@ -2150,7 +2150,8 @@ Pour modifier une fonction:
 ```sql
 DROP FUNCTION price_tvac;
 ```
-- Vous la recréez comme vu précédemment.
+- Vous la recréez comme vu précédemment mais auparavant, je vous conseille d'utiliser commande `SHOW CREATE FUNCTION price_tvac` pour voir la définition de la fonction. Cela vous permettra de ne pas perdre la définition de la fonction.
+
 
 ## 21. Création d'un utilisateur
 Pour créer un utilisateur, il faut utiliser la commande `CREATE USER`.
