@@ -15,7 +15,7 @@
 - [Introduction](#introduction)
 - [Copier les DB exercices](#copier-les-db-exercices)
 - [Exercice n°1 - Importation des fichiers de base de données](#exercice-n1---importation-des-fichiers-de-base-de-données)
-- [Exercice n°2 - Notre premier SELECT \*](#exercice-n2---notre-premier-select-)
+- [Exercice n°2 - Notre premier SELECT *](#exercice-n2---notre-premier-select-)
 - [Exercice n°3 - SELECT ch1, ch2, etc.](#exercice-n3---select-ch1-ch2-etc)
 - [Exercice n°4 - Notre premier WHERE](#exercice-n4---notre-premier-where)
 - [Exercice n°5 - WHERE   AND](#exercice-n5---where---and)
@@ -31,7 +31,7 @@
 - [Exercice n°15 - ORDER BY](#exercice-n15---order-by)
 - [Exercice n°16 - AVG](#exercice-n16---avg)
 - [Exercice n°17.1 - MIN, MAX, SUM](#exercice-n171---min-max-sum)
-- [Exercice n°17.2 - COUNT(\*)](#exercice-n172---count)
+- [Exercice n°17.2 - COUNT(*)](#exercice-n172---count)
 - [Exercice n°17.3 - COUNT(champ)](#exercice-n173---countchamp)
 - [Exercice n°18 - GROUP BY](#exercice-n18---group-by)
 - [Exercice n°19 - GROUP BY](#exercice-n19---group-by)
@@ -42,14 +42,10 @@
 - [Exercice n°24 - INNER JOIN](#exercice-n24---inner-join)
 - [Exercice n°25.1 - INNER JOIN](#exercice-n251---inner-join)
 - [Exercice n°25.2 - Nouvelle DB !! :-) - employees](#exercice-n252---nouvelle-db------employees)
-- [Utilisation de LIMIT](#utilisation-de-limit)
 - [Exercice n°25.3 - INNER JOIN](#exercice-n253---inner-join)
 - [Exercice n°25.4 - INNER JOIN](#exercice-n254---inner-join)
 - [Exercice n°25.5 - INNER JOIN - Analyse des titres d'emploi et des salaires](#exercice-n255---inner-join---analyse-des-titres-demploi-et-des-salaires)
 - [Exercice n°25.6 - INNER JOIN](#exercice-n256---inner-join)
-  - [Introduction](#introduction-1)
-  - [Exercices](#exercices)
-  - [Solutions](#solutions)
 - [Exercice n°26 - CREATE DATABASE / CREATE TABLE](#exercice-n26---create-database--create-table)
 - [Exercice n°27 - CREATE DATABASE / CREATE TABLE](#exercice-n27---create-database--create-table)
 - [Exercice n°28 - INSERT INTO](#exercice-n28---insert-into)
@@ -66,6 +62,7 @@
 - [Exercice n°39 - FUNCTIONS avec paramètres](#exercice-n39---functions-avec-paramètres)
 - [Exercice n°40 - FUNCTIONS avec paramètres](#exercice-n40---functions-avec-paramètres)
 - [Exercice n°41 - FUNCTIONS avec paramètres](#exercice-n41---functions-avec-paramètres)
+- [Exercice n°42 - ALTER TABLE](#exercice-n42---alter-table)
 
 <!-- /code_chunk_output -->
 
@@ -1186,6 +1183,42 @@ DELIMITER ;
 - 10562
 - 10006
 11. Soit vous faites une requête par employé, soit vous faites une requête qui affiche l'ancienneté de tous les employés et vous utilisez la clause `WHERE` pour ne garder que les employés dont l'`emp_no` est dans la liste ci-dessus: il serait peut-être intéressant d'utiliser IN dans le WHERE de votre requête SQL. ;-)
+
+## Exercice n°42 - ALTER TABLE
+1. Allez dans le répertoire d'exercices SQL
+2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
+3. Entrez votre mot de passe.
+4. Créez une base de données qui s'appellera exercice42: avec le charset utf8mb4 et le collate utf8mb4_unicode_ci.
+5. Copiez le code suivant:
+```sql
+USE exercice42;
+CREATE TABLE employe (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    prenon VARCHAR(50) NOT NULL,
+    nom VARCHAR(50) NOT NULL,
+    datenaissance DATE NOT NULL,
+    date_embauche DATE NULL
+);
+
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Alexandre', 'Dupont', '1985-04-12', '2010-06-01');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Marie', 'Durand', '1990-07-23', '2015-09-15');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Lucas', 'Martin', '1978-02-17', '2005-01-20');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Émilie', 'Petit', '1982-11-30', '2008-03-05');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Thomas', 'Leroy', '1974-06-04', '2000-12-01');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Julie', 'Roux', '1989-09-19', '2014-05-12');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Nicolas', 'David', '1983-01-24', '2011-07-23');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Sophie', 'Moreau', '1979-03-15', '2007-08-30');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Clément', 'Simon', '1986-08-05', '2012-11-09');
+INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Laura', 'Michel', '1992-12-21', '2018-02-19');
+
+```
+6. Ajoutez un champ nommé 'tel' de type VARCHAR(20) à la table employe.
+7. Ajoutez un champ nommé 'email' de type VARCHAR(50) à la table employe.
+8. Renommez le champ 'prenon' en 'prenom'.
+9. Renommez le champ 'datenaissance' en 'date_naissance'.
+10. Modifier la taille du champ 'nom' pour qu'il puisse contenir 100 caractères.
+10. Supprimez le champ 'date_embauche'.
+
 
 <!-- 
 ```sql
