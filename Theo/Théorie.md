@@ -2212,13 +2212,6 @@ FLUSH PRIVILEGES;
 
 - `FLUSH PRIVILEGES`: Cette commande force le système de gestion de base de données à recharger les tables de privilèges. Cela signifie que tous les changements de privilèges que vous avez faits seront pris en compte immédiatement. Sans cette commande, il se pourrait que certains changements ne soient pas appliqués immédiatement, en particulier si vous avez modifié directement les tables de privilèges sans passer par les commandes `GRANT` ou `CREATE USER`.
 
-Ces commandes ensemble permettent de créer un utilisateur avec un accès complet à toutes les bases de données depuis la machine locale, et lui donnent également la capacité d'accorder ces privilèges à d'autres utilisateurs. Il est important de comprendre et de contrôler l'attribution des privilèges pour sécuriser votre base de données.
-
-
-
-
-
-
 ### 21.2 Création d'un utilisateur de la db pour une utilisation externe
 ```sql
 CREATE USER 'php'@'%' IDENTIFIED BY 'php';
@@ -2242,9 +2235,9 @@ FLUSH PRIVILEGES;
 L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent. Et il ne pourra que lire les données de cette vue (`GRANT SELECT`).
 
 ### 21.5 Accès en lecture et écriture à une table spécifique
-Si vous voulez que l'utilisateur php ait accès à une seule table ou une seule vue, vous pouvez faire:
+Si vous voulez que l'utilisateur php ait tous droit sur la table `employees`, vous pouvez faire:
 ```sql
-GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees_info` TO 'php'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees` TO 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
 L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent. Et il pourra lire, insérer, mettre à jour et supprimer les données de cette vue (`GRANT SELECT, INSERT, UPDATE, DELETE`).
