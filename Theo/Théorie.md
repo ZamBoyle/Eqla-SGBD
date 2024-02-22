@@ -2165,7 +2165,7 @@ Ces utilisateurs peuvent être des utilisateurs locaux ou des utilisateurs dista
 
 Il est conseillé de créer des utilisateurs avec des droits limités. Par exemple, si un utilisateur n'a besoin que de lire des données, il ne faut pas lui donner des droits d'écriture.
 
-Un utilisateur par application est une bonne pratique: de cette manière si un utilisateur est compromis, seul l'application est compromise et pas toute la base de données.
+Un utilisateur par application est une bonne pratique: de cette manière si un utilisateur est compromis, seul l'application est compromise et sa la base de données mais pas les autres bases de données.
 
 ### 21.1 Création d'un utilisateur de la db pour php
 Il est recommandé de créer un utilisateur pour chaque application qui se connecte à la base de données. Cela permet de limiter les droits de chaque application. Nous allons créer un utilisateur pour PHP pour simplifier les choses. Mais le principe est le même pour chaque application.

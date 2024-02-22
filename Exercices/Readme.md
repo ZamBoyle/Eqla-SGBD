@@ -1207,7 +1207,6 @@ $$
 DELIMITER ;
 ```
 
-
 ## Exercice n°42 - ALTER TABLE
 1. Allez dans le répertoire d'exercices SQL
 2. Connectez-vous au SGBD MySQL: **mysql -u root -p** (Si vous n'êtes pas connecté)
