@@ -1246,14 +1246,14 @@ INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Laura',
 ## Exercice n°43 - Création d'utilisateurs
 Objectif : Créer deux utilisateurs, un pour un usage local et un autre pour un usage distant.
 
-1. Créez un utilisateur local_user qui peut se connecter uniquement depuis la machine locale (localhost). Assurez-vous que l'utilisateur a un mot de passe sécurisé.
-2. Créez un utilisateur remote_user qui peut se connecter depuis n'importe quel hôte (%). Utilisez également un mot de passe sécurisé pour cet utilisateur.
+1. Créez un utilisateur local_user qui peut se connecter uniquement depuis la machine locale (localhost). Assurez-vous que l'utilisateur a un mot de passe.
+2. Créez un utilisateur remote_user qui peut se connecter depuis n'importe quel hôte (%). 
 
 ## Exercice n°44 - Attribution de Privilèges
 Objectif : Attribuer des privilèges spécifiques à des utilisateurs pour des bases de données spécifiques.
 
 - Attribuez à local_user des privilèges de lecture (SELECT) sur toutes les tables de la base de données Employees.
-- Donnez à remote_user des privilèges de lecture (SELECT), d'écriture (INSERT, UPDATE) et de suppression (DELETE) sur la base de données Inventory.
+- Donnez à remote_user des privilèges de lecture sur la vue `inactive_employees` (crée à l'exercice n°35) dans la base de données Employees.
 
 ## Exercice n°45 - Limitation des privilèges
 Objectif : Créer un utilisateur avec des privilèges limités à une seule table.
@@ -1276,7 +1276,11 @@ Objectif : Créer un utilisateur spécifique pour une application web.
 ## Exercice n°48 - Sous-requêtes de liste
 Ces exercices vous seront sans doute difficiles, mais ils sont très importants pour comprendre les sous-requêtes. Lisez bien ce qu'on demande et essayez de comprendre les requêtes.
 
-Procédez par étapes, ne cherchez pas à faire la requête complète d'un coup. Essayez d'abord de faire les sous-requêtes de liste, puis les sous-requêtes scalaires.
+Procédez par étapes, ne cherchez pas à faire la requête complète d'un coup. Essayez d'abord de faire la sous-requête et la requête principale séparément. Après, vous pourrez les combiner avec un peu de réflexion.
+
+Utilisez Internet pour vous documenter si le cours ne suffit pas. Mais bon, heuuu évitez peut-être ChatGPT & co... ;-)
+
+> N'oubliez pas, ce n'est pas parce que vous voyez une requête que vous savez la faire. Il faut la comprendre et la refaire de zéro.
 
 Je vais vous laisser marinier un peu avec ces exercices car j'ai tendance à trop vite vous aider. On les corrigera ensemble en classe. ;-)
 

@@ -150,6 +150,10 @@
     - [21.4 Accès à une table spécifique en lecture seule](#214-accès-à-une-table-spécifique-en-lecture-seule)
     - [21.5 Accès en lecture et écriture à une table spécifique](#215-accès-en-lecture-et-écriture-à-une-table-spécifique)
     - [21.5 Accès à plusieurs tables spécifiques](#215-accès-à-plusieurs-tables-spécifiques)
+    - [21.6 Révocation de Privilèges et Suppression d'Utilisateurs](#216-révocation-de-privilèges-et-suppression-dutilisateurs)
+      - [1. Révocation de privilèges](#1-révocation-de-privilèges)
+      - [2. Suppression d'utilisateurs](#2-suppression-dutilisateurs)
+    - [22.6 Modification du mot de passe d'un utilisateur](#226-modification-du-mot-de-passe-dun-utilisateur)
   - [22. Les sous-requêtes](#22-les-sous-requêtes)
     - [22.1 1. Sous-requêtes corrélées](#221-1-sous-requêtes-corrélées)
     - [22.2 Sous-requête de liste](#222-sous-requête-de-liste)
@@ -2181,6 +2185,8 @@ CREATE USER 'php'@'localhost' IDENTIFIED BY 'php';
 - `'php'@'localhost'`: Ici, `'php'` est le nom de l'utilisateur que vous créez. L'adresse `'localhost'` spécifie que cet utilisateur aura uniquement le droit de se connecter à la base de données depuis la machine locale. En d'autres termes, une connexion distante utilisant cet utilisateur sera refusée. Le format est `'nom_utilisateur'@'hôte'`.
 - `IDENTIFIED BY 'php'`: Cette partie de la commande définit le mot de passe de l'utilisateur. Dans ce cas, le mot de passe est également `'php'`. Il est crucial de choisir un mot de passe fort dans un environnement de production pour sécuriser l'accès à la base de données.
 
+> Ca signifie aussi que vous pouvez avoir deux mots de passe différents pour le même utilisateur. Un pour une connexion locale (localhost) et un pour une connexion distante (%).
+
 **2. Attribution de privilèges**
 
 ```sql
@@ -2192,7 +2198,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'php'@'localhost' WITH GRANT OPTION;
 - `ON *.*`: Ici, le premier `*` fait référence à toutes les bases de données, et le deuxième `*` à toutes les tables au sein de ces bases de données. Ensemble, `*.*` signifie que les privilèges sont accordés sur toutes les bases de données et toutes leurs tables.
 > Donc, dans une utilisation en production, il faudra remplacer `*.*` par le nom de la base de données à laquelle l'utilisateur aura accès. Car il est en effet très risqué de donner tous les privilèges à un utilisateur surtout s'il utilisé par une application. Par exemple, on donne accès à la base de données Pays: **ON `Pays`.\***
 
-- `TO 'php'@'localhost'`: Cette partie spécifie à quel utilisateur les privilèges sont accordés, en reprenant le format `'nom_utilisateur'@'hôte'`.
+- `TO 'php'@'localhost'`: Cette partie spécifie à quel utilisateur les privilèges sont accordés, en reprenant le format `'nom_utilisateur'@'hôte'`. où hôte peut être localhost, %, un nom de domaine, voire une adresse IP.
 - `WITH GRANT OPTION`: Cette option permet à l'utilisateur non seulement d'avoir tous les privilèges mais aussi de les accorder à d'autres utilisateurs. C'est un niveau élevé de privilège qui doit être accordé avec une grande prudence.
 > Il est très rare que vous ayez besoin d'accorder cette option à un utilisateur. C'est une bonne pratique de limiter les privilèges à ce qui est strictement nécessaire pour l'utilisateur.
 
@@ -2249,6 +2255,56 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`salaries` TO 'php'@'localho
 FLUSH PRIVILEGES;
 ```
 Il n'y a pas de problème à répéter la commande GRANT plusieurs fois pour le même utilisateur. Vous pouvez aussi donner des droits différents pour chaque table. Mais il ne vous sera pas possible de tout faire en une seule commande GRANT.
+
+Pour intégrer l'exercice n°46 dans votre cours, en se basant sur le contenu du PDF que vous avez fourni, voici un chapitre théorique adapté :
+
+
+### 21.6 Révocation de Privilèges et Suppression d'Utilisateurs
+
+#### 1. Révocation de privilèges 
+Pour maintenir la sécurité de la base de données, il est parfois nécessaire de révoquer des privilèges accordés aux utilisateurs. Utilisez la commande `REVOKE` pour retirer des privilèges spécifiques ou tous les privilèges d'un utilisateur sur une base de données ou des tables spécifiques.
+
+**Syntaxe :**
+```sql
+REVOKE privilège ON base_de_données.table FROM 'utilisateur'@'hôte';
+```
+où `privilège` est le privilège à révoquer, `base_de_données.table` est la base de données et la table sur laquelle le privilège doit être révoqué, et `utilisateur`@`hôte` est l'utilisateur et l'hôte pour lesquels le privilège doit être révoqué.
+
+**Exemple 1**
+```sql
+REVOKE SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees_info` FROM 'php'@'localhost';
+```
+
+Cette commande révoque les privilèges de sélection, d'insertion, de mise à jour et de suppression de la table `employees_info` de la base de données `Employees` pour l'utilisateur `php`@`localhost`.
+
+
+**Exemple 2**: 
+```sql
+REVOKE ALL PRIVILEGES ON `Pays`.* FROM 'php'@'localhost';
+```
+
+Cette commande révoque tous les privilèges de la base de données `Pays` pour l'utilisateur `php`@`localhost`.
+
+**Exemple 3**
+```sql
+REVOKE ALL PRIVILEGES ON nom_de_la_base_de_données.nom_de_la_table FROM 'utilisateur'@'hôte';
+```
+
+Cette commande révoque tous les privilèges de la table `nom_de_la_table` de la base de données `nom_de_la_base_de_données` pour l'utilisateur `utilisateur`@`hôte`.
+
+#### 2. Suppression d'utilisateurs
+Lorsqu'un utilisateur n'est plus nécessaire, il est important de le supprimer pour éviter tout accès non autorisé. La commande `DROP USER` est utilisée pour supprimer un utilisateur de MySQL.
+
+**Syntaxe :**
+```sql
+DROP USER 'utilisateur'@'hôte';
+```
+---
+
+
+
+### 22.6 Modification du mot de passe d'un utilisateur
+
 
 ## 22. Les sous-requêtes
 Une sous-requête est une requête imbriquée dans une autre requête. Elle est utilisée pour récupérer des données à partir d'une ou plusieurs tables.
