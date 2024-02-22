@@ -68,9 +68,10 @@
 - [Exercice n°45 - Limitation des privilèges](#exercice-n45---limitation-des-privilèges)
 - [Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs](#exercice-n46---révocation-de-privilèges-et-suppression-dutilisateurs)
 - [Exercice n°47 - Création d'un Utilisateur pour une Application](#exercice-n47---création-dun-utilisateur-pour-une-application)
-- [Exer](#exer)
-- [Exercice n°48 - Sous-requêtes de liste](#exercice-n48---sous-requêtes-de-liste)
-- [Exercice n°49 - Les index](#exercice-n49---les-index)
+- [Exercice n°48 - Création de l'utilisateur php_user](#exercice-n48---création-de-lutilisateur-php_user)
+- [Exercice n°49 - Révocation du privilège GRANT OPTION](#exercice-n49---révocation-du-privilège-grant-option)
+- [Exercice n°50 - Sous-requêtes de liste](#exercice-n50---sous-requêtes-de-liste)
+- [Exercice n°51 - Les index](#exercice-n51---les-index)
 
 <!-- /code_chunk_output -->
 
@@ -1282,9 +1283,22 @@ Objectif : Créer un utilisateur spécifique pour une application web.
 - Assurez-vous que cet utilisateur a bien été créé avec la commande `SELECT` appropriée.
 - Assurez-vous que les privilèges ont bien été révoqués avec la commande `SHOW GRANTS` appropriée.
 
-## Exer
+## Exercice n°48 - Création de l'utilisateur php_user
+Objectif : Créer un utilisateur spécifique pour une application web. Cet utilisateur aura des privilèges sur toutes les bases de données et pourra donner des privilèges à d'autres utilisateurs.
 
-## Exercice n°48 - Sous-requêtes de liste
+- Créez un utilisateur php_user qui peut se connecter depuis localhost.
+- Créez un utilisateur php_user qui peut se connecter depuis n'importe quel hôte.
+- Assurez-vous que ces utilisateurs ont bien été créés avec la commande `SELECT` appropriée.
+- Assurez-vous que les privilèges ont bien été attribués pour ces utilisateurs avec la commande `SHOW GRANTS` appropriée.
+
+## Exercice n°49 - Révocation du privilège GRANT OPTION
+Objectif : Pratiquer la révocation du privilège GRANT OPTION.
+
+- Révoquez le privilège GRANT OPTION de l'utilisateur php_user tant local que distant.
+- Assurez-vous que les privilèges ont bien été révoqués avec la commande `SHOW GRANTS` appropriée.
+
+
+## Exercice n°50 - Sous-requêtes de liste
 Ces exercices vous seront sans doute difficiles, mais ils sont très importants pour comprendre les sous-requêtes. Lisez bien ce qu'on demande et essayez de comprendre les requêtes.
 
 Procédez par étapes, ne cherchez pas à faire la requête complète d'un coup. Essayez d'abord de faire la sous-requête et la requête principale séparément. Après, vous pourrez les combiner avec un peu de réflexion.
@@ -1360,7 +1374,7 @@ WHERE s.salary > @moyenne_salaires;
 Ici, on ne fait qu'une seule fois la moyenne des salaires et on la stocke dans une variable. C'est plus performant.
 -->
 
-## Exercice n°49 - Les index
+## Exercice n°51 - Les index
 - DB employees.
 - Vous constatez que vous faites souvent des requêtes sur le champ `birth_date` de la table `employees`. Pour améliorer les performances, vous décidez de créer un index sur ce champ.
 - Créez un index sur le champ `birth_date` de la table `employees`.

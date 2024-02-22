@@ -156,6 +156,7 @@
       - [2. Suppression d'utilisateurs](#2-suppression-dutilisateurs)
     - [21.8 Modification du mot de passe d'un utilisateur](#218-modification-du-mot-de-passe-dun-utilisateur)
     - [21.9 Vérification des utilisateurs](#219-vérification-des-utilisateurs)
+    - [21.10 Suppression du privilège GRANT OPTION](#2110-suppression-du-privilège-grant-option)
   - [22. Les sous-requêtes](#22-les-sous-requêtes)
     - [22.1 1. Sous-requêtes corrélées](#221-1-sous-requêtes-corrélées)
     - [22.2 Sous-requête de liste](#222-sous-requête-de-liste)
@@ -2307,6 +2308,12 @@ ALTER USER 'php'@'%' IDENTIFIED BY 'mot_de_passe';
 Pour vérifier les utilisateurs, utilisez la commande `SELECT`
 ```sql
 SELECT user, host FROM mysql.user;
+```
+
+### 21.10 Suppression du privilège GRANT OPTION
+Si vous avez donné le privilège GRANT OPTION à un utilisateur et que vous voulez le lui retirer, vous pouvez faire:
+```sql
+REVOKE GRANT OPTION ON 'Pays'.* FROM 'php'@'localhost';
 ```
 
 ## 22. Les sous-requêtes
