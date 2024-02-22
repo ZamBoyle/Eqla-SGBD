@@ -2268,15 +2268,15 @@ Pour maintenir la sécurité de la base de données, il est parfois nécessaire 
 REVOKE privilège ON base_de_données.table FROM 'utilisateur'@'hôte';
 FLUSH PRIVILEGES;
 ```
-où `privilège` est le privilège à révoquer, `base_de_données.table` est la base de données et la table sur laquelle le privilège doit être révoqué, et `utilisateur`@`hôte` est l'utilisateur et l'hôte pour lesquels le privilège doit être révoqué.
+où `privilège` est le privilège à révoquer (SELECT et/ou UPDATE et/ou INSERT et/ou DELETE), `base_de_données.table` est la base de données et la table sur laquelle le privilège doit être révoqué, et `utilisateur`@`hôte` est l'utilisateur et l'hôte pour lesquels le privilège doit être révoqué.
 
 **Exemple 1**
 ```sql
-REVOKE SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees_info` FROM 'php'@'localhost';
+REVOKE SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees` FROM 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-Cette commande révoque les privilèges de sélection, d'insertion, de mise à jour et de suppression de la table `employees_info` de la base de données `Employees` pour l'utilisateur `php`@`localhost`.
+Cette commande révoque les privilèges de sélection, d'insertion, de mise à jour et de suppression de la table `employees` de la base de données `Employees` pour l'utilisateur `php`@`localhost`.
 
 
 **Exemple 2**: 
@@ -2285,14 +2285,6 @@ REVOKE ALL PRIVILEGES ON `Pays`.* FROM 'php'@'localhost';
 ```
 
 Cette commande révoque tous les privilèges de la base de données `Pays` pour l'utilisateur `php`@`localhost`.
-
-**Exemple 3**
-```sql
-REVOKE ALL PRIVILEGES ON nom_de_la_base_de_données.nom_de_la_table FROM 'utilisateur'@'hôte';
-FLUSH PRIVILEGES;
-```
-
-Cette commande révoque tous les privilèges de la table `nom_de_la_table` de la base de données `nom_de_la_base_de_données` pour l'utilisateur `utilisateur`@`hôte`.
 
 #### 2. Suppression d'utilisateurs
 Lorsqu'un utilisateur n'est plus nécessaire, il est important de le supprimer pour éviter tout accès non autorisé. La commande `DROP USER` est utilisée pour supprimer un utilisateur de MySQL.

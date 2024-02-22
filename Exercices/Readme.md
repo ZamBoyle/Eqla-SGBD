@@ -68,6 +68,7 @@
 - [Exercice n°45 - Limitation des privilèges](#exercice-n45---limitation-des-privilèges)
 - [Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs](#exercice-n46---révocation-de-privilèges-et-suppression-dutilisateurs)
 - [Exercice n°47 - Création d'un Utilisateur pour une Application](#exercice-n47---création-dun-utilisateur-pour-une-application)
+- [Exer](#exer)
 - [Exercice n°48 - Sous-requêtes de liste](#exercice-n48---sous-requêtes-de-liste)
 - [Exercice n°49 - Les index](#exercice-n49---les-index)
 
@@ -1280,6 +1281,8 @@ Objectif : Créer un utilisateur spécifique pour une application web.
 - Attribuez à cet utilisateur des privilèges SELECT, INSERT, UPDATE sur une base de données nommée BlindCode2.
 - Assurez-vous que cet utilisateur a bien été créé avec la commande `SELECT` appropriée.
 - Assurez-vous que les privilèges ont bien été révoqués avec la commande `SHOW GRANTS` appropriée.
+
+## Exer
 
 ## Exercice n°48 - Sous-requêtes de liste
 Ces exercices vous seront sans doute difficiles, mais ils sont très importants pour comprendre les sous-requêtes. Lisez bien ce qu'on demande et essayez de comprendre les requêtes.
