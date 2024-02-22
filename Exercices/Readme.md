@@ -66,10 +66,6 @@
 - [Exercice n°43 - Création d'utilisateurs](#exercice-n43---création-dutilisateurs)
 - [Exercice n°44 - Attribution de Privilèges](#exercice-n44---attribution-de-privilèges)
 - [Exercice n°45 - Limitation des privilèges](#exercice-n45---limitation-des-privilèges)
-- [Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs](#exercice-n46---révocation-de-privilèges-et-suppression-dutilisateurs)
-- [Exercice n°47 - Création d'un Utilisateur pour une Application](#exercice-n47---création-dun-utilisateur-pour-une-application)
-- [Exercice n°48 - Sous-requêtes de liste](#exercice-n48---sous-requêtes-de-liste)
-- [Exercice n°49 - Les index](#exercice-n49---les-index)
 
 <!-- /code_chunk_output -->
 
@@ -1247,31 +1243,41 @@ INSERT INTO employe (prenon, nom, datenaissance, date_embauche) VALUES ('Laura',
 Objectif : Créer deux utilisateurs, un pour un usage local et un autre pour un usage distant.
 
 1. Créez un utilisateur local_user qui peut se connecter uniquement depuis la machine locale (localhost). Assurez-vous que l'utilisateur a un mot de passe.
-2. Créez un utilisateur remote_user qui peut se connecter depuis n'importe quel hôte (%). 
+2. Créez un utilisateur remote_user qui peut se connecter depuis n'importe quel hôte (%).
+3. Assurez-vous que ces deux utilisateurs ont bien été créés avec la commande `SELECT` appropriée.
 
 ## Exercice n°44 - Attribution de Privilèges
 Objectif : Attribuer des privilèges spécifiques à des utilisateurs pour des bases de données spécifiques.
 
 - Attribuez à local_user des privilèges de lecture (SELECT) sur toutes les tables de la base de données Employees.
 - Donnez à remote_user des privilèges de lecture sur la vue `inactive_employees` (crée à l'exercice n°35) dans la base de données Employees.
+- Assurez-vous que ces utilisateurs ont bien été créés avec la commande `SELECT` appropriée.
+- Assurez-vous que les privilèges ont bien été attribués pour ces utilisateurs avec la commande `SHOW GRANTS` appropriée.
 
 ## Exercice n°45 - Limitation des privilèges
 Objectif : Créer un utilisateur avec des privilèges limités à une seule table.
 
 1. Créez un utilisateur report_user avec un accès en lecture seule (SELECT) à la table employees_info dans la base de données Employees.
+2. Assurez-vous que cet utilisateur a bien été créé avec la commande `SELECT` appropriée.
+3. Assurez-vous que les privilèges ont bien été attribués avec la commande `SHOW GRANTS` appropriée.
+
+```sql
 
 ## Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs
 Objectif : Pratiquer la révocation de privilèges et la suppression d'utilisateurs.
 
 - Révoquez tous les privilèges de remote_user sur la base de données Inventory.
+- Assurez-vous que les privilèges ont bien été révoqués avec la commande `SHOW GRANTS` appropriée.
 - Supprimez l'utilisateur remote_user de MySQL.
+- Assurez-vous que l'utilisateur a bien été supprimé avec la commande `SELECT` appropriée.
 
 ## Exercice n°47 - Création d'un Utilisateur pour une Application
 Objectif : Créer un utilisateur spécifique pour une application web.
 
 - Créez un utilisateur web_app qui peut se connecter depuis l'adresse IP spécifique de votre serveur web.
 - Attribuez à cet utilisateur des privilèges SELECT, INSERT, UPDATE sur une base de données nommée BlindCode2.
-
+- Assurez-vous que cet utilisateur a bien été créé avec la commande `SELECT` appropriée.
+- Assurez-vous que les privilèges ont bien été révoqués avec la commande `SHOW GRANTS` appropriée.
 
 ## Exercice n°48 - Sous-requêtes de liste
 Ces exercices vous seront sans doute difficiles, mais ils sont très importants pour comprendre les sous-requêtes. Lisez bien ce qu'on demande et essayez de comprendre les requêtes.

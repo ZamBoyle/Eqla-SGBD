@@ -150,22 +150,18 @@
     - [21.4 Accès à une table spécifique en lecture seule](#214-accès-à-une-table-spécifique-en-lecture-seule)
     - [21.5 Accès en lecture et écriture à une table spécifique](#215-accès-en-lecture-et-écriture-à-une-table-spécifique)
     - [21.5 Accès à plusieurs tables spécifiques](#215-accès-à-plusieurs-tables-spécifiques)
-    - [21.6 Révocation de Privilèges et Suppression d'Utilisateurs](#216-révocation-de-privilèges-et-suppression-dutilisateurs)
+    - [21.6 Afficher les privilèges d'un utilisateur](#216-afficher-les-privilèges-dun-utilisateur)
+    - [21.7 Révocation de Privilèges et Suppression d'Utilisateurs](#217-révocation-de-privilèges-et-suppression-dutilisateurs)
       - [1. Révocation de privilèges](#1-révocation-de-privilèges)
       - [2. Suppression d'utilisateurs](#2-suppression-dutilisateurs)
-    - [22.6 Modification du mot de passe d'un utilisateur](#226-modification-du-mot-de-passe-dun-utilisateur)
+    - [21.8 Modification du mot de passe d'un utilisateur](#218-modification-du-mot-de-passe-dun-utilisateur)
+    - [21.9 Vérification des utilisateurs](#219-vérification-des-utilisateurs)
   - [22. Les sous-requêtes](#22-les-sous-requêtes)
     - [22.1 1. Sous-requêtes corrélées](#221-1-sous-requêtes-corrélées)
     - [22.2 Sous-requête de liste](#222-sous-requête-de-liste)
     - [22.3 Sous-requêtes scalaires/de colonnes](#223-sous-requêtes-scalairesde-colonnes)
-  - [22. CTE (Common Table Expression)](#22-cte-common-table-expression)
-    - [22.1 Utilisation d'une CTE](#221-utilisation-dune-cte)
-    - [22.2 Exemple récursif](#222-exemple-récursif)
-    - [22.2 Différences entre une CTE et une vue](#222-différences-entre-une-cte-et-une-vue)
-      - [22.2.1 CTE (Common Table Expression)](#2221-cte-common-table-expression)
-      - [22.2.2 Vue](#2222-vue)
-  - [21. Les transactions](#21-les-transactions)
-  - [30.](#30)
+  - [24. Les transactions](#24-les-transactions)
+  - [25. Minute papillon ! Je n'écris pas si vite ! :-)](#25-minute-papillon--je-nécris-pas-si-vite---)
 
 <!-- /code_chunk_output -->
 
@@ -2258,8 +2254,14 @@ Il n'y a pas de problème à répéter la commande GRANT plusieurs fois pour le 
 
 Pour intégrer l'exercice n°46 dans votre cours, en se basant sur le contenu du PDF que vous avez fourni, voici un chapitre théorique adapté :
 
+### 21.6 Afficher les privilèges d'un utilisateur
+Pour afficher les privilèges d'un utilisateur, utilisez la commande `SHOW GRANTS`
+```sql
+SHOW GRANTS FOR 'php'@'localhost';
+```
+Cette commande affiche les privilèges accordés à l'utilisateur `php`@`localhost`.
 
-### 21.6 Révocation de Privilèges et Suppression d'Utilisateurs
+### 21.7 Révocation de Privilèges et Suppression d'Utilisateurs
 
 #### 1. Révocation de privilèges 
 Pour maintenir la sécurité de la base de données, il est parfois nécessaire de révoquer des privilèges accordés aux utilisateurs. Utilisez la commande `REVOKE` pour retirer des privilèges spécifiques ou tous les privilèges d'un utilisateur sur une base de données ou des tables spécifiques.
@@ -2267,12 +2269,14 @@ Pour maintenir la sécurité de la base de données, il est parfois nécessaire 
 **Syntaxe :**
 ```sql
 REVOKE privilège ON base_de_données.table FROM 'utilisateur'@'hôte';
+FLUSH PRIVILEGES;
 ```
 où `privilège` est le privilège à révoquer, `base_de_données.table` est la base de données et la table sur laquelle le privilège doit être révoqué, et `utilisateur`@`hôte` est l'utilisateur et l'hôte pour lesquels le privilège doit être révoqué.
 
 **Exemple 1**
 ```sql
 REVOKE SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees_info` FROM 'php'@'localhost';
+FLUSH PRIVILEGES;
 ```
 
 Cette commande révoque les privilèges de sélection, d'insertion, de mise à jour et de suppression de la table `employees_info` de la base de données `Employees` pour l'utilisateur `php`@`localhost`.
@@ -2288,6 +2292,7 @@ Cette commande révoque tous les privilèges de la base de données `Pays` pour 
 **Exemple 3**
 ```sql
 REVOKE ALL PRIVILEGES ON nom_de_la_base_de_données.nom_de_la_table FROM 'utilisateur'@'hôte';
+FLUSH PRIVILEGES;
 ```
 
 Cette commande révoque tous les privilèges de la table `nom_de_la_table` de la base de données `nom_de_la_base_de_données` pour l'utilisateur `utilisateur`@`hôte`.
@@ -2298,13 +2303,21 @@ Lorsqu'un utilisateur n'est plus nécessaire, il est important de le supprimer p
 **Syntaxe :**
 ```sql
 DROP USER 'utilisateur'@'hôte';
+FLUSH PRIVILEGES;
 ```
----
 
+### 21.8 Modification du mot de passe d'un utilisateur
+Pour modifier le mot de passe d'un utilisateur, utilisez la commande `ALTER USER`
+```sql
+ALTER USER 'php'@'localhost' IDENTIFIED BY 'mot_de_passe';
+ALTER USER 'php'@'%' IDENTIFIED BY 'mot_de_passe';
+```
 
-
-### 22.6 Modification du mot de passe d'un utilisateur
-
+### 21.9 Vérification des utilisateurs
+Pour vérifier les utilisateurs, utilisez la commande `SELECT`
+```sql
+SELECT user, host FROM mysql.user;
+```
 
 ## 22. Les sous-requêtes
 Une sous-requête est une requête imbriquée dans une autre requête. Elle est utilisée pour récupérer des données à partir d'une ou plusieurs tables.
@@ -2362,7 +2375,7 @@ FROM Pays p;
 
 Dans cet exemple, nous avons une requête qui sélectionne le nom et le nom complet de chaque pays, ainsi que le nombre total de pays dans le même continent. La sous-requête est utilisée pour compter le nombre de pays dans le même continent que le pays actuel.
 
-
+<!--
 ## 22. CTE (Common Table Expression)
 Une CTE est une sous-requête nommée qui peut être utilisée dans une requête SELECT, INSERT, UPDATE ou DELETE. Elle est utile pour simplifier les requêtes complexes et pour améliorer la lisibilité du code.
 
@@ -2425,8 +2438,8 @@ Une vue est un objet de base de données qui permet de sauvegarder une requête 
 - Simplification des Requêtes : Les vues permettent de masquer la complexité des requêtes sous-jacentes, offrant une interface simplifiée pour accéder aux données. Cela est particulièrement utile dans les environnements où les utilisateurs finaux ne sont pas familiarisés avec le SQL ou la structure de la base de données.
 
 - Performance : Bien que les vues puissent simplifier l'accès aux données, elles ne stockent pas les données elles-mêmes. Les requêtes qui utilisent des vues exécutent la requête SQL sous-jacente chaque fois qu'elles sont appelées, ce qui peut affecter la performance pour des vues complexes sur de grands volumes de données. Certains SGBD offrent des vues matérialisées, qui stockent le résultat de la requête de la vue sur le disque pour améliorer la performance.
-
-## 21. Les transactions
+-->
+## 24. Les transactions
 Une transaction est un ensemble d'opérations qui doivent être exécutées ensemble. Si une seule opération échoue, toutes les opérations de la transaction doivent être annulées.
 
 Par exemple, si vous avez une transaction qui transfère de l'argent d'un compte à un autre, vous ne voulez pas que l'argent soit retiré d'un compte sans être ajouté à l'autre.
@@ -2515,7 +2528,7 @@ Donc, en résumé, une transaction est un ensemble d'opérations qui doivent êt
 Le IF n'est pas possible dans une transaction. Vous devrez le faire côté application. Mais je vous ai montré comment on pourrait faire en SQL. Le IF est utilisable dans une procédure stockée ou une fonction.
 
 
-## 30.
+## 25. Minute papillon ! Je n'écris pas si vite ! :-)
 <!--
 AJOUTER une clef primaire composée. Exemple: idEleve, idClasse
 
