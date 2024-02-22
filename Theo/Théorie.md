@@ -2294,6 +2294,7 @@ Lorsqu'un utilisateur n'est plus nécessaire, il est important de le supprimer p
 DROP USER 'utilisateur'@'hôte';
 FLUSH PRIVILEGES;
 ```
+Où `hôte` est l'hôte à partir duquel l'utilisateur est autorisé à se connecter: localhost, %, un nom de domaine, voire une adresse IP.
 
 ### 21.8 Modification du mot de passe d'un utilisateur
 Pour modifier le mot de passe d'un utilisateur, utilisez la commande `ALTER USER`
