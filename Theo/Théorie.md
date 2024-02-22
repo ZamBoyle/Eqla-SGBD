@@ -2245,7 +2245,7 @@ L'exemple précédent donne accès à la table `employees` de la base de donnée
 ### 21.5 Accès à plusieurs tables spécifiques
 Si vous voulez que l'utilisateur php ait accès à employees_info et à salaries, vous pouvez faire:
 ```sql
-GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees_info` TO 'php'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees` TO 'php'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`salaries` TO 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
