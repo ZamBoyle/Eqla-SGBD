@@ -2223,14 +2223,14 @@ FLUSH PRIVILEGES;
 ### 21.3 Accès à une base de données spécifique
 Si vous voulez que l'utilisateur php ait accès à une seule base de données, vous pouvez faire:
 ```sql
-GRANT ALL PRIVILEGES ON 'Pays'.* TO 'php'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON Pays.* TO 'php'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 
 ### 21.4 Accès à une table spécifique en lecture seule
 Si vous voulez que l'utilisateur php ait accès à une seule table ou une seule vue, vous pouvez faire:
 ```sql
-GRANT SELECT ON 'Employees'.'employees_info' TO 'php'@'localhost';
+GRANT SELECT ON Employees.employees_info TO 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
 L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent. Et il ne pourra que lire les données de cette vue (`GRANT SELECT`).
@@ -2238,7 +2238,7 @@ L'exemple précédent donne accès à la vue employees_info de la base de donné
 ### 21.5 Accès en lecture et écriture à une table spécifique
 Si vous voulez que l'utilisateur php ait tous droit sur la table `employees`, vous pouvez faire:
 ```sql
-GRANT SELECT, INSERT, UPDATE, DELETE ON 'Employees'.'employees' TO 'php'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Employees.employees TO 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
 L'exemple précédent donne accès à la table `employees` de la base de données `Employees` que vous avez créée dans un exercice précédent. Et il pourra lire, insérer, mettre à jour et supprimer les données de cette vue (`GRANT SELECT, INSERT, UPDATE, DELETE`).
@@ -2246,8 +2246,8 @@ L'exemple précédent donne accès à la table `employees` de la base de donnée
 ### 21.5 Accès à plusieurs tables spécifiques
 Si vous voulez que l'utilisateur php ait accès à employees_info et à salaries, vous pouvez faire:
 ```sql
-GRANT SELECT, INSERT, UPDATE, DELETE ON 'Employees'.'employees' TO 'php'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON 'Employees'.'salaries' TO 'php'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Employees.employees TO 'php'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Employees.salaries TO 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
 Il n'y a pas de problème à répéter la commande GRANT plusieurs fois pour le même utilisateur. Vous pouvez aussi donner des droits différents pour chaque table. Mais il ne vous sera pas possible de tout faire en une seule commande GRANT.
@@ -2273,7 +2273,7 @@ où `privilège` est le privilège à révoquer (SELECT et/ou UPDATE et/ou INSER
 
 **Exemple 1**
 ```sql
-REVOKE SELECT, INSERT, UPDATE, DELETE ON 'Employees'.'employees' FROM 'php'@'localhost';
+REVOKE SELECT, INSERT, UPDATE, DELETE ON Employees.employees FROM 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -2282,7 +2282,7 @@ Cette commande révoque les privilèges de sélection, d'insertion, de mise à j
 
 **Exemple 2**: 
 ```sql
-REVOKE ALL PRIVILEGES ON 'Pays'.* FROM 'php'@'localhost';
+REVOKE ALL PRIVILEGES ON Pays.* FROM 'php'@'localhost';
 ```
 
 Cette commande révoque tous les privilèges de la base de données `Pays` pour l'utilisateur `php`@`localhost`.
@@ -2313,7 +2313,7 @@ SELECT user, host FROM mysql.user;
 ### 21.10 Suppression du privilège GRANT OPTION
 Si vous avez donné le privilège GRANT OPTION à un utilisateur et que vous voulez le lui retirer, vous pouvez faire:
 ```sql
-REVOKE GRANT OPTION ON 'Pays'.* FROM 'php'@'localhost';
+REVOKE GRANT OPTION ON Pays.* FROM 'php'@'localhost';
 ```
 
 ## 22. Les sous-requêtes
