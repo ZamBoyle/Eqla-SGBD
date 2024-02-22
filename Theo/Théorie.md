@@ -2240,7 +2240,7 @@ Si vous voulez que l'utilisateur php ait tous droit sur la table `employees`, vo
 GRANT SELECT, INSERT, UPDATE, DELETE ON `Employees`.`employees` TO 'php'@'localhost';
 FLUSH PRIVILEGES;
 ```
-L'exemple précédent donne accès à la vue employees_info de la base de données Employees que vous avez créée dans un exercice précédent. Et il pourra lire, insérer, mettre à jour et supprimer les données de cette vue (`GRANT SELECT, INSERT, UPDATE, DELETE`).
+L'exemple précédent donne accès à la table `employees` de la base de données `Employees` que vous avez créée dans un exercice précédent. Et il pourra lire, insérer, mettre à jour et supprimer les données de cette vue (`GRANT SELECT, INSERT, UPDATE, DELETE`).
 
 ### 21.5 Accès à plusieurs tables spécifiques
 Si vous voulez que l'utilisateur php ait accès à employees_info et à salaries, vous pouvez faire:
