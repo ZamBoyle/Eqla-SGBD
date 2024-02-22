@@ -2175,6 +2175,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'php'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 Détaillons ces commandes:
+
 **1. Création d'un utilisateur**
 
 ```sql
