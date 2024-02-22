@@ -1277,7 +1277,7 @@ Objectif : Pratiquer la révocation de privilèges et la suppression d'utilisate
 ## Exercice n°47 - Création d'un Utilisateur pour une Application
 Objectif : Créer un utilisateur spécifique pour une application web.
 
-- Créez un utilisateur web_app qui peut se connecter depuis l'adresse IP spécifique de votre serveur web.
+- Créez un utilisateur web_app qui peut se connecter depuis l'adresse IP suivante:192.168.1.10 de votre serveur web.
 - Attribuez à cet utilisateur des privilèges SELECT, INSERT, UPDATE sur une base de données nommée BlindCode2.
 - Assurez-vous que cet utilisateur a bien été créé avec la commande `SELECT` appropriée.
 - Assurez-vous que les privilèges ont bien été révoqués avec la commande `SHOW GRANTS` appropriée.
