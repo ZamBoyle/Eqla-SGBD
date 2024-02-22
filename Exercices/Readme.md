@@ -1266,7 +1266,6 @@ Objectif : Créer un utilisateur avec des privilèges limités à une seule tabl
 2. Assurez-vous que cet utilisateur a bien été créé avec la commande `SELECT` appropriée.
 3. Assurez-vous que les privilèges ont bien été attribués avec la commande `SHOW GRANTS` appropriée.
 
-
 ## Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs
 Objectif : Pratiquer la révocation de privilèges et la suppression d'utilisateurs.
 
@@ -1296,7 +1295,6 @@ Objectif : Pratiquer la révocation du privilège GRANT OPTION.
 
 - Révoquez le privilège GRANT OPTION de l'utilisateur php_user tant local que distant.
 - Assurez-vous que les privilèges ont bien été révoqués avec la commande `SHOW GRANTS` appropriée.
-
 
 ## Exercice n°50 - Sous-requêtes de liste
 Ces exercices vous seront sans doute difficiles, mais ils sont très importants pour comprendre les sous-requêtes. Lisez bien ce qu'on demande et essayez de comprendre les requêtes.

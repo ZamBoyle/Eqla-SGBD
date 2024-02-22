@@ -1,4 +1,4 @@
-[:arrow_left:Revenir au menu.](../Theo/README.md)
+[:arrow_left:Revenir au menu.](../README.md#sommaire)
 <h1 id="sommaire" style="display: flex; align-items: center; justify-content: center;">
     <img src="/Theo/media/image1.png" style="height:50px">
     &nbsp;Introduction aux bases de données
@@ -2580,7 +2580,7 @@ FLUSH PRIVILEGES;
 
 ## INNER JOIN sur la même table: exemple élève et parrain
  -->
-[:arrow_left:Revenir au menu.](../Theo/README.md)
+[:arrow_left:Revenir au menu.](../README.md#sommaire)
 <!--
 ## 15. Différents type de jointures: INNER, LEFT, RIGHT, FULL
 ![](https://sql.sh/wp-content/uploads/2014/06/sql-join-infographie.png)
