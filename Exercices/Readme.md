@@ -66,6 +66,10 @@
 - [Exercice n°43 - Création d'utilisateurs](#exercice-n43---création-dutilisateurs)
 - [Exercice n°44 - Attribution de Privilèges](#exercice-n44---attribution-de-privilèges)
 - [Exercice n°45 - Limitation des privilèges](#exercice-n45---limitation-des-privilèges)
+- [Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs](#exercice-n46---révocation-de-privilèges-et-suppression-dutilisateurs)
+- [Exercice n°47 - Création d'un Utilisateur pour une Application](#exercice-n47---création-dun-utilisateur-pour-une-application)
+- [Exercice n°48 - Sous-requêtes de liste](#exercice-n48---sous-requêtes-de-liste)
+- [Exercice n°49 - Les index](#exercice-n49---les-index)
 
 <!-- /code_chunk_output -->
 
@@ -1261,7 +1265,6 @@ Objectif : Créer un utilisateur avec des privilèges limités à une seule tabl
 2. Assurez-vous que cet utilisateur a bien été créé avec la commande `SELECT` appropriée.
 3. Assurez-vous que les privilèges ont bien été attribués avec la commande `SHOW GRANTS` appropriée.
 
-```sql
 
 ## Exercice n°46 - Révocation de Privilèges et Suppression d'Utilisateurs
 Objectif : Pratiquer la révocation de privilèges et la suppression d'utilisateurs.

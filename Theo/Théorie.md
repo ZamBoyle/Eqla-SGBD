@@ -161,7 +161,11 @@
     - [22.2 Sous-requête de liste](#222-sous-requête-de-liste)
     - [22.3 Sous-requêtes scalaires/de colonnes](#223-sous-requêtes-scalairesde-colonnes)
   - [24. Les transactions](#24-les-transactions)
-  - [25. Minute papillon ! Je n'écris pas si vite ! :-)](#25-minute-papillon--je-nécris-pas-si-vite---)
+  - [25. Mot de passe généré en PHP](#25-mot-de-passe-généré-en-php)
+    - [25.1 Mot de passe en clair](#251-mot-de-passe-en-clair)
+    - [25.2 Mot de passe hashé](#252-mot-de-passe-hashé)
+    - [25.3 Mot de passe hashé avec un sel](#253-mot-de-passe-hashé-avec-un-sel)
+    - [25.4 Mot de passe hashé avec un sel et du poivre](#254-mot-de-passe-hashé-avec-un-sel-et-du-poivre)
 
 <!-- /code_chunk_output -->
 
@@ -2458,7 +2462,7 @@ Ici, on a considéré qu'il y a assez d'argent sur le compte 1 pour retirer 100 
 
 Maintenant, on va voir un exemple plus complet avec une vérification de solde avant de faire le débit.
 
-Je vais ici faire du pseudo code pour que vous compreniez bien le principe. En effet, il n'est pas possible de faire un IF dans une transaction. Mais je vais vous montrer comment on pourrait faire. Vous devrez le faire côté application.
+Je vais ici faire du pseudo code pour que vous compreniez bien le principe. En effet, il n'est pas possible de faire un IF dans une transaction. Mais je vais vous montrer comment on pourrait faire. Vous devrez le faire côté application car évidemment dans une application vous pourrez faire un IF. :-D 
 
 ```sql
 -- Démarrage de la transaction
@@ -2528,7 +2532,19 @@ Donc, en résumé, une transaction est un ensemble d'opérations qui doivent êt
 Le IF n'est pas possible dans une transaction. Vous devrez le faire côté application. Mais je vous ai montré comment on pourrait faire en SQL. Le IF est utilisable dans une procédure stockée ou une fonction.
 
 
-## 25. Minute papillon ! Je n'écris pas si vite ! :-)
+## 25. Mot de passe généré en PHP
+Minute papillon ! Je n'écris pas si vite ! :-)
+
+### 25.1 Mot de passe en clair
+
+### 25.2 Mot de passe hashé
+
+### 25.3 Mot de passe hashé avec un sel
+
+### 25.4 Mot de passe hashé avec un sel et du poivre
+
+
+
 <!--
 AJOUTER une clef primaire composée. Exemple: idEleve, idClasse
 
