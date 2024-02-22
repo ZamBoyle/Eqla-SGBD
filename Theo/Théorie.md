@@ -2251,8 +2251,6 @@ FLUSH PRIVILEGES;
 ```
 Il n'y a pas de problème à répéter la commande GRANT plusieurs fois pour le même utilisateur. Vous pouvez aussi donner des droits différents pour chaque table. Mais il ne vous sera pas possible de tout faire en une seule commande GRANT.
 
-Pour intégrer l'exercice n°46 dans votre cours, en se basant sur le contenu du PDF que vous avez fourni, voici un chapitre théorique adapté :
-
 ### 21.6 Afficher les privilèges d'un utilisateur
 Pour afficher les privilèges d'un utilisateur, utilisez la commande `SHOW GRANTS`
 ```sql
