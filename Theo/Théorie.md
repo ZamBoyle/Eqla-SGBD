@@ -2185,6 +2185,7 @@ CREATE USER 'php'@'localhost' IDENTIFIED BY 'php';
 - `CREATE USER`: Cette commande est utilisée pour créer un nouvel utilisateur dans le système de gestion de base de données.
 - `'php'@'localhost'`: Ici, `'php'` est le nom de l'utilisateur que vous créez. L'adresse `'localhost'` spécifie que cet utilisateur aura uniquement le droit de se connecter à la base de données depuis la machine locale. En d'autres termes, une connexion distante utilisant cet utilisateur sera refusée. Le format est `'nom_utilisateur'@'hôte'`.
 - `IDENTIFIED BY 'php'`: Cette partie de la commande définit le mot de passe de l'utilisateur. Dans ce cas, le mot de passe est également `'php'`. Il est crucial de choisir un mot de passe fort dans un environnement de production pour sécuriser l'accès à la base de données.
+- `WITH GRANT OPTION`: Cette option permet à l'utilisateur non seulement d'avoir tous les privilèges mais aussi de les accorder à d'autres utilisateurs. C'est un niveau élevé de privilège qui doit être accordé avec une grande prudence.
 
 > Ca signifie aussi que vous pouvez avoir deux mots de passe différents pour le même utilisateur. Un pour une connexion locale (localhost) et un pour une connexion distante (%).
 
