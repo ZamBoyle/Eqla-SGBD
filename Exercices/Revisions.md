@@ -39,7 +39,7 @@ C'est une proposition, pas une obligation. ;-)
 
 ### 1.2 DB Localites
 1. Quelle est la commune ayant la plus petite Latitude ?
-2. Quelle est la plus grande Longitude sur le CP 1000 ?
+2. Quelle est la plus grande Longitude sur le CP 9220 ?
 3. Quelle est la moyenne des Latitudes ?
 4. Groupez les longitudes et leurs nombres. Le nombre sera affiché nb.
 5. Reprenez votre requête différente et ajoutez HAVING nb >1. Que se passe-t-il à votre avis ?
