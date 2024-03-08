@@ -194,7 +194,7 @@ Un emprunt porte sur 1 et 1 seul exemplaire.
 11. Afficher la liste des auteurs ayant un prénom comportant plus de 5 caractères. Aidez-vous de Google pour trouver la fonction à utiliser.
 12. Afficher la liste des auteurs dont le nom ou le prénom comporte la lettre 'e'.
 13. Afficher la liste des auteurs avec leur nom, prénom et l'âge qu'ils ont.
-14. Afficher la liste des exemplaires acutellement empruntés avec le nom et prénom de l'emprunteur.
+14. Afficher la liste des exemplaires actellement empruntés avec le nom et prénom de l'emprunteur.
 15. Combien d'exemplaires y a-t-il du livre suivant:Charlie Chan's Murder Cruise
 16. Quels sont les livres qui ont été empruntés au moins 2 fois ? Indice: Agrégat et HAVING
 17. Reprenez la requête précédente et modifiez la pour n'avoir que les emprunts en cours.
